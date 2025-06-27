@@ -6,6 +6,7 @@ body{
     background-color: black;
     color:rgb(144, 144, 144);
     overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
 }
 header img{
     height: 50px;
