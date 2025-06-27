@@ -119,7 +119,9 @@ details ul li{
 }
 .nav-bottom {
     position: relative;
-    margin-top: 70px;
+    margin-top: 50px;
+    margin-top:20px;
+    font-size: small;
     width: 100%;
     text-align: center;
 }
