@@ -1,10 +1,18 @@
-//function to toggle side bar
-document.addEventListener("DOMContentLoaded", function() {
-    const burger = document.getElementById("burger");
+document.addEventListener("DOMContentLoaded", function () {
+    const burgerButton = document.getElementById("burger");
+    const burger = document.querySelector(".burger");
     const nav = document.querySelector("nav");
 
-    burger.addEventListener("click", function() {
+    burgerButton.addEventListener("click", function () {
         nav.classList.toggle("active");
-        burger.classList.toggle("active");
+        burgerButton.classList.toggle("active");
+
+        const currentStyle = getComputedStyle(burger).justifyContent;
+
+        if (currentStyle === "center") {
+            burger.style.justifyContent = "space-around";
+        } else {
+            burger.style.justifyContent = "center";
+        }
     });
 });
