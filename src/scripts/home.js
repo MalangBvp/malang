@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     burgerButton.addEventListener("click", function () {
         nav.classList.toggle("active");
         burgerButton.classList.toggle("active");
+        document.getElementsByTagName("section").item(0).classList.toggle("active");
 
         const currentStyle = getComputedStyle(burger).justifyContent;
 

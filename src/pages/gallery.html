@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="resrc/images/icon.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="src/styles/home.css">
-    <title>Malang</title>
+    <link rel="shortcut icon" href="../../resrc/images/icon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/gallery.css">
+    <link rel="stylesheet" href="../styles/home.css">
+
+    <title>Malang | Art Gallery</title>
 </head>
 
 <body>
     <header>
-        <img src="resrc/images/malang.png" alt="Malang">
+        <img src="../../resrc/images/malang.png" alt="Malang">
         <button id="burger">
             <div class="burger">
                 <span></span>
@@ -22,7 +24,7 @@
     </header>
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="../../index.html">Home</a></li>
             <details>
                 <summary>Events</summary>
                 <ul>
@@ -32,7 +34,7 @@
             </details>
             <li><a href="">Store</a></li>
             <li><a href="">ATMOsphere</a></li>
-            <li><a href="src/pages/gallery.html">Art Gallery</a></li>
+            <li><a href="">Art Gallery</a></li>
             <details>
                 <summary>Our Members</summary>
                 <ul>
@@ -50,9 +52,11 @@
         </div>
     </nav>
     <section id="home">
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, suscipit!</h1>
+        <div class="gallery" id="gallery"></div>
+        <button class="view-more" id="viewMoreBtn">View More</button>
     </section>
-    <script src="src/scripts/home.js"></script>
+    <script src="../scripts/home.js"></script>
+    <script src="../scripts/gallery.js"></script>
 </body>
 
 </html>
