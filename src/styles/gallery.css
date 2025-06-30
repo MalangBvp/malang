@@ -26,9 +26,10 @@
 }
 
 .filters {
-    width: calc(100vw - 10px);
-    padding-right: 10px;
+    width: calc(100vw - 65px);
+    padding-right: 5px;
     margin-left: -10px;
+    padding-left: 60px;
     display: flex;
     border-bottom: 1px solid rgb(60, 60, 60);
     padding-bottom: 4px;
@@ -39,16 +40,25 @@
     -ms-overflow-style: none;
     /* Internet Explorer and Edge */
 }
-.filters button{
+
+.filters button {
     margin: 0 2px;
-    padding: 5px 10px;
+    padding: 7px 10px 3px 10px;
 }
-.filters p{
-    position: fixed;
+
+.filters p {
+    left: 0;
+    position: absolute;
     margin-right: 5px;
-    background-color:  rgb(14, 14, 14);
-    line-height: 30px;
+    font-size: 14px;
+    background-image: linear-gradient(to right,
+            rgb(14, 14, 14) 0%,
+            rgb(14, 14, 14) 85%,
+            transparent 100%);
+    padding-top: 5px;
+    line-height: 25px;
 }
+
 .view-more {
     display: block;
     margin: 1rem auto;

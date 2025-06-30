@@ -4,18 +4,6 @@
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgba(128, 128, 128, 0.466);
-}
-
-::-webkit-scrollbar-button {
     display: none;
 }
 
@@ -27,7 +15,6 @@ body {
     font-weight: 100;
     font-style: normal;
 }
-
 
 button,
 a,
@@ -43,9 +30,17 @@ button{
     cursor: pointer;
     font-family: "Scope One", serif;
     min-width: max-content;
+    transition-duration: 0.2s;
+}
+button:hover{
+    background-color: rgb(44, 44, 44);
+}
+.selected{
+    background-color: rgb(221, 221, 221);
+    color: rgb(0, 0, 0);
 }
 section {
-    margin-top: 60px;
+    margin-top: 55px;
     padding: 10px;
 }
 
@@ -83,6 +78,9 @@ header {
     margin: 10px;
     box-sizing: border-box;
 }
+.burger:hover {
+    background-color: rgb(39, 39, 39);
+}
 
 .burger span {
     width: 50%;
@@ -112,7 +110,6 @@ nav {
     z-index: 210;
     transition-duration: 0.3s;
     overflow-y: scroll;
-    scrollbar-width: none;
     /* Firefox */
     -ms-overflow-style: none;
     /* Internet Explorer and Edge */
@@ -130,7 +127,6 @@ nav ul {
 }
 
 nav ul li {
-    padding: 10px 0;
     border-bottom: 1px solid rgb(34, 34, 34);
     transition: background-color 0.3s ease;
 }
@@ -140,10 +136,12 @@ nav ul li:hover {
 }
 
 nav a {
+    padding: 10px 0;
     padding-left: 10px;
     text-decoration: none;
     color: rgb(166, 166, 166);
     display: block;
+    
 }
 details{
     border-bottom: 1px solid rgb(34, 34, 34);
@@ -200,9 +198,19 @@ details ul li {
 .nav-bottom {
     padding: 5px;
     position: relative;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 20px;
     font-size: 12px;
     width: calc(100% - 10px);
     text-align: center;
+}
+.social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+.social_icon {
+    height: 20px;
 }
