@@ -12,8 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (currentStyle === "center") {
             burger.style.justifyContent = "space-around";
+            document.body.style.overflow = "scroll"; // Restore scrolling when menu is closed
+
         } else {
             burger.style.justifyContent = "center";
+            document.body.style.overflow = "hidden";
         }
     });
 });
