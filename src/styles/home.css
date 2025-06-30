@@ -19,23 +19,31 @@
     display: none;
 }
 
-
-button,
-a,
-details {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-focus-ring-color: transparent;
-}
-
 body {
     background-color: rgb(14, 14, 14);
     color: rgb(227, 227, 227);
     overflow-x: hidden;
     font-family: "Scope One", serif;
-    font-weight: 400;
+    font-weight: 100;
     font-style: normal;
 }
 
+
+button,
+a,
+details,span {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;
+}
+button{
+    background-color: transparent;
+    border: 1px solid rgb(60, 60, 60);
+    color: rgb(227, 227, 227);
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Scope One", serif;
+    min-width: max-content;
+}
 section {
     margin-top: 60px;
     padding: 10px;
