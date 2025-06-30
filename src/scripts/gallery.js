@@ -55,4 +55,3 @@ window.addEventListener("click", (e) => {
 
 viewMoreBtn.addEventListener('click', loadArtworks);
 window.addEventListener('DOMContentLoaded', loadArtworks);
-
