@@ -18,11 +18,13 @@ body {
 
 button,
 a,
-details,span {
+details,
+span {
     -webkit-tap-highlight-color: transparent;
     -webkit-focus-ring-color: transparent;
 }
-button{
+
+button {
     background-color: transparent;
     border: 1px solid rgb(60, 60, 60);
     color: rgb(227, 227, 227);
@@ -32,13 +34,16 @@ button{
     min-width: max-content;
     transition-duration: 0.2s;
 }
-button:hover{
+
+button:hover {
     background-color: rgb(44, 44, 44);
 }
-.selected{
+
+.selected {
     background-color: rgb(221, 221, 221);
     color: rgb(0, 0, 0);
 }
+
 section {
     margin-top: 55px;
     padding: 10px;
@@ -78,6 +83,7 @@ header {
     margin: 10px;
     box-sizing: border-box;
 }
+
 .burger:hover {
     background-color: rgb(39, 39, 39);
 }
@@ -141,11 +147,13 @@ nav a {
     text-decoration: none;
     color: rgb(166, 166, 166);
     display: block;
-    
+
 }
-details{
+
+details {
     border-bottom: 1px solid rgb(34, 34, 34);
 }
+
 summary {
     padding: 10px 0;
     padding-left: 10px;
@@ -204,6 +212,7 @@ details ul li {
     width: calc(100% - 10px);
     text-align: center;
 }
+
 .social {
     display: flex;
     justify-content: center;
@@ -211,6 +220,58 @@ details ul li {
     gap: 10px;
     margin-top: 10px;
 }
+
 .social_icon {
     height: 20px;
 }
+
+/*======================================================temporary*/
+.marquee-container {
+    width: 100vw;
+    overflow: hidden;
+    border-bottom: 1px solid rgb(56, 56, 56);
+    padding: 10px 0;
+    margin-left: -10px;
+    box-sizing: border-box;
+    background-color: #000;
+    /* optional */
+}
+
+.marquee-track {
+    padding-top: 10px;
+    display: flex;
+    width: fit-content;
+    animation: scroll-marquee 15s linear infinite;
+}
+
+.marquee-content {
+    display: flex;
+    white-space: nowrap;
+}
+
+.marquee-content span {
+    color: #fff;
+    font-size: 16px;
+    padding-right: 40px;
+}
+
+@keyframes scroll-marquee {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+.tom{
+    height: 30px;
+    position: absolute;
+    margin-top: -5px;
+}
+.jerry{
+    height: 30px;
+    position: absolute;
+    margin-top: -20px;
+}
+/*======================================================temporary*/
