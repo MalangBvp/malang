@@ -5,6 +5,8 @@ const ctx = document.getElementById('chart').getContext('2d');
 document.getElementById("contribute").addEventListener("click", toggleContribution);
 document.getElementById("done").addEventListener("click", toggleContribution);
 
+ctx.height = 500;     //not working
+
 new Chart(ctx, {
     type: 'line',
     data: {
@@ -65,7 +67,9 @@ new Chart(ctx, {
             }
         }
     }
-});function toggleContribution() {
+});
+
+function toggleContribution() {
     const section = document.querySelector("section");
     const card = document.querySelector(".card");
     const done = document.getElementById("done");

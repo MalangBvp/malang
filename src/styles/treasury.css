@@ -1,26 +1,30 @@
 p {
     color: rgb(212, 212, 212);
 }
-
 canvas {
     display: block;
     width: 100%;
     max-width: 700px;
-    height: 700px;
-    margin: 0 auto;
+    margin: 10px auto;
     background-color: rgba(29, 29, 29, 0.301);
     border: 1px solid rgb(60, 60, 60);
     border-radius: 10px;
     backdrop-filter: blur(10px);
     padding: 15px;
-    margin-bottom: 10px;
 }
+
 #treasury {
     padding: 10px;
     text-align: center;
 }
 
 .card {
+    position: absolute;
+    z-index: 110;
+    transition-duration: 0.3s;
+    margin-left: -50vw;
+    top:50vh;
+    transform: translate(-50%, -50%);
     background-image: linear-gradient(to bottom right, rgba(14, 14, 14, 0.8), rgba(60, 60, 60, 0.8), rgba(14, 14, 14, 0.8));
     width: calc(100vw - 55px);
     max-width: 320px;
@@ -31,12 +35,6 @@ canvas {
     padding: 15px;
     display: flex;
     font-size: small;
-    position: absolute;
-    z-index: 110;
-    transition-duration: 0.3s;
-    margin-left: -50vw;
-    top:50vh;
-    transform: translate(-50%, -50%);
 }
 
 .qr {
