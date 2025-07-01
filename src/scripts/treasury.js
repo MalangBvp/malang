@@ -1,8 +1,8 @@
 const ctx = document.getElementById('chart').getContext('2d');
 
 // Example data — replace with your real data
-const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-const dataPoints = [1200, 1800, 2200, 3000, 2800, 3500];
+const labels = ['May', 'Jun','Jul'];
+const dataPoints = [118,188,338];
 
 new Chart(ctx, {
     type: 'line',
@@ -12,34 +12,34 @@ new Chart(ctx, {
             label: 'Malang Treasury (₹)',
             data: dataPoints,
             fill: true,
-            borderColor: '#6a0dad',
+            borderWidth: 1,
+            borderColor: 'green',
             backgroundColor: (ctx) => {
                 const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, 300);
-                gradient.addColorStop(0, 'rgba(106, 13, 173, 0.4)');
-                gradient.addColorStop(1, 'rgba(106, 13, 173, 0)');
+                gradient.addColorStop(0, 'rgba(13, 173, 48, 0.3)');
+                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
                 return gradient;
             },
             tension: 0.4,
-            pointBackgroundColor: '#6a0dad',
-            pointRadius: 4,
-            pointHoverRadius: 6
+            pointBackgroundColor: 'green',
+            pointRadius: 1,
+            pointHoverRadius: 3
         }]
     },
     options: {
         responsive: true,
         plugins: {
             legend: {
-                display: true,
+                display: false,
                 labels: {
                     color: '#333',
                     font: {
-                        size: 14,
-                        weight: 'bold'
+                        size: 14
                     }
                 }
             },
             tooltip: {
-                backgroundColor: '#6a0dad',
+                backgroundColor: 'black',
                 titleColor: '#fff',
                 bodyColor: '#fff'
             }
@@ -50,7 +50,7 @@ new Chart(ctx, {
                     color: '#555'
                 },
                 grid: {
-                    color: '#eee'
+                    color: '#303030'
                 }
             },
             y: {
@@ -58,7 +58,7 @@ new Chart(ctx, {
                     color: '#555'
                 },
                 grid: {
-                    color: '#eee'
+                    color: '#303030'
                 },
                 beginAtZero: true
             }
