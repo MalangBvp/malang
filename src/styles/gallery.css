@@ -59,28 +59,6 @@
     line-height: 27px;
 }
 
-.view-more {
-    display: block;
-    margin: 1rem auto;
-    padding: 0.5rem;
-    width: 90%;
-    max-width: 400px;
-    font-size: 1rem;
-    background-color: #111;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: 1px solid rgb(60, 60, 60);
-    border-radius: 50px;
-    font-family: "Scope One", serif;
-    font-weight: 100;
-    font-style: normal;
-}
-
-.view-more:hover {
-    background-color: #333;
-}
-
 .modal {
     display: none;
     position: fixed;

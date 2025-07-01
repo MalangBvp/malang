@@ -1,22 +1,80 @@
-p{
+p {
     color: rgb(212, 212, 212);
 }
+
 canvas {
-  display: block;
-  width: 100%;
-  max-width: 700px;
-  height: auto;
-  max-height: 50vh;
-  margin: 0 auto;
+    display: block;
+    width: 100%;
+    max-width: 700px;
+    height: 700px;
+    margin: 0 auto;
+    background-color: rgba(29, 29, 29, 0.301);
+    border: 1px solid rgb(60, 60, 60);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    margin-bottom: 10px;
 }
 #treasury {
-  padding: 10px;
-  text-align: center;
+    padding: 10px;
+    text-align: center;
 }
-#contribute{
-    margin-top: 30px;
-    width: 90%;
-    max-width: 500px;
-    padding: 7px 0px;
-    border-radius: 3px;
+
+.card {
+    background-image: linear-gradient(to bottom right, rgba(14, 14, 14, 0.8), rgba(60, 60, 60, 0.8), rgba(14, 14, 14, 0.8));
+    width: calc(100vw - 55px);
+    max-width: 320px;
+    aspect-ratio: 1.586;
+    border: 1px solid rgb(60, 60, 60);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    display: flex;
+    font-size: small;
+    position: absolute;
+    z-index: 110;
+    transition-duration: 0.3s;
+    margin-left: -50vw;
+    top:50vh;
+    transform: translate(-50%, -50%);
+}
+
+.qr {
+    height: 100%;
+    border-radius: 2px;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.info hr {
+    width: 100%;
+    border: 1px solid rgb(60, 60, 60);
+    margin: 5px 0;
+}
+.logo {
+    height: 40px;
+}
+.info code{
+    font-size: smaller;
+}
+.signature{
+    margin-top: 10px;
+    filter: invert(1);
+    height: 30px;
+    display: block;
+}
+
+#done{
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    z-index: 110;
+    left: 50%;
+    transform: translateX(-50%);
 }

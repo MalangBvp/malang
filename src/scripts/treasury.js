@@ -1,8 +1,9 @@
-const ctx = document.getElementById('chart').getContext('2d');
+const labels = ['May', 'Jun', 'Jul'];
+const dataPoints = [118, 188, 788];
 
-// Example data — replace with your real data
-const labels = ['May', 'Jun','Jul'];
-const dataPoints = [118,188,338];
+const ctx = document.getElementById('chart').getContext('2d');
+document.getElementById("contribute").addEventListener("click", toggleContribution);
+document.getElementById("done").addEventListener("click", toggleContribution);
 
 new Chart(ctx, {
     type: 'line',
@@ -64,4 +65,22 @@ new Chart(ctx, {
             }
         }
     }
-});
+});function toggleContribution() {
+    const section = document.querySelector("section");
+    const card = document.querySelector(".card");
+    const done = document.getElementById("done");
+
+    const isDoneVisible = done.style.display === "block";
+
+    if (isDoneVisible) {
+        // Reset styles
+        card.style.marginLeft = "-50vw";
+        section.classList.remove("active");
+        done.style.display = "none";
+    } else {
+        // Activate section and show 'done'
+        section.classList.add("active");
+        done.style.display = "block";
+        card.style.marginLeft = "50%";
+    }
+}
