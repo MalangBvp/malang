@@ -20,3 +20,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll('.slide-in');
+
+    const onScroll = () => {
+        const triggerPoint = window.innerHeight - 40;
+
+        elements.forEach(el => {
+            const elTop = el.getBoundingClientRect().top;
+            if (elTop < triggerPoint) {
+                el.classList.add('visible');
+            }
+        });
+    };
+
+    window.addEventListener('scroll', onScroll);
+    onScroll(); // trigger once on load
+});

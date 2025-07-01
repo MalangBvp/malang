@@ -11,15 +11,55 @@ const viewMoreBtn = document.getElementById('viewMoreBtn');
 function loadArtworks() {
     const fragment = document.createDocumentFragment();
     const nextBatch = artworks.slice(currentIndex, currentIndex + batchSize);
+    const imgElements = [];
 
     nextBatch.forEach(({ src, alt }) => {
         const item = document.createElement('div');
         item.className = 'gallery-item';
-        item.innerHTML = `<img src="${src}" alt="${alt}" loading="lazy"/>`;
+
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = alt;
+
+        // Only lazy load if NOT first batch
+        if (currentIndex !== 0) {
+            img.loading = 'lazy';
+        }
+
+        item.appendChild(img);
         fragment.appendChild(item);
+        imgElements.push(img);
     });
 
     gallery.appendChild(fragment);
+
+    // Track if all images are loaded (or errored)
+    const allImagesLoaded = imgElements.map(img => {
+        return new Promise(resolve => {
+            if (img.complete) {
+                resolve();
+            } else {
+                img.onload = img.onerror = resolve;
+            }
+        });
+    });
+
+    // Loader handling
+    if (currentIndex === 0) {
+        const loader = document.getElementById('loader');
+
+        // Set fallback timeout (5 seconds)
+        const timeoutId = setTimeout(() => {
+            if (loader) loader.style.display = 'none';
+        }, 5000);
+
+        // Hide loader after images finish loading
+        Promise.all(allImagesLoaded).then(() => {
+            clearTimeout(timeoutId);
+            if (loader) loader.style.display = 'none';
+        });
+    }
+
     currentIndex += batchSize;
 
     if (currentIndex >= artworks.length) {

@@ -39,6 +39,7 @@
     /* Firefox */
     -ms-overflow-style: none;
     /* Internet Explorer and Edge */
+    z-index: 110;
 }
 .filters button {
     margin: 0 2px;
