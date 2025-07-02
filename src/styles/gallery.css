@@ -91,10 +91,11 @@
     cursor: pointer;
     user-select: none;
     border: 1px solid rgba(255, 255, 255, 0.5);
-    line-height: 28px;
+    line-height: 21px;
     width: 25px;
     padding-left: 3px;
     border-radius: 5px;
+    padding-top: 7px;
 }
 
 
