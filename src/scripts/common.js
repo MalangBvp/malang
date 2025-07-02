@@ -18,8 +18,17 @@ document.addEventListener("DOMContentLoaded", function () {
             burger.style.justifyContent = "center";
             document.body.style.overflow = "hidden";
         }
+        vibrate();
     });
 });
+
+//================================================vibration
+function vibrate(duration = 50) {
+    if (navigator.vibrate) {
+        navigator.vibrate(duration);
+    }
+}
+//=========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
     const elements = document.querySelectorAll('.slide-in');
