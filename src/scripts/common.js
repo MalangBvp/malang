@@ -1,26 +1,24 @@
+document.getElementById('year').textContent = new Date().getFullYear();
+
 document.addEventListener("DOMContentLoaded", function () {
     const burgerButton = document.getElementById("burger");
     const burger = document.querySelector(".burger");
     const nav = document.querySelector("nav");
+    const section = document.querySelector("section");
+    const navButtons = document.getElementById("nav-buttons");
 
-    burgerButton.addEventListener("click", function () {
+    function toggleMenu() {
         vibrate();
-        nav.classList.toggle("active");
+        const isActive = nav.classList.toggle("active");
         burgerButton.classList.toggle("active");
-        document.getElementsByTagName("section").item(0).classList.toggle("active");
-        document.getElementById("nav-buttons").classList.toggle("active");
+        section.classList.toggle("active");
+        navButtons.classList.toggle("active");
 
-        const currentStyle = getComputedStyle(burger).justifyContent;
+        burger.style.justifyContent = isActive ? "center" : "space-around";
+        document.body.style.overflow = isActive ? "hidden" : "scroll";
+    }
 
-        if (currentStyle === "center") {
-            burger.style.justifyContent = "space-around";
-            document.body.style.overflow = "scroll"; // Restore scrolling when menu is closed
-
-        } else {
-            burger.style.justifyContent = "center";
-            document.body.style.overflow = "hidden";
-        }
-    });
+    burgerButton.addEventListener("click", toggleMenu);
 });
 
 // function to invert theme except for elements with class "same" on button click with id "theme"

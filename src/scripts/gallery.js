@@ -67,16 +67,33 @@ function loadArtworks() {
     }
 }
 
+let imageMeta = {};
+
+fetch("../../resrc/artworks.json")
+    .then((res) => res.json())
+    .then((data) => imageMeta = data);
+
+
 const modal = document.getElementById("image-modal");
 const modalImg = document.getElementById("modal-image");
+const modalTitle = document.getElementById("modal-title");
+const modalArtist = document.getElementById("modal-artist");
 const closeModal = document.querySelector(".modal-close");
 
 gallery.addEventListener("click", (e) => {
     const target = e.target;
-    document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
     if (target.tagName === "IMG") {
-        modal.style.display = "block";
+        const fileName = target.src.split("/").pop();      // Get the file name
+        const imageId = fileName.split(".")[0];            // Get the number before extension
+
+        const meta = imageMeta[imageId];                   // Lookup in JSON
+
         modalImg.src = target.src;
+        modalTitle.textContent = `Title: ${meta?.title || "NA"}`;
+        modalArtist.textContent = `Artist: ${meta?.artist || "NA"}`;
+
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
     }
 });
 

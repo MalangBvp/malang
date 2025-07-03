@@ -5,7 +5,6 @@ const ctx = document.getElementById('chart').getContext('2d');
 document.getElementById("contribute").addEventListener("click", toggleContribution);
 document.getElementById("done").addEventListener("click", toggleContribution);
 
-ctx.height = 500;     //not working
 
 new Chart(ctx, {
     type: 'line',
@@ -19,7 +18,7 @@ new Chart(ctx, {
             borderColor: 'green',
             backgroundColor: (ctx) => {
                 const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, 300);
-                gradient.addColorStop(0, 'rgba(13, 173, 48, 0.3)');
+                gradient.addColorStop(0, 'rgba(13, 173, 48, 0.5)');
                 gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
                 return gradient;
             },
@@ -79,11 +78,11 @@ function toggleContribution() {
     if (isDoneVisible) {
         // Reset styles
         card.style.marginLeft = "-50vw";
-        section.classList.remove("active");
+        section.classList.remove("treasury-active");
         done.style.display = "none";
     } else {
         // Activate section and show 'done'
-        section.classList.add("active");
+        section.classList.add("treasury-active");
         done.style.display = "block";
         card.style.marginLeft = "50%";
     }

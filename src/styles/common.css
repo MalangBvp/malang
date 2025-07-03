@@ -150,11 +150,11 @@ nav {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 61px;
+    top: 60px;
     right: -301px;
     width: 300px;
     max-width: calc(100vw - 60px);
-    height: calc(100% - 61px);
+    height: calc(100% - 60px);
     border-left: 1px solid rgb(60, 60, 60);
     background-color: rgb(0, 0, 0);
     box-sizing: border-box;
@@ -190,7 +190,7 @@ nav a {
     padding: 10px 0;
     padding-left: 10px;
     text-decoration: none;
-    color: rgb(166, 166, 166);
+    color: rgb(200, 200, 200);
     display: block;
 }
 
@@ -201,7 +201,7 @@ details {
 summary {
     padding: 10px 0;
     padding-left: 10px;
-    color: rgb(166, 166, 166)
+    color: rgb(200, 200, 200);
 }
 
 summary:hover {
@@ -233,10 +233,12 @@ summary::before {
     font-size: 22px;
     line-height: 1;
     transform: rotate(90deg);
+    transform-origin: center center;
 }
 
 details[open] summary::before {
     transform: rotate(270deg);
+    margin-right: -4px;
 }
 
 details ul li {
