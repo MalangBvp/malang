@@ -1,16 +1,4 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <title>Malang | Site Documentation</title>
-</head>
-
-<body>
-</body>
-
-</html>
-
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,18 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../resrc/images/icon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="../styles/common.css">
-    <link rel="stylesheet" href="../styles/documentation.css">
+    <link rel="stylesheet" href="../styles/treasury.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Goblin+One&family=Scope+One&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <title>Malang</title>
+    <title>Malang | Authentication</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 80%;
+            margin: auto;
+            margin-top: 50vh;
+            transform: translateY(-60%);
+            text-align: center;
+            border: 1px solid #3c3c3c;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #3c3c3c;
+            border-radius: 5px;
+            background-color: #161616;
+            color:white;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <a href="index.html" class="malang"><img src="../../resrc/images/malang.png" alt="Malang"></a>
+        <a href="../../index.html" class="malang"><img src="../../resrc/images/malang.png" alt="Malang"></a>
         <button id="burger">
             <div class="burger">
                 <span></span>
@@ -50,7 +63,7 @@
             </details>
             <li><a href="../../404.html">Store</a></li>
             <li><a href="../../404.html">ATMOsphere</a></li>
-            <li><a href="../../src/pages/gallery.html">Art Gallery</a></li>
+            <li><a href="gallery.html">Art Gallery</a></li>
             <li><a href="photographs.html">Photo Gallery</a></li>
             <details>
                 <summary>Our Members</summary>
@@ -63,9 +76,10 @@
             <details>
                 <summary>Admin Panel</summary>
                 <ul>
-                    <li><a href="../../src/pages/authentication.html">Treasury</a></li>
-                    <li><a href="../../404.html">Redirection Tool <img src="../../resrc/images/icons/link_arrow.png" class="icon-small"></a></li>
-                    <li><a href="../../src/pages/documentation.html">Site Documentation</a></li>
+                    <li><a href="authentication.html">Treasury</a></li>
+                    <li><a href="../../404.html">Redirection Tool <img src="../../resrc/images/icons/link_arrow.png"
+                                class="icon-small"></a></li>
+                    <li><a href="documentation.html">Site Documentation</a></li>
                 </ul>
             </details>
             <li><a href="../../404.html">Contact</a></li>
@@ -73,12 +87,12 @@
         <div class="nav-bottom">
             <div class="social">
                 <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/malangbvp/#"
-                    target="_blank"><img src=" ../../resrc/images/icons/instagram.png" alt="" class="social_icon"></a>
+                    target="_blank"><img src="../../resrc/images/icons/instagram.png" alt="" class="social_icon"></a>
                 <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/malangbvp/"><img
                         src="../../resrc/images/icons/linkedin.svg" alt="" class="social_icon"></a>
                 <a target="_blank" rel="noopener noreferrer"
                     href="mailto:malangbvp@gmail.com?subject=Contacting%20via%20Malang%20Website&body=Hi%20Malang%20Team,%0D%0A%0D%0AI%20found%20your%20email%20on%20the%20Malang%20website%20and%20wanted%20to%20get%20in%20touch%20regarding...%0D%0A%0D%0ARegards,%0D%0A[Your%20Name]"
-                    target="_blank"><img src=" ../../resrc/images/icons/email.svg" alt="" class="social_icon"></a>
+                    target="_blank"><img src="../../resrc/images/icons/email.svg" alt="" class="social_icon"></a>
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/MalangBvp"><img
                         src="../../resrc/images/icons/github.svg" alt="" class="social_icon"></a>
             </div>
@@ -90,11 +104,32 @@
         <button id="theme"><img src="../../resrc/images/icons/sun.png" alt=""></button>
         <button id="copy"><img src="../../resrc/images/icons/link.png" alt=""></button>
     </div>
-    <section>
-        <div id="readme-content">Loading...</div>
-        <script src="../scripts/documentation.js"></script>
+    <section id="authentication">
+        <form id="accessForm">
+        <p>Authentication Required.</p>
+            <input type="password" id="password" placeholder="Password" required />
+            <button type="submit" class="long-btn">Enter</button>
+        </form>
     </section>
     <script src="../scripts/common.js"></script>
+    <script>
+        const form = document.getElementById('accessForm');
+        const passwordInput = document.getElementById('password');
+
+        const encoded = 'bWFsYW5ncGFyaw==';
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const input = passwordInput.value;
+
+            const b64 = btoa(input);
+            if (b64 === encoded) {
+                window.location.href = 'treasury.html';
+            } else {
+                alert('Incorrect password');
+            }
+        });
+    </script>
 </body>
 
 </html>

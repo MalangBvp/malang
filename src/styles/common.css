@@ -24,6 +24,11 @@ span,img {
     -webkit-focus-ring-color: transparent;
 }
 
+.icon-small{
+    height: 13px;
+    margin-left: 3px;
+    filter: brightness(0) invert(1);
+}
 button {
     background-color: transparent;
     border: 1px solid rgb(60, 60, 60);
