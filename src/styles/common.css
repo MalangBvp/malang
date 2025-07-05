@@ -19,7 +19,7 @@ body {
 button,
 a,
 details,
-span {
+span,img {
     -webkit-tap-highlight-color: transparent;
     -webkit-focus-ring-color: transparent;
 }
@@ -39,6 +39,11 @@ button:hover {
     background-color: rgb(44, 44, 44);
 }
 
+.malang{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .selected {
     background-color: rgb(221, 221, 221);
     color: rgb(0, 0, 0);
@@ -61,7 +66,6 @@ button:hover {
     width: 30px;
     height: 30px;
 }
-
 section {
     margin-top: 65px;
 }
@@ -150,7 +154,7 @@ nav {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 60px;
+    top: 61px;
     right: -301px;
     width: 300px;
     max-width: calc(100vw - 60px);
@@ -174,7 +178,6 @@ nav ul {
     display: flex;
     flex-direction: column;
     list-style: none;
-    border-top: 1px solid rgb(60, 60, 60);
 }
 
 nav ul li {
@@ -195,6 +198,9 @@ nav a {
 }
 
 details {
+    border-bottom: 1px solid rgb(60, 60, 60);
+}
+details[open] > summary {
     border-bottom: 1px solid rgb(60, 60, 60);
 }
 
