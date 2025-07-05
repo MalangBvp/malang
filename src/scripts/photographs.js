@@ -1,6 +1,6 @@
-const totalphotographs = 40;
+const totalphotographs = 50;
 const photographs = Array.from({ length: totalphotographs }, (_, i) => ({
-    src: `../../resrc/images/photographs/${(i + 1) % 4}.jpeg`,
+    src: `../../resrc/images/photographs/${(i + 1) % 6}.jpeg`,
     alt: `Artwork ${i + 1}`
 }));
 
@@ -31,7 +31,7 @@ function loadphotographs() {
         imgElements.push(img);
 
         // First 3 items go to fragment1, then alternate between fragment2 and fragment1
-        if ((currentIndex + idx) < 4 || ((currentIndex + idx - 3) % 2 === 0)) {
+        if ((currentIndex + idx) < 7 || ((currentIndex + idx - 3) % 2 === 0)) {
             fragment1.appendChild(item);
         } else {
             fragment2.appendChild(item);

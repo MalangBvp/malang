@@ -6,12 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../resrc/images/icon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="../styles/common.css">
-    <link rel="stylesheet" href="../styles/photographs.css">
+    <link rel="stylesheet" href="../styles/treasury.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
+    <title>Malang | Redirector</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 80%;
+            margin: auto;
+            margin-top: 50vh;
+            transform: translateY(-60%);
+            text-align: center;
+            border: 1px solid #2e2e2e;
+            padding: 20px;
+            border-radius: 10px;
+        }
 
-    <title>Malang | Photo Gallery</title>
+        input {
+            padding: 10px;
+            border: 1px solid #3c3c3c;
+            border-radius: 5px;
+            background-color: #161616;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        form p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .url{
+            text-decoration: underline;
+            color: #00d9ff;
+            text-overflow: ellipsis;
+        }
+
+        
+    </style>
 </head>
 
 <body>
@@ -51,7 +86,8 @@
                 <summary>Admin Panel</summary>
                 <ul>
                     <li><a href="authentication.html">Treasury</a></li>
-                    <li><a href="authentication.html">Redirection Tool <img src="../../resrc/images/icons/link_arrow.png" class="icon-small"></a></li>
+                    <li><a href="authentication.html">Redirection Tool <img
+                                src="../../resrc/images/icons/link_arrow.png" class="icon-small"></a></li>
                     <li><a href="documentation.html">Site Documentation</a></li>
                 </ul>
             </details>
@@ -63,8 +99,9 @@
                     target="_blank"><img src="../../resrc/images/icons/instagram.png" alt="" class="social_icon"></a>
                 <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/malangbvp/"><img
                         src="../../resrc/images/icons/linkedin.svg" alt="" class="social_icon"></a>
-                <a target="_blank" rel="noopener noreferrer" href="mailto:malangbvp@gmail.com?subject=Contacting%20via%20Malang%20Website&body=Hi%20Malang%20Team,%0D%0A%0D%0AI%20found%20your%20email%20on%20the%20Malang%20website%20and%20wanted%20to%20get%20in%20touch%20regarding...%0D%0A%0D%0ARegards,%0D%0A[Your%20Name]" target="_blank"><img
-                        src="../../resrc/images/icons/email.svg" alt="" class="social_icon"></a>
+                <a target="_blank" rel="noopener noreferrer"
+                    href="mailto:malangbvp@gmail.com?subject=Contacting%20via%20Malang%20Website&body=Hi%20Malang%20Team,%0D%0A%0D%0AI%20found%20your%20email%20on%20the%20Malang%20website%20and%20wanted%20to%20get%20in%20touch%20regarding...%0D%0A%0D%0ARegards,%0D%0A[Your%20Name]"
+                    target="_blank"><img src="../../resrc/images/icons/email.svg" alt="" class="social_icon"></a>
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/MalangBvp"><img
                         src="../../resrc/images/icons/github.svg" alt="" class="social_icon"></a>
             </div>
@@ -76,51 +113,40 @@
         <button id="theme"><img src="../../resrc/images/icons/sun.png" alt=""></button>
         <button id="copy"><img src="../../resrc/images/icons/link.png" alt=""></button>
     </div>
-    <section id="gallery-section">
-        <div id="loader">
-            <img src="../../resrc/images/icons/loading.webp" alt="Loading..." />
-        </div>
-
-        <div class="filters" id="filters-gallery">
-            <p id="filter-label">&nbsp;&nbsp;&nbsp;Type:&nbsp;&nbsp;&nbsp;&nbsp; </p>
-            <button class="selected">All</button>
-            <button>Space</button>
-            <button>Street</button>
-            <button>Nature</button>
-            <button>Animals</button>
-            <button>Macro</button>
-        </div>
-        <div class="filters" id="filters-artists">
-            <p>&nbsp;&nbsp;&nbsp;Shot by:&nbsp;&nbsp;&nbsp;&nbsp; </p>
-            <button>All</button>
-            <button class="selected">Tejas</button>
-            <button>Prasun</button>
-            <button>Goutam</button>
-            <button>Mohini</button>
-            <button>Priya</button>
-            <button>Satyam</button>
-            <button>Radhika</button>
-        </div>
-        
-        <div class="films" id="films">
-            <div id="film1" class="film"></div>
-            <div id="film2" class="film"></div>
-        </div>
-        <div id="image-modal" class="modal">
-            <span class="modal-close">&times;</span>
-            <div class="modal-content">
-                <img id="modal-image" />
-                <div id="modal-caption">
-                    <p id="modal-title">Title: NA</p>
-                    <p id="modal-artist">Shot By: NA</p>
-                </div>
-            </div>
-        </div>
-        
-
+    <section id="authentication">
+        <form id="accessForm">
+            <p>Customise URL</p>
+            <input id="longURL" placeholder="URL" required />
+            <input id="postfix" placeholder="Postfix" required />
+            <input type="password" id="password" placeholder="Password" required />
+            Custom URL will be:<br><a href="" class="url">https://malangbvp.github.io/go/<span id="url"></span></a>
+            <button type="submit" class="long-btn">Create</button>
+        </form>
     </section>
     <script src="../scripts/common.js"></script>
-    <script src="../scripts/photographs.js"></script>
+    <script>
+        const form = document.getElementById('accessForm');
+
+        input=document.getElementById("postfix");
+        input.addEventListener('input', () => {
+            document.getElementById("url").textContent = input.value;
+        });
+        const passwordInput = document.getElementById('password');
+
+        const encoded = 'bWFsYW5ncGFyaw==';
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const input = passwordInput.value;
+
+            const b64 = btoa(input);
+            if (b64 === encoded) {
+                window.location.href = 'treasury.html';
+            } else {
+                alert('Incorrect password');
+            }
+        });
+    </script>
 </body>
 
 </html>
