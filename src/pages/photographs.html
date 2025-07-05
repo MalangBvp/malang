@@ -1,17 +1,4 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <title>Private GitHub README</title>
-</head>
-
-<body>
-    <h2>Private Repo README</h2>
-</body>
-
-</html>
-
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,18 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../resrc/images/icon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="../styles/common.css">
-    <link rel="stylesheet" href="../styles/documentation.css">
+    <link rel="stylesheet" href="../styles/photographs.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Goblin+One&family=Scope+One&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <title>Malang</title>
+
+    <title>Malang | Photo Gallery</title>
 </head>
 
 <body>
     <header>
-        <a href="index.html" class="malang"><img src="../../resrc/images/malang.png" alt="Malang"></a>
+        <a href="../../index.html" class="malang"><img src="../../resrc/images/malang.png" alt="Malang"></a>
         <button id="burger">
             <div class="burger">
                 <span></span>
@@ -51,7 +37,7 @@
             </details>
             <li><a href="../../404.html">Store</a></li>
             <li><a href="../../404.html">ATMOsphere</a></li>
-            <li><a href="../../src/pages/gallery.html">Art Gallery</a></li>
+            <li><a href="gallery.html">Art Gallery</a></li>
             <li><a href="photographs.html">Photo Gallery</a></li>
             <details>
                 <summary>Our Members</summary>
@@ -64,9 +50,9 @@
             <details>
                 <summary>Admin Panel</summary>
                 <ul>
-                    <li><a href="../../src/pages/treasury.html">Treasury</a></li>
-                    <li><a href="../../404.html">Redirection Tool</a></li>
-                    <li><a href="../../src/pages/documentation.html">Site Documentation</a></li>
+                    <li><a href="treasury.html">Treasury</a></li>
+                    <li><a href="404.html">Redirection Tool</a></li>
+                    <li><a href="documentation.html">Site Documentation</a></li>
                 </ul>
             </details>
             <li><a href="../../404.html">Contact</a></li>
@@ -74,12 +60,11 @@
         <div class="nav-bottom">
             <div class="social">
                 <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/malangbvp/#"
-                    target="_blank"><img src=" ../../resrc/images/icons/instagram.png" alt="" class="social_icon"></a>
+                    target="_blank"><img src="../../resrc/images/icons/instagram.png" alt="" class="social_icon"></a>
                 <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/malangbvp/"><img
                         src="../../resrc/images/icons/linkedin.svg" alt="" class="social_icon"></a>
-                <a target="_blank" rel="noopener noreferrer"
-                    href="mailto:malangbvp@gmail.com?subject=Contacting%20via%20Malang%20Website&body=Hi%20Malang%20Team,%0D%0A%0D%0AI%20found%20your%20email%20on%20the%20Malang%20website%20and%20wanted%20to%20get%20in%20touch%20regarding...%0D%0A%0D%0ARegards,%0D%0A[Your%20Name]"
-                    target="_blank"><img src=" ../../resrc/images/icons/email.svg" alt="" class="social_icon"></a>
+                <a target="_blank" rel="noopener noreferrer" href="mailto:malangbvp@gmail.com?subject=Contacting%20via%20Malang%20Website&body=Hi%20Malang%20Team,%0D%0A%0D%0AI%20found%20your%20email%20on%20the%20Malang%20website%20and%20wanted%20to%20get%20in%20touch%20regarding...%0D%0A%0D%0ARegards,%0D%0A[Your%20Name]" target="_blank"><img
+                        src="../../resrc/images/icons/email.svg" alt="" class="social_icon"></a>
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/MalangBvp"><img
                         src="../../resrc/images/icons/github.svg" alt="" class="social_icon"></a>
             </div>
@@ -91,11 +76,51 @@
         <button id="theme"><img src="../../resrc/images/icons/sun.png" alt=""></button>
         <button id="copy"><img src="../../resrc/images/icons/link.png" alt=""></button>
     </div>
-    <section>
-        <div id="readme-content">Loading...</div>
-        <script src="../scripts/documentation.js"></script>
+    <section id="gallery-section">
+        <div id="loader">
+            <img src="../../resrc/images/icons/loading.webp" alt="Loading..." />
+        </div>
+
+        <div class="filters" id="filters-gallery">
+            <p id="filter-label">&nbsp;&nbsp;&nbsp;Type:&nbsp;&nbsp;&nbsp;&nbsp; </p>
+            <button class="selected">All</button>
+            <button>Space</button>
+            <button>Street</button>
+            <button>Nature</button>
+            <button>Animals</button>
+            <button>Macro</button>
+        </div>
+        <div class="filters" id="filters-artists">
+            <p>&nbsp;&nbsp;&nbsp;Shot by:&nbsp;&nbsp;&nbsp;&nbsp; </p>
+            <button>All</button>
+            <button class="selected">Tejas</button>
+            <button>Prasun</button>
+            <button>Goutam</button>
+            <button>Mohini</button>
+            <button>Priya</button>
+            <button>Satyam</button>
+            <button>Radhika</button>
+        </div>
+        
+        <div class="films" id="films">
+            <div id="film1" class="film"></div>
+            <div id="film2" class="film"></div>
+        </div>
+        <div id="image-modal" class="modal">
+            <span class="modal-close">&times;</span>
+            <div class="modal-content">
+                <img id="modal-image" />
+                <div id="modal-caption">
+                    <p id="modal-title">Title: NA</p>
+                    <p id="modal-artist">Shot By: NA</p>
+                </div>
+            </div>
+        </div>
+        
+
     </section>
     <script src="../scripts/common.js"></script>
+    <script src="../scripts/photographs.js"></script>
 </body>
 
 </html>
