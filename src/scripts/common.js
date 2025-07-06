@@ -1,3 +1,7 @@
+console.log("+-----------------+");
+console.log("| Tejas' Codes :D |");
+console.log("+-----------------+");
+
 document.getElementById('year').textContent = new Date().getFullYear();
 
 document.addEventListener("DOMContentLoaded", function () {

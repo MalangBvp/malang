@@ -2,3 +2,7 @@
     padding: 10px;
     width: calc(100% - 20px);
 }
+img{
+    max-width: calc(100vw - 20px);
+    height: auto;
+}

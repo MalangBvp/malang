@@ -1,5 +1,5 @@
-const username = "multiverseweb"; // Replace with any GitHub username
-const repo = "Dataverse";         // Replace with any repository name
+const username = "multiverseweb"; // GitHub username
+const repo = "Dataverse";         // repository name
 
 const readmeDiv = document.getElementById("readme-content");
 
@@ -18,3 +18,4 @@ fetch(`https://api.github.com/repos/${username}/${repo}/readme`)
     readmeDiv.textContent = "Error loading README.";
     console.error(error);
   });
+  document.getElementById('loader').style.display = 'none';

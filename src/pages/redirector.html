@@ -86,7 +86,7 @@
                 <summary>Admin Panel</summary>
                 <ul>
                     <li><a href="authentication.html">Treasury</a></li>
-                    <li><a href="authentication.html">Redirection Tool <img
+                    <li><a href="redirector.html">Redirection Tool <img
                                 src="../../resrc/images/icons/link_arrow.png" class="icon-small"></a></li>
                     <li><a href="documentation.html">Site Documentation</a></li>
                 </ul>
@@ -133,7 +133,7 @@
         });
         const passwordInput = document.getElementById('password');
 
-        const encoded = 'bWFsYW5ncGFyaw==';
+        const encoded = 'Z2Vudmlp';
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -141,7 +141,7 @@
 
             const b64 = btoa(input);
             if (b64 === encoded) {
-                window.location.href = 'treasury.html';
+                window.location.href = 'https://malangbvp.github.io/go/help';
             } else {
                 alert('Incorrect password');
             }
