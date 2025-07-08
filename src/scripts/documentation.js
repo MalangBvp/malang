@@ -1,5 +1,5 @@
 const username = "multiverseweb"; // GitHub username
-const repo = "Dataverse";         // repository name
+const repo = "malang";         // repository name
 
 const readmeDiv = document.getElementById("readme-content");
 
@@ -11,7 +11,7 @@ fetch(`https://api.github.com/repos/${username}/${repo}/readme`)
       const htmlContent = marked.parse(decodedContent);
       readmeDiv.innerHTML = htmlContent;
     } else {
-      readmeDiv.textContent = "README not found.";
+      readmeDiv.textContent = "Error: Protected Source.";
     }
   })
   .catch(error => {

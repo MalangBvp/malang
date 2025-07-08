@@ -26,28 +26,42 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // function to invert theme except for elements with class "same" on button click with id "theme"
-document.getElementById("theme").addEventListener("click", function () {
-    vibrate();
-    /*const elements = document.querySelectorAll(".same");
-    document.body.style.filter = "invert(1)";
-    elements.forEach(el => {
-        el.style.filter = document.body.classList.contains("dark") ? "invert(1)" : "none";
-    });*/
+function applyTheme(toggle = false) {
+    const html = document.documentElement;
+    const themeButton = document.getElementById("theme");
+    const themeIcon = themeButton?.querySelector("img");
 
-    const themeIcon = this.querySelector("img");
-    themeIcon.src = themeIcon.src.includes("sun.png") ? "/resrc/images/icons/night-mode.png" : "/resrc/images/icons/sun.png";
+    let currentTheme = localStorage.getItem("theme") || "dark";
+
+    if (toggle) {
+        currentTheme = currentTheme === "dark" ? "light" : "dark";
+        localStorage.setItem("theme", currentTheme);
+    }
+    html.classList.toggle("light", currentTheme === "light");
+    document.querySelectorAll(".same").forEach(el => {
+        el.style.filter = currentTheme === "light" ? "invert(1)" : "invert(0)";
+    });
+    if (themeIcon) {
+        themeIcon.src = currentTheme === "light"
+            ? "/resrc/images/icons/night-mode.png"
+            : "/resrc/images/icons/sun.png";
+    }
+}
+window.addEventListener("DOMContentLoaded", () => applyTheme());
+document.getElementById("theme").addEventListener("click", () => {
+    vibrate();
+    applyTheme(true);
 });
 
 //function to copy website url to clipboard on button click with id "copy"
 document.getElementById("copy").addEventListener("click", function () {
     vibrate();
-    const url = window.location.href;
-    navigator.clipboard.writeText(url).then(() => {
+    navigator.clipboard.writeText("https://malangbvp.github.io/go/to-site").then(() => {
         const themeIcon = this.querySelector("img");
-        setTimeout(() => { 
-            themeIcon.src = "/resrc/images/icons/link.png"; 
+        setTimeout(() => {
+            themeIcon.src = "/resrc/images/icons/link.png";
         }
-        , 1200);
+            , 1200);
         themeIcon.src = themeIcon.src.includes("link.png") ? "/resrc/images/icons/tick.png" : "/resrc/images/icons/link.png";
     }).catch(err => {
         console.error("Failed to copy: ", err);

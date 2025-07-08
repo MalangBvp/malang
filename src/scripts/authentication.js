@@ -5,6 +5,11 @@ const redirectorForm = document.getElementById('redirectorForm');
 if (redirectorForm) {
     var encoded = 'Z2Vudmlp';
     var url = 'https://malangbvp.github.io/go/help';
+    postfix = document.getElementById('postfix');
+    //live update of url
+    postfix.addEventListener('input', function () {
+        document.getElementById('url').textContent = postfix.value;
+    });
 } else {
     var encoded = 'bWFsYW5ncGFyaw==';
     var url = 'treasury.html';
@@ -26,7 +31,7 @@ form.addEventListener('submit', function (e) {
         setTimeout(() => {
             pwdElement.style.border = '';
             document.getElementById('error').style.opacity = 0;
-        }, 2000);
+        }, 3000);
         navigator.vibrate(200);
     }
 });

@@ -30,12 +30,15 @@ form p {
 
 /*Used in redirector.html*/
 .url {
-    text-decoration: underline;
+    text-decoration: none;
     color: #00d9ff;
     text-overflow: ellipsis;
 }
+#url{
+    color:rgb(255, 174, 0);
+}
 #error{
-    color: rgb(253, 89, 89);
+    color: rgb(250, 53, 53);
     font-size: small;
     opacity: 0;
     transition: opacity 0.2s ease;

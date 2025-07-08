@@ -1,6 +1,7 @@
 #readme-content{
     padding: 10px;
     width: calc(100% - 20px);
+    background-color: black;
 }
 img{
     max-width: calc(100vw - 20px);

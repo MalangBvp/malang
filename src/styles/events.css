@@ -47,7 +47,7 @@ section {
     border: none;
     opacity: 0.9;
     backdrop-filter: blur(5px);
-    filter: invert(0.97);
+    filter: invert(1);
 }
 
 .google-branding {

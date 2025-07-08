@@ -2,6 +2,12 @@
     margin: 0;
     padding: 0;
 }
+html{
+    filter: invert(0);
+}
+html.light {
+    filter: invert(1);
+}
 
 ::-webkit-scrollbar {
     display: none;
@@ -38,7 +44,7 @@ button {
     background-color: transparent;
     border: 1px solid rgb(50, 50, 50);
     color: rgb(227, 227, 227);
-    border-radius: 5px;
+    border-radius: 2px;
     cursor: pointer;
     font-family: "Scope One", serif;
     min-width: max-content;
@@ -46,7 +52,7 @@ button {
 }
 
 button:hover {
-    background-color: rgb(44, 44, 44);
+    background-color: rgb(26, 26, 26);
 }
 
 .malang {

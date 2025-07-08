@@ -15,7 +15,8 @@ function loadArtworks() {
 
     nextBatch.forEach(({ src, alt }) => {
         const item = document.createElement('div');
-        item.className = 'gallery-item';
+        item.classList.add('gallery-item', 'same');
+
 
         const img = document.createElement('img');
         img.src = src;
@@ -56,6 +57,7 @@ function loadArtworks() {
         // Hide loader after images finish loading
         Promise.all(allImagesLoaded).then(() => {
             clearTimeout(timeoutId);
+            applyTheme();
             if (loader) loader.style.display = 'none';
         });
     }
@@ -65,6 +67,7 @@ function loadArtworks() {
     if (currentIndex >= artworks.length) {
         viewMoreBtn.style.display = 'none';
     }
+    applyTheme();
 }
 
 let imageMeta = {};

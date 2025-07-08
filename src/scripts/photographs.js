@@ -17,7 +17,7 @@ function loadphotographs() {
 
     nextBatch.forEach(({ src, alt }, idx) => {
         const item = document.createElement('div');
-        item.className = 'photo';
+        item.classList.add('photo', 'same');
 
         const img = document.createElement('img');
         img.src = src;
@@ -53,6 +53,7 @@ function loadphotographs() {
             else img.onload = img.onerror = resolve;
         }))).then(() => {
             clearTimeout(timeoutId);
+            applyTheme();
             if (loader) loader.style.display = 'none';
         });
     }
@@ -64,6 +65,7 @@ window.addEventListener('scroll', () => {
     const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
     if (nearBottom) {
         loadphotographs();
+        applyTheme();
     }
 });
 window.addEventListener('DOMContentLoaded', loadphotographs);
