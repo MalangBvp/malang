@@ -4,8 +4,6 @@ const dataPoints = [118, 188, 788];
 const ctx = document.getElementById('chart').getContext('2d');
 document.getElementById("contribute").addEventListener("click", toggleContribution);
 document.getElementById("done").addEventListener("click", toggleContribution);
-
-
 new Chart(ctx, {
     type: 'line',
     data: {

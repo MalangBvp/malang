@@ -1,0 +1,43 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    margin-top: 50vh;
+    transform: translateY(-60%);
+    text-align: center;
+    border: 1px solid #2e2e2e;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #3c3c3c;
+    border-radius: 5px;
+    background-color: #161616;
+    color: white;
+    margin-bottom: 15px;
+}
+input:focus {
+    outline: none;
+}
+form p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/*Used in redirector.html*/
+.url {
+    text-decoration: underline;
+    color: #00d9ff;
+    text-overflow: ellipsis;
+}
+#error{
+    color: rgb(253, 89, 89);
+    font-size: small;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    margin-bottom: 0;
+}

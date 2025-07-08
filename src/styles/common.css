@@ -25,9 +25,12 @@ span,img {
 }
 
 .icon-small{
-    height: 13px;
+    height: 17px;
     margin-left: 3px;
-    filter: brightness(0) invert(1);
+    filter: brightness(0) invert(0.8);
+    margin-right: 7px;
+    padding-top: 3px;
+    margin-bottom: -3px;
 }
 button {
     background-color: transparent;
@@ -254,7 +257,7 @@ details[open] summary::before {
 
 details ul li {
     padding-left: 5px;
-    margin-left: 15px;
+    margin-left: 20px;
     border-bottom: none;
     color: rgb(227, 227, 227);
     border-left: 1px solid rgb(60, 60, 60);
