@@ -85,6 +85,9 @@
     </div>
     <section>
         <div id="calendar-container">
+            <div id="loader">
+                <img src="../../resrc/images/icons/loading.webp" alt="Loading..." />
+            </div>
             <p id="title">Calendar | Malang Events</p>
             <iframe
                 src="https://calendar.google.com/calendar/embed?height=800&wkst=1&ctz=Asia%2FKolkata&showPrint=0&showTitle=0&showCalendars=0&bgcolor=%23000000&src=bWFsYW5nYnZwQGdtYWlsLmNvbQ&color=%23039be5"
@@ -112,6 +115,12 @@
         </div>
     </section>
     <script src="../scripts/common.js"></script>
+    <script>
+        calendar.addEventListener('load', () => {
+            loader.style.display = 'none';
+            calendar.style.display = 'block';
+        });
+    </script>
 </body>
 
 </html>
