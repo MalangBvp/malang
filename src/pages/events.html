@@ -10,8 +10,44 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
-    <title>Malang | Authentication</title>
-    <link rel="stylesheet" href="../styles/authentication.css">
+    <title>Malang | Redirector</title>
+    <style>
+        section{
+            margin-top: 70px;
+        }
+        #calendar-container {
+            height: calc(50vh + 10px);
+            overflow: hidden;
+            border: 1px solid #4c4c4c;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        #calendar-container p{
+            padding: 5px;
+            width: calc(100% - 10px);
+            border-bottom: 1px solid #4c4c4c;
+        }
+
+        #calendar {
+            width: calc(100vw - 20px);
+            height: 50vh;
+            border: none;
+            opacity: 0.9;
+            backdrop-filter: blur(5px);
+            filter: invert(1);
+        }
+        .google-branding {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 12px;
+            color: #888;
+        }
+        .google-branding a {
+            color: #888;
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,7 +63,8 @@
     </header>
     <nav>
         <ul>
-            <li><a href="../../index.html"><img src="../../resrc/images/icons/home.png" alt="" class="icon-small">Home</a></li>
+            <li><a href="../../index.html"><img src="../../resrc/images/icons/home.png" alt=""
+                        class="icon-small">Home</a></li>
             <details>
                 <summary><img src="../../resrc/images/icons/events.png" alt="" class="icon-small">Events</summary>
                 <ul>
@@ -35,10 +72,14 @@
                     <li><a href="../../404.html">Past Events</a></li>
                 </ul>
             </details>
-            <li><a href="../../404.html"><img src="../../resrc/images/icons/store.png" alt="" class="icon-small">Store</a></li>
-            <li><a href="../../404.html"><img src="../../resrc/images/icons/prize.png" alt="" class="icon-small">ATMOsphere</a></li>
-            <li><a href="gallery.html"><img src="../../resrc/images/icons/art.png" alt="" class="icon-small">Art Gallery</a></li>
-            <li><a href="photographs.html"><img src="../../resrc/images/icons/camera.png" alt="" class="icon-small">Photo Gallery</a></li>
+            <li><a href="../../404.html"><img src="../../resrc/images/icons/store.png" alt=""
+                        class="icon-small">Store</a></li>
+            <li><a href="../../404.html"><img src="../../resrc/images/icons/prize.png" alt=""
+                        class="icon-small">ATMOsphere</a></li>
+            <li><a href="gallery.html"><img src="../../resrc/images/icons/art.png" alt="" class="icon-small">Art
+                    Gallery</a></li>
+            <li><a href="photographs.html"><img src="../../resrc/images/icons/camera.png" alt=""
+                        class="icon-small">Photo Gallery</a></li>
             <details>
                 <summary><img src="../../resrc/images/icons/members.png" alt="" class="icon-small">Our Members</summary>
                 <ul>
@@ -55,7 +96,8 @@
                     <li><a href="documentation.html">Site Documentation</a></li>
                 </ul>
             </details>
-            <li><a href="../../404.html"><img src="../../resrc/images/icons/contact.png" alt="" class="icon-small">Contact</a></li>
+            <li><a href="../../404.html"><img src="../../resrc/images/icons/contact.png" alt=""
+                        class="icon-small">Contact</a></li>
         </ul>
         <div class="nav-bottom">
             <div class="social">
@@ -78,15 +120,18 @@
         <button id="copy"><img src="../../resrc/images/icons/link.png" alt=""></button>
     </div>
     <section id="authentication">
-        <form id="accessForm">
-        <p>Authentication Required.</p>
-            <input type="password" id="password" placeholder="Password" required />
-            <p id="error">Incorrect password. Try again.</p>
-            <button type="submit" class="long-btn">Enter</button>
-        </form>
+        <div id="calendar-container">
+            <p>Upcoming Events Calendar</p>
+            <iframe
+                src="https://calendar.google.com/calendar/embed?height=800&wkst=1&ctz=Asia%2FKolkata&showPrint=0&showTitle=0&showCalendars=0&bgcolor=%23000000&src=bWFsYW5nYnZwQGdtYWlsLmNvbQ&color=%23039be5"
+                frameborder="0" scrolling="no" id="calendar">
+            </iframe>
+        </div>
+        <p class="google-branding">Powered by <a href="https://www.google.com/calendar" target="_blank">Google
+                Calendar</a></p>
+
     </section>
     <script src="../scripts/common.js"></script>
-    <script src="../scripts/authentication.js"></script>
 </body>
 
 </html>

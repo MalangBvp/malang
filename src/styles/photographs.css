@@ -83,8 +83,8 @@
     margin-right: 5px;
     font-size: 14px;
     background-image: linear-gradient(to right,
-            rgb(14, 14, 14) 0%,
-            rgb(14, 14, 14) 85%,
+            rgb(0, 0, 0) 0%,
+            rgb(0, 0, 0) 85%,
             transparent 100%);
     padding-top: 5px;
     line-height: 27px;
