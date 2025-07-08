@@ -11,43 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
     <title>Malang | Redirector</title>
-    <style>
-        section{
-            margin-top: 70px;
-        }
-        #calendar-container {
-            height: calc(50vh + 10px);
-            overflow: hidden;
-            border: 1px solid #4c4c4c;
-            margin: 10px;
-            border-radius: 5px;
-        }
-        #calendar-container p{
-            padding: 5px;
-            width: calc(100% - 10px);
-            border-bottom: 1px solid #4c4c4c;
-        }
-
-        #calendar {
-            width: calc(100vw - 20px);
-            height: 50vh;
-            border: none;
-            opacity: 0.9;
-            backdrop-filter: blur(5px);
-            filter: invert(1);
-        }
-        .google-branding {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            font-size: 12px;
-            color: #888;
-        }
-        .google-branding a {
-            color: #888;
-            text-decoration: none;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/events.css">
 </head>
 
 <body>
@@ -119,17 +83,33 @@
         <button id="theme"><img src="../../resrc/images/icons/sun.png" alt=""></button>
         <button id="copy"><img src="../../resrc/images/icons/link.png" alt=""></button>
     </div>
-    <section id="authentication">
+    <section>
         <div id="calendar-container">
-            <p>Upcoming Events Calendar</p>
+            <p id="title">Calendar | Malang Events</p>
             <iframe
                 src="https://calendar.google.com/calendar/embed?height=800&wkst=1&ctz=Asia%2FKolkata&showPrint=0&showTitle=0&showCalendars=0&bgcolor=%23000000&src=bWFsYW5nYnZwQGdtYWlsLmNvbQ&color=%23039be5"
                 frameborder="0" scrolling="no" id="calendar">
             </iframe>
+            <p class="google-branding">Powered by <a href="https://www.google.com/calendar" target="_blank">Google
+                    Calendar</a></p>
         </div>
-        <p class="google-branding">Powered by <a href="https://www.google.com/calendar" target="_blank">Google
-                Calendar</a></p>
-
+        <h2>Happening Now!</h2>
+        <div class="events-list">
+            <div class="event">
+                <p class="event-name">Recruitments 2025</p>
+                <div class="event-info">
+                    <p class="event-date">September, 2025</p>
+                    <p class="event-location">Malang Room</p>
+                </div>
+                <p class="event-description">Malang is looking for new members to join our team! If you are interested
+                    in
+                    joining us, please fill out the form below.</p>
+                <div class="event-buttons">
+                    <button class="long-btn" onclick="window.location.href='events.html'">Add to Calendar</button>
+                    <button class="long-btn focus" onclick="window.location.href='events.html'">Join Us</button>
+                </div>
+            </div>
+        </div>
     </section>
     <script src="../scripts/common.js"></script>
 </body>

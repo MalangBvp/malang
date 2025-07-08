@@ -7,7 +7,7 @@ canvas {
     max-width: 700px;
     margin: 10px auto;
     background-color: rgba(29, 29, 29, 0.301);
-    border: 1px solid rgb(60, 60, 60);
+    border: 1px solid rgb(50, 50, 50);
     border-radius: 10px;
     backdrop-filter: blur(10px);
     padding: 15px;
@@ -34,7 +34,7 @@ section.treasury-active {
     width: calc(100vw - 55px);
     max-width: 320px;
     aspect-ratio: 1.586;
-    border: 1px solid rgb(60, 60, 60);
+    border: 1px solid rgb(50, 50, 50);
     border-radius: 10px;
     backdrop-filter: blur(10px);
     padding: 15px;
@@ -58,7 +58,7 @@ section.treasury-active {
 
 .info hr {
     width: 100%;
-    border: 1px solid rgb(60, 60, 60);
+    border: 1px solid rgb(50, 50, 50);
     margin: 5px 0;
 }
 .logo {
