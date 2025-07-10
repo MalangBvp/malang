@@ -7,7 +7,7 @@ form {
     transform: translate(-50%, -50%);
     text-align: center;
     box-shadow: 0 0 10px black;
-    border: 1px solid #3c3c3c;
+    border: 1px solid #212121;
     backdrop-filter: blur(50px);
     padding: 20px;
     border-radius: 10px;
@@ -21,11 +21,14 @@ input {
     padding: 10px;
     border: 1px solid #3c3c3c;
     border-radius: 5px;
-    background-color: #161616;
+    background-color: #1a1a1aa1;
     color: white;
     margin-bottom: 15px;
 }
 
+#submit{
+    background-color: #1a1a1aa1;
+}
 input:focus {
     outline: none;
 }
