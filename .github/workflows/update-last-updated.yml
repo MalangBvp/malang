@@ -15,8 +15,7 @@ jobs:
 
       - name: Set current date and time in custom format
         run: |
-          mkdir -p resources/data
-          TZ='Asia/Kolkata' date +"%B %d, %Y - %I:%M %p IST" > resources/data/variables/last-updated.txt
+          TZ='Asia/Kolkata' date +"%B %d, %Y - %I:%M %p IST" > variables/last-updated.txt
 
       - name: Commit and push updated timestamp
         run: |
