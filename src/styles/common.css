@@ -4,6 +4,8 @@
 }
 html{
     filter: invert(0);
+    scroll-behavior: smooth;
+    scroll-padding: 65px;
 }
 html.light {
     filter: invert(1);
@@ -298,6 +300,46 @@ details ul li {
 
 .social_icon {
     height: 22px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    box-shadow: 0 0 10px black;
+    border: 1px solid #212121;
+    backdrop-filter: blur(50px);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #3c3c3c;
+    border-radius: 5px;
+    background-color: #1a1a1aa1;
+    color: white;
+    margin-bottom: 15px;
+    font-family: "Scope One", serif;
+}
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#submit{
+    background-color: #1a1a1aa1;
+}
+input:focus, textarea:focus {
+    outline: none;
+}
+
+form p {
+    margin-bottom: 20px;
 }
 
 

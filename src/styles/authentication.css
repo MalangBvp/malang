@@ -1,46 +1,14 @@
 section{
     margin-top: 0px;
 }
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 80%;
-    max-width: 700px;
+
+#accessForm, #redirectorForm{
     transform: translate(-50%, -50%);
-    text-align: center;
-    box-shadow: 0 0 10px black;
-    border: 1px solid #212121;
-    backdrop-filter: blur(50px);
-    padding: 20px;
-    border-radius: 10px;
     position: absolute;
     top:50vh;
     left: 50%;
     z-index: 100;
 }
-
-input {
-    padding: 10px;
-    border: 1px solid #3c3c3c;
-    border-radius: 5px;
-    background-color: #1a1a1aa1;
-    color: white;
-    margin-bottom: 15px;
-}
-
-#submit{
-    background-color: #1a1a1aa1;
-}
-input:focus {
-    outline: none;
-}
-
-form p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
-
 /*Used in redirector.html*/
 .url {
     text-decoration: none;

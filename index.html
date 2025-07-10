@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="resrc/images/misc/icon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="src/styles/common.css">
     <link rel="stylesheet" href="src/styles/home.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
@@ -37,8 +38,10 @@
             </details>
             <li><a href="404.html"><img src="resrc/images/icons/store.png" alt="" class="icon-small">Store</a></li>
             <li><a href="404.html"><img src="resrc/images/icons/prize.png" alt="" class="icon-small">ATMOsphere</a></li>
-            <li><a href="src/pages/gallery.html"><img src="resrc/images/icons/art.png" alt="" class="icon-small">Art Gallery</a></li>
-            <li><a href="src/pages/photographs.html"><img src="resrc/images/icons/camera.png" alt="" class="icon-small">Photo Gallery</a></li>
+            <li><a href="src/pages/gallery.html"><img src="resrc/images/icons/art.png" alt="" class="icon-small">Art
+                    Gallery</a></li>
+            <li><a href="src/pages/photographs.html"><img src="resrc/images/icons/camera.png" alt=""
+                        class="icon-small">Photo Gallery</a></li>
             <details>
                 <summary><img src="resrc/images/icons/members.png" alt="" class="icon-small">Our Members</summary>
                 <ul>
@@ -55,7 +58,7 @@
                     <li><a href="src/pages/documentation.html">Site Documentation</a></li>
                 </ul>
             </details>
-            <li><a href="404.html"><img src="resrc/images/icons/contact.png" alt="" class="icon-small">Contact</a></li>
+            <li><a href="#contact"><img src="resrc/images/icons/contact.png" alt="" class="icon-small">Contact</a></li>
         </ul>
         <div class="nav-bottom">
             <div class="social">
@@ -113,7 +116,9 @@
                     <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.png"></div>
                     <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.png"></div>
                 </div>
-                <div class="sponsor-slide" id="malang-sponsor"><img src="resrc/images/misc/malang.png" alt=""><p>Our Partners</p></div>
+                <div class="sponsor-slide" id="malang-sponsor"><img src="resrc/images/misc/malang.png" alt="">
+                    <p>Our Partners</p>
+                </div>
 
                 <div class="sponsor-track" id="reverse">
                     <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
@@ -184,9 +189,37 @@
                 </div>
             </div>
         </div>
+        <div id="contact">
+            <div id="map"></div>
+            <form action="" id="contactForm">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Your Message" required></textarea>
+                <button type="submit" class="long-btn">Send Message</button>
+            </form>
+        </div>
     </section>
     <script src="src/scripts/common.js"></script>
     <script src="src/scripts/home.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        const lat = 18.45839962962258;
+        const lng = 73.8556053404028;
+
+        const map = L.map('map').setView([lat, lng], 16);
+
+        // Dark tile layer from CartoDB
+        L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://carto.com/">CartoDB</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Add pin
+        L.marker([lat, lng]).addTo(map)
+            .bindPopup("We're here!")
+            .openPopup();
+    </script>
 </body>
 
 </html>
