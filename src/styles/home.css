@@ -1,9 +1,11 @@
 #home {
     padding-bottom: 700px;
 }
-.sponsors{
+
+.sponsors {
     margin-top: 400px;
 }
+
 .sponsor-slider {
     overflow: hidden;
     width: 100%;
@@ -16,6 +18,7 @@
     animation: sponsor-scroll-left 30s linear infinite;
     transition: animation-duration 0.5s ease;
 }
+
 .sponsor-slide {
     width: 150px;
     height: 100px;
@@ -30,7 +33,7 @@
     max-width: 100px;
     max-height: 80px;
     object-fit: contain;
-    transition-duration: 0.3s;
+    transition: filter 0.3s ease;
     filter: saturate(0) brightness(0) invert(1);
 }
 
@@ -38,14 +41,20 @@
     filter: none;
 }
 
+.light .sponsor-slide img:hover {
+    filter: saturate(1) brightness(1) invert(1) drop-shadow(0px 0px 3px #ffffff);
+}
+
 #reverse {
     margin-top: -1px;
     animation-direction: reverse;
 }
-#third{
+
+#third {
     margin-top: -1px;
     animation-duration: 20s;
 }
+
 #malang-sponsor {
     position: absolute;
     margin-top: -1px;
@@ -59,6 +68,10 @@
     z-index: 10;
 }
 
+#malang-sponsor img {
+    max-width: 140px;
+}
+
 /* Animations */
 @keyframes sponsor-scroll-left {
     0% {
@@ -67,5 +80,22 @@
 
     100% {
         transform: translateX(-50%);
+    }
+}
+
+@media (min-width: 768px) {
+
+    .sponsor-slide {
+        width: 200px;
+        height: 150px;
+    }
+
+    .sponsor-slide img {
+        max-width: 120px;
+        max-height: 120px;
+    }
+
+    #malang-sponsor img {
+        max-width: 170px;
     }
 }

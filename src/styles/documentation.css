@@ -1,9 +1,24 @@
 #readme-content{
     padding: 10px;
-    width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
     background-color: black;
+    overflow-x: auto;
+    text-overflow:clip;
+    overflow-wrap: break-word;
 }
 img{
     max-width: calc(100vw - 20px);
     height: auto;
+}
+h3{
+    margin-top: 10px;
+}
+hr{
+    margin-top: 20px;
+}
+code{
+    overflow-wrap: break-word; /* Ensures long words wrap */
+    white-space: normal;       /* Allows wrapping instead of one long line */
+    overflow-x: hidden;        /* Prevents horizontal scroll */
+    text-overflow: clip;
 }

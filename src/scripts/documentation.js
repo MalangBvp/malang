@@ -1,5 +1,5 @@
 const username = "multiverseweb"; // GitHub username
-const repo = "malang";         // repository name
+const repo = "example";         // repository name
 
 const readmeDiv = document.getElementById("readme-content");
 
