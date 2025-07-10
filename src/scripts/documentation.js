@@ -1,6 +1,16 @@
 const username = "multiverseweb"; // GitHub username
 const repo = "example";         // repository name
 
+
+fetch('../../variables/last-updated.txt')
+  .then(response => response.text())
+  .then(date => {
+    document.getElementById('last-updated').textContent = "Last Updated: " + date;
+  })
+  .catch(error => {
+    console.error('Error fetching last updated date:', error);
+  });
+
 const readmeDiv = document.getElementById("readme-content");
 
 fetch(`https://api.github.com/repos/${username}/${repo}/readme`)
@@ -18,4 +28,3 @@ fetch(`https://api.github.com/repos/${username}/${repo}/readme`)
     readmeDiv.textContent = "Error loading README.";
     console.error(error);
   });
-  document.getElementById('loader').style.display = 'none';

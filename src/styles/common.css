@@ -4,7 +4,6 @@
 }
 html{
     filter: invert(0);
-    scroll-behavior: smooth;
     scroll-padding: 65px;
 }
 html.light {
