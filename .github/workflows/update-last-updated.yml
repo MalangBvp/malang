@@ -1,5 +1,6 @@
 name: Update Last Updated Timestamp
-
+env:
+  TOKEN: ${{ secrets.GH_TOKEN }}
 on:
   push:
     branches:
