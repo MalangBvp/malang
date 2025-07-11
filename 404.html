@@ -6,12 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="resrc/images/misc/icon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="src/styles/common.css">
-    <link rel="stylesheet" href="src/styles/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Goblin+One&family=Scope+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Goblin+One&family=Scope+One&display=swap" rel="stylesheet">
     <title>Malang | 404</title>
+    <style>
+        section {
+            padding: 0;
+            margin-top: 60px;
+        }
+
+        #dots {
+            width: 100vw;
+            height:calc(70vh - 10vw);
+            position: absolute;
+        }
+
+        .star {
+            border-radius: 100%;
+            background-color: white;
+            position: absolute;
+            animation: moveit;
+            animation-duration: 2.5s;
+            animation-iteration-count: infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        @keyframes moveit {
+            0% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                opacity: 0.2;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -37,8 +73,10 @@
             </details>
             <li><a href="404.html"><img src="resrc/images/icons/store.png" alt="" class="icon-small">Store</a></li>
             <li><a href="404.html"><img src="resrc/images/icons/prize.png" alt="" class="icon-small">ATMOsphere</a></li>
-            <li><a href="src/pages/gallery.html"><img src="resrc/images/icons/art.png" alt="" class="icon-small">Art Gallery</a></li>
-            <li><a href="src/pages/photographs.html"><img src="resrc/images/icons/camera.png" alt="" class="icon-small">Photo Gallery</a></li>
+            <li><a href="src/pages/gallery.html"><img src="resrc/images/icons/art.png" alt="" class="icon-small">Art
+                    Gallery</a></li>
+            <li><a href="src/pages/photographs.html"><img src="resrc/images/icons/camera.png" alt=""
+                        class="icon-small">Photo Gallery</a></li>
             <details>
                 <summary><img src="resrc/images/icons/members.png" alt="" class="icon-small">Our Members</summary>
                 <ul>
@@ -55,7 +93,8 @@
                     <li><a href="src/pages/documentation.html">Site Documentation</a></li>
                 </ul>
             </details>
-            <li><a href="index.html#contact"><img src="resrc/images/icons/contact.png" alt="" class="icon-small">Contact</a></li>
+            <li><a href="index.html#contact"><img src="resrc/images/icons/contact.png" alt=""
+                        class="icon-small">Contact</a></li>
         </ul>
         <div class="nav-bottom">
             <div class="social">
@@ -77,37 +116,46 @@
         <button id="theme"><img src="resrc/images/icons/sun.png" alt=""></button>
         <button id="copy"><img src="resrc/images/icons/link.png" alt=""></button>
     </div>
-    <section id="home">
-        <div class="marquee-container">
-            <div class="marquee-track">
-                <div class="marquee-content">
-                    <span>This <img src="resrc/images/misc/jerry.webp" alt="" class="jerry same">page is currently under
-                        development.&nbsp;<img src="resrc/images/misc/tom.gif" alt="" class="tom same">&nbsp;&nbsp;</span>
-                    <span>This page is currently under development.&nbsp;&nbsp;&nbsp;</span>
-                    <span>This <img src="resrc/images/misc/jerry.webp" alt="" class="jerry same">page is currently under
-                        development.&nbsp;<img src="resrc/images/misc/tom.gif" alt="" class="tom same">&nbsp;&nbsp;</span>
-                    <span>This page is currently under development.&nbsp;&nbsp;&nbsp;</span>
-                    <span>This <img src="resrc/images/misc/jerry.webp" alt="" class="jerry same">page is currently under
-                        development.&nbsp;<img src="resrc/images/misc/tom.gif" alt="" class="tom same">&nbsp;&nbsp;</span>
-                    <span>This page is currently under development.&nbsp;&nbsp;&nbsp;</span>
-                </div>
-                <!-- duplicate for smooth infinite loop -->
-                <div class="marquee-content">
-                    <span>This <img src="resrc/images/misc/jerry.webp" alt="" class="jerry same">page is currently under
-                        development.&nbsp;<img src="resrc/images/misc/tom.gif" alt="" class="tom same">&nbsp;&nbsp;</span>
-                    <span>This page is currently under development.&nbsp;&nbsp;&nbsp;</span>
-                    <span>This <img src="resrc/images/misc/jerry.webp" alt="" class="jerry same">page is currently under
-                        development.&nbsp;<img src="resrc/images/misc/tom.gif" alt="" class="tom same">&nbsp;&nbsp;</span>
-                    <span>This page is currently under development.&nbsp;&nbsp;&nbsp;</span>
-                    <span>This <img src="resrc/images/misc/jerry.webp" alt="" class="jerry same">page is currently under
-                        development.&nbsp;<img src="resrc/images/misc/tom.gif" alt="" class="tom same">&nbsp;&nbsp;</span>
-                    <span>This page is currently under development.&nbsp;&nbsp;&nbsp;</span>
-                </div>
-            </div>
+    <section>
+        <div id="dots"></div>
+        <div
+            style="height: calc(70vh - 10vw); padding: 20px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background-image: linear-gradient(to bottom, black 70%, #121212);">
+            <p style="font-size: 100px; font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight: 600;">404</p>
+            <h2>Page Not Found</h2>
+            <p>This content doesn't exist, or you don't have permission to view it.</p>
+            <button
+                style="padding: 10px 20px; margin: 30px; border-radius: 5px; background-color:rgba(24, 24, 24, 0.304); backdrop-filter: blur(5px);"
+                onclick="goBack()">Go Back</button>
         </div>
         <div data-include="src/pages/footer.html"></div>
     </section>
     <script src="src/scripts/common.js"></script>
+    <script>
+        var i = 0;
+        var stars = document.getElementById("dots");
+        //-----------------------------------------------------------number of stars
+        for (i = 0; i < 100; i++) {
+            let star = document.createElement('div');
+            star.classList.add("star");
+
+
+            let size = Math.random() * 2 + 1;
+        //--------------------------------------------------------------------------
+            const _width = stars.scrollWidth - 2;
+            star.style.top = Math.random() * stars.scrollHeight + "px";
+            star.style.left = Math.random() * _width + "px";
+            star.style.width = size + "px";
+            star.style.height = size + "px";
+         //--------------------------------------------------------------------------
+
+            let delayValue = Math.random() * 4;
+
+            star.style.animationDelay = delayValue + "s";
+
+            stars.appendChild(star);
+        }
+
+    </script>
 </body>
 
 </html>

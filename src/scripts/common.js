@@ -77,26 +77,12 @@ function vibrate(duration = 50) {
 }
 //=========================================================
 
-document.addEventListener("DOMContentLoaded", () => {
-    const elements = document.querySelectorAll('.slide-in');
-
-    const onScroll = () => {
-        const triggerPoint = window.innerHeight - 40;
-
-        elements.forEach(el => {
-            const elTop = el.getBoundingClientRect().top;
-            if (elTop < triggerPoint) {
-                el.classList.add('visible');
-            }
-        });
-    };
-
-    window.addEventListener('scroll', onScroll);
-    onScroll(); // trigger once on load
-});
-
 document.querySelectorAll('[data-include]').forEach(async el => {
   const file = el.getAttribute('data-include');
   const res = await fetch(file);
   el.innerHTML = await res.text();
 });
+
+function goBack() {
+    window.history.back();
+}

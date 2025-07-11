@@ -348,71 +348,6 @@ form p {
     margin-bottom: 20px;
 }
 
-
-/*===============================================================scroll fade-in effect*/
-.slide-in {
-    opacity: 0.1;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.slide-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.tom {
-    height: 30px;
-    position: absolute;
-    margin-top: -5px;
-}
-
-.jerry {
-    height: 30px;
-    position: absolute;
-    margin-top: -20px;
-}
-
-/*======================================================temporary*/
-.marquee-container {
-    width: 100vw;
-    overflow: hidden;
-    border-bottom: 1px solid rgb(56, 56, 56);
-    padding: 10px 0;
-    box-sizing: border-box;
-    /* optional */
-}
-
-.marquee-track {
-    padding-top: 10px;
-    display: flex;
-    width: fit-content;
-    animation: scroll-marquee 15s linear infinite;
-}
-
-.marquee-content {
-    display: flex;
-    white-space: nowrap;
-}
-
-.marquee-content span {
-    color: #fff;
-    font-size: 16px;
-    padding-right: 40px;
-}
-
-@keyframes scroll-marquee {
-    0% {
-        transform: translateX(0%);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-/*======================================================temporary*/
-
 .long-btn {
     display: block;
     margin: 1rem auto;
@@ -562,6 +497,30 @@ form p {
     color: #fff;
 }
 
+@media (min-width: 500px) {
+    #nav-buttons {
+        top: 10px;
+        left:auto;
+        right: 50px;
+        flex-direction: row;
+        border: none;
+    }
+    #nav-buttons button {
+        margin: 0 0px;
+    border: 1px solid rgb(80, 80, 80);
+        padding: 4px;
+        border-radius: 5px;
+    }
+    #nav-buttons img {
+        width: 20px;
+        height: 20px;
+    }
+
+    #nav-buttons.active {
+        right: 50px;
+        left:auto;
+    }
+}
 /* Responsive */
 @media (min-width: 768px) {
     .footer-container {
