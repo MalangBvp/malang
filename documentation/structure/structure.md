@@ -74,6 +74,7 @@
 │   │   ├── authentication.html
 │   │   ├── documentation.html
 │   │   ├── events.html
+│   │   ├── footer.html
 │   │   ├── gallery.html
 │   │   ├── photographs.html
 │   │   ├── redirector.html
