@@ -436,7 +436,7 @@ form p {
 }
 
 .footer {
-    background-color: #1c1c1c;
+    background-color: #121212;
     color: #c9d1d9;
     width: calc(100vw - 50px);
     margin-bottom: -40px;
@@ -528,7 +528,7 @@ form p {
     display: flex;
     flex-direction: column;
     font-size: 13px;
-    background-color: #151515;
+    background-color: #171717;
 }
 
 .legal-links {
