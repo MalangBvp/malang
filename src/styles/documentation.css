@@ -1,5 +1,5 @@
-section{
-    padding: 10px;
+section {
+    padding: 0px;
 }
 #readme-content{
     max-width: calc(100% - 20px);
@@ -7,6 +7,10 @@ section{
     overflow-x: auto;
     text-overflow:clip;
     overflow-wrap: break-word;
+    padding: 10px;
+}
+.info{
+    padding: 10px;
 }
 #last-updated{
     font-size: 14px;

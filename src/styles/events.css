@@ -1,6 +1,6 @@
 section {
-    margin-top: 60px;
-    padding: 10px;
+    margin-top: 70px;
+    padding: 0px;
 }
 #loader{
     position: relative;
@@ -33,6 +33,7 @@ section {
     overflow: hidden;
     border: 1px solid rgb(60, 60, 60);
     border-radius: 5px;
+    margin: 10px;
 }
 
 #title {
@@ -66,11 +67,12 @@ section {
     text-decoration: none;
 }
 h2 {
-    margin: 15px 0 7px 2px;
+    margin: 15px 0px 7px 10px;
 }
 .events-list {
     column-count: 1;
     column-gap: 10px;
+    margin: 10px;
 }
 .event {
     break-inside: avoid;
