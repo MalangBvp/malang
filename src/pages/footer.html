@@ -9,9 +9,10 @@
             <div class="newsletter">
                 <h3>Subscribe to our newsletter</h3>
                 <p>Stay connected with us and never miss an event!</p>
-                </p>
-                <input type="email" placeholder="Enter your email address" style="width:100%; max-width: calc(100vw - 70px);"  />
-                <button>Subscribe</button>
+                <input type="email" id="subscriber-email" placeholder="Enter your email">
+                <button id="subscribe" onclick="subscribe()">Subscribe</button>
+                <div id="failure" class="same">We don't spam.</div>
+
             </div>
         </div>
 
@@ -48,12 +49,14 @@
     </div>
     <!-- Bottom Section -->
     <div class="footer-bottom">
-        <div class="legal-links">
+        <div>
             <span>© 2017 - 2025 Malang. All rights reserved.</span>
+        </div>
+        <div class="legal-links">
             <a href="#">Sitemap</a>
             <a href="#">Sponsor Us</a>
         </div>
-        <div class="social-icons">
+        <div class="social-icons" id="icons-footer">
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
             <a href="#"><i class="far fa-envelope"></i></a>

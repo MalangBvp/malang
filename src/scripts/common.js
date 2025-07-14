@@ -78,11 +78,70 @@ function vibrate(duration = 50) {
 //=========================================================
 
 document.querySelectorAll('[data-include]').forEach(async el => {
-  const file = el.getAttribute('data-include');
-  const res = await fetch(file);
-  el.innerHTML = await res.text();
+    const file = el.getAttribute('data-include');
+    const res = await fetch(file);
+    el.innerHTML = await res.text();
 });
 
 function goBack() {
     window.history.back();
+}
+
+async function subscribe() {
+    const email = document.getElementById("subscriber-email").value.trim();
+    const failureDiv = document.getElementById("failure");
+    const subscribeBtn = document.getElementById("subscribe");
+    const url = "https://script.google.com/macros/s/AKfycbwCPPqtOOTZfcfJKNK_v422wkJaDiQo2D8FKRH25tvAXB_Rf7sMk_DDKgLFgDScOtOS/exec";
+
+
+    // ✅ Email format validation
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        failureDiv.style.opacity = 1;
+        failureDiv.textContent = "Please enter a valid email address.";
+        setTimeout(() => {
+            failureDiv.style.opacity = 0;
+        }, 3000);
+        return;
+    }
+    subscribeBtn.textContent = "Subscribing...";
+    subscribeBtn.disabled = true;
+
+    try {
+        const formData = new FormData();
+        formData.append("email", email);
+        formData.append("mode", "default");
+
+        const response = await fetch(url, { method: "POST", body: formData });
+        const text = await response.text();
+
+        if (text.includes("Success")) {
+            subscribeBtn.textContent = "Subscribed ✓";
+            navigator.vibrate(50);
+            subscribeBtn.style.borderColor = "green";
+            subscribeBtn.style.color = "green";
+            subscribeBtn.style.backgroundColor = "transparent";
+            subscribeBtn.disabled = true;
+            setTimeout(() => {
+                subscribeBtn.textContent = "Subscribe";
+                subscribeBtn.style.borderColor = "";
+                subscribeBtn.style.color = "";
+                subscribeBtn.style.backgroundColor = "";
+                subscribeBtn.disabled = false;
+            }, 3000);
+        } else {
+            failureDiv.textContent = text;
+            failureDiv.style.opacity = 1;
+            setTimeout(() => {
+                failureDiv.style.opacity = 0;
+            }, 3000);
+        }
+    } catch (error) {
+        console.error(error);
+        failureDiv.style.opacity = 1;
+        failureDiv.textContent = "Something went wrong.";
+        setTimeout(() => {
+            failureDiv.style.opacity = 0;
+        }, 3000);
+    }
+    subscribeBtn.disabled = false;
 }

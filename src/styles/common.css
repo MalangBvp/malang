@@ -9,7 +9,7 @@ html {
 }
 
 html.light {
-    filter: invert(1);
+    filter: invert(0.9);
 }
 
 ::-webkit-scrollbar {
@@ -292,18 +292,6 @@ details ul li {
     text-align: center;
 }
 
-.social {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.social_icon {
-    height: 22px;
-}
-
 
 form {
     display: flex;
@@ -371,7 +359,7 @@ form p {
 }
 
 .footer {
-    background-color: #121212;
+    background-color: #151515;
     color: #c9d1d9;
     width: calc(100vw - 50px);
     margin-bottom: -40px;
@@ -387,7 +375,7 @@ form p {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .footer-brand {
@@ -411,11 +399,23 @@ form p {
     margin-bottom: 10px;
     max-width: 400px;
 }
+.newsletter input{
+    width: calc(100% - 20px);
+}
+
+#failure{
+    color: #ff3131;
+    font-size: 14px;
+    margin-top: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
 .newsletter button {
     padding: 8px 20px;
-    transition: background 0.2s;
+    transition: background-color 0.2s;
     border-radius: 50px;
+    line-height: 17px;
 }
 
 .newsletter button:hover {
@@ -463,7 +463,9 @@ form p {
     display: flex;
     flex-direction: column;
     font-size: 13px;
-    background-color: #171717;
+    background-color: #202020;
+    flex-wrap: wrap;
+    gap: 5px;
 }
 
 .legal-links {
@@ -472,7 +474,7 @@ form p {
     gap: 15px;
 }
 
-.legal-links a {
+.footer-bottom a {
     color: #c9d1d9;
     text-decoration: none;
 }
@@ -482,10 +484,17 @@ form p {
 }
 
 .social-icons {
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
-    gap: 20px;
     font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#icons-footer{
+    justify-content: left;
+    gap: 20px;
 }
 
 .social-icons a {

@@ -1,38 +1,59 @@
 const labels = ['May', 'Jun', 'Jul'];
-const dataPoints = [118, 188, 788];
+const actual = [118, 188, 788];
+const expected = [0, 118, 1238];
 
 const ctx = document.getElementById('chart').getContext('2d');
 document.getElementById("contribute").addEventListener("click", toggleContribution);
 document.getElementById("done").addEventListener("click", toggleContribution);
+
 new Chart(ctx, {
     type: 'line',
     data: {
         labels: labels,
-        datasets: [{
-            label: 'Malang Treasury (₹)',
-            data: dataPoints,
-            fill: true,
-            borderWidth: 1,
-            borderColor: 'green',
-            backgroundColor: (ctx) => {
-                const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, 300);
-                gradient.addColorStop(0, 'rgba(13, 173, 48, 0.5)');
-                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-                return gradient;
+        datasets: [
+            {
+                label: 'Expected Amount (₹)',
+                data: expected,
+                fill: true,
+                borderWidth: 1,
+                borderColor: 'gold',
+                backgroundColor: (ctx) => {
+                    const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, 300);
+                    gradient.addColorStop(0.5, 'rgba(203, 179, 0, 0.5)');
+                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    return gradient;
+                },
+                tension: 0.4,
+                pointBackgroundColor: 'gold',
+                pointRadius: 2,
+                pointHoverRadius: 4
             },
-            tension: 0.4,
-            pointBackgroundColor: 'green',
-            pointRadius: 1,
-            pointHoverRadius: 3
-        }]
+            {
+                label: 'Actual Amount (₹)',
+                data: actual,
+                fill: true,
+                borderWidth: 1,
+                borderColor: 'cyan',
+                backgroundColor: (ctx) => {
+                    const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, 300);
+                    gradient.addColorStop(0.5, 'rgba(0, 255, 255, 0.5)');
+                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    return gradient;
+                },
+                tension: 0.4,
+                pointBackgroundColor: 'cyan',
+                pointRadius: 2,
+                pointHoverRadius: 4
+            }
+        ]
     },
     options: {
         responsive: true,
         plugins: {
             legend: {
-                display: false,
+                display: true,
                 labels: {
-                    color: '#333',
+                    color: '#777',
                     font: {
                         size: 14
                     }
@@ -47,7 +68,7 @@ new Chart(ctx, {
         scales: {
             x: {
                 ticks: {
-                    color: '#555'
+                    color: '#777'
                 },
                 grid: {
                     color: '#303030'
@@ -55,7 +76,7 @@ new Chart(ctx, {
             },
             y: {
                 ticks: {
-                    color: '#555'
+                    color: '#777'
                 },
                 grid: {
                     color: '#303030'
@@ -65,6 +86,7 @@ new Chart(ctx, {
         }
     }
 });
+
 
 function toggleContribution() {
     const section = document.querySelector("section");
