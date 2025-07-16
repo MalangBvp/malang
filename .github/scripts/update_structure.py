@@ -39,39 +39,8 @@ def update_structure_file(structure):
     except IOError as e:
         print(f"Error writing to structure.txt: {e}")
 
-def update_README(structure):
-    try:
-        with open(structure_path_md, 'r') as f:
-            content = f.read()
-    except FileNotFoundError:
-        print("structure.md not found.")
-        return
-
-    start_marker = '<!-- START_STRUCTURE -->'
-    end_marker = '<!-- END_STRUCTURE -->'
-
-    start_index = content.find(start_marker)
-    end_index = content.find(end_marker)
-
-    if start_index != -1 and end_index != -1:
-        new_content = (
-            content[:start_index + len(start_marker)] +
-            '\n```\n' + '\n'.join(structure) + '\n```\n' +
-            content[end_index:]
-        )
-        try:
-            with open(structure_path_md, 'w') as f:
-                f.write(new_content)
-            print("structure.md updated with new structure.")
-        except IOError as e:
-            print(f"Error writing to structure.md: {e}")
-    else:
-        print("Markers not found in structure.md. Structure not updated.")
-
-
 with open('variables/utils.json', 'r') as file:
     utils = json.load(file)
-structure_path_md = utils['structure_path_md']
 structure_path_txt = utils['structure_path_txt']
 def main():
     gh_token = os.getenv('GH_TOKEN')
@@ -92,7 +61,6 @@ def main():
 
     if current_structure != existing_structure:
         update_structure_file(current_structure)
-        update_README(current_structure)
         print("Repository structure updated.")
     else:
         print("No changes in repository structure.")

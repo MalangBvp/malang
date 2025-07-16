@@ -15,8 +15,9 @@
     background-image: linear-gradient(10deg, gold, #000000, #000000, #0aa298);
     background-size: cover;
     background-position: center;
+    border: 1px solid rgb(50, 50, 50);
     z-index: -1;
-    border-radius: 50px 5px;
+    border-radius: 50px 7px;
 }
 
 #title {
@@ -27,10 +28,40 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.slider-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 40px;
+    padding: 20px;
+    height: 220px;
+    scrollbar-width: none;
+}
+
+.slider-container::-webkit-scrollbar {
+    display: none;
+}
+
+.card {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 180px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(225, 225, 225, 0.079);
+    border: 1px solid rgba(132, 132, 132, 0.268);
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
 #ladingButtons {
     width: max-content;
     position: absolute;
-    bottom: 0px;
+    bottom: -1px;
     left: -1px;
     background-image: url(/resrc/images/misc/buttons-background.svg);
     background-size: 100%;
@@ -52,8 +83,12 @@
     height: 25px;
 }
 
+#ladingButtons button:hover img {
+    transform: scale(1.1);
+}
+
 .sponsors {
-    margin-top: 800px;
+    margin-top: calc(100vh + 50px);
 }
 
 .sponsor-slider {
