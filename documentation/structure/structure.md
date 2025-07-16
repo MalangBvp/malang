@@ -30,9 +30,7 @@
 │   │   ├── icons/
 │   │   │   ├── admin.png
 │   │   │   ├── art.png
-│   │   │   ├── back.png
 │   │   │   ├── camera.png
-│   │   │   ├── coffee.png
 │   │   │   ├── contact.png
 │   │   │   ├── email.svg
 │   │   │   ├── events.png
@@ -51,15 +49,14 @@
 │   │   │   ├── sun.png
 │   │   │   └── tick.png
 │   │   ├── misc/
+│   │   │   ├── buttons-background.svg
 │   │   │   ├── gstudios.png
 │   │   │   ├── hashtag.webp
 │   │   │   ├── icon.jpg
-│   │   │   ├── jerry.webp
 │   │   │   ├── lakme.webp
 │   │   │   ├── malang.png
 │   │   │   ├── payment-qr.jpg
 │   │   │   ├── signature.png
-│   │   │   ├── tom.gif
 │   │   │   └── vlcc.png
 │   │   └── photographs/
 │   │       ├── 0.jpeg
