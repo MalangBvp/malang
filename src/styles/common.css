@@ -129,7 +129,7 @@ header {
 }
 
 .burger:hover {
-    background-color: rgb(39, 39, 39);
+    background-color: rgb(22, 22, 22);
 }
 
 .burger span {
@@ -422,6 +422,37 @@ form p {
     background-color: #292929;
 }
 
+
+#contact{
+    text-align: center;
+    margin-top: 50px;
+}
+#contactContainer {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+#map{
+    width: calc(100vw - 40px);
+    height: 350px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(227, 227, 227);
+    filter: grayscale(100%) invert(0.9) contrast(120%);
+    transition: filter 0.3s ease;
+}
+#map:hover {
+    filter: grayscale(0%) invert(0) contrast(100%);
+}
+#contactForm {
+    width: calc(100vw - 80px);
+    margin-top: 10px;
+}
+
+
 .footer-links {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -486,7 +517,7 @@ form p {
 .social-icons {
     margin-top: 10px;
     display: flex;
-    font-size: 18px;
+    font-size: 20px;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -550,5 +581,12 @@ form p {
     .footer-links {
         gap: 0px;
         margin-left: 100px;
+    }
+    
+
+    #contactContainer {
+        flex-direction: row;
+        padding: 20px 100px;
+    gap: 50px;
     }
 }

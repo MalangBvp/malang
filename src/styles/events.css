@@ -52,6 +52,7 @@ section {
 }
 
 .google-branding {
+    display: none;
     position: absolute;
     margin-top: -30px;
     background-color: black;

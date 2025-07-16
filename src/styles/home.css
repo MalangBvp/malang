@@ -1,11 +1,59 @@
-#home{
+#home {
     padding: 0px;
 }
-#visitors{
+
+#visitors {
     display: none;
 }
+
+#landingWindow {
+    position: absolute;
+    top: 70px;
+    left: 10px;
+    width: calc(100vw - 20px);
+    height: calc(100vh - 80px);
+    background-image: linear-gradient(10deg, gold, #000000, #000000, #0aa298);
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    border-radius: 50px 5px;
+}
+
+#title {
+    margin: 7% 10%;
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#ladingButtons {
+    width: max-content;
+    position: absolute;
+    bottom: 0px;
+    left: -1px;
+    background-image: url(/resrc/images/misc/buttons-background.svg);
+    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0%;
+    display: flex;
+    padding: 10px 25px 10px 10px;
+    gap: 20px;
+}
+
+#ladingButtons button {
+    margin-top: 20px;
+    border: none;
+}
+
+#ladingButtons button img {
+    filter: invert(1);
+    height: 25px;
+}
+
 .sponsors {
-    margin-top: 700px;
+    margin-top: 800px;
 }
 
 .sponsor-slider {
@@ -85,29 +133,6 @@
     }
 }
 
-#contact {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px;
-}
-
-#map{
-    width: calc(100vw - 40px);
-    height: 350px;
-    margin-top: 10px;
-    border-radius: 5px;
-    border: 1px solid rgb(50, 50, 50);
-    position: relative;
-    z-index: -10;
-}
-
-#contactForm {
-    width: calc(100vw - 80px);
-    margin-top: 10px;
-}
-
 @media (min-width: 768px) {
     .sponsor-slide {
         width: 200px;
@@ -123,9 +148,12 @@
         max-width: 170px;
     }
 
-    #contact {
-        flex-direction: row;
-        padding: 50px;
-    gap: 100px;
+    #title {
+        margin: 7% 10%;
+        font-size: 2.5em;
+    }
+
+    #ladingButtons button img {
+        height: 35px;
     }
 }

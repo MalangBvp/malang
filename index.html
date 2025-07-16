@@ -81,6 +81,15 @@
         <button id="copy"><img src="resrc/images/icons/link.png" alt=""></button>
     </div>
     <section id="home">
+        <div id="landingWindow">
+            <div id="title">Malang - Fine Arts & Photography Club</div>
+            <div id="ladingButtons">
+                <button><img src="/resrc/images/icons/events.png"></button>
+                <button><img src="/resrc/images/icons/art.png"></button>
+                <button><img src="/resrc/images/icons/camera.png"></button>
+                <button><img src="/resrc/images/icons/prize.png"></button>
+            </div>
+        </div>
         <!-- Slider Right to Left -->
         <div class="sponsors">
             <div class="sponsor-slider">
@@ -189,8 +198,11 @@
                 </div>
             </div>
         </div>
-        <div id="contact">
-            <div id="map"></div>
+        <h2 id="contact">Get in Touch</h2>
+        <div id="contactContainer">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1420.3396170967549!2d73.85497404867984!3d18.45817706951367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTjCsDI3JzMwLjIiTiA3M8KwNTEnMjAuMiJF!5e0!3m2!1sen!2sin!4v1752632729565!5m2!1sen!2sin"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="map"></iframe>
             <form action="" id="contactForm">
                 <input type="text" id="name" placeholder="Your Name" required>
                 <input type="email" id="email" placeholder="Your Email" required>
@@ -206,24 +218,6 @@
     <script src="src/scripts/common.js"></script>
     <script src="src/scripts/home.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-        const lat = 18.45839962962258;
-        const lng = 73.8556053404028;
-
-        const map = L.map('map').setView([lat, lng], 16);
-
-        // Dark tile layer from CartoDB
-        L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://carto.com/">CartoDB</a>',
-            subdomains: 'abcd',
-            maxZoom: 19
-        }).addTo(map);
-
-        // Add pin
-        L.marker([lat, lng]).addTo(map)
-            .bindPopup("We're here!")
-            .openPopup();
-    </script>
 </body>
 
 </html>
