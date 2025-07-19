@@ -134,7 +134,7 @@ header {
 
 .burger span {
     width: 50%;
-    height: 0.1px;
+    height: 1px;
     background-color: rgb(166, 166, 166);
 }
 

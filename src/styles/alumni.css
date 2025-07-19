@@ -1,0 +1,42 @@
+#alumni{
+    padding:0;
+    padding-bottom: 10px;
+    margin-top: 70px;
+}
+    h3 {
+    margin: 10px 0px 0px 10px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+    display: flex;
+    margin-top: -1px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.vertical{
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: white;
+    text-align: center;
+    border: 1px solid #3f3f3f;
+    border-left: none;
+    line-height: 30px;
+}
+
+table tr td img {
+    height: 100px;
+}
+
+table {
+    width:min-content;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #313131;
+    text-align: center;
+    padding: 5px;
+    min-width: 150px;
+}
