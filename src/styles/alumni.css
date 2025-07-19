@@ -20,13 +20,9 @@
     transform: rotate(180deg);
     color: white;
     text-align: center;
-    border: 1px solid #3f3f3f;
+    border: 1px solid #313131;
     border-left: none;
     line-height: 30px;
-}
-
-table tr td img {
-    height: 100px;
 }
 
 table {
@@ -39,4 +35,14 @@ td {
     text-align: center;
     padding: 5px;
     min-width: 150px;
+}
+
+table tr td img {
+    height: 100px;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+td img:hover{
+    filter: brightness(0.7);
 }
