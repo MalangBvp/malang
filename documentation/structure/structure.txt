@@ -44,6 +44,10 @@
 │   │   │   ├── store.png
 │   │   │   ├── sun.png
 │   │   │   └── tick.png
+│   │   ├── members/
+│   │   │   ├── person.png
+│   │   │   ├── person.webp
+│   │   │   └── tejas.jpg
 │   │   ├── misc/
 │   │   │   ├── buttons-background.svg
 │   │   │   ├── gstudios.png
@@ -64,6 +68,7 @@
 │   └── photographs.json
 ├── src/
 │   ├── pages/
+│   │   ├── alumni.html
 │   │   ├── authentication.html
 │   │   ├── documentation.html
 │   │   ├── events.html
@@ -81,6 +86,7 @@
 │   │   ├── photographs.js
 │   │   └── treasury.js
 │   └── styles/
+│       ├── alumni.css
 │       ├── authentication.css
 │       ├── common.css
 │       ├── documentation.css
