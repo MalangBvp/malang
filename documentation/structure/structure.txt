@@ -14,6 +14,7 @@
 │       └── structure.txt
 ├── index.html
 ├── resrc/
+│   ├── alumni.json
 │   ├── artworks.json
 │   ├── images/
 │   │   ├── artworks/
@@ -30,12 +31,8 @@
 │   │   │   ├── contact.png
 │   │   │   ├── email.svg
 │   │   │   ├── events.png
-│   │   │   ├── github.svg
 │   │   │   ├── home.png
-│   │   │   ├── instagram.png
 │   │   │   ├── link.png
-│   │   │   ├── link_arrow.png
-│   │   │   ├── linkedin.svg
 │   │   │   ├── loading.webp
 │   │   │   ├── members.png
 │   │   │   ├── night-mode.png
@@ -45,9 +42,7 @@
 │   │   │   ├── sun.png
 │   │   │   └── tick.png
 │   │   ├── members/
-│   │   │   ├── person.png
-│   │   │   ├── person.webp
-│   │   │   └── tejas.jpg
+│   │   │   └── person.webp
 │   │   ├── misc/
 │   │   │   ├── buttons-background.svg
 │   │   │   ├── gstudios.png
@@ -78,6 +73,7 @@
 │   │   ├── redirector.html
 │   │   └── treasury.html
 │   ├── scripts/
+│   │   ├── alumni.js
 │   │   ├── authentication.js
 │   │   ├── common.js
 │   │   ├── documentation.js
