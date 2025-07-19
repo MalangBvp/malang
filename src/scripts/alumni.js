@@ -32,7 +32,16 @@ if (container) {
                 genData.members.forEach((member) => {
                     const imgTd = document.createElement("td");
                     const img = document.createElement("img");
-                    img.src = `../../resrc/images/members/person.webp`;   //${member.image}
+                    const imagePath = `../../resrc/images/members/${member.image}`;
+                    fetch(imagePath, { method: "HEAD" })
+                        .then((res) => {
+                            if (res.ok) {
+                                img.src = imagePath;
+                            } else {
+                                img.src = "../../resrc/images/members/person.webp";
+                            }
+                        });
+
                     img.alt = "";
                     img.className = "same";
                     img.style.cursor = "pointer";
@@ -66,9 +75,11 @@ if (container) {
 
                     const nameTd = document.createElement("td");
                     nameTd.textContent = member.name;
+                    nameTd.style.lineHeight = "15px";
                     nameRow.appendChild(nameTd);
 
                     const roleTd = document.createElement("td");
+                    roleTd.style.fontSize = "12px";
                     roleTd.textContent = member.role;
                     roleRow.appendChild(roleTd);
                 });

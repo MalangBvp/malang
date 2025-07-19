@@ -34,13 +34,13 @@ td {
     border: 1px solid #313131;
     text-align: center;
     padding: 5px;
-    min-width: 150px;
+    min-width: 130px;
 }
 
 table tr td img {
-    height: 100px;
-    cursor: pointer;
+    height: 130px;
     transition: filter 0.3s ease;
+    border-radius: 2px;
 }
 
 td img:hover{
