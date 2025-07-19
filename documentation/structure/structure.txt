@@ -42,6 +42,18 @@
 │   │   │   ├── sun.png
 │   │   │   └── tick.png
 │   │   ├── members/
+│   │   │   ├── 24-1.webp
+│   │   │   ├── 24-2.webp
+│   │   │   ├── 24-4.webp
+│   │   │   ├── 24-5.webp
+│   │   │   ├── 24-6.webp
+│   │   │   ├── 24-7.webp
+│   │   │   ├── 24-8.webp
+│   │   │   ├── 25-1.webp
+│   │   │   ├── 25-2.webp
+│   │   │   ├── 25-3.webp
+│   │   │   ├── 25-4.webp
+│   │   │   ├── 25-5.webp
 │   │   │   └── person.webp
 │   │   ├── misc/
 │   │   │   ├── buttons-background.svg
