@@ -608,7 +608,7 @@ form p {
         top: 10px;
         left:auto;
         right: 50px;
-        flex-direction: row;
+        flex-direction: row-reverse;
         border: none;
     }
     #nav-buttons button {

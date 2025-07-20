@@ -39,7 +39,6 @@ td {
 
 table tr td img {
     height: 130px;
-    transition: filter 0.3s ease;
     border-radius: 2px;
 }
 

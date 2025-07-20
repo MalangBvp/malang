@@ -2,7 +2,7 @@ section{
     margin-top: 0px;
 }
 
-#accessForm, #redirectorForm{
+#coreForm, #redirectorForm, #loginForm, #pushForm {
     transform: translate(-50%, -50%);
     position: absolute;
     top:50vh;
@@ -13,8 +13,11 @@ section{
 .url {
     text-decoration: none;
     color: #00d9ff;
-    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
 }
+
 
 #url {
     color: rgb(255, 174, 0);

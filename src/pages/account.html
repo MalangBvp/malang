@@ -1,16 +1,4 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <title>Malang | Site Documentation</title>
-</head>
-
-<body>
-</body>
-
-</html>
-
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../resrc/images/misc/icon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="../styles/common.css">
-    <link rel="stylesheet" href="../styles/documentation.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Goblin+One&family=Scope+One&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <title>Malang | Site Documentation</title>
+    <title>Malang | Account</title>
+    <link rel="stylesheet" href="../styles/authentication.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -40,8 +27,7 @@
     </header>
     <nav>
         <ul>
-            <li><a href="../../index.html"><img src="../../resrc/images/icons/home.png" alt=""
-                        class="icon-small">Home</a></li>
+            <li><a href="../../index.html"><img src="../../resrc/images/icons/home.png" alt="" class="icon-small">Home</a></li>
             <details>
                 <summary><img src="../../resrc/images/icons/events.png" alt="" class="icon-small">Events</summary>
                 <ul>
@@ -49,14 +35,10 @@
                     <li><a href="../../404.html">Past Events</a></li>
                 </ul>
             </details>
-            <li><a href="../../404.html"><img src="../../resrc/images/icons/store.png" alt=""
-                        class="icon-small">Store</a></li>
-            <li><a href="../../404.html"><img src="../../resrc/images/icons/prize.png" alt=""
-                        class="icon-small">ATMOsphere</a></li>
-            <li><a href="gallery.html"><img src="../../resrc/images/icons/art.png" alt="" class="icon-small">Art
-                    Gallery</a></li>
-            <li><a href="photographs.html"><img src="../../resrc/images/icons/camera.png" alt=""
-                        class="icon-small">Photo Gallery</a></li>
+            <li><a href="../../404.html"><img src="../../resrc/images/icons/store.png" alt="" class="icon-small">Store</a></li>
+            <li><a href="../../404.html"><img src="../../resrc/images/icons/prize.png" alt="" class="icon-small">ATMOsphere</a></li>
+            <li><a href="gallery.html"><img src="../../resrc/images/icons/art.png" alt="" class="icon-small">Art Gallery</a></li>
+            <li><a href="photographs.html"><img src="../../resrc/images/icons/camera.png" alt="" class="icon-small">Photo Gallery</a></li>
             <details>
                 <summary><img src="../../resrc/images/icons/members.png" alt="" class="icon-small">Our Members</summary>
                 <ul>
@@ -73,8 +55,7 @@
                     <li><a href="documentation.html">Site Documentation</a></li>
                 </ul>
             </details>
-            <li><a href="../../index.html#contact"><img src="../../resrc/images/icons/contact.png" alt=""
-                        class="icon-small">Contact</a></li>
+            <li><a href="../../index.html#contact"><img src="../../resrc/images/icons/contact.png" alt="" class="icon-small">Contact</a></li>
         </ul>
         <div class="nav-bottom">
             <div class="social-icons">
@@ -98,23 +79,22 @@
         <button id="copy"><img src="/resrc/images/icons/link.png" alt=""></button>
         <button id="pwa"><img src="/resrc/images/icons/download.png" alt=""></button>
     </div>
-    <section>
-        <div class="info">
-        <img src="https://api.visitorbadge.io/api/visitors?path=multiverseweb2%2malang%20&countColor=%23263759&style=flat"
-            alt=""> <img alt="Website"
-            src="https://img.shields.io/website?url=https%3A%2F%2Fmalang-new.vercel.app/%2F&up_message=ok&up_color=%2324ad29&down_message=not%20ok&down_color=red&style=flat">
-        <p id="last-updated">Last Updated: Loading...</p>
-        <hr>
-        <details>
-            <summary>Site Structure</summary>
-            <pre id="structure"></pre>
-        </details>
-        </div>
-        <div id="readme-content" class="same">Loading...</div>
-        <script src="../scripts/documentation.js"></script>
-    <div data-include="../components/footer.html"></div>
+    <section style="margin-top: 70px;">
+        <p><b>Welcome [username],</b>
+            <br>Here, you can submit content to update the website. Your request will be reviewed by the site admin before going live.
+        <br><br><b>📂 Choose an action:</b>
+        </p>
+        <button class="long-btn">Add Social Links</button>
+        <button class="long-btn">Update Profile Photo</button>
+        <button class="long-btn">Sell an Artwork</button>
+        <button class="long-btn">Upload Artwork</button>
+        <button class="long-btn">Upload Photograph</button>
+        <button class="long-btn">Add New Event</button>
+
+        <p>Note: Requests are usually processed on Saturdays.</p>
 </section>
     <script src="../scripts/common.js"></script>
+    <script src="../scripts/authentication.js"></script>
 </body>
 
 </html>
