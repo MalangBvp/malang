@@ -10,7 +10,6 @@
 ├── README.md
 ├── documentation/
 │   └── structure/
-│       ├── structure.md
 │       └── structure.txt
 ├── index.html
 ├── resrc/
@@ -29,6 +28,7 @@
 │   │   │   ├── art.png
 │   │   │   ├── camera.png
 │   │   │   ├── contact.png
+│   │   │   ├── download.png
 │   │   │   ├── email.svg
 │   │   │   ├── events.png
 │   │   │   ├── home.png
@@ -40,7 +40,8 @@
 │   │   │   ├── scrollTop.png
 │   │   │   ├── store.png
 │   │   │   ├── sun.png
-│   │   │   └── tick.png
+│   │   │   ├── tick.png
+│   │   │   └── user.png
 │   │   ├── members/
 │   │   │   ├── 24-1.webp
 │   │   │   ├── 24-2.webp
@@ -74,13 +75,16 @@
 │   │       └── 5.jpeg
 │   └── photographs.json
 ├── src/
+│   ├── components/
+│   │   └── footer.html
 │   ├── pages/
+│   │   ├── account.html
 │   │   ├── alumni.html
 │   │   ├── authentication.html
 │   │   ├── documentation.html
 │   │   ├── events.html
-│   │   ├── footer.html
 │   │   ├── gallery.html
+│   │   ├── login.html
 │   │   ├── photographs.html
 │   │   ├── redirector.html
 │   │   └── treasury.html
