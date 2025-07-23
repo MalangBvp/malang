@@ -10,11 +10,11 @@
 
         switch (formId) {
             case 'coreForm':
-                encoded = 'bWFsYW5ncGFyaw=='; // "malangpark"
+                encoded = 'bWFsYW5ncGFyaw==';
                 url = 'treasury.html';
                 break;
             case 'redirectorForm':
-                encoded = 'Z2Vudmlp'; // "genvii"
+                encoded = 'Z2Vudmlp';
                 url = 'https://malangbvp.github.io/go/help';
                 const postfix = document.getElementById('postfix');
                 postfix.addEventListener('input', function () {
@@ -27,7 +27,7 @@
                 break;
             default:
                 console.error('Unknown form ID');
-                return; // ✅ This is now legal, because we're inside a function
+                return;
         }
 
         form.addEventListener('submit', function (e) {
