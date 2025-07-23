@@ -58,12 +58,6 @@ document.getElementById("pwa").addEventListener("click", function () {
     alert("PWA will be available soon!");
 });
 
-// function to open authentication page on button click with id "account"
-document.getElementById("account").addEventListener("click", function () {
-    vibrate();
-    window.open("/src/pages/login.html", "_self");
-});
-
 //function to copy website url to clipboard on button click with id "copy"
 document.getElementById("copy").addEventListener("click", function () {
     vibrate();
