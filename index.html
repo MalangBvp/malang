@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="resrc/images/misc/icon.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="resrc/images/misc/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="src/styles/common.css">
     <link rel="stylesheet" href="src/styles/home.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -82,21 +82,14 @@
         <button id="pwa"><img src="/resrc/images/icons/download.png" alt=""></button>
     </div>
     <section id="home">
-        <div id="landingWindow" class="same">
-            <div id="landingBackground"></div>
-            <div id="title">Malang - Fine Arts & Photography Club</div>
-            <div class="slider-container" id="sliderContainer">
-                <div class="card">Card 1</div>
-                <div class="card">Card 2</div>
-                <div class="card">Card 3</div>
-                <div class="card">Card 4</div>
-            </div>
-
-            <div id="landingButtons"  class="same">
-                <button><img src="/resrc/images/icons/events.png"></button>
-                <button><img src="/resrc/images/icons/art.png"></button>
-                <button><img src="/resrc/images/icons/camera.png"></button>
-                <button><img src="/resrc/images/icons/prize.png"></button>
+        <div id="landingWindow">
+            <div id="infoContainer">
+                <p id="malang"><img src="resrc/images/misc/favicon.png" class="icon-small">Fine Arts & Photography Club</p>
+                <p id="tagline">For the <span id="kalakaar">Kalakaar</span> in you!</p>
+                <div id="landingButtons">
+                    <button>Install</button>
+                    <button>Join Us</button>
+                </div>
             </div>
         </div>
         <!-- Slider Right to Left -->
