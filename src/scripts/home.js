@@ -28,28 +28,3 @@ for (let i = 1; i <= imageCount; i++) {
     track.appendChild(img);
 }
 */
-const landingWindow = document.getElementById('landingWindow');
-const hues = [0, 90, 180, 270, 360]; // Add more if needed
-
-// Disable default scroll behavior
-window.addEventListener('scroll', (e) => {
-    if (scrollY < 800) {
-        e.preventDefault();
-        window.scrollTo(0, 0); // prevent actual scroll
-    }
-}, { passive: false });
-
-// Custom scroll simulation using wheel event
-window.addEventListener('wheel', (e) => {
-    if (scrollY < 800) {
-        e.preventDefault();
-        scrollY += e.deltaY;
-        scrollY = Math.max(0, Math.min(scrollY, 800));
-
-        const hueIndex = Math.floor(scrollY / 200);
-        const hue = hues[hueIndex] || 0;
-        landingWindow.style.filter = `hue-rotate(${hue}deg)`;
-    } else {
-        landingWindow.style.filter = 'none'; // remove filter after 800px
-    }
-}, { passive: false });
