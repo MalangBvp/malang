@@ -55,7 +55,7 @@ document.getElementById("theme").addEventListener("click", () => {
 
 // function to install PWA on button click with id "pwa"
 document.getElementById("pwa").addEventListener("click", function () {
-    showAlert("PWA Installation", "This feature will be available soon!", "OK");
+    showAlert("PWA Installation", "This feature will be available soon.", "OK");
 });
 
 //function to copy website url to clipboard on button click with id "copy"
@@ -163,7 +163,8 @@ function showAlert(heading, message, buttonText) {
         position: 'fixed',
         top: 0, left: 0,
         width: '100%', height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.53)',
+        backgroundColor: 'rgba(0, 0, 0, 0.57)',
+        backdropFilter: 'blur(5px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -173,10 +174,9 @@ function showAlert(heading, message, buttonText) {
     // Alert Box
     const box = document.createElement('div');
     Object.assign(box.style, {
-        backgroundColor: '#fff',
-        padding: '20px',
+        backgroundColor: '#000',
         borderRadius: '10px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+        border: '1px solid rgb(50,50,50)',
         textAlign: 'center',
         maxWidth: '300px',
         width: '80%',
@@ -188,17 +188,15 @@ function showAlert(heading, message, buttonText) {
     h.textContent = heading;
     Object.assign(h.style, {
         margin: '0 0 10px',
-        fontSize: '1.2em',
-        color: '#333'
+        padding: '10px',
+        borderBottom: '1px solid rgb(50,50,50)'
     });
 
     // Message
     const m = document.createElement('p');
     m.textContent = message;
     Object.assign(m.style, {
-        margin: '0 0 20px',
-        fontSize: '1em',
-        color: '#555'
+        padding: '10px'
     });
 
     // Button
@@ -206,12 +204,9 @@ function showAlert(heading, message, buttonText) {
     btn.textContent = buttonText;
     Object.assign(btn.style, {
         padding: '8px 16px',
-        backgroundColor: '#4CAF50',
-        color: '#fff',
-        border: 'none',
+        backgroundColor: '#141414ff',
         borderRadius: '5px',
-        cursor: 'pointer',
-        fontSize: '1em'
+        margin: '0 0 20px'
     });
     btn.onclick = () => overlay.remove();
 
