@@ -58,9 +58,9 @@
 │   │   │   └── person.webp
 │   │   ├── misc/
 │   │   │   ├── buttons-background.svg
+│   │   │   ├── favicon.png
 │   │   │   ├── gstudios.png
 │   │   │   ├── hashtag.webp
-│   │   │   ├── icon.jpg
 │   │   │   ├── lakme.webp
 │   │   │   ├── malang.png
 │   │   │   ├── payment-qr.jpg
