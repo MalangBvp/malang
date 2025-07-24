@@ -73,6 +73,7 @@
 │   │       ├── 3.jpeg
 │   │       ├── 4.jpeg
 │   │       └── 5.jpeg
+│   ├── malang-logo.glb
 │   └── photographs.json
 ├── src/
 │   ├── components/
