@@ -55,7 +55,7 @@ document.getElementById("theme").addEventListener("click", () => {
 
 // function to install PWA on button click with id "pwa"
 document.getElementById("pwa").addEventListener("click", function () {
-    alert("PWA will be available soon!");
+    showAlert("PWA Installation", "This feature will be available soon!", "OK");
 });
 
 //function to copy website url to clipboard on button click with id "copy"
@@ -149,4 +149,76 @@ async function subscribe() {
         }, 3000);
     }
     subscribeBtn.disabled = false;
+}
+
+function showAlert(heading, message, buttonText) {
+    // Remove existing alert if any
+    const existing = document.querySelector('.custom-alert');
+    if (existing) existing.remove();
+
+    // Overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'custom-alert';
+    Object.assign(overlay.style, {
+        position: 'fixed',
+        top: 0, left: 0,
+        width: '100%', height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.53)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 10000
+    });
+
+    // Alert Box
+    const box = document.createElement('div');
+    Object.assign(box.style, {
+        backgroundColor: '#fff',
+        padding: '20px',
+        borderRadius: '10px',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+        textAlign: 'center',
+        maxWidth: '300px',
+        width: '80%',
+        fontFamily: 'sans-serif'
+    });
+
+    // Heading
+    const h = document.createElement('h3');
+    h.textContent = heading;
+    Object.assign(h.style, {
+        margin: '0 0 10px',
+        fontSize: '1.2em',
+        color: '#333'
+    });
+
+    // Message
+    const m = document.createElement('p');
+    m.textContent = message;
+    Object.assign(m.style, {
+        margin: '0 0 20px',
+        fontSize: '1em',
+        color: '#555'
+    });
+
+    // Button
+    const btn = document.createElement('button');
+    btn.textContent = buttonText;
+    Object.assign(btn.style, {
+        padding: '8px 16px',
+        backgroundColor: '#4CAF50',
+        color: '#fff',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        fontSize: '1em'
+    });
+    btn.onclick = () => overlay.remove();
+
+    // Build and show
+    box.appendChild(h);
+    box.appendChild(m);
+    box.appendChild(btn);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
 }
