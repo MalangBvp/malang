@@ -15,3 +15,15 @@ window.addEventListener("scroll", () => {
         burger.classList.add("top");
     }
 });
+
+
+const imageCount = 4;
+const track = document.querySelector('.image-track');
+
+// Inject images
+for (let i = 1; i <= imageCount; i++) {
+    const img = document.createElement('img');
+    img.src = `resrc/images/artworks/${i}.jpg`;
+    img.alt = `Image ${i}`;
+    track.appendChild(img);
+}

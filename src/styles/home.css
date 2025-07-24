@@ -1,24 +1,30 @@
-html{
+html {
     scroll-behavior: smooth;
 }
+
 #home {
     padding: 0px;
     margin-top: 0;
 }
-header{
+
+header {
     transition: background-color 0.3s ease;
 }
-header.top{
+
+header.top {
     background-color: transparent;
     border-bottom: none;
 }
-.top div.burger{
+
+.top div.burger {
     border: 1px solid rgba(255, 255, 255, 0.589);
     background-color: rgba(56, 56, 56, 0.171);
 }
-.top div.burger span{
+
+.top div.burger span {
     background-color: white;
 }
+
 #visitors {
     display: none;
 }
@@ -54,12 +60,14 @@ header.top{
     text-align: center;
     padding: 10px;
 }
-#kalakaar{
+
+#kalakaar {
     background: linear-gradient(to bottom, rgb(255, 162, 0), rgb(255, 47, 0));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 #landingButtons {
     width: 100%;
     display: flex;
@@ -67,33 +75,42 @@ header.top{
     gap: 30px;
     padding-bottom: 20px;
 }
-#landingButtons button{
+
+#landingButtons button {
     padding: 10px 30px;
     background-color: rgba(15, 15, 15, 0.647);
     border-radius: 10px;
     transition: background-color 0.3s ease;
 }
+
 #landingButtons button:hover {
     background-color: rgba(23, 23, 23, 0.847);
 }
+
 #scroll-down {
     color: grey;
     font-size: 0.8rem;
     animation: wave 2s infinite;
     text-align: center;
+    cursor: pointer;
+    user-select: none;
 }
+
 /*waving animation on scroll down*/
 @keyframes wave {
     0% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-10px);
     }
+
     100% {
         transform: translateY(0);
     }
 }
+
 .sponsors {
     margin-top: 50px;
 }
