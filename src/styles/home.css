@@ -32,6 +32,7 @@ header.top {
 #landingWindow {
     background: linear-gradient(to bottom, rgb(212, 134, 0), rgb(80, 0, 0), black, black);
     height: 100vh;
+    transition: filter 0.3s ease;
 }
 
 #infoContainer {
@@ -62,7 +63,7 @@ header.top {
 }
 
 #kalakaar {
-    background: linear-gradient(to bottom, rgb(255, 162, 0), rgb(255, 47, 0));
+    background: linear-gradient(to top, rgb(255, 162, 0), rgb(255, 47, 0));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
