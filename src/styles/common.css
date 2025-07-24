@@ -129,7 +129,7 @@ header {
 }
 
 .burger:hover {
-    background-color: rgb(22, 22, 22);
+    background-color: rgba(80, 80, 80, 0.223);
 }
 
 .burger span {
@@ -610,6 +610,7 @@ form p {
         right: 50px;
         flex-direction: row-reverse;
         border: none;
+        background-color: transparent;
     }
     #nav-buttons button {
         margin: 0 0px;
