@@ -26,6 +26,7 @@
 │   │   ├── icons/
 │   │   │   ├── admin.png
 │   │   │   ├── art.png
+│   │   │   ├── aruco.png
 │   │   │   ├── camera.png
 │   │   │   ├── contact.png
 │   │   │   ├── download.png
@@ -81,6 +82,7 @@
 │   ├── pages/
 │   │   ├── account.html
 │   │   ├── alumni.html
+│   │   ├── aruco.html
 │   │   ├── authentication.html
 │   │   ├── documentation.html
 │   │   ├── events.html
@@ -92,6 +94,7 @@
 │   │   └── treasury.html
 │   ├── scripts/
 │   │   ├── alumni.js
+│   │   ├── aruco.js
 │   │   ├── authentication.js
 │   │   ├── common.js
 │   │   ├── documentation.js
@@ -101,6 +104,7 @@
 │   │   └── treasury.js
 │   └── styles/
 │       ├── alumni.css
+│       ├── aruco.css
 │       ├── authentication.css
 │       ├── common.css
 │       ├── documentation.css
