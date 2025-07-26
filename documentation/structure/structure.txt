@@ -88,6 +88,7 @@
 │   │   ├── login.html
 │   │   ├── photographs.html
 │   │   ├── redirector.html
+│   │   ├── timeline.html
 │   │   └── treasury.html
 │   ├── scripts/
 │   │   ├── alumni.js
@@ -107,6 +108,7 @@
 │       ├── gallery.css
 │       ├── home.css
 │       ├── photographs.css
+│       ├── timeline.css
 │       └── treasury.css
 └── variables/
     ├── last-updated.txt
