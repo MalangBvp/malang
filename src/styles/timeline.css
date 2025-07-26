@@ -1,0 +1,119 @@
+#timeline{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#featuredTitle{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#featuredEvents{
+    position: relative;
+    padding-top: 40px;
+    display: flex;
+    gap: 10px;
+    overflow-x: scroll;
+}
+#featuredEvents::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+.featured{
+    padding: 10px;
+    height: 150px;
+    min-width: 200px;
+    background: linear-gradient(30deg,transparent, rgb(50, 50, 50) , transparent);
+    border-radius: 5px;
+    cursor: pointer;
+}
+#events{
+    margin: 10px;
+    display: grid;
+}
+.event{
+    position: relative;
+    padding: 7px;
+    padding-left: 15px;
+    border-left: 1px solid rgb(50, 50, 50);
+}
+
+.event::before{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(50, 50, 50);
+    border-radius: 50%;
+    top: 10px;
+    left: -5px;
+}
+#upcoming a{
+    color: gold;
+    text-decoration: none;
+}
+#upcoming::before{
+    background-color: gold;
+    animation: blink 1s infinite ease-in;
+}
+@keyframes blink {
+    0% { box-shadow: none; }
+    50% { box-shadow: 0 0 10px gold, 0 0 10px gold, 0 0 10px gold }
+    100% { box-shadow: none; }
+}
+.event details{
+    border: none;
+}
+.event details[open]>summary {
+    border: none;
+}
+.event summary{
+    padding: 0;
+}
+summary.title::before{
+    top: 5px;
+    right: 0px;
+}
+.date, .description{
+    font-size: 0.9em;
+    color: rgb(150, 150, 150);
+}
+.description{
+    margin-top: 5px;
+}
+.event summary:hover{
+    background-color: transparent;
+}
+#last{
+    position: relative;
+    height: 20px;
+    /*gradient border left to bottom*/
+    background: linear-gradient(to bottom, rgb(50, 50, 50), transparent);
+    background-size: 1px 100%;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    margin-bottom: 20px;
+}
+@media screen and (min-width: 500px) {
+    #timeline{
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 20px;
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+    #featuredEvents{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+        width: 40%;
+        height: min-content;
+    }
+    .featured{
+        min-width: calc(100% - 40px);
+    }
+    #timelineDiv{
+        width: 60%;
+        height: 80vh;
+        overflow: scroll;
+    }
+}
