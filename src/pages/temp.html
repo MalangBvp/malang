@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Malang ArUco Scanner</title>
+  <script async src="https://docs.opencv.org/4.x/opencv.js" type="text/javascript"></script>
+
+</head>
+<body>
+  <h2>🎯 Malang ArUco Scanner</h2>
+  <video id="video" autoplay playsinline width="640" height="480"></video>
+  <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+</body>
+<script>
+    let video = document.getElementById('video');
+let canvas = document.getElementById('canvas');
+let ctx = canvas.getContext('2d');
+let redirectLinks = {};
+let scannedIds = new Set();
+
+// Load JSON mapping
+fetch('../../resrc/data/temp.json')
+  .then(response => response.json())
+  .then(data => { redirectLinks = data; })
+  .catch(err => console.error("Failed to load aruco.json:", err));
+
+// Start video feed
+navigator.mediaDevices.getUserMedia({ video: true })
+  .then(stream => { video.srcObject = stream; })
+  .catch(err => alert("Cannot access camera: " + err));
+
+function onOpenCvReady() {
+  const dictionary = new cv.aruco_Dictionary(cv.DICT_4X4_50);
+  const parameters = new cv.aruco_DetectorParameters();
+
+  let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
+  let gray = new cv.Mat();
+  let ids = new cv.Mat();
+  let corners = new cv.MatVector();
+  let rejected = new cv.MatVector();
+  let detector = new cv.aruco_Detector(dictionary, parameters);
+
+  function processVideo() {
+    ctx.drawImage(video, 0, 0, video.width, video.height);
+    src.data.set(ctx.getImageData(0, 0, video.width, video.height).data);
+    cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY);
+
+    detector.detectMarkers(gray, corners, ids, rejected);
+
+    if (!ids.empty()) {
+      for (let i = 0; i < ids.rows; i++) {
+        let markerId = ids.intAt(i, 0).toString();
+        if (redirectLinks[markerId] && !scannedIds.has(markerId)) {
+          scannedIds.add(markerId);
+          console.log("🔗 Redirecting to:", redirectLinks[markerId]);
+          window.location.href = redirectLinks[markerId];
+        }
+      }
+    }
+
+    requestAnimationFrame(processVideo);
+  }
+
+  requestAnimationFrame(processVideo);
+}
+
+</script>
+</html>
