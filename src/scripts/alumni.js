@@ -4,7 +4,7 @@ const loader = document.getElementById("loader");
 if (container) {
     if (loader) loader.style.display = "block";
 
-    fetch("../../resrc/alumni.json")
+    fetch("../../resrc/data/alumni.json")
         .then((res) => {
             if (!res.ok) throw new Error("Network response was not ok");
             return res.json();

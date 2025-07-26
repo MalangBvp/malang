@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', loadphotographs);
 
 let imageMeta = {};
 
-fetch("../../resrc/photographs.json")
+fetch("../../resrc/data/photographs.json")
     .then(res => res.json())
     .then(data => imageMeta = data);
 

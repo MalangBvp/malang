@@ -72,7 +72,7 @@ function loadArtworks() {
 
 let imageMeta = {};
 
-fetch("../../resrc/artworks.json")
+fetch("../../resrc/data/artworks.json")
     .then((res) => res.json())
     .then((data) => imageMeta = data);
 
