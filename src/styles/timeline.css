@@ -17,8 +17,8 @@
 }
 .featured{
     padding: 10px;
-    height: 150px;
-    min-width: 200px;
+    height: 200px;
+    min-width: 300px;
     background: linear-gradient(30deg,transparent, rgb(50, 50, 50) , transparent);
     border-radius: 5px;
     cursor: pointer;
