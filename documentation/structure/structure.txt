@@ -16,7 +16,8 @@
 │   ├── data/
 │   │   ├── alumni.json
 │   │   ├── artworks.json
-│   │   └── photographs.json
+│   │   ├── photographs.json
+│   │   └── temp.json
 │   ├── images/
 │   │   ├── artworks/
 │   │   │   ├── 0.jpg
@@ -92,6 +93,7 @@
 │   │   ├── login.html
 │   │   ├── photographs.html
 │   │   ├── redirector.html
+│   │   ├── temp.html
 │   │   ├── timeline.html
 │   │   └── treasury.html
 │   ├── scripts/
