@@ -13,8 +13,10 @@
 │       └── structure.txt
 ├── index.html
 ├── resrc/
-│   ├── alumni.json
-│   ├── artworks.json
+│   ├── data/
+│   │   ├── alumni.json
+│   │   ├── artworks.json
+│   │   └── photographs.json
 │   ├── images/
 │   │   ├── artworks/
 │   │   │   ├── 0.jpg
@@ -74,8 +76,8 @@
 │   │       ├── 3.jpeg
 │   │       ├── 4.jpeg
 │   │       └── 5.jpeg
-│   ├── malang-logo.glb
-│   └── photographs.json
+│   └── misc/
+│       └── malang-logo.glb
 ├── src/
 │   ├── components/
 │   │   └── footer.html
