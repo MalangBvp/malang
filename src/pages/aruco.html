@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Scope+One&display=swap" rel="stylesheet">
-    <title>Malang | Alumni</title>
-    <link rel="stylesheet" href="../styles/alumni.css">
+    <title>Malang | M-ArUCo</title>
+    <link rel="stylesheet" href="../styles/aruco.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -84,28 +84,19 @@
         <button id="copy"><img src="/resrc/images/icons/link.png" alt=""></button>
         <button id="pwa"><img src="/resrc/images/icons/download.png" alt=""></button>
     </div>
-    <section id="alumni">
-        <div id="loader">
-            <img src="../../resrc/images/icons/loading.webp" alt="Loading..." />
-        </div>
-        <span id="members"></span>
-        <div id="image-modal" class="modal" style="display:none;">
-            <span class="modal-close">&times;</span>
-            <div class="modal-content">
-                <img id="modal-image" class="same" />
-                <div id="modal-caption">
-                    <p id="modal-title">Name: NA</p>
-                    <p id="modal-position">Position: NA</p>
-                    <p id="modal-batch">Batch: NA</p>
-                    <div class="social-icons" id="modal-socials"></div>
-                </div>
+    <section id="aruco">
+        <div class="container">
+            <h1>Malang ArUCo Scanner</h1>
+            <p>Point your camera at the ArUCo marker.</p>
+            <div class="scanner">
+                <video id="video" autoplay playsinline></video>
             </div>
         </div>
-    <div data-include="../components/footer.html"></div>
+        <div data-include="../components/footer.html"></div>
 
     </section>
     <script src="../scripts/common.js"></script>
-    <script src="../scripts/alumni.js"></script>
+    <script src="../scripts/aruco.js"></script>
 </body>
 
 </html>

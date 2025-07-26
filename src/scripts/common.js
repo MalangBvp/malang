@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
         burgerButton.classList.toggle("active");
         section.classList.toggle("active");
         navButtons.classList.toggle("active");
-
         burger.style.justifyContent = isActive ? "center" : "space-around";
         document.body.style.overflow = isActive ? "hidden" : "scroll";
     }

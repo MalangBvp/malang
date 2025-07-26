@@ -148,7 +148,7 @@ header {
 
 #nav-buttons {
     position: fixed;
-    top: 80px;
+    top: 73px;
     left: -60px;
     display: flex;
     flex-direction: column;
@@ -529,7 +529,7 @@ form p {
 }
 
 .social-icons a {
-    color: #c9d1d9;
+    color: #c7c7c7;
     text-decoration: none;
 }
 
