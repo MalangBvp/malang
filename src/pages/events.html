@@ -97,30 +97,11 @@
         </div>
         <h2>Happening Now!</h2>
         <div class="events-list">
-            <div class="event">
-                <p class="event-name">Recruitments 2025</p>
-                <div class="event-info">
-                    <p class="event-date">September, 2025</p>
-                    <p class="event-location">Malang Room</p>
-                </div>
-                <p class="event-description">We're looking for new members to join our team! If you are interested
-                    in
-                    joining us, please fill out the form below.</p>
-                <div class="event-buttons">
-                    <button class="long-btn" onclick="showAlert('Recruitments 2025', 'This event has not been finalised yet. Stay tuned!', 'OK')">Add to Calendar</button>
-                    <button class="long-btn focus" onclick="showAlert('Recruitments 2025', 'This event has not been finalised yet. Stay tuned!', 'OK')">Join Us</button>
-                </div>
-            </div>
         </div>
     <div data-include="../components/footer.html"></div>
 </section>
     <script src="../scripts/common.js"></script>
-    <script>
-        calendar.addEventListener('load', () => {
-            loader.style.display = 'none';
-            calendar.style.display = 'block';
-        });
-    </script>
+    <script src="../scripts/events.js"></script>
 </body>
 
 </html>

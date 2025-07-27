@@ -19,7 +19,7 @@ let redirectLinks = {};
 let scannedIds = new Set();
 
 // Load JSON mapping
-fetch('../../resrc/data/temp.json')
+fetch('../../resrc/data/aruco.json')
   .then(response => response.json())
   .then(data => { redirectLinks = data; })
   .catch(err => console.error("Failed to load aruco.json:", err));

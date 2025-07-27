@@ -1,8 +1,10 @@
 burger = document.getElementById("burger");
 header = document.querySelector("header");
 burger.addEventListener("click", () => {
-    header.classList.toggle("top");
-    burger.classList.toggle("top");
+    if (window.scrollY < 200) {
+        header.classList.toggle("top");
+        burger.classList.toggle("top");
+    }
 });
 
 //when page is scrolled more than 200px toggle class top on header
