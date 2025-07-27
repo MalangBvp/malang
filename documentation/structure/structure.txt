@@ -18,7 +18,8 @@
 │   │   ├── artworks.json
 │   │   ├── aruco.json
 │   │   ├── events.json
-│   │   └── photographs.json
+│   │   ├── photographs.json
+│   │   └── timeline.json
 │   ├── images/
 │   │   ├── artworks/
 │   │   │   ├── 0.jpg
@@ -107,6 +108,7 @@
 │   │   ├── gallery.js
 │   │   ├── home.js
 │   │   ├── photographs.js
+│   │   ├── timeline.js
 │   │   └── treasury.js
 │   └── styles/
 │       ├── alumni.css
