@@ -28,7 +28,7 @@ section{
     font-size: small;
     opacity: 0;
     transition: opacity 0.2s ease;
-    margin-bottom: 0;
+    margin-bottom: 0px;
 }
 
 #gradientCanvas {

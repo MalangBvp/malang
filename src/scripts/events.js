@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <p class="event-date">${event.date}</p>
             <p class="event-location">${event.location}</p>
           </div>
-          <img src="${event.image}" alt="${event.name}" loading="lazy" class="event-image" />
+          <img src="${event.image}" alt="${event.name}" loading="lazy" class="event-image same" />
           <p class="event-description">${event.description}</p>
           <div class="event-buttons">
             ${event.buttons.map(btn => `

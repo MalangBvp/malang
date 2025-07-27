@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet');
+
 * {
     margin: 0;
     padding: 0;
@@ -20,9 +22,15 @@ body {
     background-color: rgb(0, 0, 0);
     color: rgb(227, 227, 227);
     overflow-x: hidden;
-    font-family: "Scope One", serif;
-    font-weight: 100;
+    font-family: "IBM Plex Sans", sans-serif;
     font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    font-weight: 300;
+    font-style: normal;
+}
+.same{
+    filter: invert(1);
 }
 
 button,
@@ -49,7 +57,7 @@ button {
     color: rgb(227, 227, 227);
     border-radius: 2px;
     cursor: pointer;
-    font-family: "Scope One", serif;
+    font-family: "IBM Plex Sans", sans-serif;
     min-width: max-content;
     transition-duration: 0.2s;
 }
@@ -314,8 +322,15 @@ textarea {
     border-radius: 5px;
     background-color: #1a1a1aa1;
     color: white;
-    margin-bottom: 15px;
-    font-family: "Scope One", serif;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"] {
+    margin-bottom: 10px;
 }
 
 textarea {
@@ -349,9 +364,6 @@ form p {
     transition: background-color 0.3s ease;
     border: 1px solid rgb(50, 50, 50);
     border-radius: 50px;
-    font-family: "Scope One", serif;
-    font-weight: 100;
-    font-style: normal;
 }
 
 .long-btn:hover {
@@ -399,11 +411,12 @@ form p {
     margin-bottom: 10px;
     max-width: 400px;
 }
-.newsletter input{
+
+.newsletter input {
     width: calc(100% - 20px);
 }
 
-#failure{
+#failure {
     color: #ff3131;
     font-size: 14px;
     margin-top: 8px;
@@ -412,6 +425,7 @@ form p {
 }
 
 .newsletter button {
+    margin-top: 5px;
     padding: 8px 20px;
     transition: background-color 0.2s;
     border-radius: 50px;
@@ -423,10 +437,11 @@ form p {
 }
 
 
-#contact{
+#contact {
     text-align: center;
     margin-top: 50px;
 }
+
 #contactContainer {
     display: flex;
     flex-direction: column-reverse;
@@ -435,7 +450,7 @@ form p {
     padding: 10px;
 }
 
-#map{
+#map {
     width: calc(100vw - 40px);
     height: 350px;
     margin-top: 10px;
@@ -444,9 +459,11 @@ form p {
     filter: grayscale(100%) invert(0.9) contrast(120%);
     transition: filter 0.3s ease;
 }
+
 #map:hover {
     filter: grayscale(0%) invert(0) contrast(100%);
 }
+
 #contactForm {
     width: calc(100vw - 80px);
     margin-top: 10px;
@@ -503,6 +520,8 @@ form p {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    margin-top: 5px;
+    line-height: 5px;
 }
 
 .footer-bottom a {
@@ -523,7 +542,7 @@ form p {
     gap: 10px;
 }
 
-#icons-footer{
+#icons-footer {
     justify-content: left;
     gap: 20px;
 }
@@ -541,7 +560,8 @@ form p {
     display: none;
     position: fixed;
     z-index: 120;
-    inset: 0; /* shorthand for top, right, bottom, left: 0 */
+    inset: 0;
+    /* shorthand for top, right, bottom, left: 0 */
     padding-top: 60px;
     background-color: rgb(0, 0, 0);
     overflow-y: auto;
@@ -558,17 +578,19 @@ form p {
 
 #modal-image {
     display: block;
-    border-radius: 7px;
+    border-radius: 5px;
     width: 100%;
     height: auto;
-    align-self: flex-start; /* ✅ prevents vertical stretching */
+    align-self: flex-start;
+    /* ✅ prevents vertical stretching */
     flex-shrink: 0;
 }
 
-#modal-caption{
+#modal-caption {
     margin-top: 10px;
 }
-#modal-socials{
+
+#modal-socials {
     justify-content: left;
     gap: 20px;
 }
@@ -584,15 +606,15 @@ form p {
     border: 1px solid rgba(255, 255, 255, 0.5);
     line-height: 21px;
     width: 25px;
-    padding-left: 3px;
+    padding: 2px 1px 5px 2px;
     border-radius: 5px;
-    padding-top: 7px;
 }
 
 @media (min-width: 570px) {
     .modal-content {
         flex-direction: row;
     }
+
     #modal-image {
         width: auto;
         height: auto;
@@ -606,18 +628,20 @@ form p {
 @media (min-width: 500px) {
     #nav-buttons {
         top: 10px;
-        left:auto;
+        left: auto;
         right: 50px;
         flex-direction: row-reverse;
         border: none;
         background-color: transparent;
     }
+
     #nav-buttons button {
         margin: 0 0px;
-    border: 1px solid rgb(80, 80, 80);
+        border: 1px solid rgb(80, 80, 80);
         padding: 4px;
         border-radius: 5px;
     }
+
     #nav-buttons img {
         width: 20px;
         height: 20px;
@@ -625,9 +649,10 @@ form p {
 
     #nav-buttons.active {
         right: 50px;
-        left:auto;
+        left: auto;
     }
 }
+
 /* Responsive */
 @media (min-width: 768px) {
     .footer-container {
@@ -649,11 +674,11 @@ form p {
         gap: 0px;
         margin-left: 100px;
     }
-    
+
 
     #contactContainer {
         flex-direction: row;
         padding: 20px 100px;
-    gap: 50px;
+        gap: 50px;
     }
 }

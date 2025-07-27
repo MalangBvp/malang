@@ -4,7 +4,7 @@
     "date": "September, 2025",
     "location": "Malang Room",
     "description": "We're looking for new members to join our team! If you are interested in joining us, please fill out the form below.",
-    "image": "../images/misc/team.webp",
+    "image": "/resrc/images/misc/team.webp",
     "buttons": [
       {
         "text": "Add to Calendar",
