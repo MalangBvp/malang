@@ -88,13 +88,16 @@
         <button id="pwa"><img src="/resrc/images/icons/download.png" alt=""></button>
     </div>
     <section id="timeline">
+        <div id="loader">
+            <img src="../../resrc/images/icons/loading.webp" alt="Loading..." />
+        </div>
         <div id="featuredContainer">
             <h1 id="featuredTitle">Featured Events</h1>
             <div id="featuredEvents">
-                <div class="featured">
+                <div class="featured same">
                     <p class="featuredTitle">Fashion Euphoria</p>
                 </div>
-                <div class="featured">
+                <div class="featured same">
                     <p class="featuredTitle">Rangotsav</p>
                 </div>
             </div>
@@ -107,100 +110,14 @@
                 <div class="event" id="upcoming">
                     <a href="events.html">Upcoming Events</a>
                 </div>
-                <div class="event">
-                    <details>
-                        <summary class="title">Workshop: Video Editing with Team Clixzy
-                            <p class="date">19th - 20th July 2025</p>
-                        </summary>
-                        <p class="description">A hands-on workshop on video editing techniques, covering software tools
-                            and
-                            creative processes.</p>
-                    </details>
-                </div>
-                <div class="event">
-                    <details>
-                        <summary class="title">Farewell
-                            <p class="date">April 2025</p>
-                        </summary>
-                        <p class="description">
-                            A farewell event to celebrate the achievements of the graduating batch of 2025, featuring
-                            speeches,
-                            performances, and a nostalgic look back at their journey with Malang.
-                        </p>
-                    </details>
-                </div>
-                <div class="event">
-                    <details>
-                        <summary class="title">Fashion Euphoria: Bharatiyam 2025
-                            <p class="date">February 2025</p>
-                        </summary>
-                        <p class="description">
-                            A fashion show event showcasing the latest trends and designs, featuring student designers
-                            and
-                            models, celebrating creativity and style.</p>
-                    </details>
-                </div>
-                <div class="event">
-                    <details>
-                        <summary class="title">Rangotsav: Bharatiyam 2025
-                            <p class="date">February 2025</p>
-                        </summary>
-                        <p class="description">
-                            A vibrant cultural festival celebrating the diversity of Indian traditions through music,
-                            dance,
-                            and art, bringing together students and the community.</p>
-                    </details>
-                </div>
-                <div class="event">
-                    <details>
-                        <summary class="title">Fashion Euphoria: Bharatiyam 2024
-                            <p class="date">February 2024</p>
-                        </summary>
-                        <p class="description">
-                            A vibrant cultural festival celebrating the diversity of Indian traditions through music,
-                            dance,
-                            and art, bringing together students and the community.</p>
-                    </details>
-                </div>
-                <div class="event">
-                    <details>
-                        <summary class="title">Rangotsav: Bharatiyam 2024
-                            <p class="date">February 2024</p>
-                        </summary>
-                        <p class="description">
-                            A vibrant cultural festival celebrating the diversity of Indian traditions through music,
-                            dance,
-                            and art, bringing together students and the community.</p>
-                    </details>
-                </div>
-                <div class="event">
-                    <details>
-                        <summary class="title">Workshop: Mandala Art
-                            <p class="date">January 2024</p>
-                        </summary>
-                        <p class="description">
-                            A vibrant cultural festival celebrating the diversity of Indian traditions through music,
-                            dance,
-                            and art, bringing together students and the community.</p>
-                    </details>
-                </div>
-                <div class="event">
-                    <details>
-                        <summary class="title">Workshop: Photography with GStudios India
-                            <p class="date">November 2023</p>
-                        </summary>
-                        <p class="description">
-                            A vibrant cultural festival celebrating the diversity of Indian traditions through music,
-                            dance,
-                            and art, bringing together students and the community.</p>
-                    </details>
-                </div>
-                <div id="last"></div>
+                <div id="last"></div>  
+        <button class="long-btn" id="viewMoreBtn">View More</button>
             </div>
         </div>
     </section>
     <div data-include="../components/footer.html"></div>
     <script src="../scripts/common.js"></script>
+    <script src="../scripts/timeline.js"></script>
 </body>
 
 </html>
