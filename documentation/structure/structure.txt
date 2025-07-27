@@ -69,6 +69,7 @@
 │   │   │   ├── malang.png
 │   │   │   ├── payment-qr.jpg
 │   │   │   ├── signature.png
+│   │   │   ├── team.webp
 │   │   │   └── vlcc.png
 │   │   └── photographs/
 │   │       ├── 0.jpeg
