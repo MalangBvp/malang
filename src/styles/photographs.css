@@ -129,22 +129,6 @@ section {
     color: #000;
 }
 
-.modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    color: rgb(197, 197, 197);
-    font-size: 40px;
-    cursor: pointer;
-    user-select: none;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    line-height: 21px;
-    width: 25px;
-    padding-left: 3px;
-    border-radius: 5px;
-    padding-top: 7px;
-}
-
 @media (min-width: 570px) {
     .modal-content {
         flex-direction: row;
