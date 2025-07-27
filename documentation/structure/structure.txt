@@ -16,8 +16,9 @@
 │   ├── data/
 │   │   ├── alumni.json
 │   │   ├── artworks.json
-│   │   ├── photographs.json
-│   │   └── temp.json
+│   │   ├── aruco.json
+│   │   ├── events.json
+│   │   └── photographs.json
 │   ├── images/
 │   │   ├── artworks/
 │   │   │   ├── 0.jpg
@@ -84,7 +85,6 @@
 │   ├── components/
 │   │   └── footer.html
 │   ├── pages/
-│   │   ├── account.html
 │   │   ├── alumni.html
 │   │   ├── aruco.html
 │   │   ├── authentication.html
@@ -103,6 +103,7 @@
 │   │   ├── authentication.js
 │   │   ├── common.js
 │   │   ├── documentation.js
+│   │   ├── events.js
 │   │   ├── gallery.js
 │   │   ├── home.js
 │   │   ├── photographs.js
