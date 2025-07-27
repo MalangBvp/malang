@@ -19,7 +19,9 @@
     padding: 10px;
     height: 200px;
     min-width: 300px;
-    background: linear-gradient(30deg,transparent, rgb(50, 50, 50) , transparent);
+    background: linear-gradient(30deg,transparent, rgb(20, 20, 20) , transparent);
+    background-image: url('../../resrc/images/misc/team.webp');
+    background-size: cover;
     border-radius: 5px;
     cursor: pointer;
 }
