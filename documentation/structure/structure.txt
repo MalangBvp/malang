@@ -19,7 +19,8 @@
 │   │   ├── aruco.json
 │   │   ├── events.json
 │   │   ├── photographs.json
-│   │   └── timeline.json
+│   │   ├── timeline.json
+│   │   └── treasury.json
 │   ├── images/
 │   │   ├── artworks/
 │   │   │   ├── 0.jpg
