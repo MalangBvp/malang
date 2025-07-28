@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-top: 70px;
+    margin-top: 60px;
 }
 
 #featuredEvents {
@@ -92,6 +92,9 @@
 
 .event summary {
     padding: 0;
+}
+summary.title{
+    padding-right: 20px;
 }
 
 summary.title::before {
