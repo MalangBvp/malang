@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       container.appendChild(fragment);
+    document.getElementById("loader").style.display = "none";
     })
     .catch(error => {
       console.error("Failed to load events.json:", error);
@@ -37,8 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
 calendar.addEventListener('load', () => {
-    loader.style.display = 'none';
+    document.getElementById('loaderWave').style.display = 'none';
     calendar.style.display = 'block';
 });

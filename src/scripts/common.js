@@ -176,10 +176,9 @@ function showAlert(heading, message, buttonText) {
         backgroundColor: '#000',
         borderRadius: '10px',
         border: '1px solid rgb(50,50,50)',
-        textAlign: 'center',
+        textAlign: 'left',
         maxWidth: '300px',
-        width: '80%',
-        fontFamily: 'sans-serif'
+        width: '80%'
     });
 
     // Heading
@@ -195,7 +194,7 @@ function showAlert(heading, message, buttonText) {
     const m = document.createElement('p');
     m.textContent = message;
     Object.assign(m.style, {
-        padding: '10px'
+        padding: '0 10px'
     });
 
     // Button
@@ -205,7 +204,10 @@ function showAlert(heading, message, buttonText) {
         padding: '8px 16px',
         backgroundColor: '#141414ff',
         borderRadius: '5px',
-        margin: '0 0 20px'
+        margin: '5px 0 10px',
+        position: 'relative',
+        left: '100%',
+        transform: 'translateX(calc(-100% - 10px))'
     });
     btn.onclick = () => overlay.remove();
 

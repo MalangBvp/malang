@@ -2,7 +2,7 @@ section {
     margin-top: 70px;
     padding: 0px;
 }
-#loader{
+#loaderWave{
     position: relative;
     background: linear-gradient(110deg,
             #000000 30%,
@@ -10,12 +10,8 @@ section {
             #000000 50%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
-}
-
-#loader img {
-    width: 30px;
-    height: 30px;
-    display: none;
+    width: 100%;
+    height: 100%;
 }
 
 @keyframes shimmer {

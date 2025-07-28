@@ -34,7 +34,8 @@
                     <li><a href="../../src/pages/timeline.html">Past Events</a></li>
                 </ul>
             </details>
-            <li><a href="../../src/pages/aruco.html"><img src="../../resrc/images/icons/aruco.png" alt="" class="icon-small">M-ArUCo</a></li>
+            <li><a href="../../src/pages/aruco.html"><img src="../../resrc/images/icons/aruco.png" alt=""
+                        class="icon-small">M-ArUCo</a></li>
             <li><a href="../../404.html"><img src="../../resrc/images/icons/store.png" alt=""
                         class="icon-small">Store</a></li>
             <li><a href="../../404.html"><img src="../../resrc/images/icons/prize.png" alt=""
@@ -84,10 +85,11 @@
         <button id="pwa"><img src="/resrc/images/icons/download.png" alt=""></button>
     </div>
     <section>
+        <div id="loader">
+            <img src="../../resrc/images/icons/loading.webp" alt="Loading..." />
+        </div>
         <div id="calendar-container">
-            <div id="loader">
-                <img src="../../resrc/images/icons/loading.webp" alt="Loading..." />
-            </div>
+            <div id="loaderWave"></div>
             <p id="title">Calendar | Malang Events</p>
             <iframe
                 src="https://calendar.google.com/calendar/embed?height=800&wkst=1&ctz=Asia%2FKolkata&showPrint=0&showTitle=0&showCalendars=0&bgcolor=%23000000&src=bWFsYW5nYnZwQGdtYWlsLmNvbQ&color=%23039be5"
@@ -97,8 +99,8 @@
         <h1>Happening Now!</h1>
         <div class="events-list">
         </div>
-    <div data-include="../components/footer.html"></div>
-</section>
+        <div data-include="../components/footer.html"></div>
+    </section>
     <script src="../scripts/common.js"></script>
     <script src="../scripts/events.js"></script>
 </body>
