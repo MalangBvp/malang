@@ -95,6 +95,7 @@
 │   │   ├── gallery.html
 │   │   ├── login.html
 │   │   ├── photographs.html
+│   │   ├── privacy-policy.html
 │   │   ├── redirector.html
 │   │   ├── temp.html
 │   │   ├── timeline.html
