@@ -282,7 +282,6 @@ summary::before {
 
 details[open] summary::before {
     transform: rotate(270deg);
-    margin-right: -4px;
 }
 
 details ul li {

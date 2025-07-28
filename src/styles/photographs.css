@@ -1,10 +1,11 @@
 section {
     padding: 0px;
+    margin-top: 70px;
 }
 .films {
     column-count: 4;
     column-gap: 10px;
-    margin-top: 5px;
+    margin-top: 15px;
     padding: 0 5px;
 }
 
@@ -63,7 +64,6 @@ section {
     padding-right: 5px;
     padding-left: 70px;
     display: flex;
-    border-bottom: 1px solid rgb(50, 50, 50);
     padding-bottom: 4px;
     margin-bottom: 5px;
     overflow-x: scroll;
@@ -72,12 +72,11 @@ section {
     -ms-overflow-style: none;
     /* Internet Explorer and Edge */
     z-index: 110;
-    background-color: black;
 }
-
 .filters button {
     margin: 0 2px;
-    padding: 7px 10px 3px 10px;
+    padding: 5px 10px 5px 10px;
+    border:none;
 }
 
 .filters p {
