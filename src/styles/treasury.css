@@ -35,7 +35,7 @@ section.treasury-active {
     max-width: 320px;
     aspect-ratio: 1.586;
     border: 1px solid rgb(50, 50, 50);
-    border-radius: 10px;
+    border-radius: 7px;
     backdrop-filter: blur(10px);
     padding: 15px;
     display: flex;

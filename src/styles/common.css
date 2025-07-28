@@ -52,7 +52,7 @@ button {
     background-color: transparent;
     border: 1px solid rgb(50, 50, 50);
     color: rgb(227, 227, 227);
-    border-radius: 2px;
+    border-radius: 7px;
     cursor: pointer;
     font-family: "IBM Plex Sans", sans-serif;
     min-width: max-content;
@@ -123,7 +123,7 @@ header {
     width: 30px;
     height: 30px;
     border: 1px solid rgb(80, 80, 80);
-    border-radius: 5px;
+    border-radius: 7px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -161,7 +161,7 @@ header {
     z-index: 120;
     border: 1px solid rgb(50, 50, 50);
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 7px;
     background-color: black;
     transition-duration: 0.5s;
 }
@@ -212,7 +212,7 @@ nav ul {
 }
 
 nav ul li {
-    border-bottom: 1px solid rgb(50, 50, 50);
+    border-bottom: 1px solid rgb(50,50,50);
     transition: background-color 0.3s ease;
 }
 
@@ -309,14 +309,14 @@ form {
     border: 1px solid #212121;
     backdrop-filter: blur(50px);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 input,
 textarea {
     padding: 10px;
     border: 1px solid #3c3c3c;
-    border-radius: 5px;
+    border-radius: 7px;
     background-color: #1a1a1aa1;
     color: white;
     font-family: "IBM Plex Sans", sans-serif;
@@ -451,7 +451,7 @@ form p {
     width: calc(100vw - 40px);
     height: 350px;
     margin-top: 10px;
-    border-radius: 5px;
+    border-radius: 7px;
     border: 1px solid rgb(227, 227, 227);
     filter: grayscale(100%) invert(0.9) contrast(120%);
     transition: filter 0.3s ease;
@@ -576,7 +576,7 @@ form p {
 
 #modal-image {
     display: block;
-    border-radius: 5px;
+    border-radius: 7px;
     width: 100%;
     height: auto;
     align-self: flex-start;
@@ -605,7 +605,7 @@ form p {
     line-height: 21px;
     width: 25px;
     padding: 1px 1px 6px 2px;
-    border-radius: 5px;
+    border-radius: 7px;
 }
 
 @media (min-width: 570px) {
@@ -637,7 +637,7 @@ form p {
         margin: 0 0px;
         border: 1px solid rgb(80, 80, 80);
         padding: 4px;
-        border-radius: 5px;
+        border-radius: 7px;
     }
 
     #nav-buttons img {

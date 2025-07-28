@@ -27,7 +27,7 @@
     background-image: url('../../resrc/images/misc/team.webp');
     background-size: cover;
     background-position: center;
-    border-radius: 5px;
+    border-radius: 7px;
     cursor: pointer;
 }
 .featuredTitle {
@@ -125,7 +125,7 @@ summary.title::before {
 
 .image-row img {
     height: 180px;
-    border-radius: 10px;
+    border-radius: 7px;
     object-fit: cover;
     flex: 0 0 auto;
     max-width: 100%;
