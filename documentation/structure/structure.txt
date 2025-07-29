@@ -35,6 +35,7 @@
 │   │   │   ├── aruco.png
 │   │   │   ├── camera.png
 │   │   │   ├── contact.png
+│   │   │   ├── docs.png
 │   │   │   ├── down.png
 │   │   │   ├── download.png
 │   │   │   ├── events.png
