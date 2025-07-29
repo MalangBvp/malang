@@ -1,6 +1,6 @@
 const totalphotographs = 50;
 const photographs = Array.from({ length: totalphotographs }, (_, i) => ({
-    src: `../../resrc/images/photographs/${(i + 1) % 6}.jpeg`,
+    src: `../../resrc/images/photographs/${(i + 1) % 6}.webp`,
     alt: `Artwork ${i + 1}`
 }));
 

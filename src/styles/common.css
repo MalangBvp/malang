@@ -161,7 +161,6 @@ nav {
     gap: 10px;
     position: fixed;
     top: 61px;
-    right: -100vw;
     width: 100vw;
     height: calc(100% - 60px);
     padding: 2px 0 120px;
@@ -169,13 +168,18 @@ nav {
     box-sizing: border-box;
     z-index: 210;
     overflow-y: scroll;
-    transition: right 0.3s;
     font-weight: 400;
     scrollbar-width: none;
+    visibility: hidden;
+    opacity: 0;
+    filter: blur(5px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, filter 0.3s ease;
 }
 
 nav.active {
-    right: 0;
+    filter: none;
+    opacity: 1;
+    visibility: visible;
 }
 
 nav ul {
@@ -226,7 +230,7 @@ summary::before {
     width: 16px;
     height: 16px;
     content: "";
-    background-image: url("/resrc/images/icons/down.png");
+    background-image: url("/resrc/images/icons/down.webp");
     background-size: contain;
     position: absolute;
     top: 10px;
@@ -257,7 +261,6 @@ details ul li {
     padding: 7px 10px;
     border-radius: 7px;
     background-color: rgb(23, 23, 23);
-    transition-duration: 0.5s;
     height: min-content;
 }
 
@@ -270,7 +273,6 @@ details ul li {
     width: 22px;
     height: 22px;
 }
-
 
 .nav-bottom {
     position: fixed;

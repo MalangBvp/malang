@@ -9,14 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const burger = document.querySelector(".burger");
     const nav = document.querySelector("nav");
     const section = document.querySelector("section");
-    const navButtons = document.getElementById("nav-buttons");
 
     function toggleMenu() {
         vibrate();
         const isActive = nav.classList.toggle("active");
         burgerButton.classList.toggle("active");
         section.classList.toggle("active");
-        navButtons.classList.toggle("active");
         burger.style.justifyContent = isActive ? "center" : "space-around";
         document.body.style.overflow = isActive ? "hidden" : "scroll";
     }
@@ -42,8 +40,8 @@ function applyTheme(toggle = false) {
     });
     if (themeIcon) {
         themeIcon.src = currentTheme === "light"
-            ? "/resrc/images/icons/night-mode.png"
-            : "/resrc/images/icons/sun.png";
+            ? "/resrc/images/icons/night-mode.webp"
+            : "/resrc/images/icons/sun.webp";
     }
 }
 window.addEventListener("DOMContentLoaded", () => applyTheme());
@@ -204,10 +202,10 @@ function showAlert(heading, message, buttonText) {
         padding: '8px 16px',
         backgroundColor: '#141414ff',
         borderRadius: '5px',
-        margin: '5px 0 10px',
+        margin: '15px 0',
         position: 'relative',
         left: '100%',
-        transform: 'translateX(calc(-100% - 10px))'
+        transform: 'translateX(calc(-100% - 13px))'
     });
     btn.onclick = () => overlay.remove();
 

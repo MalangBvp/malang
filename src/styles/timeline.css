@@ -94,12 +94,12 @@
     padding: 0;
 }
 summary.title{
-    padding-right: 20px;
+    padding-right: 10px;
 }
 
 summary.title::before {
     top: 5px;
-    right: 0px;
+    right: -15px;
 }
 
 .date,

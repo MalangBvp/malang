@@ -1,6 +1,6 @@
 const totalArtworks = 100; // change this if you have a different number
 const artworks = Array.from({ length: totalArtworks }, (_, i) => ({
-    src: `../../resrc/images/artworks/${(i + 1) % 6}.jpg`,
+    src: `../../resrc/images/artworks/${(i + 1) % 6}.webp`,
     alt: `Artwork ${i + 1}`
 }));
 
