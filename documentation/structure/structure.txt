@@ -35,8 +35,8 @@
 │   │   │   ├── aruco.png
 │   │   │   ├── camera.png
 │   │   │   ├── contact.png
+│   │   │   ├── down.png
 │   │   │   ├── download.png
-│   │   │   ├── email.svg
 │   │   │   ├── events.png
 │   │   │   ├── home.png
 │   │   │   ├── link.png
@@ -44,11 +44,9 @@
 │   │   │   ├── members.png
 │   │   │   ├── night-mode.png
 │   │   │   ├── prize.png
-│   │   │   ├── scrollTop.png
 │   │   │   ├── store.png
 │   │   │   ├── sun.png
-│   │   │   ├── tick.png
-│   │   │   └── user.png
+│   │   │   └── tick.png
 │   │   ├── members/
 │   │   │   ├── 24-1.webp
 │   │   │   ├── 24-2.webp
@@ -64,7 +62,6 @@
 │   │   │   ├── 25-5.webp
 │   │   │   └── person.webp
 │   │   ├── misc/
-│   │   │   ├── buttons-background.svg
 │   │   │   ├── favicon.png
 │   │   │   ├── gstudios.png
 │   │   │   ├── hashtag.webp
@@ -97,7 +94,6 @@
 │   │   ├── photographs.html
 │   │   ├── privacy-policy.html
 │   │   ├── redirector.html
-│   │   ├── temp.html
 │   │   ├── timeline.html
 │   │   └── treasury.html
 │   ├── scripts/
