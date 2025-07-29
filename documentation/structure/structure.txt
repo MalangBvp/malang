@@ -84,7 +84,8 @@
 │       └── malang-logo.glb
 ├── src/
 │   ├── components/
-│   │   └── footer.html
+│   │   ├── footer.html
+│   │   └── nav.html
 │   ├── pages/
 │   │   ├── alumni.html
 │   │   ├── aruco.html
