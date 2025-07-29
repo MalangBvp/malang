@@ -282,8 +282,9 @@ details ul li {
     font-size: 12px;
     text-align: center;
 }
-
-
+.nav-bottom p{
+    margin-top: 10px;
+}
 form {
     display: flex;
     flex-direction: column;
@@ -532,7 +533,6 @@ form p {
 }
 
 .social-icons a {
-    margin-bottom: 5px;
     color: #c7c7c7;
     text-decoration: none;
 }
