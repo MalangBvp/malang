@@ -9,31 +9,6 @@ section {
     padding: 10px;
 }
 
-/* Fake sprocket holes 
-.gallery::before,
-.gallery::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 10px;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    white 0,
-    white 6px,
-    transparent 6px,
-    transparent 20px
-  );
-  z-index: 1;
-}
-
-.gallery::before {
-  left: 10px;
-}
-.gallery::after {
-  right: 10px;
-}
-*/
 .gallery-item {
     break-inside: avoid;
     margin-bottom: 10px;
@@ -86,7 +61,7 @@ section {
             rgb(0, 0, 0) 85%,
             transparent 100%);
     padding-top: 5px;
-    line-height: 27px;
+    line-height: 23px;
 }
 @media (min-width: 1200px) {
     .gallery {
