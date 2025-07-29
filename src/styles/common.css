@@ -157,42 +157,15 @@ header {
     z-index: 200;
 }
 
-#nav-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    margin: auto;
-    gap: 5px;
-    padding: 7px 10px;
-    border-radius: 7px;
-    background-color: rgb(23, 23, 23);
-    transition-duration: 0.5s;
-    height: min-content;
-}
-
-#nav-buttons button {
-    border: none;
-    margin: 0 5px;
-}
-
-#nav-buttons img {
-    width: 22px;
-    height: 22px;
-}
-
 nav {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 10px;
     position: fixed;
     top: 61px;
     right: -100vw;
     width: 100vw;
-    max-width: 350px;
     height: calc(100% - 60px);
     padding: 2px 0 120px;
-    background: #000;
+    background: #000000;
     box-sizing: border-box;
     z-index: 210;
     overflow-y: scroll;
@@ -206,9 +179,11 @@ nav.active {
 }
 
 nav ul {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     list-style: none;
+    max-width: 500px;
+    margin: auto;
 }
 
 nav ul li,
@@ -217,11 +192,11 @@ details ul li {
     color: #e3e3e3;
 }
 
-nav a,
+nav ul a,
 summary {
     display: block;
     padding: 10px;
-    margin: 0 2px;
+    margin: 0 10px;
     color: #c8c8c8;
     text-decoration: none;
     border-radius: 7px;
@@ -265,17 +240,42 @@ details[open] summary::before {
 }
 
 details ul li {
-    padding-left: 7px;
-    margin-left: 23px;
+    margin-left: 30px;
     border-bottom: none;
-    border-left: 1px solid rgb(50, 50, 50);
+    border-left: 3px solid rgb(20,20,20);
 }
+
+#nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 40px);
+    max-width: 460px;
+    margin: auto;
+    margin-top: 20px;
+    gap: 5px;
+    padding: 7px 10px;
+    border-radius: 7px;
+    background-color: rgb(23, 23, 23);
+    transition-duration: 0.5s;
+    height: min-content;
+}
+
+#nav-buttons button {
+    border: none;
+    margin: 0 5px;
+}
+
+#nav-buttons img {
+    width: 22px;
+    height: 22px;
+}
+
 
 .nav-bottom {
     position: fixed;
     bottom: 0;
     width: calc(100% - 20px);
-    max-width: 350px;
     padding: 0 10px 20px;
     background: #000;
     border-top: 1px solid rgb(50, 50, 50);
@@ -523,7 +523,7 @@ form p {
     font-size: 20px;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 #icons-footer {
@@ -532,6 +532,7 @@ form p {
 }
 
 .social-icons a {
+    margin-bottom: 5px;
     color: #c7c7c7;
     text-decoration: none;
 }
