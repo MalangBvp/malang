@@ -23,31 +23,32 @@
 │   │   └── treasury.json
 │   ├── images/
 │   │   ├── artworks/
-│   │   │   ├── 0.jpg
-│   │   │   ├── 1.jpg
-│   │   │   ├── 2.jpg
-│   │   │   ├── 3.jpg
-│   │   │   ├── 4.jpg
-│   │   │   └── 5.jpg
+│   │   │   ├── 0.webp
+│   │   │   ├── 1.webp
+│   │   │   ├── 2.webp
+│   │   │   ├── 3.webp
+│   │   │   ├── 4.webp
+│   │   │   └── 5.webp
 │   │   ├── icons/
-│   │   │   ├── admin.png
-│   │   │   ├── art.png
-│   │   │   ├── aruco.png
-│   │   │   ├── camera.png
-│   │   │   ├── contact.png
-│   │   │   ├── docs.png
-│   │   │   ├── down.png
-│   │   │   ├── download.png
-│   │   │   ├── events.png
-│   │   │   ├── home.png
-│   │   │   ├── link.png
+│   │   │   ├── admin.webp
+│   │   │   ├── art.webp
+│   │   │   ├── aruco.webp
+│   │   │   ├── camera.webp
+│   │   │   ├── contact.webp
+│   │   │   ├── docs.webp
+│   │   │   ├── down.webp
+│   │   │   ├── download.webp
+│   │   │   ├── events.webp
+│   │   │   ├── home.webp
+│   │   │   ├── link.webp
 │   │   │   ├── loading.webp
-│   │   │   ├── members.png
-│   │   │   ├── night-mode.png
-│   │   │   ├── prize.png
-│   │   │   ├── store.png
-│   │   │   ├── sun.png
-│   │   │   └── tick.png
+│   │   │   ├── members.webp
+│   │   │   ├── night-mode.webp
+│   │   │   ├── prize.webp
+│   │   │   ├── project.webp
+│   │   │   ├── store.webp
+│   │   │   ├── sun.webp
+│   │   │   └── tick.webp
 │   │   ├── members/
 │   │   │   ├── 24-1.webp
 │   │   │   ├── 24-2.webp
@@ -63,22 +64,22 @@
 │   │   │   ├── 25-5.webp
 │   │   │   └── person.webp
 │   │   ├── misc/
-│   │   │   ├── favicon.png
-│   │   │   ├── gstudios.png
+│   │   │   ├── favicon.webp
+│   │   │   ├── gstudios.webp
 │   │   │   ├── hashtag.webp
 │   │   │   ├── lakme.webp
-│   │   │   ├── malang.png
-│   │   │   ├── payment-qr.jpg
-│   │   │   ├── signature.png
+│   │   │   ├── malang.webp
+│   │   │   ├── payment-qr.webp
+│   │   │   ├── signature.webp
 │   │   │   ├── team.webp
-│   │   │   └── vlcc.png
+│   │   │   └── vlcc.webp
 │   │   └── photographs/
-│   │       ├── 0.jpeg
-│   │       ├── 1.jpeg
-│   │       ├── 2.jpeg
-│   │       ├── 3.jpeg
-│   │       ├── 4.jpeg
-│   │       └── 5.jpeg
+│   │       ├── 0.webp
+│   │       ├── 1.webp
+│   │       ├── 2.webp
+│   │       ├── 3.webp
+│   │       ├── 4.webp
+│   │       └── 5.webp
 │   └── misc/
 │       └── malang-logo.glb
 ├── src/
