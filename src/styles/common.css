@@ -30,30 +30,6 @@ body {
     font-style: normal;
 }
 
-button,
-a,
-details,
-span,
-img {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-focus-ring-color: transparent;
-}
-
-h1{
-    font-size: 2em;
-    font-weight: 600;
-    padding: 10px 0;
-}
-
-.icon-small {
-    height: 17px;
-    margin-left: 3px;
-    filter: brightness(0) invert(0.8);
-    margin-right: 7px;
-    padding-top: 3px;
-    margin-bottom: -3px;
-}
-
 button {
     background-color: transparent;
     border: 1px solid rgb(50, 50, 50);
@@ -67,6 +43,30 @@ button {
 
 button:hover {
     background-color: rgb(26, 26, 26);
+}
+
+button,
+a,
+details,
+span,
+img {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: 600;
+    padding: 10px 0;
+}
+
+.icon-small {
+    height: 17px;
+    margin-left: 3px;
+    filter: brightness(0) invert(0.7);
+    margin-right: 10px;
+    padding-top: 3px;
+    margin-bottom: -3px;
 }
 
 .malang {
@@ -158,28 +158,22 @@ header {
 }
 
 #nav-buttons {
-    position: fixed;
-    top: 73px;
-    left: -60px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
     gap: 5px;
-    z-index: 120;
-    border: 1px solid rgb(50, 50, 50);
-    padding: 5px;
+    padding: 7px 10px;
     border-radius: 7px;
-    background-color: black;
+    background-color: rgb(23, 23, 23);
     transition-duration: 0.5s;
-}
-
-#nav-buttons.active {
-    left: 13px;
+    height: min-content;
 }
 
 #nav-buttons button {
     border: none;
-    display: flex;
-    margin-bottom: 6px;
+    margin: 0 5px;
 }
 
 #nav-buttons img {
@@ -188,23 +182,23 @@ header {
 }
 
 nav {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
     position: fixed;
     top: 61px;
-    right: -301px;
-    width: 300px;
-    max-width: calc(100vw - 60px);
+    right: -100vw;
+    width: 100vw;
+    max-width: 350px;
     height: calc(100% - 60px);
-    border-left: 1px solid rgb(50, 50, 50);
-    background-color: rgb(0, 0, 0);
+    padding: 2px 0 120px;
+    background: #000;
     box-sizing: border-box;
     z-index: 210;
-    transition-duration: 0.3s;
     overflow-y: scroll;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* Internet Explorer and Edge */
+    transition: right 0.3s;
+    font-weight: 400;
+    scrollbar-width: none;
 }
 
 nav.active {
@@ -217,39 +211,25 @@ nav ul {
     list-style: none;
 }
 
-nav ul li {
-    border-bottom: 1px solid rgb(50,50,50);
+nav ul li,
+details ul li {
     transition: background-color 0.3s ease;
+    color: #e3e3e3;
 }
 
-nav ul li:hover {
-    background-color: rgb(34, 34, 34);
-}
-
-nav a {
-    padding: 10px 0;
-    padding-left: 10px;
-    text-decoration: none;
-    color: rgb(200, 200, 200);
-    display: block;
-}
-
-details {
-    border-bottom: 1px solid rgb(50, 50, 50);
-}
-
-details[open]>summary {
-    border-bottom: 1px solid rgb(50, 50, 50);
-}
-
+nav a,
 summary {
-    padding: 10px 0;
-    padding-left: 10px;
-    color: rgb(200, 200, 200);
+    display: block;
+    padding: 10px;
+    margin: 0 2px;
+    color: #c8c8c8;
+    text-decoration: none;
+    border-radius: 7px;
 }
 
+nav a:hover,
 summary:hover {
-    background-color: rgb(34, 34, 34);
+    background-color: rgb(20, 20, 20);
 }
 
 summary {
@@ -257,49 +237,49 @@ summary {
     position: relative;
     height: 20px;
     line-height: 20px;
-    list-style: none;
     appearance: none;
     min-height: max-content;
-    z-index: 1;
+    list-style: none;
 }
 
 summary::marker {
     content: "";
-    /* Hides default marker */
 }
 
 summary::before {
-    content: "‣";
+    /*arrow image*/
+    width: 16px;
+    height: 16px;
+    content: "";
+    background-image: url("/resrc/images/icons/down.png");
+    background-size: contain;
     position: absolute;
     top: 10px;
     right: 20px;
-    color: rgb(227, 227, 227);
-    font-size: 22px;
-    line-height: 1;
-    transform: rotate(90deg);
-    transform-origin: center center;
+    filter: brightness(0) invert(1);
+    transform-origin: center;
 }
 
 details[open] summary::before {
-    transform: rotate(270deg);
-    margin-right: 2px;
+    transform: rotate(180deg);
 }
 
 details ul li {
-    padding-left: 5px;
-    margin-left: 20px;
+    padding-left: 7px;
+    margin-left: 23px;
     border-bottom: none;
-    color: rgb(227, 227, 227);
     border-left: 1px solid rgb(50, 50, 50);
 }
 
 .nav-bottom {
-    padding: 5px;
-    position: relative;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 20px);
+    max-width: 350px;
+    padding: 0 10px 20px;
+    background: #000;
+    border-top: 1px solid rgb(50, 50, 50);
     font-size: 12px;
-    width: calc(100% - 10px);
     text-align: center;
 }
 
@@ -586,7 +566,6 @@ form p {
     width: 100%;
     height: auto;
     align-self: flex-start;
-    /* ✅ prevents vertical stretching */
     flex-shrink: 0;
 }
 
@@ -625,35 +604,6 @@ form p {
         max-width: 75%;
         max-height: calc(100vh - 80px);
         margin-right: 20px;
-    }
-}
-
-
-@media (min-width: 500px) {
-    #nav-buttons {
-        top: 10px;
-        left: auto;
-        right: 50px;
-        flex-direction: row-reverse;
-        border: none;
-        background-color: transparent;
-    }
-
-    #nav-buttons button {
-        margin: 0 0px;
-        border: 1px solid rgb(80, 80, 80);
-        padding: 4px;
-        border-radius: 7px;
-    }
-
-    #nav-buttons img {
-        width: 20px;
-        height: 20px;
-    }
-
-    #nav-buttons.active {
-        right: 50px;
-        left: auto;
     }
 }
 

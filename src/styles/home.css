@@ -81,7 +81,7 @@ header.top {
 }
 
 #landingButtons button {
-    padding: 10px 30px;
+    padding: 7px 30px;
     background-color: rgba(15, 15, 15, 0.647);
     border-radius: 10px;
     transition: background-color 0.3s ease;
