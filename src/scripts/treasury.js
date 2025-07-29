@@ -110,4 +110,4 @@ function toggleContribution() {
         done.style.display = "block";
         card.style.marginLeft = "50%";
     }
-}s
+}

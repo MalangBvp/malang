@@ -2,25 +2,65 @@ console.log("+-----------------+");
 console.log("| Tejas' Codes :D |");
 console.log("+-----------------+");
 
-document.getElementById('year').textContent = new Date().getFullYear();
+// Function to include HTML files dynamically on priority
 
-document.addEventListener("DOMContentLoaded", function () {
-    const burgerButton = document.getElementById("burger");
-    const burger = document.querySelector(".burger");
-    const nav = document.querySelector("nav");
-    const section = document.querySelector("section");
-
-    function toggleMenu() {
-        vibrate();
-        const isActive = nav.classList.toggle("active");
-        burgerButton.classList.toggle("active");
-        section.classList.toggle("active");
-        burger.style.justifyContent = isActive ? "center" : "space-around";
-        document.body.style.overflow = isActive ? "hidden" : "scroll";
-    }
-
-    burgerButton.addEventListener("click", toggleMenu);
+document.addEventListener('DOMContentLoaded', async () => {
+    // Include injection
+    await Promise.all(
+        Array.from(document.querySelectorAll('[data-include]')).map(async el => {
+            const file = el.getAttribute('data-include');
+            const res = await fetch(file);
+            el.innerHTML = await res.text();
+        })
+    );
 });
+
+setTimeout(() => {
+    
+document.getElementById('year').textContent = new Date().getFullYear();
+const burgerButton = document.getElementById("burger");
+const burger = document.querySelector(".burger");
+const nav = document.querySelector("#nav");
+const section = document.querySelector("section");
+
+function toggleMenu() {
+    vibrate();
+    const isActive = nav.classList.toggle("active");
+    burgerButton.classList.toggle("active");
+    section.classList.toggle("active");
+    burger.style.justifyContent = isActive ? "center" : "space-around";
+    document.body.style.overflow = isActive ? "hidden" : "scroll";
+}
+burgerButton.addEventListener("click", toggleMenu);
+
+window.addEventListener("DOMContentLoaded", () => applyTheme());
+document.getElementById("theme").addEventListener("click", () => {
+    vibrate();
+    applyTheme(true);
+});
+
+// function to install PWA on button click with id "pwa"
+document.getElementById("pwa").addEventListener("click", function () {
+    showAlert("PWA Installation", "This feature will be available soon.", "OK");
+});
+
+//function to copy website url to clipboard on button click with id "copy"
+document.getElementById("copy").addEventListener("click", function () {
+    vibrate();
+    navigator.clipboard.writeText("https://malangbvp.github.io/go/to-site").then(() => {
+        const themeIcon = this.querySelector("img");
+        setTimeout(() => {
+            themeIcon.src = "/resrc/images/icons/link.webp";
+        }
+            , 1200);
+        themeIcon.src = themeIcon.src.includes("link.webp") ? "/resrc/images/icons/tick.webp" : "/resrc/images/icons/link.webp";
+    }).catch(err => {
+        console.error("Failed to copy: ", err);
+        alert("Failed to copy URL.");
+    }
+    );
+});
+}, 1000);
 
 // function to invert theme except for elements with class "same" on button click with id "theme"
 function applyTheme(toggle = false) {
@@ -44,33 +84,6 @@ function applyTheme(toggle = false) {
             : "/resrc/images/icons/sun.webp";
     }
 }
-window.addEventListener("DOMContentLoaded", () => applyTheme());
-document.getElementById("theme").addEventListener("click", () => {
-    vibrate();
-    applyTheme(true);
-});
-
-// function to install PWA on button click with id "pwa"
-document.getElementById("pwa").addEventListener("click", function () {
-    showAlert("PWA Installation", "This feature will be available soon.", "OK");
-});
-
-//function to copy website url to clipboard on button click with id "copy"
-document.getElementById("copy").addEventListener("click", function () {
-    vibrate();
-    navigator.clipboard.writeText("https://malangbvp.github.io/go/to-site").then(() => {
-        const themeIcon = this.querySelector("img");
-        setTimeout(() => {
-            themeIcon.src = "/resrc/images/icons/link.png";
-        }
-            , 1200);
-        themeIcon.src = themeIcon.src.includes("link.png") ? "/resrc/images/icons/tick.png" : "/resrc/images/icons/link.png";
-    }).catch(err => {
-        console.error("Failed to copy: ", err);
-        alert("Failed to copy URL.");
-    }
-    );
-});
 //================================================vibration
 function vibrate(duration = 50) {
     if (navigator.vibrate) {
@@ -78,13 +91,6 @@ function vibrate(duration = 50) {
     }
 }
 //=========================================================
-
-document.querySelectorAll('[data-include]').forEach(async el => {
-    const file = el.getAttribute('data-include');
-    const res = await fetch(file);
-    el.innerHTML = await res.text();
-});
-
 function goBack() {
     window.history.back();
 }
