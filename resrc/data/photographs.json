@@ -1,14 +1,27 @@
 {
     "0": {
         "title": "Milky Way",
-        "artist": "Tejas Gupta"
+        "artist": "Tejas Gupta",
+        "type": "Street"
     },
     "1": {
         "title": "Cute Polar Bear",
-        "artist": "Tejas Gupta"
+        "artist": "Tejas Gupta",
+        "type": "Animals"
     },
     "2": {
         "title": "Whale",
-        "artist": "Tejas Gupta"
+        "artist": "Prasun Ratan",
+        "type": "Animals"
+    },
+    "3": {
+        "title": "NY Street",
+        "artist": "Goutam Sahu",
+        "type": "Street"
+    },
+    "4": {
+        "title": "Bee",
+        "artist": "Prasun Ratan",
+        "type": "Macro"
     }
 }

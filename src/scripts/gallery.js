@@ -1,31 +1,150 @@
-const totalArtworks = 100; // change this if you have a different number
-const artworks = Array.from({ length: totalArtworks }, (_, i) => ({
-    src: `../../resrc/images/artworks/${(i + 1) % 6}.webp`,
-    alt: `Artwork ${i + 1}`
-}));
-
 let currentIndex = 0;
-const batchSize = 20;
+const batchSize = 6;
 const gallery = document.getElementById('gallery');
 const viewMoreBtn = document.getElementById('viewMoreBtn');
-function loadArtworks() {
+const photographsBtn = document.getElementById('photographs');
+const artworksBtn = document.getElementById('artworks');
+const loader = document.getElementById('loader');
+const filters = document.querySelectorAll('.filter-btn');
+
+let imageMeta = {};
+let currentMode = 'artworks'; // 'artworks' or 'photographs'
+
+function loadMetadata(mode) {
+    const path = mode === 'artworks'
+        ? "../../resrc/data/artworks.json"
+        : "../../resrc/data/photographs.json";
+
+    return fetch(path)
+        .then(res => res.json())
+        .then(data => {
+            imageMeta = data;
+            populateFilters(data);
+        })
+        .catch(() => {
+            imageMeta = {};
+            document.getElementById('filters-type').innerHTML = '';
+            document.getElementById('filters-artist').innerHTML = '';
+        });
+}
+
+function populateFilters(data) {
+    const types = new Set();
+    const artists = new Set();
+
+    Object.values(data).forEach(item => {
+        if (item.type) types.add(item.type);
+        if (item.artist) artists.add(item.artist);
+    });
+
+    // Type filters
+    const typeContainer = document.getElementById('filters-type');
+    typeContainer.innerHTML = '<p>Type: </p>';
+    typeContainer.innerHTML += `<button class="filter-btn type" data-filter="all">All</button>`;
+    types.forEach(type => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn type';
+        btn.dataset.filter = type.replace(/\s+/g, '-');
+        btn.textContent = type;
+        typeContainer.appendChild(btn);
+    });
+
+    // Artist filters
+    const artistContainer = document.getElementById('filters-artist');
+    artistContainer.innerHTML = currentMode === 'artworks' ? '<p>Artist: </p>' : '<p>Shot By: </p>';
+    artistContainer.innerHTML += `<button class="filter-btn artist" data-filter="all">All</button>`;
+    artists.forEach(artist => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn artist';
+        btn.dataset.filter = artist.replace(/\s+/g, '-');
+        btn.textContent = artist;
+        artistContainer.appendChild(btn);
+    });
+
+    // Rebind filter click events
+    bindFilterEvents();
+}
+
+function bindFilterEvents() {
+    // Type filters
+    selectedType = 'all';
+    document.querySelectorAll('.filter-btn.type').forEach(btn => {
+        btn.addEventListener('click', () => {
+            selectedType = btn.dataset.filter;
+            document.querySelectorAll('.filter-btn.type').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            applyFilters();
+        });
+    });
+
+    // Artist filters
+    selectedArtist = 'all';
+    document.querySelectorAll('.filter-btn.artist').forEach(btn => {
+        btn.addEventListener('click', () => {
+            selectedArtist = btn.dataset.filter;
+            document.querySelectorAll('.filter-btn.artist').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            applyFilters();
+        });
+    });
+}
+
+function getImages(mode) {
+    const total = mode === 'artworks' ? 6 : 20; // Set different totals for artworks and photographs
+
+    return Array.from({ length: total }, (_, i) => {
+        const imageId = (i).toString();
+        const src = mode === 'artworks'
+            ? `../../resrc/images/artworks/${imageId}.webp`
+            : `https://picsum.photos/300/300?random=${imageId}`;
+
+        const meta = imageMeta[imageId] || {};
+        const type = (meta.type || 'unknown').replace(/\s+/g, '-');
+        const artist = (meta.artist || 'unknown').replace(/\s+/g, '-');
+
+        return {
+            src,
+            alt: `${meta.title || 'Untitled'}`,
+            imageId,
+            classList: `${type} ${artist}`
+        };
+    });
+}
+
+function loadImages(mode) {
+    const allImages = getImages(mode);
+    const filteredImages = [];
+
+    // Try to collect batchSize images that match current filters
+    for (let i = currentIndex; i < allImages.length && filteredImages.length < batchSize; i++) {
+        const imgData = allImages[i];
+        const classList = imgData.classList.split(/\s+/);
+        const hasType = selectedType === 'all' || classList.includes(selectedType);
+        const hasArtist = selectedArtist === 'all' || classList.includes(selectedArtist);
+
+        if (hasType && hasArtist) {
+            filteredImages.push(imgData);
+        }
+    }
+
+    if (filteredImages.length === 0) {
+        viewMoreBtn.style.display = 'none';
+        return;
+    }
+
     const fragment = document.createDocumentFragment();
-    const nextBatch = artworks.slice(currentIndex, currentIndex + batchSize);
     const imgElements = [];
 
-    nextBatch.forEach(({ src, alt }) => {
+    filteredImages.forEach(({ src, alt, classList }) => {
         const item = document.createElement('div');
-        item.classList.add('gallery-item', 'same');
-
+        item.className = 'gallery-item same';
 
         const img = document.createElement('img');
         img.src = src;
         img.alt = alt;
+        img.className = classList;
 
-        // Only lazy load if NOT first batch
-        if (currentIndex !== 0) {
-            img.loading = 'lazy';
-        }
+        if (currentIndex !== 0) img.loading = 'lazy';
 
         item.appendChild(img);
         fragment.appendChild(item);
@@ -34,49 +153,81 @@ function loadArtworks() {
 
     gallery.appendChild(fragment);
 
-    // Track if all images are loaded (or errored)
-    const allImagesLoaded = imgElements.map(img => {
-        return new Promise(resolve => {
-            if (img.complete) {
-                resolve();
-            } else {
-                img.onload = img.onerror = resolve;
-            }
-        });
-    });
+    const allImagesLoaded = imgElements.map(img =>
+        new Promise(resolve => img.complete ? resolve() : img.onload = img.onerror = resolve)
+    );
 
-    // Loader handling
-    if (currentIndex === 0) {
-        const loader = document.getElementById('loader');
-
-        // Set fallback timeout (5 seconds)
-        const timeoutId = setTimeout(() => {
-            if (loader) loader.style.display = 'none';
-        }, 5000);
-
-        // Hide loader after images finish loading
+    if (currentIndex === 0 && loader) {
+        const timeoutId = setTimeout(() => loader.style.display = 'flex', 5000);
         Promise.all(allImagesLoaded).then(() => {
             clearTimeout(timeoutId);
-            applyTheme();
-            if (loader) loader.style.display = 'none';
+            applyTheme?.();
+            loader.style.display = 'none';
+        });
+    } else {
+        Promise.all(allImagesLoaded).then(() => {
+            applyTheme?.();
+            loader.style.display = 'none';
         });
     }
 
-    currentIndex += batchSize;
+    currentIndex += filteredImages.length;
 
-    if (currentIndex >= artworks.length) {
+    // Hide "View More" if fewer than batchSize filtered images found
+    if (filteredImages.length < batchSize || currentIndex >= allImages.length) {
         viewMoreBtn.style.display = 'none';
     }
-    applyTheme();
 }
 
-let imageMeta = {};
+function resetGalleryAndLoad(mode) {
+    currentMode = mode;
+    currentIndex = 0;
+    gallery.innerHTML = '';
+    viewMoreBtn.style.display = 'block';
+    loader.style.display = 'flex'; // Show loader immediately
 
-fetch("../../resrc/data/artworks.json")
-    .then((res) => res.json())
-    .then((data) => imageMeta = data);
+    loadMetadata(mode).then(() => {
+        const allImages = getImages(mode);
+        const nextBatch = allImages.slice(0, batchSize);
+        const fragment = document.createDocumentFragment();
+        const imgElements = [];
+
+        nextBatch.forEach(({ src, alt, classList }) => {
+            const item = document.createElement('div');
+            item.classList.add('gallery-item', 'same');
+
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = alt;
+            img.className = classList;
+
+            item.appendChild(img);
+            fragment.appendChild(item);
+            imgElements.push(img);
+        });
+
+        gallery.appendChild(fragment);
+
+        const allImagesLoaded = imgElements.map(img =>
+            new Promise(resolve => img.complete ? resolve() : img.onload = img.onerror = resolve)
+        );
+
+        Promise.all(allImagesLoaded).then(() => {
+            applyTheme?.();
+            loader.style.display = 'none';
+        });
+
+        currentIndex += batchSize;
+    });
+}
 
 
+viewMoreBtn.addEventListener('click', () => loadImages(currentMode));
+photographsBtn.addEventListener('click', () => resetGalleryAndLoad('photographs'));
+artworksBtn.addEventListener('click', () => resetGalleryAndLoad('artworks'));
+window.addEventListener('DOMContentLoaded', () => resetGalleryAndLoad('artworks'));
+
+// Modal logic
 const modal = document.getElementById("image-modal");
 const modalImg = document.getElementById("modal-image");
 const modalTitle = document.getElementById("modal-title");
@@ -86,32 +237,77 @@ const closeModal = document.querySelector(".modal-close");
 gallery.addEventListener("click", (e) => {
     const target = e.target;
     if (target.tagName === "IMG") {
-        const fileName = target.src.split("/").pop();      // Get the file name
-        const imageId = fileName.split(".")[0];            // Get the number before extension
-
-        const meta = imageMeta[imageId];                   // Lookup in JSON
+        const fileName = target.src.split("/").pop();     // e.g., 1.webp
+        const imageId = fileName.split('.')[0];           // e.g., "1"
+        const meta = imageMeta[imageId] || {};
 
         modalImg.src = target.src;
-        modalTitle.textContent = `Title: ${meta?.title || "NA"}`;
-        modalArtist.textContent = `Artist: ${meta?.artist || "NA"}`;
+        modalTitle.textContent = `Title: ${meta.title || "NA"}`;
+        modalArtist.textContent = `Artist: ${meta.artist || "NA"}`;
 
-        modal.style.display = "block";
+        modal.style.display = "flex";
         document.body.style.overflow = "hidden";
     }
 });
 
 closeModal.addEventListener("click", () => {
     modal.style.display = "none";
-    document.body.style.overflow = "scroll"; // Restore scrolling when modal is closed
+    document.body.style.overflow = "scroll";
 });
-
 window.addEventListener("click", (e) => {
     if (e.target === modal) {
         modal.style.display = "none";
-        document.body.style.overflow = "scroll"; // Restore scrolling when modal is closed
+        document.body.style.overflow = "scroll";
     }
 });
 
+// Filter logic
+let selectedType = 'all';
+let selectedArtist = 'all';
 
-viewMoreBtn.addEventListener('click', loadArtworks);
-window.addEventListener('DOMContentLoaded', loadArtworks);
+function applyFilters() {
+    currentIndex = 0;
+    gallery.innerHTML = '';
+    loadImages(currentMode);
+
+    const allImages = document.querySelectorAll('.gallery-item img');
+    let matchCount = 0;
+
+    allImages.forEach(img => {
+        const parent = img.parentElement;
+        const classes = img.className.split(/\s+/);
+        const hasType = selectedType === 'all' || classes.includes(selectedType);
+        const hasArtist = selectedArtist === 'all' || classes.includes(selectedArtist);
+
+        if (hasType && hasArtist) {
+            parent.style.display = 'flex';
+            matchCount++;
+        } else {
+            parent.style.display = 'none';
+        }
+    });
+
+    const noneDiv = document.getElementById('none');
+    noneDiv.style.display = matchCount === 0 ? 'flex' : 'none';
+    viewMoreBtn.style.display = matchCount === 0 ? 'none' : 'block';
+}
+
+// Type filter buttons
+document.querySelectorAll('.filter-btn.type').forEach(btn => {
+    btn.addEventListener('click', () => {
+        selectedType = btn.dataset.filter;
+        document.querySelectorAll('.filter-btn.type').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        applyFilters();
+    });
+});
+
+// Artist filter buttons
+document.querySelectorAll('.filter-btn.artist').forEach(btn => {
+    btn.addEventListener('click', () => {
+        selectedArtist = btn.dataset.filter;
+        document.querySelectorAll('.filter-btn.artist').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        applyFilters();
+    });
+});
