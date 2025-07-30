@@ -94,7 +94,6 @@
 │   │   ├── events.html
 │   │   ├── gallery.html
 │   │   ├── login.html
-│   │   ├── photographs.html
 │   │   ├── privacy-policy.html
 │   │   ├── redirector.html
 │   │   ├── timeline.html
@@ -108,7 +107,6 @@
 │   │   ├── events.js
 │   │   ├── gallery.js
 │   │   ├── home.js
-│   │   ├── photographs.js
 │   │   ├── timeline.js
 │   │   └── treasury.js
 │   └── styles/
@@ -120,7 +118,6 @@
 │       ├── events.css
 │       ├── gallery.css
 │       ├── home.css
-│       ├── photographs.css
 │       ├── timeline.css
 │       └── treasury.css
 └── variables/
