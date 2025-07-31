@@ -1,21 +1,21 @@
 {
     "0": {
-        "title": "World Map",
-        "artist": "Tejas Gupta",
-        "type": "Fine Arts"
-    },
-    "1": {
         "title": "Palace of Westminster, London",
         "artist": "Tejas Gupta",
         "type": "Fine Arts"
     },
+    "1": {
+        "title": "Buckingham Palace",
+        "artist": "Tejas Gupta",
+        "type": "Fine Arts"
+    },
     "2": {
-        "title": "K.C.M. School, Moradabad",
+        "title": "Bharati Vidyapeeth University, College of Engineering, Pune",
         "artist": "Tejas Gupta",
         "type": "Fine Arts"
     },
     "3": {
-        "title": "The Palace",
+        "title": "Rashtrapati Bhavan, New Delhi",
         "artist": "Tejas Gupta",
         "type": "Fine Arts"
     },
@@ -25,13 +25,33 @@
         "type": "Fine Arts"
     },
     "5": {
-        "title": "The Shop",
+        "title": "World Map",
         "artist": "Tejas Gupta",
         "type": "Fine Arts"
     },
     "6": {
-        "title": "The Old House",
+        "title": "Where Stars Meet Lanterns",
         "artist": "Tejas Gupta",
+        "type": "Fine Arts"
+    },
+    "7": {
+        "title": "The Third Level",
+        "artist": "Tejas Gupta",
+        "type": "Fine Arts"
+    },
+    "8": {
+        "title": "Aanchal, Moradabad",
+        "artist": "Tejas Gupta",
+        "type": "Fine Arts"
+    },
+    "9": {
+        "title": "K.C.M. School, Moradabad",
+        "artist": "Tejas Gupta",
+        "type": "Fine Arts"
+    },
+    "10": {
+        "title": "The old house",
+        "artist": "Pew",
         "type": "Pew"
     }
 }
