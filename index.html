@@ -161,7 +161,7 @@
                 <input type="text" id="name" placeholder="Your Name" required>
                 <input type="email" id="email" placeholder="Your Email" required>
                 <textarea id="message" placeholder="Your Message" required></textarea>
-                <button type="submit" class="long-btn">Send Message</button>
+                <button type="submit" id="sendMessage" class="long-btn" onclick="handleButtonAction('sendMessage', 'Sending' , 'Sent' , () => vibrate())">Send Message</button>
             </form>
         </div>
         <div data-include="src/components/footer.html"></div>

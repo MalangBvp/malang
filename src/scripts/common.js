@@ -84,6 +84,39 @@ function applyTheme(toggle = false) {
             : "/resrc/images/icons/sun.webp";
     }
 }
+//=======================================================================common button behavior
+function handleButtonAction(buttonId, loaderText, successText, taskFunction, errorText = "Failed") {
+    const button = document.getElementById(buttonId);
+    if (!button || typeof taskFunction !== 'function') return;
+
+    const originalText = button.innerHTML;
+    button.disabled = true;
+    button.style.borderColor = 'gold';
+    button.style.color = 'gold';
+    button.innerHTML = `<img src="/resrc/images/icons/loading.webp" style="height: 15px; margin-bottom: -2px;"> ${loaderText}...`;
+
+    Promise.resolve()
+        .then(taskFunction)
+        .then(() => {
+            button.style.borderColor = 'green';
+            button.style.color = 'green';
+            button.innerHTML = `${successText}! ✔`;
+            setTimeout(() => resetButton(), 4000);
+        })
+        .catch(() => {
+            button.style.borderColor = 'red';
+            button.style.color = 'red';
+            button.innerHTML = `✖ ${errorText}`;
+            setTimeout(() => resetButton(), 4000);
+        });
+
+    function resetButton() {
+        button.innerHTML = originalText;
+        button.style.borderColor = '';
+        button.style.color = '';
+        button.disabled = false;
+    }
+}
 //================================================vibration
 function vibrate(duration = 50) {
     if (navigator.vibrate) {
@@ -96,7 +129,9 @@ function goBack() {
 }
 
 async function subscribe() {
-    const email = document.getElementById("subscriber-email").value.trim();
+    const field = 
+            document.getElementById("subscriber-email");
+    const email = field.value.trim();
     const failureDiv = document.getElementById("failure");
     const subscribeBtn = document.getElementById("subscribe");
     const url = "https://script.google.com/macros/s/AKfycbwCPPqtOOTZfcfJKNK_v422wkJaDiQo2D8FKRH25tvAXB_Rf7sMk_DDKgLFgDScOtOS/exec";
@@ -104,15 +139,16 @@ async function subscribe() {
 
     // ✅ Email format validation
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            vibrate(200);
+            field.value = "";
+            field.focus();
         failureDiv.style.opacity = 1;
         failureDiv.textContent = "Please enter a valid email address.";
         setTimeout(() => {
             failureDiv.style.opacity = 0;
         }, 3000);
-        return;
+        throw new Error("Manual error");
     }
-    subscribeBtn.textContent = "Subscribing...";
-    subscribeBtn.disabled = true;
 
     try {
         const formData = new FormData();
@@ -123,20 +159,11 @@ async function subscribe() {
         const text = await response.text();
 
         if (text.includes("Success")) {
-            subscribeBtn.textContent = "Subscribed ✓";
             navigator.vibrate(50);
-            subscribeBtn.style.borderColor = "green";
-            subscribeBtn.style.color = "green";
-            subscribeBtn.style.backgroundColor = "transparent";
-            subscribeBtn.disabled = true;
-            setTimeout(() => {
-                subscribeBtn.textContent = "Subscribe";
-                subscribeBtn.style.borderColor = "";
-                subscribeBtn.style.color = "";
-                subscribeBtn.style.backgroundColor = "";
-                subscribeBtn.disabled = false;
-            }, 3000);
         } else {
+            vibrate(200);
+            field.value = "";
+            field.focus();
             failureDiv.textContent = text;
             failureDiv.style.opacity = 1;
             setTimeout(() => {
@@ -151,10 +178,10 @@ async function subscribe() {
             failureDiv.style.opacity = 0;
         }, 3000);
     }
-    subscribeBtn.disabled = false;
 }
 
 function showAlert(heading, message, buttonText) {
+    vibrate(50);
     // Remove existing alert if any
     const existing = document.querySelector('.custom-alert');
     if (existing) existing.remove();

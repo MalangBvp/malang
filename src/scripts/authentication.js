@@ -37,6 +37,7 @@
             const b64 = btoa(input);
 
             if (b64 === encoded || !encoded) {
+                vibrate(50);
                 window.location.href = url;
             } else {
                 passwordInput.value = '';
