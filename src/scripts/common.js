@@ -16,50 +16,50 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 setTimeout(() => {
-    
-document.getElementById('year').textContent = new Date().getFullYear();
-const burgerButton = document.getElementById("burger");
-const burger = document.querySelector(".burger");
-const nav = document.querySelector("#nav");
-const section = document.querySelector("section");
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const burgerButton = document.getElementById("burger");
+    const burger = document.querySelector(".burger");
+    const nav = document.querySelector("#nav");
+    const section = document.querySelector("section");
 
-function toggleMenu() {
-    vibrate();
-    const isActive = nav.classList.toggle("active");
-    burgerButton.classList.toggle("active");
-    section.classList.toggle("active");
-    burger.style.justifyContent = isActive ? "center" : "space-around";
-    document.body.style.overflow = isActive ? "hidden" : "scroll";
-}
-burgerButton.addEventListener("click", toggleMenu);
-
-window.addEventListener("DOMContentLoaded", () => applyTheme());
-document.getElementById("theme").addEventListener("click", () => {
-    vibrate();
-    applyTheme(true);
-});
-
-// function to install PWA on button click with id "pwa"
-document.getElementById("pwa").addEventListener("click", function () {
-    showAlert("PWA Installation", "This feature will be available soon.", "OK");
-});
-
-//function to copy website url to clipboard on button click with id "copy"
-document.getElementById("copy").addEventListener("click", function () {
-    vibrate();
-    navigator.clipboard.writeText("https://malangbvp.github.io/go/to-site").then(() => {
-        const themeIcon = this.querySelector("img");
-        setTimeout(() => {
-            themeIcon.src = "/resrc/images/icons/link.webp";
-        }
-            , 1200);
-        themeIcon.src = themeIcon.src.includes("link.webp") ? "/resrc/images/icons/tick.webp" : "/resrc/images/icons/link.webp";
-    }).catch(err => {
-        console.error("Failed to copy: ", err);
-        alert("Failed to copy URL.");
+    function toggleMenu() {
+        vibrate();
+        const isActive = nav.classList.toggle("active");
+        burgerButton.classList.toggle("active");
+        section.classList.toggle("active");
+        burger.style.justifyContent = isActive ? "center" : "space-around";
+        document.body.style.overflow = isActive ? "hidden" : "scroll";
     }
-    );
-});
+    burgerButton.addEventListener("click", toggleMenu);
+
+    window.addEventListener("DOMContentLoaded", () => applyTheme());
+    document.getElementById("theme").addEventListener("click", () => {
+        vibrate();
+        applyTheme(true);
+    });
+
+    // function to install PWA on button click with id "pwa"
+    document.getElementById("pwa").addEventListener("click", function () {
+        showAlert("PWA Installation", "This feature will be available soon.", "OK");
+    });
+
+    //function to copy website url to clipboard on button click with id "copy"
+    document.getElementById("copy").addEventListener("click", function () {
+        vibrate();
+        navigator.clipboard.writeText("https://malangbvp.github.io/go/to-site").then(() => {
+            const themeIcon = this.querySelector("img");
+            setTimeout(() => {
+                themeIcon.src = "/resrc/images/icons/link.webp";
+            }
+                , 1200);
+            themeIcon.src = themeIcon.src.includes("link.webp") ? "/resrc/images/icons/tick.webp" : "/resrc/images/icons/link.webp";
+        }).catch(err => {
+            console.error("Failed to copy: ", err);
+            alert("Failed to copy URL.");
+        }
+        );
+    });
+    burgerButton.classList.remove('loading');
 }, 1000);
 
 // function to invert theme except for elements with class "same" on button click with id "theme"
@@ -129,8 +129,8 @@ function goBack() {
 }
 
 async function subscribe() {
-    const field = 
-            document.getElementById("subscriber-email");
+    const field =
+        document.getElementById("subscriber-email");
     const email = field.value.trim();
     const failureDiv = document.getElementById("failure");
     const subscribeBtn = document.getElementById("subscribe");
@@ -139,9 +139,9 @@ async function subscribe() {
 
     // ✅ Email format validation
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            vibrate(200);
-            field.value = "";
-            field.focus();
+        vibrate(200);
+        field.value = "";
+        field.focus();
         failureDiv.style.opacity = 1;
         failureDiv.textContent = "Please enter a valid email address.";
         setTimeout(() => {

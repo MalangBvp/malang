@@ -32,6 +32,7 @@ body {
 
 button {
     background-color: transparent;
+    border: 1px solid transparent;
     border: 1px solid rgb(50, 50, 50);
     color: rgb(227, 227, 227);
     border-radius: 7px;
@@ -42,12 +43,12 @@ button {
 }
 
 .button-loading {
-  border: 2px solid #facc15; /* yellow-400 */
+  border: 1px solid #facc15; /* yellow-400 */
   color: #facc15;
   pointer-events: none;
 }
 .button-success {
-  border: 2px solid #22c55e; /* green-500 */
+  border: 1px solid #22c55e; /* green-500 */
   color: #22c55e;
 }
 
