@@ -90,7 +90,7 @@ function bindFilterEvents() {
 }
 
 function getImages(mode) {
-    const total = mode === 'artworks' ? 6 : 20; // Set different totals for artworks and photographs
+    const total = mode === 'artworks' ? 10 : 20; // Set different totals for artworks and photographs
 
     return Array.from({ length: total }, (_, i) => {
         const imageId = (i).toString();
