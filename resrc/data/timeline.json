@@ -1,7 +1,7 @@
 [
   {
     "title": "Workshop: Video Editing with Team Clixzy",
-    "date": "19th - 20th July 2025",
+    "date": "July 2025",
     "description": "A hands-on workshop on video editing techniques, covering software tools and creative processes.",
     "images": ["../../resrc/images/misc/team.webp"]
   },
@@ -11,23 +11,27 @@
     "description": "A farewell event to celebrate the achievements of the graduating batch of 2025, featuring speeches, performances, and a nostalgic look back at their journey with Malang."
   },
   {
-    "title": "Fashion Euphoria: Bharatiyam 2025",
+    "title": "Fashion Euphoria: Bharatiyam",
     "date": "February 2025",
     "description": "A fashion show event showcasing the latest trends and designs, featuring student designers and models, celebrating creativity and style.",
-    "images": ["../../resrc/images/misc/team.webp", "../../resrc/images/misc/team.webp"]
+    "images": ["../../resrc/images/misc/team.webp", "../../resrc/images/misc/team.webp", "../../resrc/images/misc/team.webp", "../../resrc/images/misc/team.webp"]
   },
   {
-    "title": "Rangotsav: Bharatiyam 2025",
+    "title": "Rangotsav: Bharatiyam",
     "date": "February 2025",
     "description": "A vibrant cultural festival celebrating the diversity of Indian traditions through music, dance, and art, bringing together students and the community."
   },
   {
-    "title": "Fashion Euphoria: Bharatiyam 2024",
+    "title": "Orientation Program",
+    "date":"August 2024"
+  },
+  {
+    "title": "Fashion Euphoria: Bharatiyam",
     "date": "February 2024",
     "description": "A vibrant cultural festival celebrating the diversity of Indian traditions through music, dance, and art, bringing together students and the community."
   },
   {
-    "title": "Rangotsav: Bharatiyam 2024",
+    "title": "Rangotsav: Bharatiyam",
     "date": "February 2024",
     "description": "A vibrant cultural festival celebrating the diversity of Indian traditions through music, dance, and art, bringing together students and the community."
   },
@@ -40,5 +44,9 @@
     "title": "Workshop: Photography with GStudios India",
     "date": "November 2023",
     "description": "A vibrant cultural festival celebrating the diversity of Indian traditions through music, dance, and art, bringing together students and the community."
+  },
+  {
+    "title": "Orientation Program",
+    "date":"August 2023"
   }
 ]

@@ -117,13 +117,13 @@ summary.title::before {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 8px;
-    width: calc(100vw - 60px);
+    width: calc(100vw - 80px);
     position: relative;
     left: 50%;
     right: 50%;
     margin-left: calc(-50vw - 5px);
     margin-right: -50vw;
-    padding: 10px 30px;
+    padding: 10px 40px;
 }
 
 .image-row img {
