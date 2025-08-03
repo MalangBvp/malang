@@ -37,7 +37,6 @@
 │   │   │   ├── admin.webp
 │   │   │   ├── art.webp
 │   │   │   ├── aruco.webp
-│   │   │   ├── camera.webp
 │   │   │   ├── contact.webp
 │   │   │   ├── docs.webp
 │   │   │   ├── down.webp
