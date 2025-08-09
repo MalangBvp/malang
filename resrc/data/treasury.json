@@ -1,5 +1,5 @@
 {
-  "labels": ["May", "Jun", "Jul", "Aug"],
-  "actual": [118, 188, 788, 2238],
-  "expected": [0, 118, 1168, 2218]
+  "labels": ["May", "Jun", "Jul", "Aug","Sep"],
+  "actual": [118, 188, 788, 2238 , 2238],
+  "expected": [0, 118, 1168, 2218, 3268]
 }
