@@ -7,7 +7,7 @@
     "buttons": [
       {
         "text":"Add to Calendar",
-        "link": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Malang%27s+Exhibition&dates=20250806T033000Z/20250808T103000Z&details=Join+Malang+for+an+art+and+photography+exhibition+during+Orientation+2025%21&location=Bharati+Vidyapeeth+College+of+Engineering%2C+Pune&sf=true&output=xml"
+        "link": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Malang%27s+Exhibition&dates=20250806T033000Z/20250814T103000Z&details=Join+Malang+for+an+art+and+photography+exhibition+during+Orientation+2025%21&location=Bharati+Vidyapeeth+College+of+Engineering%2C+Pune&sf=true&output=xml"
       }
     ]
   },
