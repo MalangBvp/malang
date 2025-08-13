@@ -93,6 +93,7 @@
 │   │   ├── alumni.html
 │   │   ├── aruco.html
 │   │   ├── authentication.html
+│   │   ├── claims.html
 │   │   ├── documentation.html
 │   │   ├── events.html
 │   │   ├── gallery.html
