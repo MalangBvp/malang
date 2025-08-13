@@ -75,8 +75,8 @@
                         const json = await res.json();
 
                         if (json.status === "success") {
-                            showAlert("Claimed", "Your request will be processed shortly.", "OK");
-                            resolve(); // ✅ finish successfully
+                            showAlert("Claimed.", "Your request will be reviewed soon.", "OK");
+                            resolve();
                         } else {
                             reject(showError("❌ Error: " + json.message));
                         }

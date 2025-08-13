@@ -9,8 +9,11 @@
             <div class="newsletter">
                 <h3>Subscribe to our newsletter</h3>
                 <p>Stay connected with us and never miss an event!</p>
-                <input type="email" id="subscriber-email" placeholder="Enter your email">
-                <button id="subscribe" onclick="handleButtonAction('subscribe', 'Subscribing' , 'Subscribed' , () => subscribe())">Subscribe</button>
+                <div id="newsletterInput">
+                    <input type="email" id="subscriber-email" placeholder="Enter your email">
+                    <button id="subscribe"
+                        onclick="handleButtonAction('subscribe', 'Subscribing' , 'Subscribed' , () => subscribe())">Subscribe</button>
+                </div>
                 <div id="failure" class="same">We don't spam.</div>
             </div>
         </div>
@@ -20,8 +23,7 @@
             <div class="footer-column">
                 <h4>Organisation</h4>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Club Constitution</a></li>
+                    <li><a href="#">Core Members</a></li>
                     <li><a href="#">Join Malang</a></li>
                     <li><a href="#">Collaborate With Us</a></li>
                 </ul>
@@ -38,10 +40,8 @@
             <div class="footer-column">
                 <h4>Galleries</h4>
                 <ul>
-                    <li><a href="#">Store</a></li>
                     <li><a href="/src/pages/gallery.html">Art Gallery</a></li>
                     <li><a href="/src/pages/photographs.html">Photo Gallery</a></li>
-                    <li><a href="#">ATMOsphere: Featured Artists</a></li>
                 </ul>
             </div>
         </div>
@@ -57,16 +57,16 @@
             <a href="/src/pages/privacy-policy.html">Privacy Policy</a>
             <a href="/src/pages/authentication.html">Get Media Kit</a>
         </div>
-            <div class="social-icons" id="icons-footer">
-                <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/malangbvp/#"><i
-                        class="fab fa-instagram"></i></a>
-                <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/malangbvp/"><i
-                        class="fab fa-linkedin"></i></a>
-                <a target="_blank" rel="noopener noreferrer"
-                    href="mailto:malangbvp@gmail.com?subject=Contacting%20via%20Malang%20Website&body=Hi%20Malang%20Team,%0D%0A%0D%0AI%20found%20your%20email%20on%20the%20Malang%20website%20and%20wanted%20to%20get%20in%20touch%20regarding...%0D%0A%0D%0ARegards,%0D%0A[Your%20Name]"><i
-                        class="far fa-envelope"></i></a>
-                <a target="_blank" rel="noopener noreferrer" href="https://github.com/MalangBvp"><i
-                        class="fab fa-github"></i></a>
-            </div>
+        <div class="social-icons" id="icons-footer">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/malangbvp/#"><i
+                    class="fab fa-instagram"></i></a>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/malangbvp/"><i
+                    class="fab fa-linkedin"></i></a>
+            <a target="_blank" rel="noopener noreferrer"
+                href="mailto:malangbvp@gmail.com?subject=Contacting%20via%20Malang%20Website&body=Hi%20Malang%20Team,%0D%0A%0D%0AI%20found%20your%20email%20on%20the%20Malang%20website%20and%20wanted%20to%20get%20in%20touch%20regarding...%0D%0A%0D%0ARegards,%0D%0A[Your%20Name]"><i
+                    class="far fa-envelope"></i></a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/MalangBvp"><i
+                    class="fab fa-github"></i></a>
+        </div>
     </div>
 </footer>

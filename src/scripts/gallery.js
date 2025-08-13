@@ -6,6 +6,7 @@ const photographsBtn = document.getElementById('photographs');
 const artworksBtn = document.getElementById('artworks');
 const loader = document.getElementById('loader');
 const filters = document.querySelectorAll('.filter-btn');
+const noneDiv = document.getElementById('none');
 
 let imageMeta = {};
 let currentMode = 'artworks'; // 'artworks' or 'photographs'
@@ -180,6 +181,7 @@ function loadImages(mode) {
 }
 
 function resetGalleryAndLoad(mode) {
+    noneDiv.style.display="none";
     currentMode = mode;
     currentIndex = 0;
     gallery.innerHTML = '';
@@ -287,7 +289,6 @@ function applyFilters() {
         }
     });
 
-    const noneDiv = document.getElementById('none');
     noneDiv.style.display = matchCount === 0 ? 'flex' : 'none';
     viewMoreBtn.style.display = matchCount === 0 ? 'none' : 'block';
 }
