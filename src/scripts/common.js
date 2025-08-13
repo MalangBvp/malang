@@ -104,6 +104,7 @@ function handleButtonAction(buttonId, loaderText, successText, taskFunction, err
             setTimeout(() => resetButton(), 4000);
         })
         .catch(() => {
+            vibrate(200);
             button.style.borderColor = 'red';
             button.style.color = 'red';
             button.innerHTML = `✖ ${errorText}`;

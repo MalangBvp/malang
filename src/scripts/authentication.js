@@ -48,7 +48,7 @@
                     passwordInput.style.border = '';
                     document.getElementById('error').style.opacity = 0;
                 }, 3000);
-                navigator.vibrate(200);
+                vibrate(200);
             }
         });
     }
