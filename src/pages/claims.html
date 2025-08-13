@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../resrc/images/misc/favicon.webp" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/authentication.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Malang | Claims</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <a href="../../index.html" class="malang"><img src="../../resrc/images/misc/malang.webp" alt="Malang"></a>
+        <button id="burger" class="">
+            <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </header>
+    <div data-include="../components/nav.html"></div>
+    <section>
+        <canvas id="gradientCanvas"></canvas>
+        <form id="billForm">
+            <h3>Claim your bills</h3>
+            <input id="name" type="text" name="name" placeholder="Full Name" required>
+            <input id="amount" type="number" name="amount" placeholder="Amount" required>
+            <label for="file" style="text-align: left; margin: 10px 0 5px 0;">Bill Attachment *</label>
+            <input type="file" id="file" name="file" accept="image/*,.pdf" required>
+
+            <div id="failure" style="color: red; opacity: 0;">.</div>
+            <button id="claim" type="submit" class="long-btn"
+                onclick="handleButtonAction('claim', 'Claiming' , 'Claimed' , () => claimBill())">Submit Claim</button>
+        </form>
+
+    </section>
+    <script src="../scripts/common.js"></script>
+    <script src="../scripts/authentication.js"></script>
+    <script>
+        const failureDiv = document.getElementById("failure");
+        async function claimBill() {
+            return new Promise((resolve, reject) => {
+                const nameField = document.getElementById("name");
+                const amountField = document.getElementById("amount");
+                const fileField = document.getElementById("file");
+
+                const name = nameField.value.trim();
+                const amount = parseFloat(amountField.value);
+                const file = fileField.files[0];
+                const url = "https://script.google.com/macros/s/AKfycbz0axQ4ExEM7sxBQDvAXBFV83zVD6YAea6dxePl84ENXJrwrzLIUSTM9c_56Ej3fsl9/exec";
+
+                // Validation
+                if (!name) return reject(showError("Please enter your name."));
+                if (!amount || amount <= 0) return reject(showError("Amount must be greater than 0."));
+                if (!file) return reject(showError("Please attach your bill."));
+
+                const reader = new FileReader();
+                reader.onloadend = async function () {
+                    try {
+                        const base64Data = reader.result.split(',')[1];
+                        const data = new URLSearchParams();
+                        data.append("name", name);
+                        data.append("amount", amount);
+                        data.append("filename", file.name);
+                        data.append("mimeType", file.type);
+                        data.append("file", base64Data);
+
+                        const res = await fetch(url, { method: "POST", body: data });
+                        const json = await res.json();
+
+                        if (json.status === "success") {
+                            showAlert("Claimed", "Your request will be processed shortly.", "OK");
+                            resolve(); // ✅ finish successfully
+                        } else {
+                            reject(showError("❌ Error: " + json.message));
+                        }
+                    } catch (err) {
+                        console.error(err);
+                        reject(showError("Something went wrong while submitting."));
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+
+            function showError(msg) {
+                failureDiv.textContent = msg;
+                failureDiv.style.opacity = 1;
+                setTimeout(() => failureDiv.style.opacity = 0, 3000);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
