@@ -97,7 +97,6 @@
 │   │   ├── documentation.html
 │   │   ├── events.html
 │   │   ├── gallery.html
-│   │   ├── login.html
 │   │   ├── privacy-policy.html
 │   │   ├── redirector.html
 │   │   ├── timeline.html
