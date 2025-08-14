@@ -40,7 +40,7 @@ setTimeout(() => {
 
     // function to install PWA on button click with id "pwa"
     document.getElementById("pwa").addEventListener("click", function () {
-        showAlert("PWA Installation", "This feature will be available soon.", "OK");
+        showAlert("PWA Installation", "Install our app for faster access, offline support and a smoother experience.", "Install");
     });
 
     //function to copy website url to clipboard on button click with id "copy"
