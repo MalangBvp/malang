@@ -1,9 +1,19 @@
 [
   {
+    "title": "Exhibition: Orientation Program",
+    "date": "August 2025",
+    "description": "Introduced Malang to freshers through a vibrant display of artworks, photos, and fun interactive moments!",
+    "images": [
+      "/resrc/images/misc/team.webp"
+    ]
+  },
+  {
     "title": "Workshop: Video Editing with Team Clixzy",
     "date": "July 2025",
     "description": "A hands-on workshop on video editing techniques, covering software tools and creative processes.",
-    "images": ["../../resrc/images/misc/team.webp"]
+    "images": [
+      "../../resrc/images/misc/team.webp"
+    ]
   },
   {
     "title": "Farewell",
@@ -14,7 +24,12 @@
     "title": "Fashion Euphoria: Bharatiyam",
     "date": "February 2025",
     "description": "A fashion show event showcasing the latest trends and designs, featuring student designers and models, celebrating creativity and style.",
-    "images": ["../../resrc/images/misc/team.webp", "../../resrc/images/misc/team.webp", "../../resrc/images/misc/team.webp", "../../resrc/images/misc/team.webp"]
+    "images": [
+      "../../resrc/images/misc/team.webp",
+      "../../resrc/images/misc/team.webp",
+      "../../resrc/images/misc/team.webp",
+      "../../resrc/images/misc/team.webp"
+    ]
   },
   {
     "title": "Rangotsav: Bharatiyam",
@@ -23,7 +38,7 @@
   },
   {
     "title": "Orientation Program",
-    "date":"August 2024"
+    "date": "August 2024"
   },
   {
     "title": "Fashion Euphoria: Bharatiyam",
@@ -47,6 +62,6 @@
   },
   {
     "title": "Orientation Program",
-    "date":"August 2023"
+    "date": "August 2023"
   }
 ]

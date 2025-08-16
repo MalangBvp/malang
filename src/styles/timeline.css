@@ -110,6 +110,7 @@ summary.title::before {
 
 .description {
     margin-top: 5px;
+    margin-left: 10px;
 }
 
 .image-row {
@@ -117,13 +118,13 @@ summary.title::before {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 8px;
-    width: calc(100vw - 80px);
+    width: calc(100vw - 90px);
     position: relative;
     left: 50%;
     right: 50%;
     margin-left: calc(-50vw - 5px);
     margin-right: -50vw;
-    padding: 10px 40px;
+    padding: 10px 45px;
 }
 
 .image-row img {

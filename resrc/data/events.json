@@ -1,16 +1,4 @@
-[ {
-  "name": "Exhibition: Orientation Program",
-    "date": "6-14th August, 2025",
-    "location": "BVUCOEP",
-    "description": "Discover Malang through a vibrant display of artworks, photos, and fun interactive moments!",
-    "image": "/resrc/images/misc/team.webp",
-    "buttons": [
-      {
-        "text":"Add to Calendar",
-        "link": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Malang%27s+Exhibition&dates=20250806T033000Z/20250814T103000Z&details=Join+Malang+for+an+art+and+photography+exhibition+during+Orientation+2025%21&location=Bharati+Vidyapeeth+College+of+Engineering%2C+Pune&sf=true&output=xml"
-      }
-    ]
-  },
+[ 
   {
     "name": "Recruitments",
     "date": "September, 2025",
