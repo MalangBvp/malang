@@ -9,8 +9,91 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title>Malang | Recruitments</title>
-    <link rel="stylesheet" href="../styles/authentication.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        marquee{
+            width: 100vw;
+            margin-left: -10px;
+            border-bottom: 1px solid rgb(36, 36, 36);
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+        }
+        #recruitmentForm {
+            margin: auto;
+        }
+
+        #recruitmentForm p {
+            text-align: left;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            display: none;
+            /* hide default checkbox */
+        }
+
+        .checkbox-group label {
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid #383838;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        /* Checked state */
+        .checkbox-group input[type="checkbox"]:checked+label {
+            background-color: rgba(255, 217, 0, 0.096);
+            color: gold;
+            border-color: rgba(255, 217, 0, 0.575);
+        }
+
+
+        /* Hidden text input */
+        .other-input {
+            max-height: 0;
+            opacity: 0;
+            width: calc(100% - 22px);
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+        }
+
+        .other-input input {
+            margin-top: 7px;
+            width: 100%;
+            border: 1px solid rgba(255, 217, 0, 0.575);
+            outline: none;
+            transition: box-shadow 0.3s ease;
+        }
+
+        /* Show animation when "Other" is checked */
+        #other:checked~.other-input {
+            max-height: 70px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        select {
+            color: grey;
+            margin-bottom: 10px;
+            padding: 9px;
+        }
+
+        option {
+            color: grey;
+            background-color: black;
+            font-size: 15px;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,21 +109,21 @@
     </header>
     <div data-include="../components/nav.html"></div>
     <section id="authentication">
-        <canvas id="gradientCanvas"></canvas>
-        <form id="coreForm">
+        <marquee>⚠️ We're not accepting responses right now.</marquee>
+        <form id="recruitmentForm">
             <h3>Recruitments 2025</h3>
-            <input type="text" id="name" placeholder="Full Name" required />
-            <input type="text" id="email" placeholder="Email ID" required />
-            <input type="text" id="phone" placeholder="Phone Number" required />
-            <input type="text" id="insta" placeholder="Instagram ID" required />
+            <input type="text" id="name" placeholder="Full Name *" required />
+            <input type="text" id="email" placeholder="Email ID *" required />
+            <input type="text" id="phone" placeholder="Phone Number *" required />
+            <input type="text" id="insta" placeholder="Instagram ID" />
             <select id="year-dropdown" required>
-                <option value="" disabled selected>Select your year</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="" disabled selected>Year *</option>
+                <option value="1">1st</option>
+                <option value="2">2nd</option>
+                <option value="3">3rd</option>
             </select>
             <select id="branch-dropdown" required>
-                <option value="" disabled selected>Branch</option>
+                <option value="" disabled selected>Branch *</option>
                 <option value="cse">CSBS</option>
                 <option value="ece">CSE</option>
                 <option value="mech">CE</option>
@@ -53,16 +136,34 @@
                 <option value="civil">IT</option>
                 <option value="civil">Chemical</option>
             </select>
+            <p>What are you good at? *</p>
             <div class="checkbox-group">
-                <label><input type="checkbox" name="skills" value="art">Art</label>
-                <label><input type="checkbox" name="skills" value="photography">Photography</label>
-                <label><input type="checkbox" name="skills" value="digital_art">Digital Art and Illustration</label>
-                <label><input type="checkbox" name="skills" value="video_editing">Video Editing</label>
+                <input type="checkbox" id="art" name="skills" value="art">
+                <label for="art">Art</label>
+
+                <input type="checkbox" id="photography" name="skills" value="photography">
+                <label for="photography">Photography</label>
+
+                <input type="checkbox" id="video_editing" name="skills" value="video_editing">
+                <label for="video_editing">Video Editing</label>
+
+                <input type="checkbox" id="digital_art" name="skills" value="digital_art">
+                <label for="digital_art">Digital Art and Illustration</label>
+
+                <input type="checkbox" id="other" name="skills" value="other">
+                <label for="other">Other</label>
+                
+            <!-- Hidden text field -->
+            <div class="other-input">
+                <input type="text" placeholder="Please specify...">
             </div>
-            <input type="text" id="github" placeholder="Motivation behind joining us?" required />
-            <input type="text" id="portfolio" placeholder="Portfolio Link" required />
-            <p id="error" class="same">Incorrect password. Try again.</p>
-            <button type="submit" class="long-btn" id="submit">Enter</button>
+            </div>
+
+
+
+            <textarea name="motivation" id="motivation" placeholder="Motivation behind joining us?"></textarea>
+            <input type="text" id="portfolio" placeholder="Portfolio Link" />
+            <button type="submit" class="long-btn" id="submit" onclick="showAlert('⚠️', 'We are not accepting responses right now.', 'OK')">Apply</button>
         </form>
     </section>
     <script src="../scripts/common.js"></script>
