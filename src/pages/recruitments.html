@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../resrc/images/misc/favicon.webp" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Malang | Recruitments</title>
+    <link rel="stylesheet" href="../styles/authentication.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <a href="../../index.html" class="malang"><img src="../../resrc/images/misc/malang.webp" alt="Malang"></a>
+        <button id="burger" class="">
+            <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </header>
+    <div data-include="../components/nav.html"></div>
+    <section id="authentication">
+        <canvas id="gradientCanvas"></canvas>
+        <form id="coreForm">
+            <h3>Recruitments 2025</h3>
+            <input type="text" id="name" placeholder="Full Name" required />
+            <input type="text" id="email" placeholder="Email ID" required />
+            <input type="text" id="phone" placeholder="Phone Number" required />
+            <input type="text" id="insta" placeholder="Instagram ID" required />
+            <select id="year-dropdown" required>
+                <option value="" disabled selected>Select your year</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <select id="branch-dropdown" required>
+                <option value="" disabled selected>Branch</option>
+                <option value="cse">CSBS</option>
+                <option value="ece">CSE</option>
+                <option value="mech">CE</option>
+                <option value="cse">EnTC</option>
+                <option value="ece">ECE</option>
+                <option value="mech">Civil</option>
+                <option value="civil">R&A</option>
+                <option value="civil">Electronics</option>
+                <option value="mech">Mechanical</option>
+                <option value="civil">IT</option>
+                <option value="civil">Chemical</option>
+            </select>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="skills" value="art">Art</label>
+                <label><input type="checkbox" name="skills" value="photography">Photography</label>
+                <label><input type="checkbox" name="skills" value="digital_art">Digital Art and Illustration</label>
+                <label><input type="checkbox" name="skills" value="video_editing">Video Editing</label>
+            </div>
+            <input type="text" id="github" placeholder="Motivation behind joining us?" required />
+            <input type="text" id="portfolio" placeholder="Portfolio Link" required />
+            <p id="error" class="same">Incorrect password. Try again.</p>
+            <button type="submit" class="long-btn" id="submit">Enter</button>
+        </form>
+    </section>
+    <script src="../scripts/common.js"></script>
+    <script src="../scripts/authentication.js"></script>
+</body>
+
+</html>
