@@ -11,13 +11,14 @@
     <title>Malang | Recruitments</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        marquee{
+        marquee {
             width: 100vw;
             margin-left: -10px;
             border-bottom: 1px solid rgb(36, 36, 36);
             margin-bottom: 10px;
             padding-bottom: 10px;
         }
+
         #recruitmentForm {
             margin: auto;
         }
@@ -26,12 +27,21 @@
             text-align: left;
         }
 
+        #skills {
+            font-size: 14px;
+            padding: 10px;
+            color: #9e9e9e;
+            border: 1px solid #383838;
+            border-radius: 10px;
+            background-color: #1a1a1aa1;
+            margin-bottom: 10px;
+        }
+
         .checkbox-group {
             display: flex;
             flex-wrap: wrap;
             gap: 5px;
             margin-top: 10px;
-            margin-bottom: 5px;
         }
 
         .checkbox-group input[type="checkbox"] {
@@ -45,7 +55,6 @@
             border: 1px solid #383838;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 14px;
             transition: all 0.3s ease;
             user-select: none;
         }
@@ -70,7 +79,6 @@
         .other-input input {
             margin-top: 7px;
             width: 100%;
-            border: 1px solid rgba(255, 217, 0, 0.575);
             outline: none;
             transition: box-shadow 0.3s ease;
         }
@@ -136,38 +144,43 @@
                 <option value="civil">IT</option>
                 <option value="civil">Chemical</option>
             </select>
-            <p>What are you good at? *</p>
-            <div class="checkbox-group">
-                <input type="checkbox" id="art" name="skills" value="art">
-                <label for="art">Art</label>
+            <div id="skills">
+                <p>What are you good at? *</p>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="art" name="skills" value="art">
+                    <label for="art">Fine Art</label>
 
-                <input type="checkbox" id="photography" name="skills" value="photography">
-                <label for="photography">Photography</label>
+                    <input type="checkbox" id="photography" name="skills" value="photography">
+                    <label for="photography">Photography</label>
 
-                <input type="checkbox" id="video_editing" name="skills" value="video_editing">
-                <label for="video_editing">Video Editing</label>
+                    <input type="checkbox" id="video_editing" name="skills" value="video_editing">
+                    <label for="video_editing">Video Editing</label>
 
-                <input type="checkbox" id="digital_art" name="skills" value="digital_art">
-                <label for="digital_art">Digital Art and Illustration</label>
+                    <input type="checkbox" id="digital_art" name="skills" value="digital_art">
+                    <label for="digital_art">Digital Art</label>
 
-                <input type="checkbox" id="other" name="skills" value="other">
-                <label for="other">Other</label>
-                
-            <!-- Hidden text field -->
-            <div class="other-input">
-                <input type="text" placeholder="Please specify...">
+                    <input type="checkbox" id="modeling" name="skills" value="digital_art">
+                    <label for="modeling">Modeling</label>
+
+                    <input type="checkbox" id="marketing" name="skills" value="digital_art">
+                    <label for="marketing">Marketing</label>
+
+                    <input type="checkbox" id="other" name="skills" value="other">
+                    <label for="other">Other</label>
+
+                    <!-- Hidden text field -->
+                    <div class="other-input">
+                        <input type="text" placeholder="Please specify...">
+                    </div>
+                </div>
             </div>
-            </div>
-
-
-
             <textarea name="motivation" id="motivation" placeholder="Motivation behind joining us?"></textarea>
             <input type="text" id="portfolio" placeholder="Portfolio Link" />
-            <button type="submit" class="long-btn" id="submit" onclick="showAlert('⚠️', 'We are not accepting responses right now.', 'OK')">Apply</button>
+            <button type="submit" class="long-btn" id="submit"
+                onclick="showAlert('⚠️', 'We are not accepting responses right now.', 'OK')">Apply</button>
         </form>
     </section>
     <script src="../scripts/common.js"></script>
-    <script src="../scripts/authentication.js"></script>
 </body>
 
 </html>
