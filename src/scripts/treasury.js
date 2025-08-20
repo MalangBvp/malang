@@ -103,10 +103,10 @@ function toggleContribution() {
 
     if (isDoneVisible) {
         card.style.marginLeft = "-50vw";
-        section.classList.remove("treasury-active");
+        section.classList.remove("modal-active");
         done.style.display = "none";
     } else {
-        section.classList.add("treasury-active");
+        section.classList.add("modal-active");
         done.style.display = "block";
         card.style.marginLeft = "50%";
     }

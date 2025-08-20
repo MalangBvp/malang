@@ -13,11 +13,6 @@ canvas {
     padding: 15px;
 }
 
-section.treasury-active {
-    filter: blur(5px) brightness(0.2);
-    transition: filter 0.3s ease;
-}
-
 #treasury {
     margin-top: 75px;
     text-align: center;

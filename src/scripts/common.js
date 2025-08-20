@@ -5,15 +5,23 @@ console.log("+-----------------+");
 // Function to include HTML files dynamically on priority
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Include injection
-    await Promise.all(
-        Array.from(document.querySelectorAll('[data-include]')).map(async el => {
+    // Load nav.html first
+    const nav = document.querySelector('[data-include="nav.html"]');
+    if (nav) {
+        const res = await fetch("nav.html");
+        nav.innerHTML = await res.text();
+    }
+
+    // Load all other includes without blocking
+    document.querySelectorAll('[data-include]').forEach(async el => {
+        if (el.getAttribute('data-include') !== "nav.html") {
             const file = el.getAttribute('data-include');
             const res = await fetch(file);
             el.innerHTML = await res.text();
-        })
-    );
+        }
+    });
 });
+
 
 setTimeout(() => {
     document.getElementById('year').textContent = new Date().getFullYear();

@@ -237,9 +237,9 @@ const modalArtist = document.getElementById("modal-artist");
 const closeModal = document.querySelector(".modal-close");
 
 gallery.addEventListener("click", (e) => {
-    document.querySelector("section").classList.add("active");
     const target = e.target;
     if (target.tagName === "IMG") {
+    document.querySelector("section").classList.add("modal-active");
         const fileName = target.src.split("/").pop();     // e.g., 1.webp
         const imageId = fileName.split('.')[0];           // e.g., "1"
         const meta = imageMeta[imageId] || {};
@@ -254,12 +254,13 @@ gallery.addEventListener("click", (e) => {
 });
 
 closeModal.addEventListener("click", () => {
-    document.querySelector("section").classList.remove("active");
+    document.querySelector("section").classList.remove("modal-active");
     modal.style.display = "none";
     document.body.style.overflow = "scroll";
 });
 window.addEventListener("click", (e) => {
     if (e.target === modal) {
+    document.querySelector("section").classList.remove("modal-active");
         modal.style.display = "none";
         document.body.style.overflow = "scroll";
     }

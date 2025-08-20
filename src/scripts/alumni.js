@@ -48,7 +48,7 @@ if (container) {
 
                     // Open modal on image click
                     img.addEventListener("click", () => {
-                        document.querySelector("section").classList.add("active");
+                        document.querySelector("section").classList.add("modal-active");
                         document.getElementById("image-modal").style.display = "flex";
                         document.getElementById("modal-image").src = img.src;
                         document.getElementById("modal-title").textContent = `Name: ${member.name}`;
@@ -103,12 +103,13 @@ if (container) {
 
     // Modal close
     document.querySelector(".modal-close")?.addEventListener("click", () => {
-        document.querySelector("section").classList.remove("active");
+        document.querySelector("section").classList.remove("modal-active");
         document.getElementById("image-modal").style.display = "none";
     });
 
     window.addEventListener("click", (e) => {
         if (e.target.id === "image-modal") {
+        document.querySelector("section").classList.remove("modal-active");
             document.getElementById("image-modal").style.display = "none";
         }
     });
