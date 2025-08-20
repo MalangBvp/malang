@@ -8,11 +8,11 @@
     "buttons": [
       {
         "text": "Add to Calendar",
-        "alertMessage": "This event has not been finalised yet. Stay tuned!"
+        "alertMessage": "The event date has not been finalised yet. Stay tuned!"
       },
       {
         "text": "Join Us",
-        "alertMessage": "This event has not been finalised yet. Stay tuned!",
+        "link": "recruitments.html",
         "focus": true
       }
     ]

@@ -98,6 +98,7 @@
 │   │   ├── events.html
 │   │   ├── gallery.html
 │   │   ├── privacy-policy.html
+│   │   ├── recruitments.html
 │   │   ├── redirector.html
 │   │   ├── timeline.html
 │   │   └── treasury.html

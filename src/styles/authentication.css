@@ -2,7 +2,7 @@ section{
     margin-top: 0px;
 }
 
-#coreForm, #redirectorForm, #loginForm, #pushForm, #billForm {
+#coreForm, #redirectorForm, #billForm {
     transform: translate(-50%, -50%);
     position: absolute;
     top:50vh;
@@ -18,7 +18,6 @@ section{
     white-space: normal;
     max-width: 100%;
 }
-
 
 #url {
     color: rgb(255, 174, 0);

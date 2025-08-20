@@ -1,4 +1,4 @@
-const container = document.getElementById("alumni");
+const container = document.getElementById("members");
 const loader = document.getElementById("loader");
 
 if (container) {
