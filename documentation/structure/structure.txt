@@ -44,7 +44,7 @@
 │   │   │   ├── events.webp
 │   │   │   ├── home.webp
 │   │   │   ├── link.webp
-│   │   │   ├── loading.webp
+│   │   │   ├── loading.gif
 │   │   │   ├── members.webp
 │   │   │   ├── night-mode.webp
 │   │   │   ├── prize.webp
