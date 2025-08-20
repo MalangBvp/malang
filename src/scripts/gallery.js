@@ -237,6 +237,7 @@ const modalArtist = document.getElementById("modal-artist");
 const closeModal = document.querySelector(".modal-close");
 
 gallery.addEventListener("click", (e) => {
+    document.querySelector("section").classList.add("active");
     const target = e.target;
     if (target.tagName === "IMG") {
         const fileName = target.src.split("/").pop();     // e.g., 1.webp
@@ -253,6 +254,7 @@ gallery.addEventListener("click", (e) => {
 });
 
 closeModal.addEventListener("click", () => {
+    document.querySelector("section").classList.remove("active");
     modal.style.display = "none";
     document.body.style.overflow = "scroll";
 });

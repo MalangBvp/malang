@@ -42,7 +42,10 @@
         <div class="gallery" id="gallery">
         </div>
         <button class="long-btn" id="viewMoreBtn">View More</button>
-        <div id="image-modal" class="modal">
+
+        <div data-include="../components/footer.html"></div>
+    </section>
+    <div id="image-modal" class="modal">
             <span class="modal-close">&times;</span>
             <div class="modal-content">
                 <img id="modal-image" class="same" />
@@ -52,9 +55,6 @@
                 </div>
             </div>
         </div>
-
-        <div data-include="../components/footer.html"></div>
-    </section>
     <script src="../scripts/common.js"></script>
     <script src="../scripts/gallery.js"></script>
 </body>
