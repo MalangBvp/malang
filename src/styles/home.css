@@ -12,7 +12,8 @@ html {
 }
 
 .loading {
-    background-image: url(/resrc/images/icons/loading.webp);
+    filter: brightness(0) invert(1);
+    background-image: url(/resrc/images/icons/loading.gif);
     background-size: 30%;
     background-repeat: no-repeat;
     background-position: center;

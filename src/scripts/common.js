@@ -101,7 +101,7 @@ function handleButtonAction(buttonId, loaderText, successText, taskFunction, err
     button.disabled = true;
     button.style.borderColor = 'gold';
     button.style.color = 'gold';
-    button.innerHTML = `<img src="/resrc/images/icons/loading.webp" style="height: 15px; margin-bottom: -2px;"> ${loaderText}...`;
+    button.innerHTML = `<img src="/resrc/images/icons/loading.gif" style="height: 15px; margin-bottom: -2px; filter: brightness(0) invert(1)"> ${loaderText}...`;
 
     Promise.resolve()
         .then(taskFunction)

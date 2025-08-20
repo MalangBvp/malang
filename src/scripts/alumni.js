@@ -10,7 +10,7 @@ if (container) {
             return res.json();
         })
         .then((data) => {
-            if (loader) loader.style.display = "none";
+            const imagePromises = []; // collect image load promises
 
             data.forEach((genData) => {
                 const wrapper = document.createElement("div");
@@ -33,38 +33,45 @@ if (container) {
                     const imgTd = document.createElement("td");
                     const img = document.createElement("img");
                     const imagePath = `../../resrc/images/members/${member.image}`;
-                    fetch(imagePath, { method: "HEAD" })
-                        .then((res) => {
-                            if (res.ok) {
-                                img.src = imagePath;
-                            } else {
+
+                    // promise for image load
+                    const imgPromise = new Promise((resolve) => {
+                        fetch(imagePath, { method: "HEAD" })
+                            .then((res) => {
+                                img.src = res.ok ? imagePath : "../../resrc/images/members/person.webp";
+                            })
+                            .catch(() => {
                                 img.src = "../../resrc/images/members/person.webp";
-                            }
-                        });
+                            })
+                            .finally(() => {
+                                img.onload = resolve;
+                                img.onerror = resolve; // resolve even if error, so loader hides
+                            });
+                    });
+
+                    imagePromises.push(imgPromise);
 
                     img.alt = "";
                     img.className = "same";
                     img.style.cursor = "pointer";
 
-                    // Open modal on image click
+                    // modal click
                     img.addEventListener("click", () => {
                         document.querySelector("section").classList.add("modal-active");
                         document.getElementById("image-modal").style.display = "flex";
                         document.getElementById("modal-image").src = img.src;
                         document.getElementById("modal-title").textContent = `Name: ${member.name}`;
                         document.getElementById("modal-position").textContent = `Position: ${member.role}`;
-                        //only last 4 digits of year
                         document.getElementById("modal-batch").textContent = `Batch: ${genData.year.slice(-4)}`;
 
                         const socials = document.getElementById("modal-socials");
                         socials.innerHTML = "";
-
                         if (member.instagram)
                             socials.innerHTML += `<a href="${member.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>`;
                         if (member.linkedin)
                             socials.innerHTML += `<a href="${member.linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>`;
                         if (member.email)
-                            socials.innerHTML += `<a href="${member.email}" target="_blank"><i class="far fa-envelope"></i></a>`;
+                            socials.innerHTML += `<a href="mailto:${member.email}" target="_blank"><i class="far fa-envelope"></i></a>`;
                         if (member.github)
                             socials.innerHTML += `<a href="${member.github}" target="_blank"><i class="fab fa-github"></i></a>`;
                         if (member.website)
@@ -95,6 +102,11 @@ if (container) {
 
                 container.appendChild(wrapper);
             });
+
+            // hide loader only after all images are done
+            Promise.all(imagePromises).then(() => {
+                if (loader) loader.style.display = "none";
+            });
         })
         .catch((err) => {
             if (loader) loader.textContent = "Failed to load alumni data.";
@@ -109,7 +121,7 @@ if (container) {
 
     window.addEventListener("click", (e) => {
         if (e.target.id === "image-modal") {
-        document.querySelector("section").classList.remove("modal-active");
+            document.querySelector("section").classList.remove("modal-active");
             document.getElementById("image-modal").style.display = "none";
         }
     });
