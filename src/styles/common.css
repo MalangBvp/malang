@@ -273,8 +273,8 @@ details ul li {
 }
 
 #live{
-    color: gold;
-    border: 1px solid rgba(255, 217, 0, 0.456);
+    color: rgb(218, 185, 0);
+    border: 1px solid rgba(198, 168, 0, 0.456);
     background-color: rgba(255, 217, 0, 0.159);
     border-radius: 20px;
     padding: 2px 5px;

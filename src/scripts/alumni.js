@@ -2,7 +2,7 @@ const container = document.getElementById("members");
 const loader = document.getElementById("loader");
 
 if (container) {
-    if (loader) loader.style.display = "block";
+    if (loader) loader.style.display = "flex";
 
     fetch("../../resrc/data/alumni.json")
         .then((res) => {
@@ -10,7 +10,20 @@ if (container) {
             return res.json();
         })
         .then((data) => {
-            const imagePromises = []; // collect image load promises
+            const imagePromises = []; // collect all image load promises here
+
+            // helper for loading with fallback
+            function loadImageWithFallback(img, primarySrc, fallbackSrc) {
+                return new Promise((resolve) => {
+                    img.onload = () => resolve();
+                    img.onerror = () => {
+                        img.onerror = () => resolve(); // fallback loaded or failed
+                        img.onload = () => resolve();
+                        img.src = fallbackSrc;
+                    };
+                    img.src = primarySrc;
+                });
+            }
 
             data.forEach((genData) => {
                 const wrapper = document.createElement("div");
@@ -32,24 +45,12 @@ if (container) {
                 genData.members.forEach((member) => {
                     const imgTd = document.createElement("td");
                     const img = document.createElement("img");
+
                     const imagePath = `../../resrc/images/members/${member.image}`;
+                    const fallbackPath = "../../resrc/images/members/person.webp";
 
-                    // promise for image load
-                    const imgPromise = new Promise((resolve) => {
-                        fetch(imagePath, { method: "HEAD" })
-                            .then((res) => {
-                                img.src = res.ok ? imagePath : "../../resrc/images/members/person.webp";
-                            })
-                            .catch(() => {
-                                img.src = "../../resrc/images/members/person.webp";
-                            })
-                            .finally(() => {
-                                img.onload = resolve;
-                                img.onerror = resolve; // resolve even if error, so loader hides
-                            });
-                    });
-
-                    imagePromises.push(imgPromise);
+                    // track this image promise
+                    imagePromises.push(loadImageWithFallback(img, imagePath, fallbackPath));
 
                     img.alt = "";
                     img.className = "same";
@@ -103,26 +104,31 @@ if (container) {
                 container.appendChild(wrapper);
             });
 
-            // hide loader only after all images are done
-            Promise.all(imagePromises).then(() => {
-                if (loader) loader.style.display = "none";
+            // hide loader only after ALL images are loaded (including fallbacks)
+            Promise.all(imagePromises)
+                .then(() => {
+                    if (loader) loader.style.display = "none";
+                })
+                .catch((err) => {
+                    if (loader) loader.textContent = "Failed to load alumni data.";
+                    console.error("Alumni data load error:", err);
+                });
+
+            // Modal close
+            document.querySelector(".modal-close")?.addEventListener("click", () => {
+                document.querySelector("section").classList.remove("modal-active");
+                document.getElementById("image-modal").style.display = "none";
+            });
+
+            window.addEventListener("click", (e) => {
+                if (e.target.id === "image-modal") {
+                    document.querySelector("section").classList.remove("modal-active");
+                    document.getElementById("image-modal").style.display = "none";
+                }
             });
         })
         .catch((err) => {
             if (loader) loader.textContent = "Failed to load alumni data.";
             console.error("Alumni data load error:", err);
         });
-
-    // Modal close
-    document.querySelector(".modal-close")?.addEventListener("click", () => {
-        document.querySelector("section").classList.remove("modal-active");
-        document.getElementById("image-modal").style.display = "none";
-    });
-
-    window.addEventListener("click", (e) => {
-        if (e.target.id === "image-modal") {
-            document.querySelector("section").classList.remove("modal-active");
-            document.getElementById("image-modal").style.display = "none";
-        }
-    });
 }
