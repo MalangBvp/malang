@@ -47,7 +47,7 @@ if (container) {
                     const img = document.createElement("img");
 
                     const imagePath = `../../resrc/images/members/${member.image}`;
-                    const fallbackPath = "../../resrc/images/members/person.webp";
+                    const fallbackPath = "../../resrc/images/members/person.png";
 
                     // track this image promise
                     imagePromises.push(loadImageWithFallback(img, imagePath, fallbackPath));

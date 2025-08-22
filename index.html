@@ -16,146 +16,43 @@
 <body>
     <div data-include="/src/components/nav.html"></div>
     <section id="home">
-        <div id="landingWindow">
-            <div id="infoContainer">
-                <p id="malangTitle"><img src="resrc/images/misc/favicon.webp" class="icon-small">Fine Arts & Photography
-                    Club
-                </p>
-                <h1 id="tagline">For the <span id="kalakaar">Kalakaar</span> in you!</h1>
-                <div id="landingButtons">
-                    <button
-                        onclick="showAlert('PWA Installation', 'Install our app for faster access, offline support and a smoother experience.', 'Install')">Install</button>
-                    <button onclick="window.open('src/pages/recruitments.html','_blank')">Join
-                        Us</button>
-                </div>
-                <p id="scroll-down" onclick="scrollIntoView('sponsors')">Scroll Down<br>▾</p>
-            </div>
+        <div id="landingCanvas">
+            <img src="/resrc/images/misc/favicon.webp" alt="">
         </div>
-
-        <div class="sponsors">
-            <div class="sponsor-slider">
-                <div class="sponsor-track">
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-
-                    <!-- Clones for seamless loop -->
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-
-                    <!-- Clones for seamless loop -->
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-
-                    <!-- Clones for seamless loop -->
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-                </div>
-                <div class="sponsor-slide" id="malang-sponsor"><img src="resrc/images/misc/malang.webp" alt="">
-                    <p>Our Partners</p>
-                </div>
-
-                <div class="sponsor-track" id="reverse">
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-
-                    <!-- Clones for seamless loop -->
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-
-                    <!-- Clones for seamless loop -->
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-
-                    <!-- Clones for seamless loop -->
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
+        <div class="pageContents">
+            <div id="landingWindow">
+                <div id="infoContainer">
+                    <p id="malangTitle"><img src="resrc/images/misc/favicon.webp" class="icon-small">Fine Arts &
+                        Photography
+                        Club
+                    </p>
+                    <h1 id="tagline">For the <span id="kalakaar">Kalakaar</span> in you!</h1>
+                    <div id="landingButtons">
+                        <button>Contact Us</button>
+                        <button onclick="window.open('src/pages/recruitments.html','_blank')">Join
+                            Us</button>
+                    </div>
+                    <p id="scroll-down" onclick="scrollIntoView('sponsors')">Scroll Down<br>▾</p>
                 </div>
             </div>
-
-            <div class="sponsor-slider">
-                <div class="sponsor-track" id="third">
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-
-                    <!-- Clones for seamless loop -->
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-
-                    <!-- Clones for seamless loop -->
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-
-                    <!-- Clones for seamless loop -->
-                    <div class="sponsor-slide"><img src="resrc/images/misc/gstudios.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/hashtag.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/vlcc.webp"></div>
-                    <div class="sponsor-slide"><img src="resrc/images/misc/lakme.webp"></div>
+            <h1>Our Partners</h1>
+            <div class="sponsor-container">
+                <div class="fade-left"></div>
+                <div class="sponsor-track" id="track">
+                    <img src="/resrc/images/misc/gstudios.webp" alt="G Studios">
+                    <img src="/resrc/images/misc/vlcc.webp" alt="VLCC">
+                    <img src="/resrc/images/misc/lakme.webp" alt="Lakme Academy">
+                    <img src="/resrc/images/misc/hashtag.webp" alt="Team Hashtag">
                 </div>
+                <div class="fade-right"></div>
             </div>
-        </div>
-        <h2 id="contact">Get in Touch</h2>
-        <div id="contactContainer">
-            <iframe
+            <!--<iframe
                 src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1420.3396170967549!2d73.85497404867984!3d18.45817706951367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTjCsDI3JzMwLjIiTiA3M8KwNTEnMjAuMiJF!5e0!3m2!1sen!2sin!4v1752632729565!5m2!1sen!2sin"
-                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="map"></iframe>
-            <form action="" id="contactForm">
-                <input type="text" id="name" placeholder="Your Name" required>
-                <input type="email" id="email" placeholder="Your Email" required>
-                <textarea id="message" placeholder="Your Message" required></textarea>
-                <button type="submit" id="sendMessage" class="long-btn"
-                    onclick="handleButtonAction('sendMessage', 'Sending' , 'Sent' , () => vibrate())">Send
-                    Message</button>
-            </form>
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="map"></iframe>-->
         </div>
-        <div data-include="src/components/footer.html"></div>
-        <img src="https://api.visitorbadge.io/api/visitors?path=multiverseweb2%2malang%20&countColor=%23263759&style=flat"
-            alt="" id="visitors">
+            <div data-include="src/components/footer.html"></div>
+            <img src="https://api.visitorbadge.io/api/visitors?path=multiverseweb2%2malang%20&countColor=%23263759&style=flat"
+                alt="" id="visitors">
     </section>
 
     <script src="src/scripts/common.js"></script>

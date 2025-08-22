@@ -106,9 +106,8 @@ h1 {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    border: 3px solid rgb(226, 226, 226);
-    border-top-color: transparent;
-    border-right-color: transparent;
+    border: 2px solid rgb(172, 172, 172);
+    border-top-color: rgb(22, 22, 22);
     animation: loader 1s linear infinite;
 }
 @keyframes loader {
@@ -149,26 +148,36 @@ header {
 #headerButtons {
     display: flex;
 }
-#headerButtons button img{
-    padding-top: 0;
-    margin: 0;
+#headerButtons button{
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    z-index: 200;
+    width: 30px;
+    height: 30px;
+    margin: 0 3px;
+}
+#headerButtons button img {
+    width: 15px;
+    height: 15px;
+    filter: brightness(0) invert(0.7);
+    padding-top: 3px;
 }
 
 .burger {
     width: 30px;
     height: 30px;
-    border: 1px solid rgb(80, 80, 80);
+    border: 1px solid rgb(50, 50, 50);
     border-radius: 7px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     padding: 7px 0;
-    margin: 5px;
     box-sizing: border-box;
 }
 
-.burger:hover {
+#headerButtons button:hover {
     background-color: rgba(80, 80, 80, 0.223);
 }
 
@@ -179,11 +188,7 @@ header {
 }
 
 #burger {
-    background-color: transparent;
     border: none;
-    cursor: pointer;
-    position: relative;
-    z-index: 200;
 }
 
 nav {
@@ -411,6 +416,8 @@ form h3 {
     width: calc(100vw - 50px);
     margin-bottom: -40px;
     padding: 40px 25px;
+    position: relative;
+    z-index: 20;
 }
 
 .footer-container {

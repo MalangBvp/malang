@@ -1,12 +1,27 @@
+const track = document.getElementById("track");
+track.innerHTML += track.innerHTML;
+track.innerHTML += track.innerHTML;
 
-function searchContent() {
-  let input = document.getElementById("searchInput").value.toLowerCase();
-  let items = document.querySelectorAll("#contentList li");
-  
-  items.forEach(item => {
-    item.style.display = item.textContent.toLowerCase().includes(input) ? "" : "none";
-  });
+
+var i = 0;
+var stars = document.getElementById("landingCanvas");
+//-----------------------------------------------------------number of stars
+for (i = 0; i < 200; i++) {
+  let star = document.createElement('div');
+  star.classList.add("star");
+
+  let size = Math.random() * 2 + 1;
+  //--------------------------------------------------------------------------
+  const _width = stars.scrollWidth - 2;
+  star.style.top = Math.random() * (stars.scrollHeight - 60) + "px";
+  star.style.left = Math.random() * _width + "px";
+  star.style.width = size + "px";
+  star.style.height = size + "px";
+  //--------------------------------------------------------------------------
+
+  let delayValue = Math.random() * 4;
+
+  star.style.animationDelay = delayValue + "s";
+
+  stars.appendChild(star);
 }
-
-
-

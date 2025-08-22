@@ -91,13 +91,13 @@ function bindFilterEvents() {
 }
 
 function getImages(mode) {
-    const total = mode === 'artworks' ? 10 : 20; // Set different totals for artworks and photographs
+    const total = mode === 'artworks' ? 10 : 6; // Set different totals for artworks and photographs
 
     return Array.from({ length: total }, (_, i) => {
         const imageId = (i).toString();
         const src = mode === 'artworks'
-            ? `../../resrc/images/artworks/${imageId}.webp`
-            : `https://picsum.photos/300/300?random=${imageId}`;
+            ? `/resrc/images/artworks/${imageId}.webp`
+            : `/resrc/images/photographs/${imageId}.webp`;
 
         const meta = imageMeta[imageId] || {};
         const type = (meta.type || 'unknown').replace(/\s+/g, '-');

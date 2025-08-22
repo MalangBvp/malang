@@ -2,11 +2,11 @@
     "0": {
         "title": "Milky Way",
         "artist": "Tejas Gupta",
-        "type": "Street"
+        "type": "Space"
     },
     "1": {
         "title": "Cute Polar Bear",
-        "artist": "Tejas Gupta",
+        "artist": "Goutam Sahu",
         "type": "Animals"
     },
     "2": {
@@ -23,5 +23,10 @@
         "title": "Bee",
         "artist": "Prasun Ratan",
         "type": "Macro"
+    },
+    "5": {
+        "title": "Nebula",
+        "artist": "Tejas Gupta",
+        "type": "Space"
     }
 }
