@@ -66,6 +66,7 @@
 │   │   │   ├── 25-3.webp
 │   │   │   ├── 25-4.webp
 │   │   │   ├── 25-5.webp
+│   │   │   ├── person.png
 │   │   │   └── person.webp
 │   │   ├── misc/
 │   │   │   ├── favicon.webp
@@ -74,7 +75,6 @@
 │   │   │   ├── lakme.webp
 │   │   │   ├── malang.webp
 │   │   │   ├── payment-qr.webp
-│   │   │   ├── signature.webp
 │   │   │   ├── team.webp
 │   │   │   └── vlcc.webp
 │   │   └── photographs/
