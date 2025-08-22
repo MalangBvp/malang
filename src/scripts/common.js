@@ -40,7 +40,6 @@ setTimeout(() => {
     }
     burgerButton.addEventListener("click", toggleMenu);
 
-    window.addEventListener("DOMContentLoaded", () => applyTheme());
     document.getElementById("theme").addEventListener("click", () => {
         vibrate();
         applyTheme(true);
@@ -92,6 +91,7 @@ function applyTheme(toggle = false) {
             : "/resrc/images/icons/sun.webp";
     }
 }
+window.addEventListener("DOMContentLoaded", () => applyTheme());
 //=======================================================================common button behavior
 function handleButtonAction(buttonId, loaderText, successText, taskFunction, errorText = "Failed") {
     const button = document.getElementById(buttonId);

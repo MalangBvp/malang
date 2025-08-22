@@ -1,6 +1,6 @@
 let eventsData = [];
 let currentIndex = 0;
-const batchSize = 10;
+const batchSize = 6;
 
 document.addEventListener("DOMContentLoaded", () => {
   const lastDiv = document.getElementById("last");

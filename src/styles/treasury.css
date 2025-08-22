@@ -62,12 +62,6 @@ canvas {
 .info code{
     font-size: smaller;
 }
-.signature{
-    margin-top: 10px;
-    filter: invert(1);
-    height: 30px;
-    display: block;
-}
 
 #done{
     display: none;

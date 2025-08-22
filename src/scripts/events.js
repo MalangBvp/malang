@@ -5,45 +5,57 @@ document.addEventListener("DOMContentLoaded", () => {
       const container = document.querySelector(".events-list");
       const fragment = document.createDocumentFragment();
 
-      events.forEach(event => {
-  const div = document.createElement("div");
-  div.className = "event";
+      if (!events || events.length === 0) {
+        const msg = document.createElement("p");
+        msg.className = "no-events";
+        msg.textContent = "There are no live or upcoming events at the moment. Stay tuned for future updates!";
+        msg.style.textAlign = "center";
+        msg.style.fontStyle = "italic";
+        msg.style.margin = "40px auto";
+        msg.style.width = "calc(100vw - 20px)";
+        msg.style.maxWidth = "1000px";
+        container.appendChild(msg);
+      } else {
+        events.forEach(event => {
+          const div = document.createElement("div");
+          div.className = "event";
 
-  div.innerHTML = `
-    <p class="event-name">${event.name}</p>
-    <div class="event-info">
-      <p class="event-date">${event.date}</p>
-      <p class="event-location">${event.location}</p>
-    </div>
-    <img src="${event.image}" alt="${event.name}" loading="lazy" class="event-image same" />
-    <p class="event-description">${event.description}</p>
-    <div class="event-buttons">
-      ${event.buttons.map(btn => {
-        if (btn.alertMessage) {
-          return `
-            <button class="long-btn${btn.focus ? ' focus' : ''}" onclick="showAlert('${event.name}', '${btn.alertMessage}', 'OK')">
-              ${btn.text}
-            </button>
+          div.innerHTML = `
+            <p class="event-name">${event.name}</p>
+            <div class="event-info">
+              <p class="event-date">${event.date}</p>
+              <p class="event-location">${event.location}</p>
+            </div>
+            <img src="${event.image}" alt="${event.name}" loading="lazy" class="event-image same" />
+            <p class="event-description">${event.description}</p>
+            <div class="event-buttons">
+              ${event.buttons.map(btn => {
+            if (btn.alertMessage) {
+              return `
+                    <button class="long-btn${btn.focus ? ' focus' : ''}" onclick="showAlert('${event.name}', '${btn.alertMessage}', 'OK')">
+                      ${btn.text}
+                    </button>
+                  `;
+            } else if (btn.link) {
+              return `
+                    <button class="long-btn${btn.focus ? ' focus' : ''}" onclick="window.open('${btn.link}','_blank')">
+                      ${btn.text}
+                    </button>
+                  `;
+            } else {
+              return '';
+            }
+          }).join('')}
+            </div>
           `;
-        } else if (btn.link) {
-          return `
-            <button class="long-btn${btn.focus ? ' focus' : ''}" onclick="window.open('${btn.link}','_blank')">
-              ${btn.text}
-            </button>
-          `;
-        } else {
-          return '';
-        }
-      }).join('')}
-    </div>
-  `;
 
-  fragment.appendChild(div);
-});
+          fragment.appendChild(div);
+        });
 
+        container.appendChild(fragment);
+      }
 
-      container.appendChild(fragment);
-    document.getElementById("loader").style.display = "none";
+      document.getElementById("loader").style.display = "none";
     })
     .catch(error => {
       console.error("Failed to load events.json:", error);
@@ -52,6 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 calendar.addEventListener('load', () => {
-    document.getElementById('loaderWave').style.display = 'none';
-    calendar.style.display = 'block';
+  document.getElementById('loaderWave').style.display = 'none';
+  calendar.style.display = 'block';
 });

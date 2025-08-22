@@ -12,7 +12,7 @@ html {
 }
 
 .loading {
-    filter: brightness(0) invert(1);
+    filter: brightness(0) invert(0.4);
     background-image: url(/resrc/images/icons/loading.gif);
     background-size: 30%;
     background-repeat: no-repeat;
@@ -23,21 +23,6 @@ html {
 header {
     transition: background-color 0.3s ease;
 }
-
-header.top {
-    background-color: transparent;
-    border-bottom: none;
-}
-
-.top div.burger {
-    border: 1px solid rgba(255, 255, 255, 0.589);
-    background-color: #ffffff0f;
-}
-
-.top div.burger span {
-    background-color: white;
-}
-
 #visitors {
     display: none;
 }
@@ -62,7 +47,7 @@ header.top {
     gap: 10px;
 }
 
-#malang {
+#malangTitle {
     padding: 5px 10px;
     border: 1px solid rgb(50, 50, 50);
     border-radius: 10px;
