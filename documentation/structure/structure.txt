@@ -49,6 +49,7 @@
 │   │   │   ├── night-mode.webp
 │   │   │   ├── prize.webp
 │   │   │   ├── project.webp
+│   │   │   ├── search.png
 │   │   │   ├── store.webp
 │   │   │   ├── sun.webp
 │   │   │   └── tick.webp
