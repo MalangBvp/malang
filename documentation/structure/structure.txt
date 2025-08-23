@@ -53,7 +53,8 @@
 │   │   │   ├── search.png
 │   │   │   ├── store.webp
 │   │   │   ├── sun.webp
-│   │   │   └── tick.webp
+│   │   │   ├── tick.webp
+│   │   │   └── user.png
 │   │   ├── members/
 │   │   │   ├── 24-1.webp
 │   │   │   ├── 24-2.webp
