@@ -1,5 +1,5 @@
 (() => {
-    const form = document.getElementById('coreForm') || document.getElementById('redirectorForm') || document.getElementById('loginForm');
+    const form = document.getElementById('coreForm') || document.getElementById('redirectorForm');
     const passwordInput = document.getElementById('password');
 
     let encoded = '';
@@ -21,10 +21,6 @@
                     document.getElementById('url').textContent = postfix.value;
                 });
                 break;
-            case 'loginForm':
-                encoded = 'cGFzc3dvcmQ='
-                url = 'account.html';
-                break;
             default:
                 console.error('Unknown form ID');
                 return;
@@ -32,7 +28,7 @@
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-
+            
             const input = passwordInput.value;
             const b64 = btoa(input);
 

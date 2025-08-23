@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 });
 
-
 setTimeout(() => {
     document.getElementById('year').textContent = new Date().getFullYear();
     const burgerButton = document.getElementById("burger");
@@ -91,7 +90,21 @@ function applyTheme(toggle = false) {
             : "/resrc/images/icons/sun.webp";
     }
 }
+
+function toggleRestricted() {
+    const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+    document.querySelectorAll(".restricted").forEach(el => {
+        el.style.display = isLoggedIn ? "block" : "none";
+    });
+    accountLogin = document.getElementById("loginForm");
+    if(accountLogin) {
+        document.getElementById("loginBtn").style.display = isLoggedIn ? "none" : "inline-block";
+        document.getElementById("logoutBtn").style.display = isLoggedIn ? "inline-block" : "none";
+    }
+}
+
 window.addEventListener("DOMContentLoaded", () => applyTheme());
+window.addEventListener("DOMContentLoaded", () => toggleRestricted());
 //=======================================================================common button behavior
 function handleButtonAction(buttonId, loaderText, successText, taskFunction, errorText = "Failed") {
     const button = document.getElementById(buttonId);

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  fetch('../../resrc/data/events.json')
+  fetch('/resrc/data/events.json')
     .then(response => response.json())
     .then(events => {
       const container = document.querySelector(".events-list");

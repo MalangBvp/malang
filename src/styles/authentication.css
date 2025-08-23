@@ -2,7 +2,7 @@ section{
     margin-top: 0px;
 }
 
-#coreForm, #redirectorForm, #billForm {
+#coreForm, #redirectorForm, #billForm, #loginForm {
     transform: translate(-50%, -50%);
     position: absolute;
     top:50vh;

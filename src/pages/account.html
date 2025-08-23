@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../resrc/images/misc/favicon.webp" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/authentication.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Malang | Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+        import {
+            getAuth,
+            GoogleAuthProvider,
+            signInWithPopup,
+            signOut,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD20pmHMSjDirK1CFEz1EIrUJWwqbVLev4",
+            authDomain: "malang-auth.firebaseapp.com",
+            projectId: "malang-auth",
+            storageBucket: "malang-auth.firebasestorage.app",
+            messagingSenderId: "522245850115",
+            appId: "1:522245850115:web:f8a69e1e021222fa997a36",
+            measurementId: "G-GHFQ1YG8WZ"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        const allowedEmails = ["malangbvp@gmail.com", "iamtejasgupta26@gmail.com"];
+
+        async function login() {
+            try {
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+
+                if (allowedEmails.includes(user.email)) {
+                    vibrate(50);
+                    document.getElementById("status").innerText = `✅ Welcome ${user.displayName}!`;
+                    localStorage.setItem("loggedIn", "true");
+                    toggleRestricted();
+                } else {
+                    vibrate(200);
+                    showAlert("🚫", "You are not authorized to access Malang members-only area.", "OK");
+                    await signOut(auth);
+                    localStorage.setItem("loggedIn", "false");
+                    toggleRestricted();
+                }
+            } catch (error) {
+                vibrate(50);
+                showAlert("Login failed", error, "OK");
+            }
+        }
+
+        async function logout() {
+            await signOut(auth);
+            document.getElementById("status").innerText = "Signed out";
+            const profilePic = document.getElementById("profilePic");
+            profilePic.classList.remove("profile-pic");
+            profilePic.src = "/resrc/images/icons/members.webp";
+            localStorage.setItem("loggedIn", "false");
+            toggleRestricted();
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user && allowedEmails.includes(user.email)) {
+                document.getElementById("status").innerText = `Welcome ${user.displayName}!`;
+                profilePic.src = user.photoURL;
+                profilePic.classList.add("profile-pic");
+                localStorage.setItem("loggedIn", "true");
+            } else {
+                document.getElementById("status").innerText = "Authentication Required.";
+                profilePic.classList.remove("profile-pic");
+                localStorage.setItem("loggedIn", "false");
+            }
+            toggleRestricted();
+        });
+
+        window.login = login;
+        window.logout = logout;
+
+        // Run on page load
+        toggleRestricted();
+    </script>
+</head>
+
+<body>
+    <div data-include="../components/nav.html"></div>
+    <section>
+        <canvas id="gradientCanvas"></canvas>
+        <div id="loginForm">
+            <h3 id="status">Authentication Required</h3>
+            <div class="restricted">
+                <p>You can now perform member-only actions.</p>
+            </div>
+            <button id="loginBtn" class="long-btn" onclick="login()" style="position: relative;"><img
+                    src="/resrc/images/icons/google.png" alt="" id="google"
+                    style="height: 25px; position: absolute; left: 10px; top:6px;">Sign in with Google</button>
+            <button id="logoutBtn" class="long-btn" onclick="logout()">Sign out</button>
+        </div>
+    </section>
+    <script src="../scripts/common.js"></script>
+    <script src="../scripts/authentication.js"></script>
+</body>
+
+</html>

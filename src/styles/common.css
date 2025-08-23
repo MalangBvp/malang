@@ -161,7 +161,7 @@ header {
     width: 15px;
     height: 15px;
     filter: brightness(0) invert(0.7);
-    padding-top: 3px;
+    margin-top: 3px;
 }
 
 .burger {
@@ -189,6 +189,16 @@ header {
 
 #burger {
     border: none;
+}
+.restricted {
+    display: none;
+}
+.profile-pic {
+    border-radius: 6px;
+    margin: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+    filter: none !important;
 }
 
 nav {
@@ -339,7 +349,7 @@ details ul li {
 .nav-bottom p{
     margin-top: 10px;
 }
-form {
+form, #loginForm {
     display: flex;
     flex-direction: column;
     justify-content: center;

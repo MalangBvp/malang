@@ -6,6 +6,9 @@
     <button>
         <img src="/resrc/images/icons/search.png">
     </button>
+    <button onclick="window.location.href='/src/pages/account.html'">
+        <img src="/resrc/images/icons/members.webp" id="profilePic">
+    </button>
     <button id="burger" class="loading">
         <div class="burger">
             <span></span>
@@ -53,8 +56,8 @@
                 <li><a href="/src/pages/privacy-policy.html">Privacy Policy</a></li>
             </ul>
         </details>
-        <details>
-            <summary><img src="/resrc/images/icons/admin.webp" alt="" class="icon-small">Control Panel</summary>
+        <details class="restricted">
+            <summary><img src="/resrc/images/icons/admin.webp" alt="" class="icon-small">Member Actions</summary>
             <ul>
                 <li><a href="/src/pages/claims.html">Claims</a></li>
                 <li><a href="/src/pages/authentication.html">Treasury</a></li>
