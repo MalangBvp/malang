@@ -42,6 +42,7 @@
 │   │   │   ├── down.webp
 │   │   │   ├── download.webp
 │   │   │   ├── events.webp
+│   │   │   ├── google.png
 │   │   │   ├── home.webp
 │   │   │   ├── link.webp
 │   │   │   ├── loading.gif
@@ -91,6 +92,7 @@
 │   │   ├── footer.html
 │   │   └── nav.html
 │   ├── pages/
+│   │   ├── account.html
 │   │   ├── alumni.html
 │   │   ├── aruco.html
 │   │   ├── authentication.html
