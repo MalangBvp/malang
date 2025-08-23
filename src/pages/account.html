@@ -51,7 +51,7 @@
                     toggleRestricted();
                 } else {
                     vibrate(200);
-                    showAlert("🚫", "You are not authorized to access Malang members-only area.", "OK");
+                    showAlert("Unauthorised Access Attempt.", "Login restricted: Membership with Malang is required.", "Close");
                     await signOut(auth);
                     localStorage.setItem("loggedIn", "false");
                     toggleRestricted();
