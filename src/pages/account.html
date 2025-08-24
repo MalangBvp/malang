@@ -46,7 +46,7 @@
 
                 if (allowedEmails.includes(user.email)) {
                     vibrate(50);
-                    document.getElementById("status").innerText = `✅ Welcome ${user.displayName}!`;
+                    document.getElementById("status").innerText = `Hey ${user.displayName}! 👋`;
                     localStorage.setItem("loggedIn", "true");
                     toggleRestricted();
                 } else {
@@ -101,7 +101,7 @@
         <div id="loginForm">
             <h3 id="status">Authentication Required</h3>
             <div class="restricted">
-                <p>You can now perform member-only actions.</p>
+                <p>You can now perform the following actions:</p>
             </div>
             <button id="loginBtn" class="long-btn" onclick="login()" style="position: relative;"><img
                     src="/resrc/images/icons/google.png" alt="" id="google"
