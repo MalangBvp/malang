@@ -251,12 +251,7 @@ summary {
 }
 
 nav hr{
-    width: calc(100% - 20px);
     max-width: 500px;
-    margin: 10px auto;
-    border: none;
-    border-top: 3px solid rgb(20,20,20);
-    background-color: none;
 }
 
 nav a:hover,
@@ -399,6 +394,14 @@ textarea:focus, select:focus {
 form h3 {
     margin-bottom: 20px;
     font-weight: 600;
+}
+
+hr{
+    width: calc(100% - 20px);
+    margin: 10px auto;
+    border: none;
+    border-top: 3px solid rgb(20,20,20);
+    background-color: none;
 }
 
 .long-btn {
