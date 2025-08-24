@@ -408,6 +408,7 @@ form h3 {
     width: 90%;
     max-width: 400px;
     font-size: 1rem;
+    text-decoration: none;
     background-color: #111;
     color: #fff;
     cursor: pointer;
