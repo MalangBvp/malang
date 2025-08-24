@@ -74,7 +74,7 @@
 
         onAuthStateChanged(auth, (user) => {
             if (user && allowedEmails.includes(user.email)) {
-                document.getElementById("status").innerText = `Welcome ${user.displayName}!`;
+                document.getElementById("status").innerText = `Hey ${user.displayName}! 👋`;
                 profilePic.src = user.photoURL;
                 profilePic.classList.add("profile-pic");
                 localStorage.setItem("loggedIn", "true");
