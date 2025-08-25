@@ -11,6 +11,7 @@
 ├── documentation/
 │   └── structure/
 │       └── structure.txt
+├── home.html
 ├── index.html
 ├── resrc/
 │   ├── data/
@@ -116,6 +117,7 @@
 │   │   ├── events.js
 │   │   ├── gallery.js
 │   │   ├── home.js
+│   │   ├── load.js
 │   │   ├── timeline.js
 │   │   └── treasury.js
 │   └── styles/
