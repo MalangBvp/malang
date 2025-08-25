@@ -51,7 +51,6 @@
 │   │   │   ├── night-mode.webp
 │   │   │   ├── prize.webp
 │   │   │   ├── project.webp
-│   │   │   ├── search.png
 │   │   │   ├── star.png
 │   │   │   ├── store.webp
 │   │   │   ├── sun.webp
