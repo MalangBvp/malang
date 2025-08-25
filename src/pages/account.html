@@ -37,7 +37,13 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        const allowedEmails = ["malangbvp@gmail.com", "iamtejasgupta26@gmail.com"];
+        const allowedEmails = [];
+        //fetch allowed emails from json file
+        fetch("/resrc/data/member-emails.json")
+            .then(response => response.json())
+            .then(data => {
+                allowedEmails.push(...data);
+            });
 
         async function login() {
             try {
@@ -99,7 +105,7 @@
     <section>
         <canvas id="gradientCanvas"></canvas>
         <div id="loginForm">
-            <h3 id="status">Authentication Required</h3>
+            <h3 id="status">Authentication Required.</h3>
             <div class="restricted">
                 <p>You can now access the following tools:</p>
                 <a class="long-btn" href="/src/pages/claims.html">Claims</a>

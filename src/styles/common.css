@@ -348,11 +348,11 @@ form, #loginForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 80%;
+    width: calc(100% - 60px);
     max-width: 700px;
     text-align: center;
     box-shadow: 0 0 10px black;
-    border: 1px solid #212121;
+    border: 1px solid #3e3e3e;
     backdrop-filter: blur(50px);
     padding: 20px;
     border-radius: 7px;
@@ -360,14 +360,18 @@ form, #loginForm {
 
 input,
 textarea, select {
+    width: calc(100% - 22px);
     padding: 10px;
-    border: 1px solid #3c3c3c;
+    border: 1px solid #4a4a4a;
     border-radius: 7px;
     background-color: #1a1a1aa1;
     color: white;
     font-family: "IBM Plex Sans", sans-serif;
 }
-
+select{
+    width: 100%;
+    color:#797979;
+}
 
 input[type="text"],
 input[type="email"],

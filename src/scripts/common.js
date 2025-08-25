@@ -96,6 +96,9 @@ function toggleRestricted() {
     document.querySelectorAll(".restricted").forEach(el => {
         el.style.display = isLoggedIn ? "block" : "none";
     });
+    document.querySelectorAll(".protected").forEach(el => {
+        el.style.display = isLoggedIn ? "none" : "flex";
+    });
     accountLogin = document.getElementById("loginForm");
     if(accountLogin) {
         document.getElementById("loginBtn").style.display = isLoggedIn ? "none" : "inline-block";
