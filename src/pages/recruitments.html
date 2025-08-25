@@ -39,7 +39,7 @@
         }
 
         .form-step.active {
-            min-height: calc(100vh - 200px);
+            min-height: calc(100vh - 250px);
             visibility: visible;
             opacity: 1;
         }
@@ -131,7 +131,8 @@
 <body>
     <div data-include="../components/nav.html"></div>
     <section class="recruitments">
-        <form id="recruitmentForm" onsubmit="handleButtonAction('register', 'Registering' , 'Registered' , () => handleFormSubmit(event))">
+        <form id="recruitmentForm"
+            onsubmit="handleButtonAction('register', 'Registering' , 'Registered' , () => handleFormSubmit(event))">
             <h3>Recruitments 2025</h3>
 
             <!-- Step 1 -->
@@ -189,7 +190,8 @@
                                 for="Marketing">Marketing</label>
                             <input type="checkbox" id="Other" name="skills" value="Other"><label
                                 for="Other">Other</label>
-                            <div class="other-input"><input type="text" id="other_text" name="other_text" placeholder="Please specify..."></div>
+                            <div class="other-input"><input type="text" id="other_text" name="other_text"
+                                    placeholder="Please specify... *"></div>
                         </div>
                     </div>
                 </div>
@@ -270,7 +272,8 @@
                 const json = await response.json();
 
                 if (json.result === "success") {
-                    showAlert("Registration successful!","You will receive further instructions via email.", "Yay!");
+                    showAlert("Registration successful!", "You will receive further instructions via email.", "Yay!");
+                    confetti();
                     form.reset();
                 } else {
                     showAlert("⚠️", json.message, "OK");
@@ -280,6 +283,134 @@
                 showAlert("❌ Something went wrong!", "Please try again later.", "OK");
             }
         }
+
+        (function () {
+            function rand(min, max) { return Math.random() * (max - min) + min; }
+
+            const COLORS = [
+                "#ff004f", "#ff7a00", "#ffd400", "#00e676", "#00b0ff", "#7c4dff",
+                "#ff1744", "#ffea00", "#00e5ff", "#69f0ae", "#b388ff", "#ff80ab"
+            ];
+
+            // Public API
+            window.confetti = function confetti(opts = {}) {
+                const {
+                    particleCount = 220,
+                    scalar = 1,
+                    gravity = 0.33,
+                    drift = 0.03,
+                    decay = 0.007,     // higher = faster fade
+                    spread = 70,       // degrees
+                    angle = -90,       // -90 = straight up
+                    origin = { x: 0.5, y: 0.7 }, // normalized viewport
+                    shapes = ["square", "circle", "triangle"]
+                } = opts;
+
+                // Canvas setup
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                const canvas = document.createElement("canvas");
+                const ctx = canvas.getContext("2d");
+                canvas.style.cssText = "position:fixed;inset:0;pointer-events:none;z-index:999999";
+                document.body.appendChild(canvas);
+
+                function resize() {
+                    canvas.width = innerWidth * dpr;
+                    canvas.height = innerHeight * dpr;
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                }
+                resize();
+                addEventListener("resize", resize);
+
+                // Particle factory
+                const angleRad = (angle * Math.PI) / 180;
+                const spreadRad = (spread * Math.PI) / 180;
+                const ox = innerWidth * origin.x;
+                const oy = innerHeight * origin.y;
+
+                const particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    const t = angleRad + rand(-spreadRad / 2, spreadRad / 2);
+                    const speed = rand(6, 12) * scalar;
+                    particles.push({
+                        x: ox, y: oy,
+                        vx: Math.cos(t) * speed + rand(-1, 1),
+                        vy: Math.sin(t) * speed + rand(-1, 1),
+                        w: rand(6, 12) * scalar,
+                        h: rand(6, 12) * scalar,
+                        r: rand(0, Math.PI * 2),
+                        rv: rand(-0.2, 0.2),
+                        color: COLORS[(Math.random() * COLORS.length) | 0],
+                        shape: shapes[(Math.random() * shapes.length) | 0],
+                        alpha: 1,
+                        life: rand(220, 340)
+                    });
+                }
+
+                let raf;
+                function drawShape(p) {
+                    ctx.fillStyle = p.color;
+                    switch (p.shape) {
+                        case "circle":
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, p.w * 0.6, 0, Math.PI * 2);
+                            ctx.fill();
+                            break;
+                        case "triangle":
+                            ctx.beginPath();
+                            ctx.moveTo(p.x + Math.cos(p.r) * p.w, p.y + Math.sin(p.r) * p.h);
+                            ctx.lineTo(p.x + Math.cos(p.r + 2.09) * p.w, p.y + Math.sin(p.r + 2.09) * p.h);
+                            ctx.lineTo(p.x + Math.cos(p.r + 4.18) * p.w, p.y + Math.sin(p.r + 4.18) * p.h);
+                            ctx.closePath();
+                            ctx.fill();
+                            break;
+                        default: // square/rect
+                            ctx.save();
+                            ctx.translate(p.x, p.y);
+                            ctx.rotate(p.r);
+                            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                            ctx.restore();
+                    }
+                }
+
+                function frame() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    let alive = 0;
+
+                    for (const p of particles) {
+                        p.x += p.vx + drift * (Math.random() - 0.5) * 20;
+                        p.y += p.vy += gravity; // gravity accelerates downward
+                        p.r += p.rv;
+                        p.life--;
+                        p.alpha = Math.max(0, p.alpha - decay);
+
+                        if (p.alpha > 0 && p.life > 0 && p.y < innerHeight + 40) {
+                            ctx.globalAlpha = p.alpha;
+                            drawShape(p);
+                            ctx.globalAlpha = 1;
+                            alive++;
+                        }
+                    }
+
+                    if (alive > 0) {
+                        raf = requestAnimationFrame(frame);
+                    } else {
+                        cleanup();
+                    }
+                }
+
+                function cleanup() {
+                    cancelAnimationFrame(raf);
+                    removeEventListener("resize", resize);
+                    canvas.remove();
+                }
+
+                raf = requestAnimationFrame(frame);
+
+                // Return a tiny controller in case you want to kill early
+                return { stop: cleanup, canvas };
+            };
+        })();
+
 
     </script>
 </body>

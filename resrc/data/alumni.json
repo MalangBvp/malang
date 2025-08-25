@@ -6,17 +6,20 @@
             {
                 "name": "Prasun Ratan",
                 "role": "Head",
-                "image": "26-1.webp"
+                "image": "26-1.webp",
+                "branch": "EnTC"
             },
             {
                 "name": "Goutam Sahu",
                 "role": "Co-Head",
-                "image": "26-1.webp"
+                "image": "26-1.webp",
+                "branch": "ECE"
             },
             {
                 "name": "Tejas Gupta",
                 "role": "Treasurer & Tech Head",
                 "image": "26-1.webp",
+                "branch": "CSBS",
                 "linkedin": "https://linkedin.com/in/tejascodes",
                 "email": "mailto:tejasgupta.work@gmail.com",
                 "github": "https://github.com/multiverseweb",
@@ -25,22 +28,26 @@
             {
                 "name": "Priya Ranjan",
                 "role": "PR & Sponsorship Head",
-                "image": "26-1.webp"
+                "image": "26-1.webp",
+                "branch": "EnTC"
             },
             {
                 "name": "Mohini Walia",
                 "role": "Media Head",
-                "image": "26-1.webp"
+                "image": "26-1.webp",
+                "branch": "CE"
             },
             {
                 "name": "Satyam Singh",
                 "role": "Creativity Head",
-                "image": "26-1.webp"
+                "image": "26-1.webp",
+                "branch": "EnTC"
             },
             {
                 "name": "Radhika Jadhav",
                 "role": "Photography Head",
-                "image": "26-1.webp"
+                "image": "26-1.webp",
+                "branch": "CSBS"
             }
         ]
     },
@@ -51,27 +58,32 @@
             {
                 "name": "Sachin Jha",
                 "role": "Head",
-                "image": "25-1.webp"
+                "image": "25-1.webp",
+                "branch": "ECE"
             },
             {
                 "name": "Aniket Jadhav",
                 "role": "Co-Head",
-                "image": "25-2.webp"
+                "image": "25-2.webp",
+                "branch": "EnTC"
             },
             {
                 "name": "Shambhavi Mishra",
                 "role": "Treasurer",
-                "image": "25-3.webp"
+                "image": "25-3.webp",
+                "branch": "R&A"
             },
             {
                 "name": "Vaishnavi Tyagi",
                 "role": "Sponsorship Head",
-                "image": "25-4.webp"
+                "image": "25-4.webp",
+                "branch": "EnTC"
             },
             {
                 "name": "Syed Ansharah Sultan",
                 "role": "Media Head",
-                "image": "25-5.webp"
+                "image": "25-5.webp",
+                "branch": "CE"
             }
         ]
     },
@@ -82,7 +94,8 @@
             {
                 "name": "RudraChandan Singh",
                 "role": "Head",
-                "image": "24-1.webp"
+                "image": "24-1.webp",
+                "branch": "IT"
             },
             {
                 "name": "Utkarsh Gupta",
@@ -92,12 +105,14 @@
             {
                 "name": "Sachin Jha",
                 "role": "Treasurer",
-                "image": "25-1.webp"
+                "image": "25-1.webp",
+                "branch": "ECE"
             },
             {
                 "name": "Aditya Kashyap",
                 "role": "Tech & Media Head",
-                "image": "24-4.webp"
+                "image": "24-4.webp",
+                "branch": "IT"
             },
             {
                 "name": "Tanisha Sinha",

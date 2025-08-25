@@ -32,36 +32,50 @@
             measurementId: "G-GHFQ1YG8WZ"
         };
 
+        // Firebase init
         const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
+        getAnalytics(app);
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        const allowedEmails = [];
-        //fetch allowed emails from json file
+        // Allowed emails
+        let allowedEmails = [];
         fetch("/resrc/data/member-emails.json")
-            .then(response => response.json())
-            .then(data => {
-                allowedEmails.push(...data);
-            });
+            .then(res => res.json())
+            .then(data => allowedEmails = data);
 
+        // Helpers
+        function updateUI(user) {
+            const status = document.getElementById("status");
+            const profilePic = document.getElementById("profilePic");
+
+            if (user && allowedEmails.includes(user.email)) {
+                showAlert("Login successful", "", "Close");
+                status.innerText = `Hey ${user.displayName}! 👋`;
+                profilePic.src = user.photoURL;
+                profilePic.classList.add("profile-pic");
+                localStorage.setItem("loggedIn", "true");
+            } else {
+                status.innerText = user ? "Unauthorised Access Attempt." : "Authentication Required.";
+                profilePic.src = "/resrc/images/icons/user.png";
+                profilePic.classList.remove("profile-pic");
+                localStorage.setItem("loggedIn", "false");
+            }
+            toggleRestricted();
+        }
+
+        // Auth functions
         async function login() {
             try {
-                const result = await signInWithPopup(auth, provider);
-                const user = result.user;
-
-                if (allowedEmails.includes(user.email)) {
-                    vibrate(50);
-                    document.getElementById("status").innerText = `Hey ${user.displayName}! 👋`;
-                    localStorage.setItem("loggedIn", "true");
-                    toggleRestricted();
-                } else {
+                const { user } = await signInWithPopup(auth, provider);
+                if (!allowedEmails.includes(user.email)) {
                     vibrate(200);
                     showAlert("Unauthorised Access Attempt.", "Login restricted: Membership with Malang is required.", "Close");
                     await signOut(auth);
-                    localStorage.setItem("loggedIn", "false");
-                    toggleRestricted();
+                } else {
+                    vibrate(50);
                 }
+                updateUI(user);
             } catch (error) {
                 vibrate(50);
                 showAlert("Login failed.", error, "OK");
@@ -70,33 +84,16 @@
 
         async function logout() {
             await signOut(auth);
-            document.getElementById("status").innerText = "Signed out";
-            const profilePic = document.getElementById("profilePic");
-            profilePic.classList.remove("profile-pic");
-            profilePic.src = "/resrc/images/icons/user.png";
-            localStorage.setItem("loggedIn", "false");
-            toggleRestricted();
+            updateUI(null);
         }
 
-        onAuthStateChanged(auth, (user) => {
-            if (user && allowedEmails.includes(user.email)) {
-                document.getElementById("status").innerText = `Hey ${user.displayName}! 👋`;
-                profilePic.src = user.photoURL;
-                profilePic.classList.add("profile-pic");
-                localStorage.setItem("loggedIn", "true");
-            } else {
-                document.getElementById("status").innerText = "Authentication Required.";
-                profilePic.classList.remove("profile-pic");
-                localStorage.setItem("loggedIn", "false");
-            }
-            toggleRestricted();
-        });
+        onAuthStateChanged(auth, updateUI);
 
         window.login = login;
         window.logout = logout;
 
-        // Run on page load
         toggleRestricted();
+
     </script>
 </head>
 

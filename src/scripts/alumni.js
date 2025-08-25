@@ -64,6 +64,7 @@ if (container) {
                         document.getElementById("modal-title").textContent = `Name: ${member.name}`;
                         document.getElementById("modal-position").textContent = `Position: ${member.role}`;
                         document.getElementById("modal-batch").textContent = `Batch: ${genData.year.slice(-4)}`;
+                        document.getElementById("modal-branch").textContent = `Branch: ${member.branch || "NA"}`;
 
                         const socials = document.getElementById("modal-socials");
                         socials.innerHTML = "";
