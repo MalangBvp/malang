@@ -50,7 +50,7 @@
             const profilePic = document.getElementById("profilePic");
 
             if (user && allowedEmails.includes(user.email)) {
-                showAlert("Login successful", "", "Close");
+                showAlert("Login successful", "", "Proceed");
                 status.innerText = `Hey ${user.displayName}! 👋`;
                 profilePic.src = user.photoURL;
                 profilePic.classList.add("profile-pic");

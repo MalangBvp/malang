@@ -243,38 +243,6 @@ html {
 }
 
 
-#contact {
-    text-align: center;
-    margin-top: 50px;
-}
-
-#contactContainer {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px;
-}
-
-#map {
-    width: calc(100vw - 40px);
-    height: 350px;
-    margin-top: 10px;
-    border-radius: 7px;
-    border: 1px solid rgb(227, 227, 227);
-    filter: grayscale(100%) invert(0.9) contrast(120%);
-    transition: filter 0.3s ease;
-}
-
-#map:hover {
-    filter: grayscale(0%) invert(0) contrast(100%);
-}
-
-#contactForm {
-    width: calc(100vw - 80px);
-    margin-top: 10px;
-}
-
 /* Animations */
 @keyframes sponsor-scroll-left {
     0% {

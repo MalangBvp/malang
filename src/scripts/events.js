@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         container.appendChild(fragment);
       }
+      applyTheme(false); // re-apply saved theme to newly added .same elements
 
       document.getElementById("loader").style.display = "none";
     })

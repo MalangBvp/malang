@@ -3,7 +3,6 @@ let currentIndex = 0;
 const batchSize = 6;
 
 document.addEventListener("DOMContentLoaded", () => {
-  const lastDiv = document.getElementById("last");
   const loader = document.getElementById("loader");
   const viewMoreBtn = document.getElementById("viewMoreBtn");
 
@@ -14,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loader.style.display = 'none';
       viewMoreBtn.style.display = 'block';
       loadNextBatch();
+      applyTheme(false); // re-apply saved theme to newly added .same elements
     })
     .catch(err => {
       console.error("Error loading events:", err);
