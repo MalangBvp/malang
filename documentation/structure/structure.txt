@@ -18,6 +18,7 @@
 │   │   ├── artworks.json
 │   │   ├── aruco.json
 │   │   ├── events.json
+│   │   ├── member-emails.json
 │   │   ├── photographs.json
 │   │   ├── timeline.json
 │   │   └── treasury.json
@@ -51,6 +52,7 @@
 │   │   │   ├── prize.webp
 │   │   │   ├── project.webp
 │   │   │   ├── search.png
+│   │   │   ├── star.png
 │   │   │   ├── store.webp
 │   │   │   ├── sun.webp
 │   │   │   ├── tick.webp
@@ -126,8 +128,7 @@
 │       ├── events.css
 │       ├── gallery.css
 │       ├── home.css
-│       ├── timeline.css
-│       └── treasury.css
+│       └── timeline.css
 └── variables/
     ├── last-updated.txt
     └── utils.json
