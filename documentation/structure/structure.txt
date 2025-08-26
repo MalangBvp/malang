@@ -94,7 +94,6 @@
 ├── src/
 │   ├── components/
 │   │   ├── footer.html
-│   │   ├── home_nav.html
 │   │   └── nav.html
 │   ├── pages/
 │   │   ├── account.html
