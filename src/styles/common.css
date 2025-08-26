@@ -227,7 +227,7 @@ header {
 nav {
     gap: 10px;
     position: fixed;
-    top: 61px;
+    top: 60px;
     width: 100vw;
     height: calc(100% - 60px);
     padding: 2px 0 120px;
