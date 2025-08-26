@@ -1,5 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../resrc/images/misc/favicon.webp" type="image/x-icon">
     <link rel="stylesheet" href="../styles/common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Malang | Recruitments</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         .recruitments {
@@ -7,8 +16,10 @@
         }
 
         #recruitmentForm {
+            min-height: max-content;
             width: calc(100% - 40px);
             margin: auto;
+            margin-top: 60px;
         }
 
         #recruitmentForm p {
@@ -29,7 +40,7 @@
         }
 
         .form-step.active {
-            min-height: calc(100vh - 120px);
+            min-height: calc(100vh - 180px);
             visibility: visible;
             opacity: 1;
         }
@@ -43,7 +54,6 @@
             border-radius: 10px;
             background-color: #1a1a1aa1;
             margin: auto;
-            margin-bottom: 10px;
         }
 
         .checkbox-group {
@@ -80,7 +90,7 @@
         .other-input {
             max-height: 0;
             opacity: 0;
-            width: 100%;
+            width: calc(100% - 22px);
             transform: translateY(-10px);
             transition: all 0.4s ease;
         }
@@ -119,6 +129,7 @@
 </head>
 
 <body>
+    <div data-include="../components/nav.html"></div>
     <section class="recruitments">
         <form id="recruitmentForm"
             onsubmit="handleButtonAction('register', 'Registering' , 'Registered' , () => handleFormSubmit(event))">
@@ -208,6 +219,7 @@
         </form>
     </section>
 
+    <script src="../scripts/load.js"></script>
     <script src="../scripts/common.js"></script>
     <script>
         let currentStep = 1;
@@ -400,6 +412,8 @@
             };
         })();
 
-
     </script>
 </body>
+
+
+</html>

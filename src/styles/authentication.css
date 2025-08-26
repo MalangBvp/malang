@@ -16,7 +16,7 @@ section{
 }
 
 #coreForm, #redirectorForm, #billForm, #loginForm {
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, calc(-50% - 30px));
     position: absolute;
     top:50vh;
     left: 50%;

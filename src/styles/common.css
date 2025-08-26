@@ -43,13 +43,16 @@ button {
 }
 
 .button-loading {
-  border: 1px solid #facc15; /* yellow-400 */
-  color: #facc15;
-  pointer-events: none;
+    border: 1px solid #facc15;
+    /* yellow-400 */
+    color: #facc15;
+    pointer-events: none;
 }
+
 .button-success {
-  border: 1px solid #22c55e; /* green-500 */
-  color: #22c55e;
+    border: 1px solid #22c55e;
+    /* green-500 */
+    color: #22c55e;
 }
 
 button,
@@ -81,14 +84,16 @@ h1 {
     color: white;
 }
 
-#malang{
+#malang {
     flex-direction: column;
 }
-#malang p{
+
+#malang p {
     font-size: 6px;
     margin-left: 50px;
     margin-top: -15px;
 }
+
 #loader {
     position: fixed;
     top: 0;
@@ -102,7 +107,8 @@ h1 {
     z-index: 99;
 }
 
-#loader span, .loaderSpan {
+#loader span,
+.loaderSpan {
     width: 15px;
     height: 15px;
     border-radius: 50%;
@@ -110,10 +116,12 @@ h1 {
     border-top-color: rgb(22, 22, 22);
     animation: loader 1s linear infinite;
 }
+
 @keyframes loader {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(720deg);
     }
@@ -127,6 +135,7 @@ section.active {
     filter: blur(5px) brightness(0.2);
     transition: filter 0.3s ease;
 }
+
 
 header img {
     height: 50px;
@@ -144,10 +153,12 @@ header {
     z-index: 200;
     background-color: rgb(0, 0, 0);
 }
+
 #headerButtons {
     display: flex;
 }
-#headerButtons button{
+
+#headerButtons button {
     background-color: transparent;
     cursor: pointer;
     position: relative;
@@ -156,6 +167,7 @@ header {
     height: 30px;
     margin: 0 3px;
 }
+
 #headerButtons button img {
     width: 15px;
     height: 15px;
@@ -251,9 +263,10 @@ details ul li {
     color: #e3e3e3;
 }
 
-nav ul button, nav ul a,
+nav ul button,
+nav ul a,
 summary {
-    font-size: 14px;
+    font-size: 15px;
     width: calc(100% - 40px);
     border: none;
     text-align: left;
@@ -264,15 +277,17 @@ summary {
     text-decoration: none;
     border-radius: 7px;
 }
+
 nav ul button {
     width: calc(100% - 20px);
 }
 
-nav hr{
+nav hr {
     max-width: 500px;
 }
 
-nav a:hover, button:hover,
+nav a:hover,
+button:hover,
 summary:hover {
     background-color: rgb(20, 20, 20);
 }
@@ -312,10 +327,10 @@ details[open] summary::before {
 details ul li {
     margin-left: 30px;
     border-bottom: none;
-    border-left: 3px solid rgb(20,20,20);
+    border-left: 3px solid rgb(20, 20, 20);
 }
 
-#live{
+#live {
     color: rgb(218, 185, 0);
     border: 1px solid rgba(198, 168, 0, 0.456);
     background-color: rgba(255, 217, 0, 0.159);
@@ -324,6 +339,7 @@ details ul li {
     font-size: 12px;
     float: right;
 }
+
 #nav-buttons {
     display: flex;
     justify-content: space-between;
@@ -359,10 +375,13 @@ details ul li {
     font-size: 12px;
     text-align: center;
 }
-.nav-bottom p{
+
+.nav-bottom p {
     margin-top: 10px;
 }
-form, #loginForm {
+
+form,
+#loginForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -377,8 +396,9 @@ form, #loginForm {
 }
 
 input,
-textarea, select {
-    width: 100%;
+textarea,
+select {
+    width: calc(100% - 20px);
     padding: 10px;
     border: 1px solid #4a4a4a;
     border-radius: 7px;
@@ -386,9 +406,10 @@ textarea, select {
     color: white;
     font-family: "IBM Plex Sans", sans-serif;
 }
-select{
+
+select {
     width: 100%;
-    color:#797979;
+    color: #797979;
 }
 
 input[type="text"],
@@ -409,7 +430,8 @@ textarea {
 }
 
 input:focus,
-textarea:focus, select:focus {
+textarea:focus,
+select:focus {
     outline: none;
 }
 
@@ -418,11 +440,11 @@ form h3 {
     font-weight: 600;
 }
 
-hr{
+hr {
     width: calc(100% - 20px);
     margin: 10px auto;
     border: none;
-    border-top: 3px solid rgb(20,20,20);
+    border-top: 3px solid rgb(20, 20, 20);
     background-color: none;
 }
 
@@ -496,11 +518,12 @@ hr{
     padding: 12px;
 }
 
-#newsletterInput{
+#newsletterInput {
     display: flex;
     position: relative;
 }
-#newsletterInput button{
+
+#newsletterInput button {
     position: absolute;
     border-radius: 50px;
     top: -1px;
@@ -562,6 +585,7 @@ hr{
     margin-left: -25px;
     margin-bottom: -40px;
     padding: 20px;
+    padding-bottom: 60px;
     display: flex;
     flex-direction: column;
     font-size: 13px;
@@ -620,8 +644,7 @@ hr{
     top: 20px;
     justify-content: center;
     align-items: center;
-
-    padding: 40px 10px;            
+    padding: 40px 10px;
 }
 
 .modal-content {
@@ -632,32 +655,39 @@ hr{
     padding: 10px;
     padding-top: 50px;
 
-    width: fit-content; 
+    width: fit-content;
     max-width: calc(100vw - 20px);
     max-height: calc(100vh - 130px);
 
     box-sizing: border-box;
-    overflow: hidden; /* no scroll */
+    overflow: hidden;
+    /* no scroll */
     display: flex;
-    flex-direction: column; /* stack image + caption */
+    flex-direction: column;
+    transform: translateY(-30px);
+    /* stack image + caption */
 }
 
 #modal-image {
     display: block;
     border-radius: 7px;
     max-width: 100%;
-    max-height: calc(100vh - 320px); /* reduce to leave room for caption */
+    max-height: calc(100vh - 320px);
+    /* reduce to leave room for caption */
     margin: 0 auto;
-    flex-shrink: 1; /* allow image to shrink */
+    flex-shrink: 1;
+    /* allow image to shrink */
 }
 
 #modal-caption {
     margin-top: 10px;
-    flex-shrink: 0; /* caption should always remain visible */
+    flex-shrink: 0;
+    /* caption should always remain visible */
 }
 
 #modal-socials {
-    flex-shrink: 0; /* caption should always remain visible */
+    flex-shrink: 0;
+    /* caption should always remain visible */
     justify-content: flex-start;
     gap: 20px;
 }
@@ -666,6 +696,7 @@ section.modal-active {
     filter: blur(5px) brightness(0.2);
     transition: filter 0.3s ease;
 }
+
 .modal-close {
     position: absolute;
     z-index: 130;
@@ -681,8 +712,9 @@ section.modal-active {
     border-bottom: 1px solid rgb(50, 50, 50);
     padding: 0 10px 4px 10px;
     line-height: 1;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
 }
+
 @media (min-width: 500px) {
     .modal {
         padding: 40px 10px;
@@ -705,6 +737,7 @@ section.modal-active {
         align-items: center;
         width: calc(80vw - 0px);
         padding: 20px 10vw;
+        padding-bottom: 60px;
     }
 
     .footer-links {

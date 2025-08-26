@@ -180,7 +180,8 @@ function showAlert(heading, message, buttonText) {
         border: '1px solid rgb(50,50,50)',
         textAlign: 'left',
         maxWidth: '300px',
-        width: '80%'
+        width: '80%',
+        transform: 'translateY(-30px)'
     });
 
     // Heading
