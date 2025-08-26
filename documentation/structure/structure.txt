@@ -18,6 +18,7 @@
 │   │   ├── alumni.json
 │   │   ├── artworks.json
 │   │   ├── aruco.json
+│   │   ├── core.json
 │   │   ├── events.json
 │   │   ├── member-emails.json
 │   │   ├── photographs.json
@@ -93,6 +94,7 @@
 ├── src/
 │   ├── components/
 │   │   ├── footer.html
+│   │   ├── home_nav.html
 │   │   └── nav.html
 │   ├── pages/
 │   │   ├── account.html
@@ -100,6 +102,7 @@
 │   │   ├── aruco.html
 │   │   ├── authentication.html
 │   │   ├── claims.html
+│   │   ├── core.html
 │   │   ├── documentation.html
 │   │   ├── events.html
 │   │   ├── gallery.html
