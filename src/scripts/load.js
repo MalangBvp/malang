@@ -48,12 +48,12 @@ setTimeout(() => {
     });
 
     burgerButton.classList.remove('loading');
-    loadPage("/index.html");
+    loadPage("/home.html");
 }, 1000);
 
 function loadPage(url) {
     content.src = url;
-    if (!init && !["/src/pages/account.html", "index.html"].includes(url)) {
+    if (!init && !["/src/pages/account.html", "home.html"].includes(url)) {
         toggleMenu();
     }
     init = false;

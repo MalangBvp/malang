@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../../resrc/images/misc/favicon.webp" type="image/x-icon">
     <link rel="stylesheet" href="../styles/common.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>Malang | Recruitments</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         .recruitments {
@@ -16,7 +7,6 @@
         }
 
         #recruitmentForm {
-            min-height: max-content;
             width: calc(100% - 40px);
             margin: auto;
         }
@@ -39,7 +29,7 @@
         }
 
         .form-step.active {
-            min-height: calc(100vh - 250px);
+            min-height: calc(100vh - 120px);
             visibility: visible;
             opacity: 1;
         }
@@ -90,7 +80,7 @@
         .other-input {
             max-height: 0;
             opacity: 0;
-            width: calc(100% - 22px);
+            width: 100%;
             transform: translateY(-10px);
             transition: all 0.4s ease;
         }
@@ -129,7 +119,6 @@
 </head>
 
 <body>
-    <div data-include="../components/nav.html"></div>
     <section class="recruitments">
         <form id="recruitmentForm"
             onsubmit="handleButtonAction('register', 'Registering' , 'Registered' , () => handleFormSubmit(event))">
@@ -414,6 +403,3 @@
 
     </script>
 </body>
-
-
-</html>
