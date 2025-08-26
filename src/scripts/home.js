@@ -12,7 +12,7 @@ for (i = 0; i < 200; i++) {
   let size = Math.random() * 2 + 1;
   //--------------------------------------------------------------------------
   const _width = stars.scrollWidth - 2;
-  star.style.top = Math.random() * (stars.scrollHeight - 60) + "px";
+  star.style.top = Math.random() * (stars.scrollHeight + 20) + "px";
   star.style.left = Math.random() * _width + "px";
   star.style.width = size + "px";
   star.style.height = size + "px";

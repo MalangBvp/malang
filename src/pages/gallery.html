@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../../resrc/images/misc/favicon.webp" type="image/x-icon">
     <link rel="stylesheet" href="../styles/common.css">
     <link rel="stylesheet" href="../styles/gallery.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <title>Malang | Art Gallery</title>
 </head>
 
 <body>
-    <div data-include="../components/nav.html"></div>
     <section id="gallery-section">
         <div id="loader">
             <span></span>
@@ -28,7 +19,8 @@
             <div class="filters" id="filters-type"></div>
             <div class="filters" id="filters-artist"></div>
         </div>
-        <div id="none"><img src="/resrc/images/misc/favicon.webp" alt="" class="icon-small">Oops! We couldn't find anything with those filters.</div>
+        <div id="none"><img src="/resrc/images/misc/favicon.webp" alt="" class="icon-small">Oops! We couldn't find
+            anything with those filters.</div>
         <div class="gallery" id="gallery">
         </div>
         <button class="long-btn" id="viewMoreBtn">View More</button>
@@ -36,17 +28,14 @@
         <div data-include="../components/footer.html"></div>
     </section>
     <div id="image-modal" class="modal">
-            <div class="modal-content">
+        <div class="modal-content">
             <span class="modal-close">&times;</span>
-                <img id="modal-image" class="same" />
-                <div id="modal-caption">
-                    <p id="modal-title">Title: NA</p>
-                    <p id="modal-artist">Artist: NA</p>
-                </div>
+            <img id="modal-image" class="same" />
+            <div id="modal-caption">
+                <p id="modal-title">Title: NA</p>
+                <p id="modal-artist">Artist: NA</p>
             </div>
         </div>
+    </div>
     <script src="../scripts/common.js"></script>
     <script src="../scripts/gallery.js"></script>
-</body>
-
-</html>

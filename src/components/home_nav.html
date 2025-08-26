@@ -1,9 +1,9 @@
 <header>
-    <a href="/index.html" class="malang" id="malang"><img src="/resrc/images/misc/malang.webp" alt="Malang">
+    <a onclick="loadPage('index.html')" class="malang" id="malang"><img src="/resrc/images/misc/malang.webp" alt="Malang">
         <p>Fine Arts & Photography Club</p>
     </a>
     <div id="headerButtons">
-    <button onclick="window.location.href='/src/pages/account.html'">
+    <button onclick="loadPage('/src/pages/account.html')">
         <img src="/resrc/images/icons/user.png" id="profilePic">
     </button>
     <button id="burger" class="loading">
@@ -17,45 +17,45 @@
 </header>
 <nav id="nav">
     <ul>
-        <li><a href="/index.html"><img src="/resrc/images/icons/home.webp" alt="" class="icon-small">Home</a>
+        <li><button onclick="loadPage('/index.html')"><img src="/resrc/images/icons/home.webp" alt="" class="icon-small">Home</button>
         </li>
-        <li><a href="/src/pages/recruitments.html"><img src="/resrc/images/icons/star.png" alt=""
+        <li><a href='/src/pages/recruitments.html'><img src="/resrc/images/icons/star.png" alt=""
                     class="icon-small">Recruitments 2025 <span class="tag same" id="live">Live</span></a></li>
-        <li><a href="/src/pages/aruco.html"><img src="/resrc/images/icons/aruco.webp" alt=""
-                    class="icon-small">M-ArUCo</a></li>
+        <li><button onclick="loadPage('/src/pages/aruco.html')"><img src="/resrc/images/icons/aruco.webp" alt=""
+                    class="icon-small">M-ArUCo</button></li>
         <hr>
         <details>
             <summary><img src="/resrc/images/icons/events.webp" alt="" class="icon-small">Events</summary>
             <ul>
-                <li><a href="/src/pages/events.html">Upcoming Events</a></li>
-                <li><a href="/src/pages/timeline.html">Past Events</a></li>
+                <li><button onclick="loadPage('/src/pages/events.html')">Upcoming Events</button></li>
+                <li><button onclick="loadPage('/src/pages/timeline.html')">Past Events</button></li>
             </ul>
         </details>
-        <li><a href="/404.html"><img src="/resrc/images/icons/project.webp" alt="" class="icon-small">Projects</a>
-        <li><a href="/src/pages/gallery.html"><img src="/resrc/images/icons/art.webp" alt="" class="icon-small">Art
-                Gallery</a></li>
+        <li><button onclick="loadPage('/404.html')"><img src="/resrc/images/icons/project.webp" alt="" class="icon-small">Projects</button>
+        <li><button onclick="loadPage('/src/pages/gallery.html')"><img src="/resrc/images/icons/art.webp" alt="" class="icon-small">Art
+                Gallery</button></li>
         </li>
         <details>
             <summary><img src="/resrc/images/icons/members.webp" alt="" class="icon-small">Our Members
             </summary>
             <ul>
-                <li><a href="/src/pages/core.html">Core Members</a></li>
-                <li><a href="/src/pages/alumni.html">Malang Alumni</a></li>
+                <li><button onclick="loadPage('/src/pages/core.html')">Core Members</button></li>
+                <li><button onclick="loadPage('/src/pages/alumni.html')">Malang Alumni</button></li>
             </ul>
         </details>
         <hr>
         <details>
             <summary><img src="/resrc/images/icons/docs.webp" alt="" class="icon-small">Docs</summary>
             <ul>
-                <li><a href="/404.html">Site Map</a></li>
-                <li><a href="/src/pages/documentation.html">Site Docs</a></li>
-                <li><a href="/src/pages/authentication.html">Get Media Kit</a></li>
-                <li><a href="/src/pages/privacy-policy.html">Privacy Policy</a></li>
+                <li><button onclick="loadPage('/404.html')">Site Map</button></li>
+                <li><button onclick="loadPage('/src/pages/documentation.html')">Site Docs</button></li>
+                <li><button onclick="loadPage('/src/pages/authentication.html')">Get Media Kit</button></li>
+                <li><button onclick="loadPage('/src/pages/privacy-policy.html')">Privacy Policy</button></li>
             </ul>
         </details>
         <hr>
-        <li><a href="/index.html#contact"><img src="/resrc/images/icons/contact.webp" alt=""
-                    class="icon-small">Contact</a></li>
+        <li><button onclick="loadPage('/index.html#contact')"><img src="/resrc/images/icons/contact.webp" alt=""
+                    class="icon-small">Contact</button></li>
     </ul>
     <div id="nav-buttons">
         <p id="utilities">Utilities</p>

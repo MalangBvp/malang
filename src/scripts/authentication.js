@@ -127,3 +127,7 @@ if (canvas) {
     window.addEventListener('touchmove', updatePointer);
     animate();
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    toggleRestricted();
+});

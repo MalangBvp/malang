@@ -1,51 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../../resrc/images/misc/favicon.webp" type="image/x-icon">
-    <link rel="stylesheet" href="../styles/common.css">
-    <link rel="stylesheet" href="../styles/timeline.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <title>Malang | Timeline</title>
-</head>
-
-<body>
-    <div data-include="../components/nav.html"></div>
-    <section id="timeline">
-        <div id="loader">
-            <span></span>
-        </div>
-        <div id="featuredContainer">
-            <h1 id="featuredTitle">Featured Events</h1>
-            <div id="featuredEvents">
-                <div class="featured same">
-                    <p class="featuredTitle">Fashion Euphoria</p>
-                </div>
-                <div class="featured same">
-                    <p class="featuredTitle">Rangotsav</p>
-                </div>
+<link rel="stylesheet" href="../styles/common.css">
+<link rel="stylesheet" href="../styles/timeline.css">
+<section id="timeline">
+    <div id="loader">
+        <span></span>
+    </div>
+    <div id="featuredContainer">
+        <h1 id="featuredTitle">Featured Events</h1>
+        <div id="featuredEvents">
+            <div class="featured same">
+                <p class="featuredTitle">Fashion Euphoria</p>
+            </div>
+            <div class="featured same">
+                <p class="featuredTitle">Rangotsav</p>
             </div>
         </div>
-        <div id="timelineDiv">
-            <h1>Timeline</h1>
-            <p>Explore the history of Malang through our timeline, showcasing significant events and milestones that
-                have shaped our journey.</p>
-            <div id="events">
-                <div class="event" id="upcoming">
-                    <a href="events.html">Upcoming Events</a>
-                </div>
-                <div id="last"></div>  
-        <button class="long-btn" id="viewMoreBtn">View Older</button>
+    </div>
+    <div id="timelineDiv">
+        <h1>Timeline</h1>
+        <p>Explore the history of Malang through our timeline, showcasing significant events and milestones that
+            have shaped our journey.</p>
+        <div id="events">
+            <div class="event" id="upcoming">
+                <a href="events.html">Upcoming Events</a>
             </div>
+            <div id="last"></div>
+            <button class="long-btn" id="viewMoreBtn">View Older</button>
         </div>
-    </section>
-    <div data-include="../components/footer.html"></div>
-    <script src="../scripts/common.js"></script>
-    <script src="../scripts/timeline.js"></script>
-</body>
-
-</html>
+    </div>
+</section>
+<div data-include="../components/footer.html"></div>
+<script src="../scripts/common.js"></script>
+<script src="../scripts/timeline.js"></script>

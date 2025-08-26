@@ -7,29 +7,16 @@ html {
     margin-top: 0;
 }
 
-.loading span {
-    display: none;
-}
-
-.loading {
-    filter: brightness(0) invert(0.4);
-    background-image: url(/resrc/images/icons/loading.gif);
-    background-size: 50%;
-    background-repeat: no-repeat;
-    background-position: center;
-    pointer-events: none;
-}
-
 #visitors {
     display: none;
 }
 
 #landingWindow {
-    margin-top: 350px;
+    margin-top: 270px;
     padding-top: 20px;
     position: relative;
     width: 100%;
-    height: calc(100vh - 350px);
+    height: calc(100vh - 270px);
     overflow: hidden;
     border-top: 1px solid rgb(50, 50, 50);
 }
@@ -42,6 +29,7 @@ html {
 #landingCanvas {
     position: fixed;
     top: 0px;
+    margin-top: -60px;
     background:
         linear-gradient(20deg, black 60%, teal 100%),
         linear-gradient(-20deg, black 60%, rgb(216, 173, 0) 100%);
@@ -126,7 +114,6 @@ html {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 600;
     text-align: center;
-    padding: 10px;
 }
 
 #kalakaar {

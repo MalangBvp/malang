@@ -1,0 +1,54 @@
+[
+    {
+        "year": "2025-2026",
+        "generation": "Gen VII",
+        "members": [
+            {
+                "name": "Prasun Ratan",
+                "role": "Head",
+                "image": "26-1.webp",
+                "branch": "EnTC"
+            },
+            {
+                "name": "Goutam Sahu",
+                "role": "Co-Head",
+                "image": "26-1.webp",
+                "branch": "ECE"
+            },
+            {
+                "name": "Tejas Gupta",
+                "role": "Treasurer & Tech Head",
+                "image": "26-1.webp",
+                "branch": "CSBS",
+                "linkedin": "https://linkedin.com/in/tejascodes",
+                "email": "mailto:tejasgupta.work@gmail.com",
+                "github": "https://github.com/multiverseweb",
+                "website": "https://tejasgupta.vercel.app"
+            },
+            {
+                "name": "Priya Ranjan",
+                "role": "PR & Sponsorship Head",
+                "image": "26-1.webp",
+                "branch": "EnTC"
+            },
+            {
+                "name": "Mohini Walia",
+                "role": "Media Head",
+                "image": "26-1.webp",
+                "branch": "CE"
+            },
+            {
+                "name": "Satyam Singh",
+                "role": "Creativity Head",
+                "image": "26-1.webp",
+                "branch": "EnTC"
+            },
+            {
+                "name": "Radhika Jadhav",
+                "role": "Photography Head",
+                "image": "26-1.webp",
+                "branch": "CSBS"
+            }
+        ]
+    }
+]

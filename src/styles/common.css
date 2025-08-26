@@ -121,7 +121,6 @@ h1 {
 
 section {
     padding: 10px;
-    margin-top: 65px;
 }
 
 section.active {
@@ -190,9 +189,21 @@ header {
 #burger {
     border: none;
 }
-.restricted {
+
+
+.loading span {
     display: none;
 }
+
+.loading {
+    filter: brightness(0) invert(0.4);
+    background-image: url(/resrc/images/icons/loading.gif);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+}
+
 .profile-pic {
     border-radius: 6px;
     margin: 0 !important;
@@ -240,8 +251,12 @@ details ul li {
     color: #e3e3e3;
 }
 
-nav ul a,
+nav ul button, nav ul a,
 summary {
+    font-size: 14px;
+    width: calc(100% - 40px);
+    border: none;
+    text-align: left;
     display: block;
     padding: 10px;
     margin: 0 10px;
@@ -249,12 +264,15 @@ summary {
     text-decoration: none;
     border-radius: 7px;
 }
+nav ul button {
+    width: calc(100% - 20px);
+}
 
 nav hr{
     max-width: 500px;
 }
 
-nav a:hover,
+nav a:hover, button:hover,
 summary:hover {
     background-color: rgb(20, 20, 20);
 }
@@ -473,7 +491,7 @@ hr{
 }
 
 .newsletter input {
-    width: calc(100% - 20px);
+    width: 100%;
     border-radius: 50px;
     padding: 12px;
 }

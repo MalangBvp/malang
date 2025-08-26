@@ -1,17 +1,6 @@
-console.log("+-----------------+");
-console.log("| Tejas' Codes :D |");
-console.log("+-----------------+");
-
 // Function to include HTML files dynamically on priority
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Load nav.html first
-    const nav = document.querySelector('[data-include="nav.html"]');
-    if (nav) {
-        const res = await fetch("nav.html");
-        nav.innerHTML = await res.text();
-    }
-
     // Load all other includes without blocking
     document.querySelectorAll('[data-include]').forEach(async el => {
         if (el.getAttribute('data-include') !== "nav.html") {
@@ -22,51 +11,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 });
 
-setTimeout(() => {
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const burgerButton = document.getElementById("burger");
-    const burger = document.querySelector(".burger");
-    const nav = document.querySelector("#nav");
-    const section = document.querySelector("section");
-
-    function toggleMenu() {
-        vibrate();
-        const isActive = nav.classList.toggle("active");
-        burgerButton.classList.toggle("active");
-        section.classList.toggle("active");
-        burger.style.justifyContent = isActive ? "center" : "space-around";
-        document.body.style.overflow = isActive ? "hidden" : "scroll";
-    }
-    burgerButton.addEventListener("click", toggleMenu);
-
-    document.getElementById("theme").addEventListener("click", () => {
-        vibrate();
-        applyTheme(true);
-    });
-
-    // function to install PWA on button click with id "pwa"
-    document.getElementById("pwa").addEventListener("click", function () {
-        showAlert("PWA Installation", "Install our app for faster access, offline support and a smoother experience.", "Install");
-    });
-
-    //function to copy website url to clipboard on button click with id "copy"
-    document.getElementById("copy").addEventListener("click", function () {
-        vibrate();
-        navigator.clipboard.writeText("https://malangbvp.github.io/go/to-site").then(() => {
-            const themeIcon = this.querySelector("img");
-            setTimeout(() => {
-                themeIcon.src = "/resrc/images/icons/link.webp";
-            }
-                , 1200);
-            themeIcon.src = themeIcon.src.includes("link.webp") ? "/resrc/images/icons/tick.webp" : "/resrc/images/icons/link.webp";
-        }).catch(err => {
-            console.error("Failed to copy: ", err);
-            alert("Failed to copy URL.");
-        }
-        );
-    });
-    burgerButton.classList.remove('loading');
-}, 1000);
 
 // function to invert theme except for elements with class "same" on button click with id "theme"
 function applyTheme(toggle = false) {
@@ -93,21 +37,23 @@ function applyTheme(toggle = false) {
 
 function toggleRestricted() {
     const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
     document.querySelectorAll(".restricted").forEach(el => {
         el.style.display = isLoggedIn ? "block" : "none";
     });
+
     document.querySelectorAll(".protected").forEach(el => {
         el.style.display = isLoggedIn ? "none" : "flex";
     });
-    accountLogin = document.getElementById("loginForm");
-    if(accountLogin) {
+
+    const accountLogin = document.getElementById("loginForm");
+    if (accountLogin) {
         document.getElementById("loginBtn").style.display = isLoggedIn ? "none" : "inline-block";
         document.getElementById("logoutBtn").style.display = isLoggedIn ? "inline-block" : "none";
     }
 }
 
-window.addEventListener("DOMContentLoaded", () => applyTheme());
-window.addEventListener("DOMContentLoaded", () => toggleRestricted());
+
 //=======================================================================common button behavior
 function handleButtonAction(buttonId, loaderText, successText, taskFunction, errorText = "Failed") {
     const button = document.getElementById(buttonId);

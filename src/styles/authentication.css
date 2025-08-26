@@ -2,12 +2,16 @@ section{
     margin-top: 0px;
 }
 
+.restricted {
+    display: none;
+}
+
 .protected{
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 75px);
+    height: 100%;
     width: 100vw;
 }
 
