@@ -111,6 +111,7 @@ h1 {
 .loaderSpan {
     width: 15px;
     height: 15px;
+    margin-top: -30px;
     border-radius: 50%;
     border: 2px solid rgb(172, 172, 172);
     border-top-color: rgb(22, 22, 22);
@@ -119,11 +120,11 @@ h1 {
 
 @keyframes loader {
     0% {
-        transform: rotate(0deg) translateY(-30px);
+        transform: rotate(0deg);
     }
 
     100% {
-        transform: rotate(720deg) translateY(-30px);
+        transform: rotate(720deg);
     }
 }
 
