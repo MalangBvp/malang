@@ -119,11 +119,11 @@ h1 {
 
 @keyframes loader {
     0% {
-        transform: rotate(0deg);
+        transform: rotate(0deg) translateY(-30px);
     }
 
     100% {
-        transform: rotate(720deg);
+        transform: rotate(720deg) translateY(-30px);
     }
 }
 
