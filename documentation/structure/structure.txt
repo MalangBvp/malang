@@ -94,7 +94,8 @@
 ├── src/
 │   ├── components/
 │   │   ├── footer.html
-│   │   └── nav.html
+│   │   ├── nav.html
+│   │   └── temp_nav.html
 │   ├── pages/
 │   │   ├── account.html
 │   │   ├── alumni.html
