@@ -7,6 +7,7 @@ var init = true;
 
 // move toggleMenu outside
 function toggleMenu() {
+    vibrate();
     const nav = document.querySelector("#nav");
     const burgerButton = document.getElementById("burger");
     const burger = document.querySelector(".burger");
