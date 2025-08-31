@@ -2,27 +2,29 @@
     <link rel="stylesheet" href="../styles/common.css">
     <link rel="stylesheet" href="../styles/authentication.css">
 </head>
-<body>
-<h3 class="protected">You must be signed in to view this page.</h3>
-<section id="treasury" class="restricted">
-    <p>Malang's Treasury (₹) Over Time</p>
-    <canvas id="chart" style="height: calc(100vh - 200px)"></canvas>
-    <button class="long-btn" id="contribute">Contribute</button>
 
-</section>
-<div class="card same">
-    <img src="../../resrc/images/misc/payment-qr.webp" class="qr" alt="QR Code for payment">
-    <div class="info">
-        <p>Support Malang!<br>
-            Scan to pay via UPI.<br><br><br>
-            <code>Treasurer, Gen VII</code>
-        </p>
-        <hr>
-        <img src="../../resrc/images/misc/malang.webp" class="logo">
+<body>
+    <h3 class="protected">You must be signed in to view this page.</h3>
+    <section id="treasury" class="restricted">
+        <p>Malang's Treasury (₹) Over Time</p>
+        <canvas id="chart" style="height: calc(100vh - 200px)"></canvas>
+        <button class="long-btn" id="contribute">Contribute</button>
+
+    </section>
+    <div class="card same">
+        <img src="../../resrc/images/misc/payment-qr.webp" class="qr" alt="QR Code for payment">
+        <div class="info">
+            <p>Support Malang!<br>
+                Scan to pay via UPI.<br><br><br>
+                <code>Treasurer, Gen VII</code>
+            </p>
+            <hr>
+            <img src="../../resrc/images/misc/malang.webp" class="logo">
+        </div>
     </div>
-</div>
-<button class="long-btn" id="done">Done</button>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="../scripts/treasury.js"></script>
-<script src="../scripts/common.js"></script>
+    <button class="long-btn" id="done">Done</button>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../scripts/common.js"></script>
+    <script src="../scripts/authentication.js"></script>
+    <script src="../scripts/treasury.js"></script>
 </body>

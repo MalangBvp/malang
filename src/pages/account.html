@@ -38,10 +38,9 @@
         // Helpers
         function updateUI(user) {
             const status = document.getElementById("status");
-            const profilePic = window.parent.document.getElementById("profilePic"); // <-- fix
+            const profilePic = window.parent.document.getElementById("profilePic");
 
             if (user && allowedEmails.includes(user.email)) {
-                showAlert("Login successful", "", "Proceed");
                 status.innerText = `Hey ${user.displayName}! 👋`;
                 profilePic.src = user.photoURL || "/resrc/images/icons/user.png";
                 profilePic.classList.add("profile-pic");
@@ -49,8 +48,8 @@
             } else {
                 status.innerText = user ? "Unauthorised Access Attempt." : "Authentication Required.";
                 profilePic.src = "/resrc/images/icons/user.png";
-                profilePic.classList.remove("profile-pic");
                 localStorage.setItem("loggedIn", "false");
+                profilePic.classList.remove("profile-pic");
             }
             toggleRestricted();
         }
@@ -65,6 +64,7 @@
                     showAlert("Unauthorised Access Attempt.", "Login restricted: Membership with Malang is required.", "Close");
                     await signOut(auth);
                 } else {
+                    showAlert("Login successful", "", "Proceed");
                     vibrate(50);
                 }
                 updateUI(user);
@@ -77,6 +77,7 @@
         async function logout() {
             await signOut(auth);
             updateUI(null);
+            showAlert("Logged Out", "You've been logged out.", "Close");
         }
 
         onAuthStateChanged(auth, updateUI);
@@ -84,7 +85,6 @@
         window.login = login;
         window.logout = logout;
 
-        toggleRestricted();
 
     </script>
 </head>
@@ -103,8 +103,8 @@
             </div>
             <button id="loginBtn" class="long-btn" onclick="login()" style="position: relative;"><img
                     src="/resrc/images/icons/google.png" alt="" id="google"
-                    style="height: 25px; position: absolute; left: 10px; top:6px;">Sign in with Google</button>
-            <button id="logoutBtn" class="long-btn" onclick="logout()">Sign out</button>
+                    style="height: 25px; position: absolute; left: 10px; top:6px;"><p style="padding-left: 25px;">Log in with Google</p></button>
+            <button id="logoutBtn" class="long-btn" onclick="logout()">Log out</button>
         </div>
     </section>
     <script src="../scripts/common.js"></script>

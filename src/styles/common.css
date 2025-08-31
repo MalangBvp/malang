@@ -4,7 +4,9 @@
     margin: 0;
     padding: 0;
 }
-
+section {
+    padding-top: 70px;
+}
 html {
     filter: invert(0);
     scroll-padding: 65px;
@@ -127,11 +129,6 @@ h1 {
         transform: rotate(720deg);
     }
 }
-
-section {
-    padding: 10px;
-}
-
 section.active {
     filter: blur(5px) brightness(0.2);
     transition: filter 0.3s ease;
@@ -228,9 +225,9 @@ header {
 nav {
     gap: 10px;
     position: fixed;
-    top: 60px;
+    top: 60.5px;
     width: 100vw;
-    height: calc(100% - 60px);
+    height: calc(100% - 60.5px);
     padding: 2px 0 120px;
     background: #000000;
     box-sizing: border-box;
@@ -737,7 +734,6 @@ section.modal-active {
         align-items: center;
         width: calc(80vw - 0px);
         padding: 20px 10vw;
-        padding-bottom: 60px;
     }
 
     .footer-links {

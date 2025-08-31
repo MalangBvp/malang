@@ -37,15 +37,12 @@ function applyTheme(toggle = false) {
 
 function toggleRestricted() {
     const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-
     document.querySelectorAll(".restricted").forEach(el => {
         el.style.display = isLoggedIn ? "block" : "none";
     });
-
     document.querySelectorAll(".protected").forEach(el => {
         el.style.display = isLoggedIn ? "none" : "flex";
     });
-
     const accountLogin = document.getElementById("loginForm");
     if (accountLogin) {
         document.getElementById("loginBtn").style.display = isLoggedIn ? "none" : "inline-block";

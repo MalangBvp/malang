@@ -2,11 +2,6 @@ html {
     scroll-behavior: smooth;
 }
 
-#home {
-    padding: 0;
-    margin-top: 0;
-}
-
 #visitors {
     display: none;
 }
@@ -28,7 +23,7 @@ html {
 
 #landingCanvas {
     position: fixed;
-    top: 0px;
+    top: 60px;
     margin-top: -60px;
     background:
         linear-gradient(20deg, black 60%, teal 100%),
@@ -175,7 +170,7 @@ html {
     gap: 3rem;
     padding: 2rem;
     width: max-content;
-    animation: scroll-left 25s linear infinite;
+    animation: scroll-left 20s linear infinite;
 }
 
 .sponsor-track img {
@@ -183,7 +178,7 @@ html {
     object-fit: contain;
     filter: brightness(0) invert(1);
     opacity: 0.8;
-    transition-duration: 0.3s;
+    transition: filter 0.3s ease;
 }
 
 .sponsor-track img:hover {
@@ -191,11 +186,6 @@ html {
     filter: none;
 }
 
-/* Duplicate content using ::after */
-.sponsor-track::after {
-    content: attr(data-logos);
-    display: flex;
-}
 
 /* Infinite scroll animation */
 @keyframes scroll-left {
@@ -230,21 +220,9 @@ html {
 }
 
 
-/* Animations */
-@keyframes sponsor-scroll-left {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
 @media (min-width: 768px) {
     .sponsor-track {
         gap: 7rem;
-        animation-duration: 30s;
     }
 
     /* Fading edges */

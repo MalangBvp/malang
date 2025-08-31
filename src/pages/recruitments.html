@@ -11,15 +11,15 @@
     <title>Malang | Recruitments</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        .recruitments {
+        #recruitments {
             overflow-y: hidden;
+            margin: 10px;
         }
 
         #recruitmentForm {
             min-height: max-content;
-            width: calc(100% - 40px);
+            width: calc(100% - 41px);
             margin: auto;
-            margin-top: 60px;
         }
 
         #recruitmentForm p {
@@ -130,7 +130,7 @@
 
 <body>
     <div data-include="../components/temp_nav.html"></div>
-    <section class="recruitments">
+    <section id="recruitments">
         <form id="recruitmentForm"
             onsubmit="handleButtonAction('register', 'Registering' , 'Registered' , () => handleFormSubmit(event))">
             <h3>Recruitments 2025</h3>

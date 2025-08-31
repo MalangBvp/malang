@@ -1,7 +1,3 @@
-const track = document.getElementById("track");
-track.innerHTML += track.innerHTML;
-track.innerHTML += track.innerHTML;
-
 var i = 0;
 var stars = document.getElementById("landingCanvas");
 //-----------------------------------------------------------number of stars
