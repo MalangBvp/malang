@@ -18,7 +18,7 @@
 
         #recruitmentForm {
             min-height: max-content;
-            width: calc(100% - 41px);
+            width: calc(100% - 44px);
             margin: auto;
         }
 
@@ -40,7 +40,7 @@
         }
 
         .form-step.active {
-            min-height: calc(100vh - 180px);
+            min-height: calc(100vh - 220px);
             visibility: visible;
             opacity: 1;
         }
@@ -92,7 +92,7 @@
             opacity: 0;
             width: calc(100% - 22px);
             transform: translateY(-10px);
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
 
         .other-input input {
@@ -142,16 +142,6 @@
                     <input type="text" id="email" name="email" placeholder="Email ID *" required />
                     <input type="text" id="phone" name="phone" placeholder="Phone Number *" required />
                     <input type="text" id="insta" name="insta" placeholder="Instagram ID" />
-                </div>
-                <div class="btn-group">
-                    <span></span>
-                    <button type="button" onclick="nextStep(1)" class="long-btn">Next</button>
-                </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="form-step" id="step2">
-                <div class="inputs">
                     <select id="year-dropdown" name="year-dropdown" required>
                         <option value="" disabled selected>Year *</option>
                         <option value="1">1st</option>
@@ -174,6 +164,16 @@
                         <option value="Chemical">Chemical</option>
                     </select>
 
+                </div>
+                <div class="btn-group">
+                    <span></span>
+                    <button type="button" onclick="nextStep(1)" class="long-btn">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="form-step" id="step2">
+                <div class="inputs">
                     <div id="skills">
                         <p>What are you good at? *</p>
                         <div class="checkbox-group">
@@ -213,7 +213,7 @@
                 </div>
                 <div class="btn-group">
                     <button type="button" onclick="prevStep(3)" class="long-btn">Previous</button>
-                    <button type="submit" class="long-btn" id="register">Register</button>
+                    <button type="submit" onclick="validateStep(3)" class="long-btn" id="register">Register</button>
                 </div>
             </div>
         </form>
@@ -239,12 +239,17 @@
                 ["name", "email", "phone"].forEach(id => {
                     if (!document.getElementById(id).value.trim()) valid = false;
                 });
+                if (!document.getElementById("year-dropdown").value) valid = false;
+                if (!document.getElementById("branch-dropdown").value) valid = false;
             }
 
             if (step === 2) {
-                if (!document.getElementById("year-dropdown").value) valid = false;
-                if (!document.getElementById("branch-dropdown").value) valid = false;
                 if (document.querySelectorAll("input[name='skills']:checked").length === 0) valid = false;
+            }
+            if (step === 3) {
+                ["motivation",].forEach(id => {
+                    if (!document.getElementById(id).value.trim()) valid = false;
+                });
             }
 
             if (!valid) showAlert("⚠️", "Please fill all required fields before continuing.", "OK");
@@ -276,6 +281,7 @@
                     showAlert("Registration successful!", "You will receive further instructions via email.", "Yay!");
                     confetti();
                     form.reset();
+                    showStep(1);
                 } else {
                     showAlert("⚠️", json.message, "OK");
                 }
