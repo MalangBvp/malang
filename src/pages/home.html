@@ -17,7 +17,7 @@
                 <h1 id="tagline">For the <span id="kalakaar">Kalakaar</span> in you!</h1>
                 <div id="landingButtons">
                     <button>Contact Us</button>
-                    <button onclick="window.open('src/pages/recruitments.html','_blank')">Join
+                    <button onclick="window.open('/src/pages/recruitments.html','_blank')">Join
                         Us</button>
                 </div>
             </div>
@@ -50,24 +50,34 @@
         </div>
 
         <!-- ===== Masonry Section (drop-in) ===== -->
-        <section class="masonry" id="masonry">
-            <div class="masonry-column" data-speed="0.9">
-                <img src="/resrc/images/misc/team.webp" alt="">
-                <img src="/resrc/images/misc/team.webp" alt="">
-                <img src="/resrc/images/misc/team.webp" alt="">
+        <div class="masonry" id="masonry">
+            <div class="fade-top"></div>
+            <div class="masonry-column" data-speed="2.7">
+                <img src="/resrc/images/artworks/0.webp" alt="">
+                <img src="/resrc/images/artworks/1.webp" alt="">
+                <img src="/resrc/images/artworks/2.webp" alt="">
+                <img src="/resrc/images/artworks/3.webp" alt="">
+                <img src="/resrc/images/artworks/4.webp" alt="">
+                <img src="/resrc/images/artworks/5.webp" alt="">
+                <img src="/resrc/images/artworks/0.webp" alt="">
+                <img src="/resrc/images/artworks/1.webp" alt="">
+                <img src="/resrc/images/artworks/2.webp" alt="">
+                <img src="/resrc/images/artworks/3.webp" alt="">
             </div>
-            <div class="masonry-column" data-speed="1.5">
-                <img src="/resrc/images/misc/team.webp" alt="">
-                <img src="/resrc/images/misc/team.webp" alt="">
-                <img src="/resrc/images/misc/team.webp" alt="">
+            <div class="masonry-column" data-speed="4.5">
+                <img src="/resrc/images/artworks/0.webp" alt="">
+                <img src="/resrc/images/artworks/1.webp" alt="">
+                <img src="/resrc/images/artworks/2.webp" alt="">
+                <img src="/resrc/images/artworks/3.webp" alt="">
+                <img src="/resrc/images/artworks/4.webp" alt="">
+                <img src="/resrc/images/artworks/5.webp" alt="">
+                <img src="/resrc/images/artworks/0.webp" alt="">
+                <img src="/resrc/images/artworks/1.webp" alt="">
+                <img src="/resrc/images/artworks/2.webp" alt="">
+                <img src="/resrc/images/artworks/3.webp" alt="">
             </div>
-            <div class="masonry-column" data-speed="0.8">
-                <img src="/resrc/images/misc/team.webp" alt="">
-                <img src="/resrc/images/misc/team.webp" alt="">
-                <img src="/resrc/images/misc/team.webp" alt="">
-            </div>
-        </section>
-
+            <div class="fade-bottom"></div>
+        </div>
 
         <h1>Our Partners</h1>
         <div class="sponsor-container">
@@ -97,6 +107,13 @@
     <img src="https://api.visitorbadge.io/api/visitors?path=multiverseweb2%2malang%20&countColor=%23263759&style=flat"
         alt="" id="visitors">
 </section>
+    <div id="image-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img id="modal-image" class="same" />
+            </div>
+        </div>
+    </div>
 <script src="/src/scripts/common.js"></script>
 <script src="/src/scripts/home.js"></script>
 <script src="/src/scripts/load.js"></script>

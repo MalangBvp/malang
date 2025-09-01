@@ -661,7 +661,6 @@ hr {
     /* no scroll */
     display: flex;
     flex-direction: column;
-    transform: translateY(-30px);
     /* stack image + caption */
 }
 

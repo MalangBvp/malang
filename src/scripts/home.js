@@ -40,3 +40,29 @@ window.addEventListener("scroll", () => {
     col.style.transform = `translateY(${progress * 100 * (1 - speed)}px)`;
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("image-modal");
+    const modalImg = document.getElementById("modal-image");
+    const closeBtn = document.querySelector(".modal-close");
+
+    // Attach click event to all images inside masonry
+    document.querySelectorAll("#masonry img").forEach(img => {
+        img.addEventListener("click", function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        });
+    });
+
+    // Close modal on clicking X
+    closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    // Close modal on clicking outside content
+    modal.addEventListener("click", function (e) {
+        if (e.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+});

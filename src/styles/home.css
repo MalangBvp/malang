@@ -146,12 +146,13 @@ canvas {
     display: flex;
     flex-direction: column;
     max-width: 1200px;
-    margin: 50px auto;
+    margin: 60px auto;
     gap: 50px;
 }
 
 .featured_text {
     max-width: 600px;
+    margin: 0 auto;
 
 }
 
@@ -222,11 +223,11 @@ canvas {
 
 .masonry {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(calc(50vw - 20px), 1fr));
+    gap: 5px;
+    padding: 15px;
     max-width: 1200px;
-    margin: auto;
+    margin: 100px auto;
     height: 70vh;
     /* fixed height */
     overflow: hidden;
@@ -237,17 +238,38 @@ canvas {
 .masonry-column {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 .masonry img {
     width: 100%;
-    max-width: 200px;
+    max-width: calc(50vw - 20px);
     border-radius: 10px;
     display: block;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     object-fit: cover;
 }
+
+.fade-top,
+.fade-bottom {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    left: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.fade-top {
+    top: 0;
+    background: linear-gradient(to bottom, black, transparent);
+}
+
+.fade-bottom {
+    bottom: 0;
+    background: linear-gradient(to top, black, transparent);
+}
+
 
 .sponsor-container {
     position: relative;
