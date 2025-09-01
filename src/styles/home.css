@@ -6,20 +6,24 @@ html {
     display: none;
 }
 
+canvas {
+    display: block;
+}
+
 #landingWindow {
     margin-top: 270px;
     padding-top: 20px;
     position: relative;
     width: 100%;
-    height: calc(100vh - 270px);
     overflow: hidden;
     border-top: 1px solid rgb(50, 50, 50);
 }
+
 .pageContents {
     z-index: 1;
     background-color: black;
     text-align: center;
-} 
+}
 
 #landingCanvas {
     position: fixed;
@@ -84,6 +88,7 @@ html {
         margin-bottom: 0%;
     }
 }
+
 #infoContainer {
     position: relative;
     width: calc(100% - 20px);
@@ -137,28 +142,113 @@ html {
     background-color: rgba(23, 23, 23, 0.847);
 }
 
-#scroll-down {
-    color: grey;
-    font-size: 0.8rem;
-    animation: bounce 2s infinite;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
+.featured {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 50px auto;
+    gap: 50px;
 }
 
-@keyframes bounce {
-    0% {
-        transform: translateY(0);
-    }
+.featured_text {
+    max-width: 600px;
 
-    50% {
-        transform: translateY(-10px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
 }
+
+.cards-container {
+    position: relative;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 500px;
+}
+
+.card {
+    position: sticky;
+    top: 100px;
+    margin-top: 20px;
+    padding: 10px;
+    background: rgb(0, 0, 0);
+    border-radius: 10px;
+    border: 1px solid rgb(50, 50, 50);
+    box-shadow: 0 10px 20px rgb(0, 0, 0);
+    transform: translateZ(0);
+    transition: box-shadow 0.3s ease;
+}
+
+.card p {
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgb(50, 50, 50);
+    text-align: left;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.card button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 50px;
+    margin-left: 100%;
+    transform: translateX(-100%);
+}
+
+.card:nth-child(1) {
+    top: 70px;
+}
+
+.card:nth-child(2) {
+    top: 110px;
+}
+
+.card:nth-child(3) {
+    top: 150px;
+}
+
+.card:nth-child(4) {
+    top: 190px;
+}
+
+.card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.cards-spacer {
+    height: 220px;
+    /* 👈 same as last card’s top offset */
+}
+
+.masonry {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+    height: 70vh;
+    /* fixed height */
+    overflow: hidden;
+    /* prevent overflow */
+    position: relative;
+}
+
+.masonry-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.masonry img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+    display: block;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+}
+
 .sponsor-container {
     position: relative;
     width: 100%;
@@ -221,6 +311,22 @@ html {
 
 
 @media (min-width: 768px) {
+    .featured {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .featured_text {
+        position: sticky;
+        top: 100px;
+        height: calc(100vh - 140px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     .sponsor-track {
         gap: 7rem;
     }

@@ -114,7 +114,7 @@
 #done{
     display: none;
     position: absolute;
-    bottom: 13px;
+    bottom: 27px;
     z-index: 110;
     left: 50%;
     transform: translateX(-50%);

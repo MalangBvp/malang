@@ -1,0 +1,102 @@
+<head>
+    <link rel="stylesheet" href="/src/styles/common.css">
+    <link rel="stylesheet" href="/src/styles/home.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<section id="home">
+    <div id="landingCanvas" class="same">
+        <img src="/resrc/images/misc/favicon.webp" alt="">
+    </div>
+    <div class="pageContents">
+        <div id="landingWindow">
+            <div id="infoContainer">
+                <p id="malangTitle"><img src="/resrc/images/misc/favicon.webp" class="icon-small">Fine Arts &
+                    Photography
+                    Club
+                </p>
+                <h1 id="tagline">For the <span id="kalakaar">Kalakaar</span> in you!</h1>
+                <div id="landingButtons">
+                    <button>Contact Us</button>
+                    <button onclick="window.open('src/pages/recruitments.html','_blank')">Join
+                        Us</button>
+                </div>
+            </div>
+        </div>
+        <div class="featured">
+            <div class="featured_text">
+                <h2>Featured Cards</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse unde saepe nisi. Quisquam
+                    expedita!</p>
+            </div>
+            <div class="cards-container">
+                <div class="card">
+                    <p class="cardTitle">Upcoming Events</p><img src="/resrc/images/misc/team.webp" alt=""><button
+                        onclick="loadPage('/src/pages/home.html')">Learn More</button>
+                </div>
+                <div class="card">
+                    <p class="cardTitle">Fashion Euphoria</p><img src="/resrc/images/misc/team.webp" alt=""><button
+                        onclick="loadPage('/src/pages/home.html')">Learn More</button>
+                </div>
+                <div class="card">
+                    <p class="cardTitle">Rangotsav</p><img src="/resrc/images/misc/team.webp" alt=""><button
+                        onclick="loadPage('/src/pages/home.html')">Learn More</button>
+                </div>
+                <div class="card">
+                    <p class="cardTitle">Art Gallery</p><img src="/resrc/images/misc/team.webp" alt=""><button
+                        onclick="loadPage('/src/pages/home.html')">Learn More</button>
+                </div>
+                <div class="cards-spacer"></div>
+            </div>
+        </div>
+
+        <!-- ===== Masonry Section (drop-in) ===== -->
+        <section class="masonry" id="masonry">
+            <div class="masonry-column" data-speed="0.9">
+                <img src="/resrc/images/misc/team.webp" alt="">
+                <img src="/resrc/images/misc/team.webp" alt="">
+                <img src="/resrc/images/misc/team.webp" alt="">
+            </div>
+            <div class="masonry-column" data-speed="1.5">
+                <img src="/resrc/images/misc/team.webp" alt="">
+                <img src="/resrc/images/misc/team.webp" alt="">
+                <img src="/resrc/images/misc/team.webp" alt="">
+            </div>
+            <div class="masonry-column" data-speed="0.8">
+                <img src="/resrc/images/misc/team.webp" alt="">
+                <img src="/resrc/images/misc/team.webp" alt="">
+                <img src="/resrc/images/misc/team.webp" alt="">
+            </div>
+        </section>
+
+
+        <h1>Our Partners</h1>
+        <div class="sponsor-container">
+            <div class="fade-left"></div>
+            <div class="sponsor-track" id="track">
+                <img src="/resrc/images/misc/gstudios.webp" alt="G Studios">
+                <img src="/resrc/images/misc/vlcc.webp" alt="VLCC">
+                <img src="/resrc/images/misc/lakme.webp" alt="Lakme Academy">
+                <img src="/resrc/images/misc/hashtag.webp" alt="Team Hashtag">
+
+
+                <img src="/resrc/images/misc/gstudios.webp" alt="G Studios">
+                <img src="/resrc/images/misc/vlcc.webp" alt="VLCC">
+                <img src="/resrc/images/misc/lakme.webp" alt="Lakme Academy">
+                <img src="/resrc/images/misc/hashtag.webp" alt="Team Hashtag">
+
+
+                <img src="/resrc/images/misc/gstudios.webp" alt="G Studios">
+                <img src="/resrc/images/misc/vlcc.webp" alt="VLCC">
+                <img src="/resrc/images/misc/lakme.webp" alt="Lakme Academy">
+                <img src="/resrc/images/misc/hashtag.webp" alt="Team Hashtag">
+            </div>
+            <div class="fade-right"></div>
+        </div>
+    </div>
+    <div data-include="/src/components/footer.html"></div>
+    <img src="https://api.visitorbadge.io/api/visitors?path=multiverseweb2%2malang%20&countColor=%23263759&style=flat"
+        alt="" id="visitors">
+</section>
+<script src="/src/scripts/common.js"></script>
+<script src="/src/scripts/home.js"></script>
+<script src="/src/scripts/load.js"></script>

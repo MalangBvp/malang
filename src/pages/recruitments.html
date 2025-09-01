@@ -40,7 +40,7 @@
         }
 
         .form-step.active {
-            min-height: calc(100vh - 220px);
+            min-height: calc(100vh - 250px);
             visibility: visible;
             opacity: 1;
         }
@@ -278,7 +278,7 @@
                 const json = await response.json();
 
                 if (json.result === "success") {
-                    showAlert("Registration successful!", "You will receive further instructions via email.", "Yay!");
+                    showAlert("Registration successful!", "You will receive further instructions via email shortly.", "Yay!");
                     confetti();
                     form.reset();
                     showStep(1);

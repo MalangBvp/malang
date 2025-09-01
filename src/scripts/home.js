@@ -20,3 +20,23 @@ for (i = 0; i < 200; i++) {
 
   stars.appendChild(star);
 }
+
+const masonry = document.getElementById("masonry");
+const columns = masonry.querySelectorAll(".masonry-column");
+
+function isInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom > 100; // visible threshold
+}
+
+window.addEventListener("scroll", () => {
+  if (!isInViewport(masonry)) return; // only move when visible
+
+  const rect = masonry.getBoundingClientRect();
+  const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+
+  columns.forEach(col => {
+    const speed = parseFloat(col.dataset.speed);
+    col.style.transform = `translateY(${progress * 100 * (1 - speed)}px)`;
+  });
+});
