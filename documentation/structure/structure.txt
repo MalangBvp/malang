@@ -13,6 +13,13 @@
 │   └── structure/
 │       └── structure.txt
 ├── index.html
+├── r/
+│   ├── 404.html
+│   ├── help.html
+│   ├── index.html
+│   ├── redirects.json
+│   ├── script.js
+│   └── style.css
 ├── resrc/
 │   ├── data/
 │   │   ├── alumni.json
