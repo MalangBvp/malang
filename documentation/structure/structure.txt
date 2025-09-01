@@ -87,6 +87,7 @@
 │       │   ├── lakme.webp
 │       │   ├── malang.webp
 │       │   ├── payment-qr.webp
+│       │   ├── poster.jpg
 │       │   ├── team.webp
 │       │   └── vlcc.webp
 │       └── photographs/
