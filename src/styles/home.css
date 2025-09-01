@@ -165,7 +165,6 @@ canvas {
 
 .card {
     position: sticky;
-    top: 100px;
     margin-top: 20px;
     padding: 10px;
     background: rgb(0, 0, 0);
@@ -197,38 +196,33 @@ canvas {
 }
 
 .card:nth-child(1) {
-    top: 70px;
+    top: 80px;
 }
 
 .card:nth-child(2) {
-    top: 110px;
+    top: 120px;
 }
 
 .card:nth-child(3) {
-    top: 150px;
+    top: 160px;
 }
 
 .card:nth-child(4) {
-    top: 190px;
+    top: 200px;
 }
 
 .card:hover {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
-.cards-spacer {
-    height: 220px;
-    /* 👈 same as last card’s top offset */
-}
-
 .masonry {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(calc(50vw - 20px), 1fr));
-    gap: 5px;
-    padding: 15px;
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fill, minmax(calc(33vw - 10px), 1fr));
+    padding: 10px;
+    padding-top: 100px;
     margin: 100px auto;
-    height: 70vh;
+    margin-bottom: 50px;
+    height: 50vh;
     /* fixed height */
     overflow: hidden;
     /* prevent overflow */
@@ -238,13 +232,13 @@ canvas {
 .masonry-column {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
 .masonry img {
     width: 100%;
-    max-width: calc(50vw - 20px);
-    border-radius: 10px;
+    max-width: calc(33vw - 10px);
+    border-radius: 7px;
     display: block;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     object-fit: cover;

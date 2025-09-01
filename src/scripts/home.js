@@ -41,28 +41,31 @@ window.addEventListener("scroll", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("image-modal");
-    const modalImg = document.getElementById("modal-image");
-    const closeBtn = document.querySelector(".modal-close");
+const modal = document.getElementById("image-modal");
+const modalImg = document.getElementById("modal-image");
+const closeModal = document.querySelector(".modal-close");
 
-    // Attach click event to all images inside masonry
-    document.querySelectorAll("#masonry img").forEach(img => {
-        img.addEventListener("click", function () {
-            modal.style.display = "block";
-            modalImg.src = this.src;
-        });
-    });
+masonry.addEventListener("click", (e) => {
+    const target = e.target;
+    if (target.tagName === "IMG") {
+    document.querySelector("section").classList.add("modal-active");
+        const fileName = target.src.split("/").pop();
 
-    // Close modal on clicking X
-    closeBtn.addEventListener("click", function () {
+        modalImg.src = target.src;
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
+});
+
+closeModal.addEventListener("click", () => {
+    document.querySelector("section").classList.remove("modal-active");
+    modal.style.display = "none";
+    document.body.style.overflow = "scroll";
+});
+window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+    document.querySelector("section").classList.remove("modal-active");
         modal.style.display = "none";
-    });
-
-    // Close modal on clicking outside content
-    modal.addEventListener("click", function (e) {
-        if (e.target === modal) {
-            modal.style.display = "none";
-        }
-    });
+        document.body.style.overflow = "scroll";
+    }
 });
