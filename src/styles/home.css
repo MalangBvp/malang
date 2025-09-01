@@ -146,9 +146,10 @@ canvas {
     background: rgb(0, 0, 0);
     border-radius: 10px;
     border: 1px solid rgb(50, 50, 50);
-    box-shadow: 0 10px 20px rgb(0, 0, 0);
+    box-shadow: 0 10px 10px rgb(0, 0, 0), 0 5px 15px rgb(0, 0, 0);
     transform: translateZ(0);
     transition: box-shadow 0.3s ease;
+    width: calc(100% - 80px);
 }
 
 .card p {
@@ -161,6 +162,7 @@ canvas {
 .card img {
     max-width: 100%;
     border-radius: 5px;
+    max-height: calc(100vw - 160px);
 }
 
 .card button {
@@ -173,18 +175,22 @@ canvas {
 
 .card:nth-child(1) {
     top: 80px;
+    left: 0px;
 }
 
 .card:nth-child(2) {
     top: 120px;
+    left: 35px;
 }
 
 .card:nth-child(3) {
     top: 160px;
+    left: 55px;
 }
 
 .card:nth-child(4) {
     top: 200px;
+    left: 75px;
 }
 
 .card:hover {

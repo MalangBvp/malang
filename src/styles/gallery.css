@@ -32,6 +32,16 @@
     padding: 2px;
     border-radius: 7px;
     background-color: rgb(17, 17, 17);
+    position: relative;
+}
+#copyFiltersBtn{
+    background-color: rgb(17, 17, 17);
+    padding:  7px 5px;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    right: 0px;
+    top: 5px;
 }
 
 .filters {
@@ -46,6 +56,9 @@
     -ms-overflow-style: none;
     /* Internet Explorer and Edge */
     z-index: 110;
+}
+#filters-category{
+    padding-right: 40px;
 }
 .filters button {
     margin: 0 2px;
@@ -63,7 +76,7 @@
     color: black;
 }
 .filters p {
-    left: 25px;
+    left: 10px;
     padding-top: 5px;
     position: absolute;
     font-weight: 400;

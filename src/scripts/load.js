@@ -3,7 +3,6 @@ console.log("| Tejas' Codes :D |");
 console.log("+-----------------+");
 
 const content = document.getElementById("content");
-var init = true;
 
 // move toggleMenu outside
 function toggleMenu() {
@@ -75,8 +74,7 @@ async function loadPage(url) {
         content.src = "/404.html";
     }
 
-    if (!init && !["/src/pages/account.html", "/src/pages/home.html"].includes(url)) {
+    if (nav.classList.contains("active")) {
         toggleMenu();
     }
-    init = false;
 }
