@@ -15,7 +15,7 @@
                 break;
             case 'redirectorForm':
                 encoded = 'Z2Vudmlp';
-                url = 'https://malangbvp.github.io/go/help';
+                url = '/r/#/help';
                 const postfix = document.getElementById('postfix');
                 postfix.addEventListener('input', function () {
                     document.getElementById('url').textContent = postfix.value;
