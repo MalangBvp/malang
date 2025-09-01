@@ -57,7 +57,7 @@
                         const json = await res.json();
 
                         if (json.status === "success") {
-                            showAlert("Claimed.", "Your request will be reviewed soon.", "OK");
+                            showAlert("Claimed.", "Your request will be reviewed soon.", [{ text: "OK" }]);
                             resolve();
                         } else {
                             reject(showError("❌ Error: " + json.message));

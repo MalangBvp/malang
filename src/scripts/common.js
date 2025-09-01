@@ -147,10 +147,17 @@ async function subscribe() {
         }, 3000);
     }
 }
-
-function showAlert(heading, message, buttonText) {
+/**
+ * Show a customizable alert
+ * @param {string} heading - Alert heading
+ * @param {string} message - Alert message
+ * @param {Array<{text: string, onClick?: Function}>} buttons - Array of button objects
+ * @param {string} [link] - Optional clickable link
+ */
+function showAlert(heading, message, buttons = [{ text: 'OK' }], link) {
     vibrate(50);
-    // Remove existing alert if any
+
+    // Remove existing alert
     const existing = document.querySelector('.custom-alert');
     if (existing) existing.remove();
 
@@ -193,28 +200,57 @@ function showAlert(heading, message, buttonText) {
     // Message
     const m = document.createElement('p');
     m.textContent = message;
-    Object.assign(m.style, {
-        padding: '0 10px'
-    });
+    Object.assign(m.style, { padding: '0 10px' });
 
-    // Button
-    const btn = document.createElement('button');
-    btn.textContent = buttonText;
-    Object.assign(btn.style, {
-        padding: '8px 16px',
-        backgroundColor: '#141414ff',
-        borderRadius: '5px',
-        margin: '15px 0',
-        position: 'relative',
-        left: '100%',
-        transform: 'translateX(calc(-100% - 13px))'
-    });
-    btn.onclick = () => overlay.remove();
-
-    // Build and show
     box.appendChild(h);
     box.appendChild(m);
-    box.appendChild(btn);
+
+    // Optional link
+    if (link) {
+        const a = document.createElement('a');
+        a.href = link;
+        a.textContent = link;
+        a.target = "_blank";
+        Object.assign(a.style, {
+            display: 'block',
+            padding: '0 10px 10px',
+            color: '#1bbeff',
+            textDecoration: 'underline',
+            wordBreak: 'break-all'
+        });
+        box.appendChild(a);
+    }
+
+    // Buttons container
+    const btnContainer = document.createElement('div');
+    Object.assign(btnContainer.style, {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        gap: '10px',
+        padding: '10px'
+    });
+
+    buttons.forEach(btnObj => {
+        const btn = document.createElement('button');
+        btn.textContent = btnObj.text;
+        Object.assign(btn.style, {
+            padding: '8px 16px',
+            backgroundColor: '#141414ff',
+            borderRadius: '5px',
+            border: '1px solid rgb(50,50,50)',
+            color: 'white',
+            cursor: 'pointer'
+        });
+
+        btn.onclick = () => {
+            overlay.remove();
+            if (btnObj.onClick) btnObj.onClick();
+        };
+
+        btnContainer.appendChild(btn);
+    });
+
+    box.appendChild(btnContainer);
     overlay.appendChild(box);
     document.body.appendChild(overlay);
 }

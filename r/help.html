@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,19 +30,21 @@
     }
 
     table {
-      font-family:'Courier New', Courier, monospace;
+      font-family: 'Courier New', Courier, monospace;
       width: 100%;
       min-width: 400px;
       border-collapse: collapse;
     }
 
-    th, td {
+    th,
+    td {
       padding: 12px 8px;
       text-align: left;
       font-size: 15px;
       word-break: break-word;
     }
-    td{
+
+    td {
       text-wrap: nowrap;
     }
 
@@ -49,13 +52,16 @@
       background-color: #1f1f1f;
       border-bottom: 1px solid #292929;
     }
+
     tr:nth-child(odd) {
       background-color: #141414;
     }
-    tr{
+
+    tr {
       transition-duration: 0.3s;
     }
-    tr:hover{
+
+    tr:hover {
       background-color: #464646;
     }
 
@@ -69,7 +75,9 @@
     }
 
     @media (max-width: 480px) {
-      th, td {
+
+      th,
+      td {
         font-size: 13px;
         padding: 10px 6px;
       }
@@ -80,6 +88,7 @@
     }
   </style>
 </head>
+
 <body>
   <h2>Malang Redirects</h2>
   <div class="table-wrapper">
@@ -93,16 +102,57 @@
         const container = document.getElementById('table-container');
         const table = document.createElement('table');
 
+        // Create header row with the new "URL" column
         const headerRow = document.createElement('tr');
-        headerRow.innerHTML = `<th>Postfix</th><th>Redirection Link</th>`;
+        headerRow.innerHTML = `<th>URL</th><th>Postfix</th><th>Redirection Link</th>`;
         table.appendChild(headerRow);
 
         for (const [name, url] of Object.entries(data)) {
           const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${name}</td>
-            <td><a href="${url}" target="_blank">${url}</a></td>
-          `;
+
+          // Create copy button cell
+          const copyCell = document.createElement('td');
+          const copyButton = document.createElement('button');
+          copyButton.textContent = 'Copy';
+          copyButton.style.cursor = 'pointer';
+          copyButton.style.padding = '5px 10px';
+          copyButton.style.border = '1px solid rgb(50, 50, 50)';
+          copyButton.style.borderRadius = '4px';
+          copyButton.style.backgroundColor = 'transparent';
+          copyButton.style.color = '#fff';
+          copyButton.onclick = () => {
+            const copyUrl = `https://malangbvp.in/r/#/${name}`;
+            const originalText = copyButton.textContent;
+            const originalBorder = copyButton.style.border;
+            const originalColor = copyButton.style.color;
+
+            navigator.clipboard.writeText(copyUrl).then(() => {
+              copyButton.textContent = 'Done';
+              copyButton.style.border = '1px solid green';
+              copyButton.style.color = 'green';
+
+              setTimeout(() => {
+                copyButton.textContent = originalText;
+                copyButton.style.border = originalBorder;
+                copyButton.style.color = originalColor;
+              }, 2000);
+            });
+          };
+
+          copyCell.appendChild(copyButton);
+
+          // Postfix and redirection cells
+          const postfixCell = document.createElement('td');
+          postfixCell.textContent = name;
+
+          const linkCell = document.createElement('td');
+          linkCell.innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
+
+          // Append cells to the row
+          row.appendChild(copyCell);
+          row.appendChild(postfixCell);
+          row.appendChild(linkCell);
+
           table.appendChild(row);
         }
 
@@ -114,5 +164,7 @@
         console.error(err);
       });
   </script>
+
 </body>
+
 </html>

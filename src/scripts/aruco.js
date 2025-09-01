@@ -10,5 +10,5 @@ navigator.mediaDevices.getUserMedia({
 })
 .catch(err => {
   console.error("Camera access error:", err);
-  showAlert("Error","Unable to access the camera. Please grant permission or try another browser.", "OK");
+  showAlert("Error","Unable to access the camera. Please grant permission or try another browser.", [{ text: "OK" }]);
 });

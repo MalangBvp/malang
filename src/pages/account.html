@@ -61,23 +61,23 @@
                 const { user } = await signInWithPopup(auth, provider);
                 if (!allowedEmails.includes(user.email)) {
                     vibrate(200);
-                    showAlert("Unauthorised Access Attempt.", "Login restricted: Membership with Malang is required.", "Close");
+                    showAlert("Unauthorised Access Attempt.", "Login restricted: Membership with Malang is required.", [{ text: "OK" }]);
                     await signOut(auth);
                 } else {
-                    showAlert("Login successful", "", "Proceed");
+                    showAlert("Login successful", "", [{ text: "Proceed" }]);
                     vibrate(50);
                 }
                 updateUI(user);
             } catch (error) {
                 vibrate(50);
-                showAlert("Login failed.", error, "OK");
+                showAlert("Login failed.", error, [{ text: "OK" }]);
             }
         }
 
         async function logout() {
             await signOut(auth);
             updateUI(null);
-            showAlert("Logged Out", "You've been logged out.", "Close");
+            showAlert("Logged Out", "You've been logged out.", [{ text: "Close" }]);
         }
 
         onAuthStateChanged(auth, updateUI);

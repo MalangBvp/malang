@@ -396,7 +396,7 @@ form,
 input,
 textarea,
 select {
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 10px;
     border: 1px solid #4a4a4a;
     border-radius: 7px;
@@ -421,6 +421,7 @@ textarea {
     resize: vertical;
     min-height: 70px;
     margin-bottom: 10px;
+    width: calc(100% - 20px);
 }
 
 #submit {

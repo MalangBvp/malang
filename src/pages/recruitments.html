@@ -20,6 +20,11 @@
             min-height: max-content;
             width: calc(100% - 44px);
             margin: auto;
+            overflow-y: scroll;
+        }
+
+        #recruitmentForm input {
+            width: calc(100% - 20px);
         }
 
         #recruitmentForm p {
@@ -30,18 +35,17 @@
         }
 
         .form-step {
-            display: flex;
             flex-direction: column;
             justify-content: space-between;
             max-height: 0;
-            visibility: hidden;
+            display: none;
             opacity: 0;
             transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
         }
 
         .form-step.active {
             min-height: calc(100vh - 250px);
-            visibility: visible;
+            display: flex;
             opacity: 1;
         }
 
@@ -252,7 +256,7 @@
                 });
             }
 
-            if (!valid) showAlert("⚠️", "Please fill all required fields before continuing.", "OK");
+            if (!valid) showAlert("⚠️", "Please fill all required fields before continuing.", [{ text: "OK" }]);
             return valid;
         }
 
@@ -278,16 +282,24 @@
                 const json = await response.json();
 
                 if (json.result === "success") {
-                    showAlert("Registration successful!", "You will receive further instructions via email shortly.", "Yay!");
+                    showAlert("Registration successful!", "You will receive further instructions via email shortly.", [{
+                        text: "Yay!", onClick: () =>
+                            showAlert(
+                                "Stay Tuned!",
+                                "Join our Whatsapp community for future updates:",
+                                [{ text: "OK" }],
+                                "https://whatsapp.com/channel/0029VbBDFgn0lwgxnvdddj3m"
+                            )
+                    }]);
                     confetti();
                     form.reset();
                     showStep(1);
                 } else {
-                    showAlert("⚠️", json.message, "OK");
+                    showAlert("⚠️", json.message, [{ text: "OK" }]);
                 }
             } catch (err) {
                 console.error(err);
-                showAlert("❌ Something went wrong!", "Please try again later.", "OK");
+                showAlert("❌ Something went wrong!", "Please try again later.", [{ text: "OK" }]);
             }
         }
 

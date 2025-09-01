@@ -31,7 +31,14 @@ setTimeout(() => {
     });
 
     document.getElementById("pwa").addEventListener("click", function () {
-        showAlert("PWA Installation", "Install our app for faster access, offline support and a smoother experience.", "Install");
+        showAlert(
+            "PWA Installation",
+            "Install our app for faster access, offline support and a smoother experience.",
+            [
+                { text: "Cancel"},
+                { text: "Install", onClick: () => showAlert("PWA Installation", "This feature will be available soon.", [{ text: "OK" }]) }
+            ]
+        );
     });
 
     document.getElementById("copy").addEventListener("click", function () {

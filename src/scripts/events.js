@@ -29,23 +29,24 @@ document.addEventListener("DOMContentLoaded", () => {
             <img src="${event.image}" alt="${event.name}" loading="lazy" class="event-image same" />
             <p class="event-description">${event.description}</p>
             <div class="event-buttons">
-              ${event.buttons.map(btn => {
+            ${event.buttons.map(btn => {
             if (btn.alertMessage) {
               return `
-                    <button class="long-btn${btn.focus ? ' focus' : ''}" onclick="showAlert('${event.name}', '${btn.alertMessage}', 'OK')">
-                      ${btn.text}
-                    </button>
-                  `;
+      <button class="long-btn${btn.focus ? ' focus' : ''}" onclick="showAlert('${event.name}', '${btn.alertMessage}', [{ text: 'OK' }])">
+        ${btn.text}
+      </button>
+    `;
             } else if (btn.link) {
               return `
-                    <button class="long-btn${btn.focus ? ' focus' : ''}" onclick="window.open('${btn.link}','_blank')">
-                      ${btn.text}
-                    </button>
-                  `;
+      <button class="long-btn${btn.focus ? ' focus' : ''}" onclick="window.open('${btn.link}','_blank')">
+        ${btn.text}
+      </button>
+    `;
             } else {
               return '';
             }
           }).join('')}
+
             </div>
           `;
 

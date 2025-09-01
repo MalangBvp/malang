@@ -88,7 +88,7 @@ fetch('/resrc/data/treasury.json')
             }
         });
     })
-    .catch(error => showAlert('Error loading Data', error, 'OK'));
+    .catch(error => showAlert('Error loading Data', error, [{ text: "OK" }]));
 
 // Button Event Listeners (can stay outside)
 document.getElementById("contribute").addEventListener("click", toggleContribution);

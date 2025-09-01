@@ -10,11 +10,11 @@
 
         switch (formId) {
             case 'coreForm':
-                encoded = 'bWFsYW5ncGFyaw==';
+                encoded = 'dHJlYXN1cnk=';
                 url = 'treasury.html';
                 break;
             case 'redirectorForm':
-                encoded = 'Z2Vudmlp';
+                encoded = 'cmVkaXJlY3Rvcg==';
                 url = '/r/#/help';
                 const postfix = document.getElementById('postfix');
                 postfix.addEventListener('input', function () {
