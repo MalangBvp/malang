@@ -16,12 +16,12 @@ canvas {
     position: relative;
     width: 100%;
     overflow: hidden;
-    border-top: 1px solid rgb(50, 50, 50);
 }
 
 .pageContents {
     z-index: 1;
-    background-color: black;
+    background-image: linear-gradient(to top, black 95%, transparent 100%);
+    background-size: cover;
     text-align: center;
 }
 
@@ -34,7 +34,7 @@ canvas {
         linear-gradient(-20deg, black 60%, rgb(216, 173, 0) 100%);
     background-blend-mode: screen;
     width: 100%;
-    height: min-content;
+    height: 300px;
     padding: 80px 0 40px 0;
     text-align: center;
     overflow: hidden;
@@ -65,30 +65,6 @@ canvas {
         opacity: 0.2;
     }
 }
-
-#landingCanvas img {
-    filter: drop-shadow(0 0 15px rgb(142, 142, 142));
-    width: calc(100% - 80px);
-    max-width: 230px !important;
-    transform: translateX(-7%);
-    scale: 0.5;
-    animation: spinY 0.5s ease-in-out forwards;
-    transform-style: preserve-3d;
-}
-
-@keyframes spinY {
-    from {
-        transform: rotateY(0deg) translateX(-7%);
-        margin-bottom: -150%;
-    }
-
-    to {
-        scale: 1;
-        transform: rotateY(360deg) translateX(-7%);
-        margin-bottom: 0%;
-    }
-}
-
 #infoContainer {
     position: relative;
     width: calc(100% - 20px);
