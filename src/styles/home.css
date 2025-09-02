@@ -1,8 +1,8 @@
 @font-face {
-  font-family: 'Samarkan';
-  src: url('FontsFree-Net-SAMAN___.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'Samarkan';
+    src: url('FontsFree-Net-SAMAN___.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 html {
@@ -12,7 +12,8 @@ html {
 #visitors {
     display: none;
 }
-#loader{
+
+#loader {
     transition: opacity 0.5s ease;
 }
 

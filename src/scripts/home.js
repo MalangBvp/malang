@@ -76,8 +76,8 @@ function scrollToBottom() {
   });
 }
 
-window.addEventListener("load", () => {
-  const loader = document.getElementById("loader");
+const loader = document.getElementById("loader");
+document.fonts.load("1em " + getComputedStyle(kalakaar).fontFamily).then(() => {
   loader.style.opacity = "0";
   setTimeout(() => loader.style.display = "none", 500);
 });
