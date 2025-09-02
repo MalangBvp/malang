@@ -2,9 +2,13 @@
     <link rel="stylesheet" href="/src/styles/common.css">
     <link rel="stylesheet" href="/src/styles/home.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link href="https://db.onlinewebfonts.com/c/f56de887103fafbc50b8d846974cd5d4?family=Samarkan+Normal+V1" rel="stylesheet">
+    <link href="https://db.onlinewebfonts.com/c/f56de887103fafbc50b8d846974cd5d4?family=Samarkan+Normal+V1"
+        rel="stylesheet">
 </head>
 <section id="home">
+    <div id="loader">
+        <span></span>
+    </div>
     <div id="landingCanvas" class="same">
     </div>
     <div class="pageContents">
@@ -25,7 +29,10 @@
         <div class="featured">
             <div class="featured_text">
                 <h2>Discover Your Creative Oasis at Malang</h2>
-                <p><br>Our mission is to provide a platform for individuals to express themselves, explore their artistic passions, and collaborate with like-minded individuals. Whether you're a painter, photographer, sculptor, dancer, writer, or any form of creative soul, Malang Fine Arts Arts & Photography Club is the place to be.</p>
+                <p><br>Our mission is to provide a platform for individuals to express themselves, explore their
+                    artistic passions, and collaborate with like-minded individuals. Whether you're a painter,
+                    photographer, sculptor, dancer, writer, or any form of creative soul, Malang Fine Arts Arts &
+                    Photography Club is the place to be.</p>
             </div>
             <div class="cards-container">
                 <div class="card">
@@ -114,12 +121,12 @@
     <img src="https://api.visitorbadge.io/api/visitors?path=multiverseweb2%2malang%20&countColor=%23263759&style=flat"
         alt="" id="visitors">
 </section>
-    <div id="image-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <img id="modal-image" class="same" />
-            </div>
-        </div>
+<div id="image-modal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <img id="modal-image" class="same" />
     </div>
+</div>
+</div>
 <script src="/src/scripts/common.js"></script>
 <script src="/src/scripts/home.js"></script>

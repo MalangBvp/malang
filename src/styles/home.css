@@ -12,6 +12,9 @@ html {
 #visitors {
     display: none;
 }
+#loader{
+    transition: opacity 0.5s ease;
+}
 
 canvas {
     display: block;

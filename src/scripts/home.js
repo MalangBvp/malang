@@ -46,28 +46,28 @@ const modalImg = document.getElementById("modal-image");
 const closeModal = document.querySelector(".modal-close");
 
 masonry.addEventListener("click", (e) => {
-    const target = e.target;
-    if (target.tagName === "IMG") {
+  const target = e.target;
+  if (target.tagName === "IMG") {
     document.querySelector("section").classList.add("modal-active");
-        const fileName = target.src.split("/").pop();
+    const fileName = target.src.split("/").pop();
 
-        modalImg.src = target.src;
-        modal.style.display = "flex";
-        document.body.style.overflow = "hidden";
-    }
+    modalImg.src = target.src;
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
 });
 
 closeModal.addEventListener("click", () => {
+  document.querySelector("section").classList.remove("modal-active");
+  modal.style.display = "none";
+  document.body.style.overflow = "scroll";
+});
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
     document.querySelector("section").classList.remove("modal-active");
     modal.style.display = "none";
     document.body.style.overflow = "scroll";
-});
-window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-    document.querySelector("section").classList.remove("modal-active");
-        modal.style.display = "none";
-        document.body.style.overflow = "scroll";
-    }
+  }
 });
 
 function scrollToBottom() {
@@ -75,3 +75,9 @@ function scrollToBottom() {
     top: document.body.scrollHeight
   });
 }
+
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+  loader.style.opacity = "0";
+  setTimeout(() => loader.style.display = "none", 500);
+});
