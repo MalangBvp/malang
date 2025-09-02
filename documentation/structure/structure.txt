@@ -2,7 +2,6 @@
 │   ├── scripts/
 │   │   └── update_structure.py
 │   └── workflows/
-│       ├── shorten_url.yml
 │       └── update-structure.yml
 ├── .gitignore
 ├── 404.html
