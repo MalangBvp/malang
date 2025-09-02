@@ -1,5 +1,5 @@
 (() => {
-    const form = document.getElementById('coreForm') || document.getElementById('redirectorForm');
+    const form = document.getElementById('coreForm');
     const passwordInput = document.getElementById('password');
 
     let encoded = '';
@@ -12,14 +12,6 @@
             case 'coreForm':
                 encoded = 'dHJlYXN1cnk=';
                 url = 'treasury.html';
-                break;
-            case 'redirectorForm':
-                encoded = 'cmVkaXJlY3Rvcg==';
-                url = '/r/#/help';
-                const postfix = document.getElementById('postfix');
-                postfix.addEventListener('input', function () {
-                    document.getElementById('url').textContent = postfix.value;
-                });
                 break;
             default:
                 console.error('Unknown form ID');

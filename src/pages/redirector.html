@@ -2,19 +2,49 @@
     <link rel="stylesheet" href="../styles/common.css">
     <link rel="stylesheet" href="../styles/authentication.css">
 </head>
+
 <body>
     <h3 class="protected">You must be signed in to view this page.</h3>
     <section id="authentication" class="restricted">
-    <canvas id="gradientCanvas"></canvas>
+        <canvas id="gradientCanvas"></canvas>
         <form id="redirectorForm">
             <h3>Customise URL</h3>
             <input type="url" id="longURL" placeholder="URL" required />
             <input type="text" id="postfix" placeholder="Postfix" required />
-            <input type="password" id="password" placeholder="Password" required />
             Custom URL will be:<br><a href="" class="url">https://malangbvp.in/r/#/<span id="url">Postfix</span></a>
-            <p id="error" class="same">Incorrect password. Try again.</p>
             <button type="submit" class="long-btn" id="submit">Create</button>
         </form>
     </section>
     <script src="../scripts/common.js"></script>
     <script src="../scripts/authentication.js"></script>
+    <script>
+        const postfix = document.getElementById('postfix');
+        postfix.addEventListener('input', function () {
+            document.getElementById('url').textContent = postfix.value;
+        });
+        document.getElementById("redirectorForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            postfix.value.trim();
+            const longURL = document.getElementById("longURL").value.trim();
+
+            // Trigger GitHub Action via repository_dispatch
+            await fetch("https://api.github.com/repos/MalangBvp/malang/dispatches", {
+                method: "POST",
+                headers: {
+                    "Accept": "application/vnd.github+json",
+                    "Authorization": "token YOUR_PAT" // ⚠️ required only to trigger the dispatch
+                },
+                body: JSON.stringify({
+                    event_type: "update-json",
+                    client_payload: { postfix, longURL }
+                })
+            });
+
+            showAlert(
+                "Requested!",
+                "GitHub Action will create a pull request to update the redirector.",
+                [{ text: "OK" }, { text: "View Redirects", onClick: () => window.open("/r/#/help") }]
+            )
+        });
+    </script>
