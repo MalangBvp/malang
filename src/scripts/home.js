@@ -69,3 +69,9 @@ window.addEventListener("click", (e) => {
         document.body.style.overflow = "scroll";
     }
 });
+
+function scrollToBottom() {
+  window.scrollTo({
+    top: document.body.scrollHeight
+  });
+}

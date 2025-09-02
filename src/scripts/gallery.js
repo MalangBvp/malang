@@ -331,11 +331,23 @@
 
         modalImg.src = img.src;
         modalTitle.textContent = `Title: ${meta.title || 'NA'}`;
-        modalArtist.textContent = `Artist: ${meta.artist || 'NA'}`;
+        modalArtist.textContent = `By: ${meta.artist || 'NA'}`;
 
         document.querySelector("section").classList.add("modal-active");
         modal.style.display = "flex";
         document.body.style.overflow = "hidden";
+
+        document.querySelector(".modal-close")?.addEventListener("click", () => {
+            document.querySelector("section").classList.remove("modal-active");
+            document.getElementById("image-modal").style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target.id === "image-modal") {
+                document.querySelector("section").classList.remove("modal-active");
+                document.getElementById("image-modal").style.display = "none";
+            }
+        });
     }
 
     // On initial load: read URL params to set mode/type/artist

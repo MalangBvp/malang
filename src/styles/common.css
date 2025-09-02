@@ -281,6 +281,7 @@ nav ul button {
 }
 
 nav hr {
+    width: calc(100% - 20px);
     max-width: 500px;
 }
 
