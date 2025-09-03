@@ -33,7 +33,7 @@ function createFirework(x, y) {
     fw.style.setProperty("--y", `${(Math.random() - 0.5) * 400}px`);
     document.body.appendChild(fw);
 
-    setTimeout(() => fw.remove(), 1000); // remove after animation
+    setTimeout(() => fw.remove(), 2000);
   }
 }
 

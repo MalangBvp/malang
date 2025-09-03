@@ -16,7 +16,10 @@ html {
     border-radius: 50%;
     background: red;
     box-shadow: 0 0 10px white, 0 0 20px red, 0 0 30px orange, 0 0 40px yellow;
-    animation: explode 1s ease-out forwards;
+    filter: brightness(2);
+    /* glow effect */
+    animation: explode 1.8s ease-out forwards;
+    /* slower = longer trail */
 }
 
 @keyframes explode {
