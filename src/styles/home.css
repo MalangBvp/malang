@@ -9,6 +9,28 @@ html {
     scroll-behavior: smooth;
 }
 
+.firework {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: red;
+    box-shadow: 0 0 10px white, 0 0 20px red, 0 0 30px orange, 0 0 40px yellow;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    from {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(var(--x), var(--y)) scale(0.5);
+        opacity: 0;
+    }
+}
+
 #visitors {
     display: none;
 }
@@ -51,11 +73,12 @@ canvas {
     overflow: hidden;
     z-index: -1;
 }
+
 #landingCanvas h1 {
     font-size: 2.5rem;
     margin-top: 50px;
     text-shadow: 0 0 10px rgb(255, 255, 255);
-    
+
 }
 
 .star {

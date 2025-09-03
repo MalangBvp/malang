@@ -21,6 +21,32 @@ for (i = 0; i < 200; i++) {
   stars.appendChild(star);
 }
 
+function createFirework(x, y) {
+  const colors = ["#ffff33", "gold", "#ffa500"];
+  for (let i = 0; i < 40; i++) {
+    const fw = document.createElement("div");
+    fw.className = "firework";
+    fw.style.left = x + "px";
+    fw.style.top = y + "px";
+    fw.style.background = colors[Math.floor(Math.random() * colors.length)];
+    fw.style.setProperty("--x", `${(Math.random() - 0.5) * 400}px`);
+    fw.style.setProperty("--y", `${(Math.random() - 0.5) * 400}px`);
+    document.body.appendChild(fw);
+
+    setTimeout(() => fw.remove(), 1000); // remove after animation
+  }
+}
+
+// Run fireworks for 3 seconds only
+const interval = setInterval(() => {
+  const x = Math.random() * window.innerWidth;
+  const y = Math.random() * window.innerHeight / 2;
+  createFirework(x, y);
+}, 500);
+
+setTimeout(() => clearInterval(interval), 3000);
+
+
 const masonry = document.getElementById("masonry");
 const columns = masonry.querySelectorAll(".masonry-column");
 
