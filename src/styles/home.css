@@ -31,7 +31,7 @@ canvas {
 
 .pageContents {
     z-index: 1;
-    background-image: linear-gradient(to top, black 95%, transparent 100%);
+    background-image: linear-gradient(to top, black 98%, transparent 100%);
     background-size: cover;
     text-align: center;
 }
@@ -50,6 +50,12 @@ canvas {
     text-align: center;
     overflow: hidden;
     z-index: -1;
+}
+#landingCanvas h1 {
+    font-size: 2.5rem;
+    margin-top: 50px;
+    text-shadow: 0 0 10px rgb(255, 255, 255);
+    
 }
 
 .star {
@@ -122,9 +128,9 @@ canvas {
 }
 
 #landingButtons button {
-    padding: 7px 30px;
+    padding: 10px 30px;
     background-color: rgba(15, 15, 15, 0.647);
-    border-radius: 10px;
+    border-radius: 50px;
     transition: background-color 0.3s ease;
 }
 
