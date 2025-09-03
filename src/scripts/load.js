@@ -42,7 +42,7 @@ setTimeout(() => {
 
     document.getElementById("copy").addEventListener("click", function () {
         vibrate();
-        navigator.clipboard.writeText("https://malangbvp.github.io/go/to-site").then(() => {
+        navigator.clipboard.writeText("https://malangbvp.vercel.app").then(() => {
             const themeIcon = this.querySelector("img");
             setTimeout(() => {
                 themeIcon.src = "/resrc/images/icons/link.webp";
