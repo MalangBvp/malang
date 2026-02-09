@@ -269,6 +269,7 @@ hr {
 .partner-logos {
     margin-top: 50px;
     display: flex;
+    flex-direction: column;
     gap: 50px;
     justify-content: center;
     flex-wrap: wrap;
