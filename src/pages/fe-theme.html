@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="../styles/authentication.css" />
     <title>Fashion Euphoria | Registration Form</title>
     <style>
+        :root {
+            --border-color: #484848;
+        }
+
         #formSection {
             overflow-y: hidden;
             margin: 10px;
@@ -17,10 +21,15 @@
         }
 
         #feForm p {
-            text-align: left;
+            text-align: left !important;
             color: #d8d8d8;
             margin-bottom: 10px;
             overflow-y: hidden;
+        }
+
+        #feForm ul {
+            text-align: left !important;
+            padding-left: 20px;
         }
 
         #feForm h3 {
@@ -28,6 +37,7 @@
             padding-bottom: 10px;
             width: calc(100% + 20px);
             margin-left: -10px;
+            margin-bottom: 0px;
         }
 
         .form-step {
@@ -87,29 +97,6 @@
             border-color: rgba(0, 255, 208, 0.575);
         }
 
-        /* Hidden text input */
-        .other-input {
-            max-height: 0;
-            opacity: 0;
-            width: calc(100% - 22px);
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-
-        .other-input input {
-            margin-top: 7px;
-            width: 100%;
-            outline: none;
-            transition: box-shadow 0.3s ease;
-        }
-
-        /* Show animation when "Other" is checked */
-        #Other:checked~.other-input {
-            max-height: 70px;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         select {
             color: grey;
             margin-bottom: 10px;
@@ -130,7 +117,7 @@
         #qr {
             width: 70%;
             border-radius: 7px;
-            margin-bottom: 10px;
+            margin: 10px 0;
         }
 
         #login-btn {
@@ -140,28 +127,6 @@
             padding: 10px 20px;
             border-radius: 7px;
             background-color: #0c0c0c;
-        }
-
-        .iti {
-            width: 100%;
-        }
-
-        #tshirts {
-            margin: 10px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        #tshirts img {
-            border: 1px sold #383838;
-            width: 100%;
-            max-width: 210px;
-            border-radius: 10px;
-            border: 1px solid #383838;
         }
     </style>
 </head>
@@ -174,183 +139,188 @@
             onsubmit="handleButtonAction('submit','Registering','Registered',()=>handleFormSubmit(event))">
 
             <h3>Fashion Euphoria 2026</h3>
-            <!-- STEP 1 : COMPETITION -->
+            <!-- STEP 1 : ID -->
             <div class="form-step active" id="step1">
+                <p>
+                <ul>
+                    <li>Themes are allotted on a first-come, first-serve basis, with a maximum of 4 parties per theme.
+                    </li>
+                    <li>The deadline to fill the form is <b>25th February 2026</b>.</li>
+                </ul>
+                </p>
+                <p>NOTE: No refunds will be provided if participants back out after the deadline.</p>
                 <div class="inputs">
-                    <p>Step into the spotlight and showcase your style and creativity at <b>Fashion Euphoria 2026</b>!
-                        <br>Register below to participate in the <U><b>Fashion</b></U> or <U><b>Cosplay</b></U>
-                        competition. <br>
+                    <input type="text" name="ID" id="ID" placeholder="Participation ID *">
                     <div class="checks">
                         <div class="checkbox-group">
-                            <p style="margin-bottom:0px;">Checkout the <a href="https://malangbvp.info/fe-rules"
-                                    target="_blank">Event Rulebook</a> before registering.</p>
-                        </div>
-                    </div>
-                    <div class="checks">
-                        <div class="checkbox-group">
-                            <p>I agree to the <a href="terms.html">Terms</a> & <a href="privacy-policy.html">Privacy
-                                    Policy</a> *</p>
-                            <input type="checkbox" id="agree_tc" />
-                            <label for="agree_tc">Yes
+                            <p>Have you filled the <a href="https://malangbvp.in/🎶" target="_blank">Media Form</a>
+                                provided by
+                                Malang? *</p>
+                            <input type="checkbox" id="media" />
+                            <label for="media">Yes
                             </label>
                         </div>
                     </div>
-                    <select id="competition" name="competition" required>
-                        <option value="" disabled selected>Competition *</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="cosplay">Cosplay</option>
-                    </select>
                 </div>
                 <div class="btn-group">
                     <span></span>
-                    <button type="button" class="long-btn" onclick="nextStep(1)">Next</button>
+                    <button type="button" class="long-btn" onclick="buildFlowFromID()">Next</button>
                 </div>
             </div>
 
-            <!-- STEP 2 : CATEGORY -->
+            <!-- STEP 2 : SOLO THEME -->
             <div class="form-step" id="step2">
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>No. of Members</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Solo</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Duet</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>Group</td>
-                            <td>3-12</td>
-                        </tr>
-                    </tbody>
-                </table>
                 <div class="inputs">
-                    <select id="category" name="category" required>
-                        <option value="" disabled selected>Category *</option>
-                        <option value="solo">Solo</option>
-                        <option value="duet">Duet</option>
-                        <option value="group">Group (Fashion only)</option>
+                    <table class="styled-table">
+                        <tbody>
+                            <tr>
+                                <td>Competition</td>
+                                <td>Fashion</td>
+                            </tr>
+                            <tr>
+                                <td>Category</td>
+                                <td>Solo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Name to be used on-stage (optional)</p>
+                    <input type="text" name="alias_solo" id="alias_solo" placeholder="Alias Name">
+                    <p>Theme:</p>
+                    <select id="theme_solo" name="theme" required>
+                        <option value="" disabled selected>Solo Themes *</option>
+                        <option value="solo">Indian Maximalism: Royal Heritage</option>
+                        <option value="solo">Solo Cyberpunk Chronicles</option>
+                        <option value="solo">Enchanted Realms: Dark Fantasy</option>
+                        <option value="solo">Wild West Fusion</option>
+                        <option value="solo">The New Power Moves</option>
+                        <option value="solo">Cultural Remix: Global Fusion</option>
+                        <option value="solo">Timeless Trends: Y2K Renaissance</option>
+                        <option value="solo">Sustainable Style: Upcycled Utopia</option>
                     </select>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="long-btn" onclick="prevStep(2)">Previous</button>
-                    <button type="button" class="long-btn" onclick="nextDynamic()">Next</button>
+                    <button type="button" class="long-btn" onclick="prevDynamic(2)">Previous</button>
+                    <button type="button" class="long-btn" onclick="nextDynamic(2)">Next</button>
                 </div>
             </div>
 
-            <!-- STEP 3 : MEMBER 1 / SOLO / POC -->
+            <!-- STEP 3 : DUET THEME -->
             <div class="form-step" id="step3">
                 <div class="inputs">
-                    <input type="text" id="poc_name" name="poc_name" placeholder="Full Name *" required />
-                    <select id="poc_gender" name="poc_gender" required>
-                        <option value="" disabled selected>Gender *</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
+                    <table class="styled-table">
+                        <tbody>
+                            <tr>
+                                <td>Competition</td>
+                                <td>Fashion</td>
+                            </tr>
+                            <tr>
+                                <td>Category</td>
+                                <td>Duet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Duet name to be used on-stage:</p>
+                    <input type="text" name="alias_duet" id="alias_duet" placeholder="Alias Name *">
+                    <p>Theme:</p>
+                    <select id="theme_duet" name="theme" required>
+                        <option value="" disabled selected>Duet Themes *</option>
+                        <option value="solo">Opposites Attract: Yin & Yang</option>
+                        <option value="solo">Roots & Rhythm: Traditional Duet</option>
+                        <option value="solo">Celestial Pairs: Cosmic Entities</option>
+                        <option value="solo">Dynamic Duos: Partners in Crime</option>
+                        <option value="solo">Glamour & Grace: Red Carpet Ready</option>
+                        <option value="solo">Fantasy Foes: Light & Shadow</option>
+                        <option value="solo">Streetwear Synergy: Coordinated Cool</option>
+                        <option value="solo">Storybook Romance: Reimagined</option>
                     </select>
-
-                    <div class="checks">
-                        <p>DOB *</p><input type="date" id="poc_dob" name="poc_dob" required />
-                    </div>
-                    <input type="tel" id="poc_phone" name="poc_phone" placeholder="Phone Number *" required />
-                    <input type="tel" id="poc_alt_phone" name="poc_alt_phone" placeholder="Alternate Phone Number" />
-                    <input type="email" id="poc_email" name="poc_email" placeholder="Email *" required />
-                    <input type="text" id="poc_college" name="poc_college" placeholder="College Name *" required />
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="long-btn" onclick="prevDynamic()">Previous</button>
-                    <button type="button" class="long-btn" onclick="nextDynamic()">Next</button>
+                    <button type="button" class="long-btn" onclick="prevDynamic(3)">Previous</button>
+                    <button type="button" class="long-btn" onclick="nextDynamic(3)">Next</button>
                 </div>
             </div>
 
-            <!-- STEP 4 : MEMBER 2 (DUET) -->
+            <!-- STEP 4 : GROUP THEME -->
             <div class="form-step" id="step4">
                 <div class="inputs">
-                    <input type="text" id="m2_name" name="m2_name" placeholder="Full Name (2nd Member) *" required />
-                    <select id="m2_gender" name="m2_gender" required>
-                        <option value="" disabled selected>Gender *</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
+                    <table class="styled-table">
+                        <tbody>
+                            <tr>
+                                <td>Competition</td>
+                                <td>Fashion</td>
+                            </tr>
+                            <tr>
+                                <td>Category</td>
+                                <td>Group</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Team name to be used on-stage: </p>
+                    <input type="text" name="alias_group" id="alias_group" placeholder="Team Name *">
+                    <p>Theme:</p>
+                    <select id="theme_group" name="theme" required>
+                        <option value="" disabled selected>Group Themes *</option>
+                        <option value="solo">Indian Royalty: Court Procession</option>
+                        <option value="solo">Solo Cyberpunk Chronicles: Gang</option>
+                        <option value="solo">Elemental Forces: Earth, Air, Water, Fire</option>
+                        <option value="solo">Icons Unleashed: Pop Culture Crossover</option>
+                        <option value="other">Other</option>
                     </select>
-                    <div class="checks">
-                        <p>DOB *</p><input type="date" id="m2_dob" name="m2_dob" required />
-                    </div>
-                    <input type="tel" id="m2_phone" name="m2_phone" placeholder="Phone Number *" required />
-                    <input type="email" id="m2_email" name="m2_email" placeholder="Email *" required />
-                    <input type="text" id="m2_college" name="m2_college" placeholder="College Name *" required />
+                    <input type="text" name="otherTheme" id="otherTheme" placeholder="Theme Name *"
+                        style="display:none;">
+                    <input type="text" name="otherThemeDesc" id="otherThemeDesc" placeholder="Theme Description *"
+                        style="display:none;">
+
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="long-btn" onclick="prevDynamic()">Previous</button>
-                    <button type="button" class="long-btn" onclick="nextDynamic()">Next</button>
+                    <button type="button" class="long-btn" onclick="prevDynamic(4)">Previous</button>
+                    <button type="button" class="long-btn" onclick="nextDynamic(4)">Next</button>
                 </div>
             </div>
 
-            <!-- STEP 5 : GROUP INFO -->
+            <!-- STEP 5 : COSPLAY -->
             <div class="form-step" id="step5">
                 <div class="inputs">
-                    <div class="checks">
-                        <p>Number of Members (3-12) *</p>
-                        <div class="checkbox-group">
-                            <script>
-                                for (let i = 3; i <= 12; i++) {
-                                    document.write(
-                                        `<input type="checkbox" name="group_size" id="g${i}" value="${i}">
-                 <label for="g${i}">${i}</label>`
-                                    )
-                                }
-                            </script>
-                        </div>
-                    </div>
-                    <textarea id="group_members" name="group_members"
-                        placeholder="Names of all members (comma separated) *" required></textarea>
+                    <table class="styled-table">
+                        <tbody>
+                            <tr>
+                                <td>Competition</td>
+                                <td>Cosplay</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Name to be used on-stage:</p>
+                    <input type="text" name="alias_cosplay" id="alias_cosplay" placeholder="Alias Name *">
+                    <input type="text" name="character" id="character" placeholder="Character Name(s) *">
+                    <input type="text" name="characterDesc" id="characterDesc" placeholder="Description *">
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="long-btn" onclick="prevDynamic()">Previous</button>
-                    <button type="button" class="long-btn" onclick="nextDynamic()">Next</button>
+                    <button type="button" class="long-btn" onclick="prevDynamic(5)">Previous</button>
+                    <button type="button" class="long-btn" onclick="nextDynamic(5)">Next</button>
                 </div>
             </div>
 
-            <div class="form-step" id="stepFinal">
+
+            <!-- STEP 6 : PAYMENT -->
+            <div class="form-step" id="step6">
                 <div class="inputs">
-                    <p>🎉 You're almost done!</p>
-                    <p>Join our official WhatsApp community for updates & coordination:</p>
+                    <p>Please make a payment of <span style="color: gold; font-weight: 600;">Rs. <span
+                                id="fee">NA</span></span> through the QR code or UPI ID given below to confirm
+                        your participation.</p>
 
-                    <a href="https://malangbvp.info/🔔" target="_blank" class="long-btn"
-                        style="position: relative; display: flex; flex-direction: row;">
-                        <img src="https://raw.githubusercontent.com/MalangBvp/media/refs/heads/main/images/whatsapp.png"
-                            style="height:20px; display: inline-flex; margin-right: 10px;">
-                        Join WhatsApp Community
-                    </a><br>
-                    <div class="checks">
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="joined_wa" name="joined_wa" />
-                            I have joined the WhatsApp community *
-                            <label for="joined_wa">Yes
-                            </label>
-                        </div>
-                    </div>
-
-
-                    <p style="margin-top:10px">
-                        ⚠️ Make sure all details are correct before registering.
-                    </p>
+                    <img src="/resrc/images/misc/payment-qr.webp" id="qr" alt="">
+                    <button type="button" class="long-btn" onclick="copy(event)"
+                        style="font-size: 0.8rem !important;">UPI ID: <span
+                            id="upi">iamtejasgupta26@okhdfcbank</span></button>
+                    <p>Payment Screenshot *</p>
+                    <input type="file" name="ss" id="ss" placeholder="Payment Screenshot">
                 </div>
 
                 <div class="btn-group">
-                    <button type="button" class="long-btn" onclick="prevDynamic()">Previous</button>
-                    <button type="submit" class="long-btn" id="submit">Register</button>
+                    <button type="button" class="long-btn" onclick="prevDynamic(6)">Previous</button>
+                    <button type="submit" class="long-btn" id="submit">Submit</button>
                 </div>
             </div>
-
-
         </form>
 
 
@@ -369,7 +339,7 @@
         // ----------------------------
         let flow = []
         let flowIndex = 0
-        const STORAGE_KEY = "malang_fe_register"
+        const STORAGE_KEY = "malang_fe_theme"
 
         // ----------------------------
         // SHOW STEP
@@ -399,19 +369,35 @@
         function validateStep(step) {
             let valid = true
 
+            if (step == 1) {
+                const id = document.getElementById("ID").value.trim()
+                const r = /^FE26_[FC][SDG]\d+$/
+                if (!r.test(id)) valid = false
+                const media = document.getElementById("media")
+                if (!media || !media.checked) valid = false
+            }
+
+            if (step == 4) {
+                const t = document.querySelector("#theme_group").value
+                if (t === "other") {
+                    const n = document.getElementById("otherTheme").value.trim()
+                    const d = document.getElementById("otherThemeDesc").value.trim()
+                    if (!n || !d) valid = false
+                }
+            }
+
+            if (step == 5) {
+                const c = document.querySelector("[name='character']").value.trim()
+                const d = document.querySelector("[name='characterDesc']").value.trim()
+                if (!c || !d) valid = false
+            }
+
             const required = {
-                1: ["competition"],
-                2: ["category"],
-                3: [
-                    "poc_name", "poc_gender", "poc_dob", "poc_phone",
-                    "poc_email", "poc_college"
-                ],
-                4: [
-                    "m2_name", "m2_gender", "m2_dob", "m2_phone",
-                    "m2_email", "m2_college"
-                ],
-                5: ["group_members"],
-                6: ["joined_wa"]
+                2: ["theme_solo"],
+                3: ["alias_duet", "theme_duet"],
+                4: ["alias_group", "theme_group"],
+                5: ["alias_cosplay", "character", "characterDesc"],
+                6: ["ss"]
             }
 
             if (required[step]) {
@@ -421,31 +407,8 @@
                 })
             }
 
-            // STEP 1: Terms & Conditions
-            if (step === 1) {
-                const tc = document.getElementById("agree_tc")
-                if (!tc || !tc.checked) valid = false
-            }
-
-            // STEP 5: Group size
-            if (step === 5) {
-                if (
-                    document.querySelectorAll("input[name='group_size']:checked").length === 0
-                ) valid = false
-            }
-
-            // FINAL STEP: WhatsApp joined
-            if (step === "Final") {
-                const wa = document.getElementById("joined_wa")
-                if (!wa || !wa.checked) valid = false
-            }
-
             if (!valid) {
-                showAlert(
-                    "⚠️",
-                    "Please fill all required fields before continuing.",
-                    [{ text: "OK" }]
-                )
+                showAlert("⚠️", "Invalid or incomplete details.", [{ text: "OK" }])
             }
 
             return valid
@@ -454,20 +417,30 @@
         // ----------------------------
         // BUILD FLOW
         // ----------------------------
-        function buildFlow() {
-            const comp = competition.value
-            const cat = category.value
+        function buildFlowFromID() {
+            const id = document.getElementById("ID").value.trim()
+            const t = id[5]   // F or C
+            const c = id[6]   // S D G
 
-            flow = [1, 2, 3]
+            flow = [1]
 
-            if (cat === "duet") flow.push(4)
-            if (cat === "group" && comp === "fashion") flow.push(5)
+            if (t === "F") {
+                if (c === "S") flow.push(2)   // solo
+                if (c === "D") flow.push(3)   // duet
+                if (c === "G") flow.push(4)   // group
+            }
 
-            flow.push("Final")
+            if (t === "C") {
+                flow.push(5) // cosplay
+            }
 
-            flowIndex = 2
-            showStep(flow[flowIndex])
+            flow.push(6) // payment
+
+            flowIndex = 0
+            nextDynamic()
+            setFee()
         }
+
 
         // ----------------------------
         // NAVIGATION
@@ -478,14 +451,7 @@
         function prevStep(step) { showStep(step - 1); }
 
         function nextDynamic() {
-            if (document.getElementById("step2").classList.contains("active")) {
-                if (!validateStep(2)) return
-                buildFlow()
-                return
-            }
-
             if (!validateStep(flow[flowIndex])) return
-
             flowIndex++
             showStep(flow[flowIndex])
         }
@@ -497,13 +463,34 @@
             }
         }
 
-        // ----------------------------
-        // DISABLE GROUP FOR COSPLAY
-        // ----------------------------
-        competition.addEventListener("change", e => {
-            const g = [...category.options].find(o => o.value === "group")
-            if (g) g.disabled = e.target.value === "cosplay"
+        const gTheme = document.querySelector("#step4 select[name='theme']")
+        const oName = document.getElementById("otherTheme")
+        const oDesc = document.getElementById("otherThemeDesc")
+
+        gTheme.addEventListener("change", () => {
+            if (gTheme.value === "other") {
+                oName.style.display = "block"
+                oDesc.style.display = "block"
+            } else {
+                oName.style.display = "none"
+                oDesc.style.display = "none"
+                oName.value = ""
+                oDesc.value = ""
+            }
         })
+
+
+        function setFee() {
+            const id = document.getElementById("ID").value.trim()
+            const c = id[6]
+            let f = ""
+
+            if (c === "S") f = "250"
+            if (c === "D") f = "350"
+            if (c === "G") f = "2000"
+            document.getElementById("qr").src = `/resrc/images/misc/${f}.png`
+            document.getElementById("fee").innerText = f;
+        }
 
         // ----------------------------
         // AUTOSAVE (EVERY INPUT)
@@ -533,39 +520,21 @@
             })
         }
 
+        function copy(e) {
+            e.preventDefault();
+            navigator.clipboard.writeText(document.getElementById("upi").innerText);
+            showAlert("Copied!", "UPI ID copied to clipboard.", [{ text: "OK" }]);
+        }
+
         form.addEventListener("input", saveForm)
         window.addEventListener("load", restoreForm)
 
-        // ----------------------------
-        // SINGLE SELECT CHECKBOX GROUPS
-        // ----------------------------
-        document.querySelectorAll(".checkbox-group").forEach((group) => {
-            const checkboxes = group.querySelectorAll("input[type='checkbox']");
-            checkboxes.forEach((box) => {
-                box.addEventListener("change", () => {
-                    if (box.checked) {
-                        checkboxes.forEach((other) => {
-                            if (other !== box) other.checked = false;
-                        });
-                    }
-                });
-            });
-        });
         // ----------------------------
         // FORM SUBMIT (UNCHANGED + CLEAR STORAGE)
         // ----------------------------
         async function handleFormSubmit(e) {
             e.preventDefault();
-            if (!validateStep("Final")) {
-                showAlert(
-                    "⚠️",
-                    "Please join our WhatsApp group before continuing.",
-                    [{ text: "OK" }]
-                )
-                return Promise.reject("Validation failed");
-            }
-
-            const url = "https://script.google.com/macros/s/AKfycbz1wxjL0QHfsmL7qbuqPby6mTYrWYpJmcbgFiDUpZq-LkgNpM_uf1M8HgcLajB6LYL6/exec";
+            const url = "";
 
             const form = document.getElementById("feForm");
 
@@ -601,9 +570,9 @@
                 localStorage.removeItem(STORAGE_KEY);
 
                 showAlert(
-                    "Registered!",
-                    "Thank you for registering! 🎉\n\nYou will receive your Participation ID and a confirmation email shortly.",
-                    [{ text: "Awesome!" }]
+                    "Success!",
+                    "All set! See you at Fashion Euphoria 2026. Good luck!",
+                    [{ text: "Yay!" }]
                 );
 
                 confetti();
@@ -615,7 +584,7 @@
 
                 showAlert(
                     "❌ Error",
-                    "Registration failed. Please try again.",
+                    "Something went wrong. Please try again.",
                     [{ text: "OK" }]
                 );
             }
@@ -743,7 +712,6 @@
 
                 raf = requestAnimationFrame(frame);
 
-                // Return a tiny controller in case you want to kill early
                 return { stop: cleanup, canvas };
             };
         })();
