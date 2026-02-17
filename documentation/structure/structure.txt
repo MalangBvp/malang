@@ -227,6 +227,9 @@
 │   │   │   ├── 26-6.webp
 │   │   │   └── person.png
 │   │   ├── misc/
+│   │   │   ├── 2000.png
+│   │   │   ├── 250.png
+│   │   │   ├── 350.png
 │   │   │   ├── FE25-1.webp
 │   │   │   ├── FE25-10.webp
 │   │   │   ├── FE25-11.webp
@@ -460,6 +463,7 @@
 │   │   ├── documentation.html
 │   │   ├── events.html
 │   │   ├── fe-register.html
+│   │   ├── fe-theme.html
 │   │   ├── fe.html
 │   │   ├── form.html
 │   │   ├── gallery.html
