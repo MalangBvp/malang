@@ -1,158 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.malangbvp.in/</loc>
+    <loc>https://www.malangbvp.in/src/pages/404.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>1.0</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=404.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/account.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=account.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/alumni.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=alumni.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/aruco.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=aruco.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/authentication.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=authentication.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/brochure.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=brochure.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/claims.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=claims.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/core.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=core.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/documentation.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=documentation.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/events.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=events.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/fe-pay.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=fe-register.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/fe-register.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=fe-theme.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/fe.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=fe.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/form.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=form.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/gallery.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=gallery.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/googleForm.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=googleForm.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/home.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=home.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/members.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=members.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/privacy-policy.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=privacy-policy.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/qr.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=qr.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/r.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=r.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/redirector.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=redirector.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/redirects.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=redirects.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/sitemap.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=sitemap.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/terms.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=terms.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/test.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=test.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/timeline.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=timeline.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/treasury.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=treasury.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/tshirt.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.malangbvp.in/?page=tshirt.html</loc>
+    <loc>https://www.malangbvp.in/src/pages/unsubscribe.html</loc>
     <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.malangbvp.in/?page=unsubscribe.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 </urlset>

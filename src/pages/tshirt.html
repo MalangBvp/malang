@@ -346,12 +346,12 @@
     -->
     </form>
   </section>
-    <div id="image-modal" class="modal">
-      <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <img id="modal-image" />
-      </div>
+  <div id="image-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <img id="modal-image" />
     </div>
+  </div>
   <script src="../scripts/common.js"></script>
   <script src="../scripts/authentication.js"></script>
   <script>
@@ -664,12 +664,12 @@
     })();
 
     document.getElementById("tshirts").addEventListener("click", (e) => {
-    const target = e.target;
-    if (target.tagName === "IMG") {
+      const target = e.target;
+      if (target.tagName === "IMG") {
         openModal({
-            imgSrc: target.src
+          imgSrc: target.src
         });
-    }
-});
+      }
+    });
   </script>
 </body>

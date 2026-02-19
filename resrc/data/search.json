@@ -50,14 +50,14 @@
     "content": "Malang | Events Calendar | Malang Events Happening Soon!"
   },
   {
-    "title": "Fashion Euphoria | Registration Form",
-    "url": "/src/pages/fe-register.html",
-    "content": "Fashion Euphoria | Registration Form Fashion Euphoria 2026 Step into the spotlight and showcase your style and creativity at Fashion Euphoria 2026! Register below to participate in the Fashion or Cosplay competition. Checkout the Event Rulebook before registering. I agree to the Terms & Privacy Policy * Yes Competition * Fashion Cosplay Next Category No. of Members Solo 1 Duet 2 Group 3-12 Category * Solo Duet Group (Fashion only) Previous Next Gender * Male Female Other DOB * Previous Next Gender * Male Female Other DOB * Previous Next Number of Members (3-12) * Previous Next \ud83c\udf89 You're almost done! Join our official WhatsApp community for updates & coordination: Join WhatsApp Community I have joined the WhatsApp community * Yes \u26a0\ufe0f Make sure all details are correct before registering. Previ"
+    "title": "Fashion Euphoria | Payment Form",
+    "url": "/src/pages/fe-pay.html",
+    "content": "Fashion Euphoria | Payment Form Fashion Euphoria 2026 Themes are allotted on a first-come, first-serve basis, with a maximum of 6 parties per theme. The deadline to fill the form is 23rd February 2026. NOTE: No refunds will be provided if participants back out after the deadline. Have you filled the Media Form provided by Malang? * Yes Next Competition Fashion Category Solo Name to be used on-stage (optional) Theme: Solo Themes * Indian Maximalism: Royal Heritage Solo Cyberpunk Chronicles Enchanted Realms: Dark Fantasy Wild West Fusion The New Power Moves Cultural Remix: Global Fusion Timeless Trends: Y2K Renaissance Sustainable Style: Upcycled Utopia Previous Next Competition Fashion Category Duet Duet name to be used on-stage: Theme: Duet Themes * Opposites Attract: Yin & Yang Roots & Rh"
   },
   {
     "title": "Fashion Euphoria | Registration Form",
-    "url": "/src/pages/fe-theme.html",
-    "content": "Fashion Euphoria | Registration Form Fashion Euphoria 2026 Themes are allotted on a first-come, first-serve basis, with a maximum of 4 parties per theme. The deadline to fill the form is 25th February 2026. NOTE: No refunds will be provided if participants back out after the deadline. Have you filled the Media Form provided by Malang? * Yes Next Competition Fashion Category Solo Name to be used on-stage (optional) Theme: Solo Themes * Indian Maximalism: Royal Heritage Solo Cyberpunk Chronicles Enchanted Realms: Dark Fantasy Wild West Fusion The New Power Moves Cultural Remix: Global Fusion Timeless Trends: Y2K Renaissance Sustainable Style: Upcycled Utopia Previous Next Competition Fashion Category Duet Duet name to be used on-stage: Theme: Duet Themes * Opposites Attract: Yin & Yang Roots"
+    "url": "/src/pages/fe-register.html",
+    "content": "Fashion Euphoria | Registration Form Fashion Euphoria 2026 Step into the spotlight and showcase your style and creativity at Fashion Euphoria 2026! Register below to participate in the Fashion or Cosplay competition. Checkout the Event Rulebook before registering. I agree to the Terms & Privacy Policy * Yes Competition * Fashion Cosplay Next Category No. of Members Solo 1 Duet 2 Group 3-12 Category * Solo Duet Group (Fashion only) Previous Next Gender * Male Female Other DOB * Previous Next Gender * Male Female Other DOB * Previous Next Number of Members (3-12) * Previous Next \ud83c\udf89 You're almost done! Join our official WhatsApp community for updates & coordination: Join WhatsApp Community I have joined the WhatsApp community * Yes \u26a0\ufe0f Make sure all details are correct before registering. Previ"
   },
   {
     "title": "Fashion Euphoria",
@@ -117,7 +117,7 @@
   {
     "title": "Malang | Sitemap",
     "url": "/src/pages/sitemap.html",
-    "content": "Malang | Sitemap"
+    "content": "Malang | Sitemap Sitemap"
   },
   {
     "title": "Malang | Terms & Conditions",

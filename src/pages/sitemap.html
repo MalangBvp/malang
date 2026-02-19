@@ -1,41 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="/src/styles/common.css" />
-    <title>Malang | Sitemap</title>
-  </head>
 
-  <body>
-    <section>
-      <div id="sitemap-list"></div>
-    </section>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/src/styles/common.css" />
+  <title>Malang | Sitemap</title>
+
+  <style>
+    body {
+      font-family: sans-serif
+    }
+
+    a {
+      color: #1bfffb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <h3 style="margin-bottom: 10px; text-align: center; width: 100%;">Sitemap</h3>
+    <div id="sitemap" class="styled-table-wrapper"></div>
+  </section>
+
   <script>
     fetch("/sitemap.xml")
-      .then((response) => response.text())
-      .then((xmlText) => {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+      .then(r => r.text())
+      .then(t => {
+        const d = new DOMParser().parseFromString(t, "text/xml")
+        const urls = [...d.getElementsByTagName("url")]
 
-        const urls = xmlDoc.getElementsByTagName("url");
-        const list = document.getElementById("sitemap-list");
+        const root = document.getElementById("sitemap")
 
-        for (let i = 0; i < urls.length; i++) {
-          const loc = urls[i].getElementsByTagName("loc")[0].textContent;
+        const table = document.createElement("table")
+        table.className = "styled-table"
 
-          const li = document.createElement("li");
-          const a = document.createElement("a");
+        const thead = document.createElement("thead")
+        thead.innerHTML = "<tr><th>URL</th><th>Priority</th><th>Last Modified</th></tr>"
 
-          a.href = loc;
-          a.target = "_blank";
-          a.textContent = loc;
+        const tbody = document.createElement("tbody")
 
-          li.appendChild(a);
-          list.appendChild(li);
-        }
+        urls.forEach(n => {
+          const loc = n.getElementsByTagName("loc")[0]?.textContent || ""
+          const pri = n.getElementsByTagName("priority")[0]?.textContent || "-"
+          const last = n.getElementsByTagName("lastmod")[0]?.textContent || "-"
+
+          const tr = document.createElement("tr")
+
+          const c1 = document.createElement("td")
+          const a = document.createElement("a")
+          a.href = loc
+          a.textContent = loc
+          c1.append(a)
+
+          const c2 = document.createElement("td")
+          c2.textContent = pri
+
+          const c3 = document.createElement("td")
+          c3.textContent = last
+
+          tr.append(c1, c2, c3)
+          tbody.append(tr)
+        })
+
+        table.append(thead, tbody)
+        root.append(table)
       })
-      .catch((error) => console.log("Error loading sitemap:", error));
+      .catch(e => console.log(e))
   </script>
+</body>
+
 </html>

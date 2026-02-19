@@ -23,4 +23,4 @@ Allow: /src/pages/
 Allow: /index.html
 Allow: /404.html
 
-Sitemap: https://malangbvp.info/sitemap.xml
+Sitemap: https://malangbvp.in/sitemap.xml

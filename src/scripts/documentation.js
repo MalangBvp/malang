@@ -1,92 +1,94 @@
+import { load, V } from "/src/scripts/utils.js";
+await load();
+
 const readmeDiv = document.getElementById("readme-content");
 document.getElementById("loader").style.display = "flex";
 
 Promise.all([
-  fetch('../../documentation/structure/structure.txt')
-    .then(res => res.text())
-    .then(structure => {
-      document.getElementById('structure').textContent = structure;
+  fetch(V.structure_path_txt)
+    .then((res) => res.text())
+    .then((structure) => {
+      document.getElementById("structure").textContent = structure;
     }),
 
-  fetch('/README.md')
-    .then(res => res.text())
-    .then(data => {
+  fetch("/README.md")
+    .then((res) => res.text())
+    .then((data) => {
       marked.setOptions({
         highlight: function (code, lang) {
           if (lang && hljs.getLanguage(lang)) {
             return hljs.highlight(code, { language: lang }).value;
           }
           return hljs.highlightAuto(code).value;
-        }
+        },
       });
 
       const htmlContent = marked.parse(data);
       readmeDiv.innerHTML = htmlContent;
 
-      document.querySelectorAll("pre code").forEach(block => {
+      document.querySelectorAll("pre code").forEach((block) => {
         hljs.highlightElement(block);
       });
 
-      document.querySelectorAll("pre").forEach(pre => {
-        const btn = document.createElement("button")
-        btn.textContent = "Copy"
-        btn.style.position = "absolute"
-        btn.style.top = "0px"
-        btn.style.right = "0px"
-        btn.style.width = "100%"
-        btn.style.padding = "4px 7px"
-        btn.style.borderRadius = "5px 5px 0 0"
-        btn.style.textAlign = "right"
-        btn.style.backgroundColor = "#19212c"
+      document.querySelectorAll("pre").forEach((pre) => {
+        const btn = document.createElement("button");
+        btn.textContent = "Copy";
+        btn.style.position = "absolute";
+        btn.style.top = "0px";
+        btn.style.right = "0px";
+        btn.style.width = "100%";
+        btn.style.padding = "4px 7px";
+        btn.style.borderRadius = "5px 5px 0 0";
+        btn.style.textAlign = "right";
+        btn.style.backgroundColor = "#19212c";
 
-        pre.style.position = "relative"
-        pre.appendChild(btn)
+        pre.style.position = "relative";
+        pre.appendChild(btn);
 
         btn.onclick = () => {
-          const code = pre.querySelector("code").textContent
-          navigator.clipboard.writeText(code)
-          btn.textContent = "Copied!"
-          setTimeout(() => (btn.textContent = "Copy"), 1200)
-        }
-      })
-    })
+          const code = pre.querySelector("code").textContent;
+          navigator.clipboard.writeText(code);
+          btn.textContent = "Copied!";
+          setTimeout(() => (btn.textContent = "Copy"), 1200);
+        };
+      });
+    }),
 ])
   .then(() => {
     document.getElementById("loader").style.display = "none";
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err);
     document.getElementById("loader").style.display = "none";
   });
 
-
 (function () {
-  const btn = document.getElementById('scrollTopBtn');
+  const btn = document.getElementById("scrollTopBtn");
   if (!btn) return;
 
   const showAfter = 200;
 
   function onScroll() {
     if (window.scrollY > showAfter) {
-      btn.classList.add('show');
+      btn.classList.add("show");
     } else {
-      btn.classList.remove('show');
+      btn.classList.remove("show");
     }
   }
 
   function scrollToTop(e) {
     e && e.preventDefault();
     try {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       window.scrollTo(0, 0);
     }
   }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  btn.addEventListener('click', scrollToTop);
-  btn.addEventListener('keydown', (ev) => {
-    if (ev.key === 'Enter' || ev.key === ' ') {
+  window.addEventListener("scroll", onScroll, { passive: true });
+  btn.addEventListener("click", scrollToTop);
+  btn.addEventListener("keydown", (ev) => {
+    if (ev.key === "Enter" || ev.key === " ") {
       ev.preventDefault();
       scrollToTop();
     }
@@ -96,24 +98,29 @@ Promise.all([
 })();
 
 function toggleList() {
-  const t = document.getElementById("docList"), i = document.getElementById("toggleListIcon");
+  const t = document.getElementById("docList"),
+    i = document.getElementById("toggleListIcon");
   if (!t || !i) return;
   const s = t.style.visibility === "visible";
   Object.assign(t.style, {
     visibility: s ? "hidden" : "visible",
     opacity: s ? "0" : "1",
-    filter: s ? "blur(5px)" : "blur(0)"
+    filter: s ? "blur(5px)" : "blur(0)",
   });
   document.body.style.overflow = s ? "" : "hidden";
-  i.src = s ? "/resrc/images/icons/admin.webp" : "/resrc/images/icons/close.png";
+  i.src = s
+    ? "/resrc/images/icons/admin.webp"
+    : "/resrc/images/icons/close.png";
   vibrate();
 }
 
 const url = "https://api.github.com/repos/malangbvp/malang/commits/main";
 
 fetch(url)
-  .then(r => r.json())
-  .then(d => {
-    lastCommit.innerText = d.commit.message.split('\n')[0];
+  .then((r) => r.json())
+  .then((d) => {
+    lastCommit.innerText = d.commit.message.split("\n")[0];
     lastUpdated.innerText = new Date(d.commit.committer.date).toLocaleString();
   });
+
+window.toggleList = toggleList;

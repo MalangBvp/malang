@@ -13,13 +13,6 @@
       margin-bottom: 20px;
     }
 
-    .table-wrapper {
-      overflow-x: auto;
-      width: calc(100vw - 20px);
-      margin: 10px;
-      border-radius: 7px;
-    }
-
     a {
       color: #1bfffb;
       text-decoration: none;
@@ -39,11 +32,11 @@
 
 <body>
   <section>
-  <h2>Malang Redirects</h2>
-  <div class="table-wrapper">
-    <div id="table-container">Loading...</div>
-  </div>
-</section>
+    <h2>Malang Redirects</h2>
+    <div class="styled-table-wrapper">
+      <div id="table-container">Loading...</div>
+    </div>
+  </section>
 
   <script>
     fetch('https://raw.githubusercontent.com/MalangBvp/redirector/main/r/redirects.json')

@@ -1,4 +1,3 @@
-
 <head>
     <title>Malang | Treasury</title>
     <link rel="stylesheet" href="../styles/common.css">
@@ -11,9 +10,11 @@
             align-items: center;
             gap: 10px;
         }
+
         #treasury-form input[type="radio"] {
             display: none;
         }
+
         #treasury-form label[for="plus"],
         #treasury-form label[for="minus"] {
             display: inline-flex;
@@ -47,9 +48,10 @@
 </head>
 
 <body>
-        <div id="loader">
-            <l-ring-2 size="18" stroke="2" stroke-length="0.25" bg-opacity="0.1" speed="0.8" color="white"></l-ring-2>&nbsp;&nbsp;Authorizing...
-        </div>
+    <div id="loader">
+        <l-ring-2 size="18" stroke="2" stroke-length="0.25" bg-opacity="0.1" speed="0.8"
+            color="white"></l-ring-2>&nbsp;&nbsp;Authorizing...
+    </div>
     <h3 class="protected">You must be signed in to view this page.</h3>
     <section id="treasury" class="restricted">
         <form id="treasury-form" onsubmit="logTransaction(event)">
