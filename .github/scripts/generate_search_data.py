@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 INCLUDE_DIRS = ["src/pages"]
 SEARCH_OUTPUT = "resrc/data/search.json"
 SITEMAP_OUTPUT = "sitemap.xml"
-BASE_URL = "https://www.malangbvp.info/?page="
+BASE_URL = "https://www.malangbvp.in/?page="
 
 # ==========================
 # GENERATE SEARCH.JSON
@@ -49,7 +49,7 @@ sitemap = [
 
 # Homepage
 sitemap.append("  <url>")
-sitemap.append("    <loc>https://www.malangbvp.info/</loc>")
+sitemap.append("    <loc>https://www.malangbvp.in/</loc>")
 sitemap.append(f"    <lastmod>{datetime.now(timezone.utc).date()}</lastmod>")
 sitemap.append("    <priority>1.0</priority>")
 sitemap.append("  </url>")
