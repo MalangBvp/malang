@@ -26,7 +26,6 @@
                     </ul>
                   </details>
                 </li>
-                <li><a href="#">Projects</a></li>
                 <li>
                   <details>
                     <summary>Members</summary>
@@ -46,19 +45,32 @@
               <ul>
                 <li><a href="#">Accounts</a></li>
                 <li><a href="#">Claims</a></li>
+                <li><a href="#">Redirector</a></li>
+                <li><a href="#">Treasury</a></li>
+                <li><a href="#">QR Code Generator</a></li>
                 <li><a href="#">M-ArUCo</a></li>
                 <li><a href="#">Media Kit</a></li>
-                <li><a href="#">Redirector</a></li>
               </ul>
             </details>
           </li>
           <li><a href="#site-structure">Site Structure</a></li>
+          <li><a href="#">Variables</a></li>
+          <li>
+          <details>
+              <summary>Workflows</summary>
+              <ul>
+                <li><a href="#">Update Search Data</a></li>
+                <li><a href="#">Update Structure</a></li>
+              </ul>
+            </details>
+          </li>
       </details>
     </li>
     <li>
       <details>
         <summary>Tools</summary>
         <ul>
+          <li><a href="#Attendance-QR-Tooll">Attendance QR Tool</a></li>
           <li><a href="#Certificate-Tool">Certificate Tool</a></li>
           <li><a href="#Contact-Tool">Contact Tool</a></li>
           <li><a href="#Mail-Tool">Mail Tool</a></li>
