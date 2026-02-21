@@ -187,16 +187,16 @@
                     <p>Name to be used on-stage (optional)</p>
                     <input type="text" name="alias_solo" id="alias_solo" placeholder="Alias Name">
                     <p>Theme:</p>
-                    <select id="theme_solo" name="theme" required>
+                    <select id="theme_solo" name="theme_solo" required>
                         <option value="" disabled selected>Solo Themes *</option>
-                        <option value="solo">Indian Maximalism: Royal Heritage</option>
-                        <option value="solo">Solo Cyberpunk Chronicles</option>
-                        <option value="solo">Enchanted Realms: Dark Fantasy</option>
-                        <option value="solo">Wild West Fusion</option>
-                        <option value="solo">The New Power Moves</option>
-                        <option value="solo">Cultural Remix: Global Fusion</option>
-                        <option value="solo">Timeless Trends: Y2K Renaissance</option>
-                        <option value="solo">Sustainable Style: Upcycled Utopia</option>
+                        <option value="Indian Maximalism: Royal Heritage">Indian Maximalism: Royal Heritage</option>
+                        <option value="Solo Cyberpunk Chronicles">Solo Cyberpunk Chronicles</option>
+                        <option value="Enchanted Realms: Dark Fantasy">Enchanted Realms: Dark Fantasy</option>
+                        <option value="Wild West Fusion">Wild West Fusion</option>
+                        <option value="The New Power Moves">The New Power Moves</option>
+                        <option value="Cultural Remix: Global Fusion">Cultural Remix: Global Fusion</option>
+                        <option value="Timeless Trends: Y2K Renaissance">Timeless Trends: Y2K Renaissance</option>
+                        <option value="Sustainable Style: Upcycled Utopia">Sustainable Style: Upcycled Utopia</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -223,16 +223,16 @@
                     <p>Duet name to be used on-stage:</p>
                     <input type="text" name="alias_duet" id="alias_duet" placeholder="Alias Name *">
                     <p>Theme:</p>
-                    <select id="theme_duet" name="theme" required>
+                    <select id="theme_duet" name="theme_duet" required>
                         <option value="" disabled selected>Duet Themes *</option>
-                        <option value="solo">Opposites Attract: Yin & Yang</option>
-                        <option value="solo">Roots & Rhythm: Traditional Duet</option>
-                        <option value="solo">Celestial Pairs: Cosmic Entities</option>
-                        <option value="solo">Dynamic Duos: Partners in Crime</option>
-                        <option value="solo">Glamour & Grace: Red Carpet Ready</option>
-                        <option value="solo">Fantasy Foes: Light & Shadow</option>
-                        <option value="solo">Streetwear Synergy: Coordinated Cool</option>
-                        <option value="solo">Storybook Romance: Reimagined</option>
+                        <option value="Opposites Attract: Yin & Yang">Opposites Attract: Yin & Yang</option>
+                        <option value="Roots & Rhythm: Traditional Duet">Roots & Rhythm: Traditional Duet</option>
+                        <option value="Celestial Pairs: Cosmic Entities">Celestial Pairs: Cosmic Entities</option>
+                        <option value="Dynamic Duos: Partners in Crime">Dynamic Duos: Partners in Crime</option>
+                        <option value="Glamour & Grace: Red Carpet Ready">Glamour & Grace: Red Carpet Ready</option>
+                        <option value="Fantasy Foes: Light & Shadow">Fantasy Foes: Light & Shadow</option>
+                        <option value="Streetwear Synergy: Coordinated Cool">Streetwear Synergy: Coordinated Cool</option>
+                        <option value="Storybook Romance: Reimagined">Storybook Romance: Reimagined</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -259,12 +259,12 @@
                     <p>Team name to be used on-stage: </p>
                     <input type="text" name="alias_group" id="alias_group" placeholder="Team Name *">
                     <p>Theme:</p>
-                    <select id="theme_group" name="theme" required>
+                    <select id="theme_group" name="theme_group" required>
                         <option value="" disabled selected>Group Themes *</option>
-                        <option value="solo">Indian Royalty: Court Procession</option>
-                        <option value="solo">Solo Cyberpunk Chronicles: Gang</option>
-                        <option value="solo">Elemental Forces: Earth, Air, Water, Fire</option>
-                        <option value="solo">Icons Unleashed: Pop Culture Crossover</option>
+                        <option value="Indian Royalty: Court Procession">Indian Royalty: Court Procession</option>
+                        <option value="Solo Cyberpunk Chronicles: Gang">Solo Cyberpunk Chronicles: Gang</option>
+                        <option value="Elemental Forces: Earth, Air, Water, Fire">Elemental Forces: Earth, Air, Water, Fire</option>
+                        <option value="Icons Unleashed: Pop Culture Crossover">Icons Unleashed: Pop Culture Crossover</option>
                         <option value="other">Other</option>
                     </select>
                     <input type="text" name="otherTheme" id="otherTheme" placeholder="Theme Name *"
@@ -464,7 +464,7 @@
             }
         }
 
-        const gTheme = document.querySelector("#step4 select[name='theme']")
+        const gTheme = document.querySelector("#step4 select[name='theme_group']")
         const oName = document.getElementById("otherTheme")
         const oDesc = document.getElementById("otherThemeDesc")
 
@@ -534,44 +534,87 @@
         // ----------------------------
         async function handleFormSubmit(e) {
             e.preventDefault();
-            const url = "";
 
+            const url = "https://script.google.com/macros/s/AKfycby9O1A-kJ4z3wedFHddpELFyqPrBOweNK4E-bc6jwXxlanuP19Im9wZ7o1VlGvUQ0K5hA/exec"; // <-- paste your deployed web app URL here
             const form = document.getElementById("feForm");
 
             const disabled = form.querySelectorAll(":disabled");
             disabled.forEach(el => el.disabled = false);
 
             const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
 
             disabled.forEach(el => el.disabled = true);
 
             try {
+                // -----------------------------
+                // COLLECT REQUIRED FIELDS
+                // -----------------------------
+
+                const participationID = formData.get("ID") || "";
+
+                // Detect which alias to use
+                const alias =
+                    formData.get("alias_solo") ||
+                    formData.get("alias_duet") ||
+                    formData.get("alias_group") ||
+                    formData.get("alias_cosplay") ||
+                    "";
+
+                const characterName = formData.get("character") || "";
+                const characterDesc = formData.get("characterDesc") || "";
+
+                const theme = 
+                formData.get("theme_solo") || 
+                formData.get("theme_duet") || 
+                formData.get("theme_group") || 
+                formData.get("theme_cosplay") || "";
+
+                const otherTheme = formData.get("otherTheme") || "";
+                const otherThemeDesc = formData.get("otherThemeDesc") || "";
+
+                let screenshotBase64 = "";
+                const file = formData.get("ss");
+
+                if (file && file.size > 0) {
+                    screenshotBase64 = await toBase64(file);
+                }
+
+                const timestamp = new Date().toLocaleString();
+
+                const payload = {
+                    ParticipationID: participationID,
+                    Alias: alias,
+                    CharacterName: characterName,
+                    CharacterDesc: characterDesc,
+                    Theme: theme,
+                    OtherTheme: otherTheme,
+                    OtherThemeDesc: otherThemeDesc,
+                    PaymentScreenshot: screenshotBase64,
+                    Timestamp: timestamp
+                };
+
                 const res = await fetch(url, {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
+                        "Content-Type": "text/plain"
                     },
-                    body: "data=" + encodeURIComponent(JSON.stringify(data))
+                    body: JSON.stringify(payload)
                 });
 
-                const result = await res.json();
-                console.log(result); // debug
+                const text = await res.text();
+                console.log("SERVER RESPONSE:", text);
 
-                if (!result || result.status !== "success") {
-                    showAlert(
-                        "❌ Error",
-                        "Submission failed. Please try again.",
-                        [{ text: "OK" }]
-                    );
-                    return;
+                const result = JSON.parse(text);
+
+                if (result.status !== "success") {
+                    throw new Error("Submission failed");
                 }
 
                 localStorage.removeItem(STORAGE_KEY);
 
                 showAlert(
                     "Success!",
-                    "All set! See you at Fashion Euphoria 2026. Good luck!",
+                    "All set! See you at Fashion Euphoria 2026 🎉",
                     [{ text: "Yay!" }]
                 );
 
@@ -581,10 +624,9 @@
 
             } catch (err) {
                 console.error(err);
-
                 showAlert(
                     "❌ Error",
-                    "Something went wrong. Please try again.",
+                    "Submission failed. Please try again.",
                     [{ text: "OK" }]
                 );
             }
