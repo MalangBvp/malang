@@ -136,7 +136,7 @@
         <canvas id="gradientCanvas"></canvas>
 
         <form id="feForm"
-            onsubmit="handleButtonAction('submit','Registering','Registered',()=>handleFormSubmit(event))">
+            onsubmit="handleButtonAction('submit','Submitting','Submitted',()=>handleFormSubmit(event))">
 
             <h3>Fashion Euphoria 2026</h3>
             <!-- STEP 1 : ID -->
@@ -393,6 +393,11 @@
                 if (!c || !d) valid = false
             }
 
+            if (step === 6) {
+                const screenshot = document.getElementById("ss");
+                if (!screenshot.files.length) valid = false;
+            }
+
             const required = {
                 2: ["theme_solo"],
                 3: ["alias_duet", "theme_duet"],
@@ -534,6 +539,11 @@
         // ----------------------------
         async function handleFormSubmit(e) {
             e.preventDefault();
+
+            if (!validateStep(6)) {
+                showAlert("⚠️", "Please upload a payment screenshot to proceed.", [{ text: "OK" }]);
+                return;
+            }
 
             const url = "https://script.google.com/macros/s/AKfycby9O1A-kJ4z3wedFHddpELFyqPrBOweNK4E-bc6jwXxlanuP19Im9wZ7o1VlGvUQ0K5hA/exec"; // <-- paste your deployed web app URL here
             const form = document.getElementById("feForm");
