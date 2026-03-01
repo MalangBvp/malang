@@ -1,4 +1,17 @@
-[
+[{
+    "title": "Fashion Euphoria | Cosplay",
+    "date": "February 2026",
+    "location": "Play Ground, BVUCOEP",
+    "description": "The flagship inter-college fashion show and cosplay of Bharatiyam, the annual cultural festival of BVUCOEP, featuring high-energy runway performances and creative showcases.",
+    "images": ["/resrc/images/misc/cosplay.jpeg"]
+  },
+  {
+    "title": "Fashion Euphoria",
+    "date": "February 2026",
+    "location": "Play Ground, BVUCOEP",
+    "description": "The flagship inter-college fashion show and cosplay of Bharatiyam, the annual cultural festival of BVUCOEP, featuring high-energy runway performances and creative showcases.",
+    "images": ["/resrc/images/misc/fe2026.png"]
+  },
   {
     "title": "Workshop: Graphic Design and Digital Illustration",
     "date": "December 2025",
