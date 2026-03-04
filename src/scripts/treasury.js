@@ -88,7 +88,7 @@ async function renderCharts() {
             borderColor: "rgba(0, 255, 213, 1)",
             tension: 0.4,
             borderWidth: 2,
-            pointRadius: 1.5,
+            pointRadius: 0,
           },
         ],
       },
