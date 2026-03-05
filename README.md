@@ -1,5 +1,5 @@
 <ul id="docList">
-  <h1>Docs</h1>
+  <h1>Malang | Docs</h1>
     <li>
       <details>
         <summary>Site</summary>
@@ -100,7 +100,7 @@
 - Go to `/resrc/data/events.json` and add events like:
 
 ```json
-[ 
+[
   {
     "name": "EVENT NAME",
     "date": "EVENT DATE",
@@ -153,6 +153,7 @@
         "type": "ARTWORK TYPE"
     }
 ```
+
 > [!CAUTION]
 > Artwork image must be in `.webp` format.
 >
@@ -180,6 +181,7 @@
         "type": "PHOTOGRAPH TYPE"
     }
 ```
+
 > [!CAUTION]
 > Phogograph must be in `.webp` format.
 >
@@ -190,7 +192,6 @@
 >
 > Update the photograph count in `src/scripts/gallery.js`:
 
-
 ```js
         // artwork count and photograph count
         const total = mode === 'artworks' ? 68 : 42;
@@ -199,18 +200,17 @@
 
 <h1 id="Tools">Malang Tools</h1>
 
-|Tool|CSV Requirements|How to use?|
-|-|-|-|
-|Certificate Tool|name|[Read](#Certificate-Tool)|
-|Contact Tool|contact no.|[Read](#Contact-Tool)|
-|Mail Tool|name, email|[Read](#Mail-Tool)|
+| Tool             | CSV Requirements | How to use?               |
+| ---------------- | ---------------- | ------------------------- |
+| Certificate Tool | name             | [Read](#Certificate-Tool) |
+| Contact Tool     | contact no.      | [Read](#Contact-Tool)     |
+| Mail Tool        | name, email      | [Read](#Mail-Tool)        |
 
 ---
 
 <h3 id="Certificate-Tool">Certificate Tool</h3>
 
 <a href="https://github.com/MalangBvp/Malang-Tools/tree/main/Certificate-tool" target="_blank">GitHub Link</a>
-
 
 For creating bulk certificated with custom names and font-style.
 
@@ -232,7 +232,7 @@ data="Mail-tool/shortlisted.csv"
 ```
 
 - **output_dir:** path of directory where certificates are saved
-- **template_path:** path of certificate template. 
+- **template_path:** path of certificate template.
 
 > [!CAUTION]
 > Template must be `.png` or `.jpg`.
@@ -253,7 +253,6 @@ pdfmetrics.registerFont(TTFont('NoticiaText', 'Certificate-tool/NoticiaText-Bold
 <h3 id="Contact-Tool">Contact Tool</h3>
 
 <a href="https://github.com/MalangBvp/Malang-Tools/tree/main/Contact-tool" target="_blank">GitHub Link</a>
-
 
 For saving bulk contacts to Google contacts, generally useful for adding multiple people to Whatsapp group.
 
@@ -288,6 +287,7 @@ prefix = "malang2025@"                        # Contact name prefix
 8279843949,
 1234567890,
 ```
+
 - Contacts will be created as: `malang2025@1`, `malang2025@2`, etc.
 
 ---
@@ -302,7 +302,8 @@ Used for sending bulk emails with customised names, template and attachments.
 > `email_template.html` is the customizable design template of the email to be sent.
 
 > [!IMPORTANT]
-> Always use media like images, posters, etc. from <a href="https://github.com/MalangBvp/media" target="_blank">this repo</a>  using links like:
+> Always use media like images, posters, etc. from <a href="https://github.com/MalangBvp/media" target="_blank">this repo</a> using links like:
+
 ```
 https://raw.githubusercontent.com/MalangBvp/media/refs/heads/main/images/malang.webp
 ```
