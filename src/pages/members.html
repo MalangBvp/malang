@@ -3,9 +3,10 @@
     <link rel="stylesheet" href="../styles/common.css">
     <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring2.js"></script>
     <style>
-        h2{
+        h2 {
             text-align: center;
         }
+
         .styled-table {
             width: 100%;
             border-collapse: collapse;
@@ -63,9 +64,9 @@
 </body>
 
 <script>
-    const url = "https://raw.githubusercontent.com/MalangBvp/media/f50749861653e264c0e2e1fe33a7920cedd16d87/members.csv"
+    const url = "https://raw.githubusercontent.com/MalangBvp/media/main/members.csv"
 
-    const columnsToShow = ["Name", "Position", "Year", "Branch", "Division", "Socials Media Handles"]
+    const columnsToShow = ["Name", "Position", "Year", "Branch", "Division"]
 
     fetch(url)
         .then(res => res.text())
