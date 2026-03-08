@@ -6,13 +6,8 @@
   },
   {
     "title": "Malang | Brochure",
-    "url": "/src/pages/brochure.html",
+    "url": "/src/pages/pdf.html",
     "content": "Malang | Brochure"
-  },
-  {
-    "title": "Rangotsav",
-    "url": "/src/pages/r.html",
-    "content": "Rangotsav Rangotsav An inter-college art & photography festival curated by Malang. The stage is being set. The colors arrive soon. 00 Days 00 Hours 00 Minutes 00 Seconds Go to Home | Contact Us"
   },
   {
     "title": "Malang | Form",
@@ -63,11 +58,6 @@
     "title": "Malang | Associates",
     "url": "/src/pages/members.html",
     "content": "Malang | Associates Malang Associates"
-  },
-  {
-    "title": "Malang | Google Form Embed",
-    "url": "/src/pages/googleForm.html",
-    "content": "Malang | Google Form Embed"
   },
   {
     "title": "Malang | Alumni",
