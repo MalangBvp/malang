@@ -307,7 +307,7 @@ document.addEventListener("click", (e) => {
 });
 
 //================================================================================================================== open modal
-function openModal({
+window.openModal = function ({
   imgSrc,
   name = "",
   title = "",
@@ -361,7 +361,7 @@ function openModal({
 
   // Show modal
   document.querySelector("section").classList.add("modal-active");
-  footer = document.querySelector("footer");
+  let footer = document.querySelector("footer");
   if (footer) {
     footer.classList.add("modal-active");
   }
@@ -371,7 +371,7 @@ function openModal({
   // Close handlers
   const closeModal = () => {
     document.querySelector("section").classList.remove("modal-active");
-    footer = document.querySelector("footer");
+    let footer = document.querySelector("footer");
     if (footer) {
       footer.classList.remove("modal-active");
     }
@@ -387,7 +387,7 @@ function openModal({
     .querySelector(".modal-close")
     ?.addEventListener("click", closeModal, { once: true });
   window.addEventListener("click", outsideClick);
-}
+};
 
 //================================================================================================================== open search
 document.addEventListener("keydown", (e) => {
