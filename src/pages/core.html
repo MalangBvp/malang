@@ -210,13 +210,17 @@
                             if (loader) loader.style.display = "none";
                         })
                         .catch((err) => {
-                            if (loader) loader.textContent = "Failed to load alumni data.";
-                            console.error("Alumni data load error:", err);
+                            if (loader) loader.textContent = "Failed to load core data.";
+                            console.error("Core data load error:", err);
                         });
+
+                    if (data.length === 0) {
+                        document.getElementById("carousel-wrapper").textContent = `Core ${new Date().getFullYear()}-${new Date().getFullYear() + 1} will be announced soon.`;
+                    }
                 })
                 .catch((err) => {
-                    if (loader) loader.textContent = "Failed to load alumni data.";
-                    console.error("Alumni data load error:", err);
+                    if (loader) loader.textContent = "Failed to load core data.";
+                    console.error("Core data load error:", err);
                 });
         }
 
