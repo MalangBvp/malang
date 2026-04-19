@@ -25,6 +25,25 @@
         "github": "https://github.com/g0utam"
       },
       {
+        "name": "Tejas Gupta",
+        "role": "Treasurer & Tech Head",
+        "image": "26-3.webp",
+        "branch": "CSBS",
+        "linkedin": "https://linkedin.com/in/tejasgupta-work",
+        "email": "mailto:tejasgupta.work@gmail.com",
+        "github": "https://github.com/multiverseweb",
+        "website": "https://tejasgupta.work",
+        "instagram": "https://www.instagram.com/tejassssssssssssssssssssssssss/"
+      },
+      {
+        "name": "Priya Ranjan",
+        "role": "PR & Sponsorship Head",
+        "image": "26-5.webp",
+        "branch": "EnTC",
+        "linkedin": "https://www.linkedin.com/in/priya-r-677666256",
+        "email": "mailto:ranjanpriya629@gmail.com"
+      },
+      {
         "name": "Mohini Walia",
         "role": "Media Head",
         "image": "26-4.webp",
@@ -39,25 +58,6 @@
         "branch": "EnTC",
         "linkedin": "https://www.linkedin.com/in/satyamsingh11/",
         "email": "mailto:sinxlog@gmail.com"
-      },
-      {
-        "name": "Priya Ranjan",
-        "role": "PR & Sponsorship Head",
-        "image": "26-5.webp",
-        "branch": "EnTC",
-        "linkedin": "https://www.linkedin.com/in/priya-r-677666256",
-        "email": "mailto:ranjanpriya629@gmail.com"
-      },
-      {
-        "name": "Tejas Gupta",
-        "role": "Treasurer & Tech Head",
-        "image": "26-3.webp",
-        "branch": "CSBS",
-        "linkedin": "https://linkedin.com/in/tejasgupta-work",
-        "email": "mailto:tejasgupta.work@gmail.com",
-        "github": "https://github.com/multiverseweb",
-        "website": "https://tejasgupta.work",
-        "instagram": "https://www.instagram.com/tejassssssssssssssssssssssssss/"
       }
     ]
   },
