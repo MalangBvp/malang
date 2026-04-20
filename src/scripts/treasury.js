@@ -1,7 +1,5 @@
 const treasuryURL =
   "https://script.google.com/macros/s/AKfycbwPgC8mtrQFktYnjVMWMzejbVLcUGkM38TnAh11TdVsegCsSID1B3XL1w-ow3Bhsv-2kw/exec";
-
-// 🔁 REPLACE WITH YOUR SHEET ID
 const SHEET_ID = "1dq2tuNUxtd1JJunmj8rrZR3MDPlfxn_C0bTogxmd0wo";
 const sheetURL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
