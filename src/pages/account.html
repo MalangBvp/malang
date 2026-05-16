@@ -183,13 +183,33 @@
             <h3 id="status" style="margin-bottom: 10px;">Authentication Required.</h3>
             <div class="restricted">
                 <p>You can now access the following pages:</p>
-                <a class="long-btn" href="/src/pages/claims.html">Claims</a>
+                <a class="long-btn" href="/src/pages/claims.html">Claims <span id="info" class="g">Open</span></a>
+                <a class="long-btn" href="/src/pages/redirects.html">Redirects <span id="info" class="g">Open</span></a>
                 <a class="long-btn" href="/src/pages/authentication.html?page=redirector">Redirector<span id="info"
                         class="y">Auth</span></a>
-                <a class="long-btn" href='/src/pages/documentation.html'>Site Docs</a>
+                <a class="long-btn" href="/index.html?page=qr">QR Code Generator <span id="info"
+                        class="g">Open</span></a>
+                <a class="long-btn" href='/src/pages/documentation.html'>Site Docs <span id="info"
+                        class="g">Open</span></a>
+                <hr>
+                <p>Domain Utilities:</p>
+                <a class="long-btn" href="https://github.com/MalangBvp/Malang-Tools/tree/main/Attendance-QR-tool"
+                    target="_blank">Attendance QR Tool<span id="info" class="r">Git</span></a>
+                <a class="long-btn" href="https://github.com/MalangBvp/Malang-Tools/tree/main/Certificate-tool"
+                    target="_blank">Certificate Tool<span id="info" class="r">Git</span></a>
+                <a class="long-btn" href="https://github.com/MalangBvp/Malang-Tools/tree/main/Contact-tool"
+                    target="_blank">Contact
+                    Tool<span id="info" class="r">Git</span></a>
+                <a class="long-btn" href="/src/pages/authentication.html?page=drafts">Drafts<span id="info"
+                        class="y">Auth</span></a>
+                <a class="long-btn" href="https://github.com/MalangBvp/Malang-Tools/tree/main/Mail-tool"
+                    target="_blank">Mail Tool<span id="info" class="r">Git</span></a>
+                <a class="long-btn" href="/src/pages/authentication.html?page=media">Media Kit<span id="info"
+                        class="y">Auth</span></a>
                 <a class="long-btn" href="/src/pages/authentication.html?page=treasury">Treasury<span id="info"
                         class="y">Auth</span></a>
-                <a class="long-btn" href="/index.html?page=qr">QR Code Generator</a>
+                <a class="long-btn" href="/src/pages/authentication.html?page=tshirt">T-Shirt Design Tool<span id="info"
+                        class="r">Git</span></a>
                 <hr>
             </div>
             <button class="long-btn loginBtn" onclick="login('google')" style="position: relative;">
@@ -203,9 +223,11 @@
                 <p style="padding-left:25px;">Log in with GitHub</p>
             </button>
 
-            <button id="logoutBtn" class="long-btn" onclick="logout()">Log out</button>
+            <button id="logoutBtn" class="long-btn" onclick="logout()">Log out <span id="info"><img
+                        src="/resrc/images/icons/download.webp" alt=""
+                        style="height:18px; transform: rotate(-90deg);"></span></button>
         </div>
     </section>
-    <script src="../scripts/common.js"></script>
+    <script src=" ../scripts/common.js"></script>
     <script src="../scripts/authentication.js"></script>
 </body>

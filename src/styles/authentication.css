@@ -2,7 +2,7 @@
     display: none;
 }
 
-.protected{
+.protected {
     display: flex;
     flex-direction: column;
     gap: 50px;
@@ -14,7 +14,10 @@
     padding: 0 10px;
 }
 
-form, #loginForm, #templateForm, #feForm {
+form,
+#loginForm,
+#templateForm,
+#feForm {
     position: relative;
     top: calc(0px);
     left: 50%;
@@ -23,6 +26,17 @@ form, #loginForm, #templateForm, #feForm {
     max-width: 400px;
     margin-bottom: 70px;
 }
+
+#loginForm p {
+    text-align: left !important;
+    margin-left: 10px;
+}
+
+#loginForm .long-btn {
+    text-align: left;
+    padding-left: 10px;
+}
+
 /*Used in redirector.html*/
 .url {
     text-decoration: none;
@@ -53,6 +67,7 @@ form, #loginForm, #templateForm, #feForm {
     pointer-events: none;
     z-index: 99;
 }
+
 #treasury {
     text-align: center;
 }

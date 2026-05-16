@@ -1,0 +1,125 @@
+<head>
+    <title>Malang | Media Kit</title>
+    <link rel="stylesheet" href="../styles/common.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring2.js"></script>
+    <style>
+        #media {
+            padding: 20px 10px;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            max-width: 900px;
+            margin: 10px auto;
+        }
+
+        .logo-card {
+            border: 1px solid var(--border-color);
+            border-radius: 7px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-card img {
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .logo-card p {
+            font-size: 13px;
+            word-break: break-word;
+            text-align: center;
+        }
+
+        .logo-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .logo-actions button {
+            padding: 5px 12px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loader">
+        <l-ring-2 size="18" stroke="2" stroke-length="0.25" bg-opacity="0.1" speed="0.8"
+            color="white"></l-ring-2>&nbsp;&nbsp;Loading...
+    </div>
+    <section id="media">
+        <h2>Media Kit</h2>
+        <hr>
+        <div class="protected"
+            style="flex-direction: column !important; justify-content: center; height: 70%; text-align: center;">
+            <h3>You must be signed in to view this page.</h3>
+        </div>
+        <div class="restricted">
+            <H1>Malang | Media Kit</H1>
+            <p>Logos and branding assets for Malang.</p>
+            <div class="logo-grid" id="logoGrid"></div>
+        </div>
+    </section>
+
+    <script src="../scripts/common.js"></script>
+    <script>
+        const logos = [
+            { name: "malang-banner.png", id: "1eL7CPErFQOaKCpaG5cGHG8q5oZd40iTx" },
+            { name: "malang-white-banner.png", id: "1PKq4NofLXB92gECtlp2riJbJP2Ghw96M" },
+            { name: "malang-dark-banner.png", id: "1ShdDQwuXz2Pp3YC8ElbQYBuG9wPhWi61" },
+            { name: "malang-black.jpg", id: "1vNkxXH69M0QoD5KKv19dFuQ8tix1m3IJ" },
+            { name: "bvucoep.jpg", id: "1Q5Ttig22pSaz1XM1LVzIVPYwvlyhL5hO" },
+            { name: "bvdu.png", id: "16pt95GPtAx9krP01Fob2i3trczDiVYNT" },
+        ];
+
+        const grid = document.getElementById("logoGrid");
+
+        logos.forEach(logo => {
+            const viewUrl = `https://drive.google.com/thumbnail?id=${logo.id}&sz=w800`;
+            const downloadUrl = `https://drive.google.com/uc?export=download&id=${logo.id}`;
+
+            const card = document.createElement("div");
+            card.className = "logo-card";
+            card.innerHTML = `
+                <img src="${viewUrl}" alt="${logo.name}" loading="lazy">
+                <p>${logo.name}</p>
+                <div class="logo-actions">
+                    <button onclick="copyLink('${logo.id}')" id="copy-${logo.id}">Copy Link</button>
+                    <button onclick="window.open('${downloadUrl}', '_blank')">Download</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        function copyLink(id) {
+            const link = `https://drive.google.com/uc?export=view&id=${id}`;
+            navigator.clipboard.writeText(link).then(() => {
+                const btn = document.getElementById(`copy-${id}`);
+                btn.textContent = "Copied ✔";
+                btn.classList.add("button-success");
+                setTimeout(() => {
+                    btn.textContent = "Copy Link";
+                    btn.classList.remove("button-success");
+                }, 2000);
+            });
+        }
+
+        // hide loader
+        document.addEventListener("DOMContentLoaded", () => {
+            const loader = document.getElementById("loader");
+            if (loader) setTimeout(() => loader.style.display = "none", 500);
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleRestricted();
+        });
+    </script>
+    <script src="/src/scripts/load.js"></script>
+</body>
