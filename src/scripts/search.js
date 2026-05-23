@@ -29,10 +29,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   const data = await response.json();
 
   const fuse = new Fuse(data, {
-    keys: ["title", "content"],
-    threshold: 0.3,
+    keys: [
+      { name: "title", weight: 0.4 },
+      { name: "content", weight: 0.3 },
+      { name: "tags", weight: 0.2 },
+      { name: "category", weight: 0.1 },
+    ],
+    threshold: 0.35,
     includeMatches: true,
   });
+
+  const categoryLabels = {
+    page: "Page",
+    alumni: "Alumni",
+    artwork: "Artwork",
+    photograph: "Photography",
+    event: "Event",
+  };
+
 
   function highlightText(text, indices) {
     if (!indices || !indices.length) return text;
@@ -60,15 +74,28 @@ document.addEventListener("DOMContentLoaded", async () => {
         const contentMatch = r.matches?.find((m) => m.key === "content");
 
         const highlightedTitle = highlightText(item.title, titleMatch?.indices);
+        const contentPreview = item.content ? item.content.substring(0, 150) : "";
         const highlightedContent = highlightText(
-          item.content.substring(0, 120),
+          contentPreview,
           contentMatch?.indices,
         );
 
+        const category = item.category || "page";
+        const label = categoryLabels[category] || "Page";
+
+        const tagsHtml =
+          item.tags && item.tags.length
+            ? `<span class="search-tags">${item.tags.slice(0, 3).map((t) => `<span class="search-tag">${t}</span>`).join("")}</span>`
+            : "";
+
         return `
-                    <a href="${item.url}" onclick="loadPage('${item.url}'); return false;">
-                        <strong>${highlightedTitle}</strong><br>
-                        <small>${highlightedContent}...</small>
+                    <a href="${item.url}" onclick="loadPage('${item.url}'); return false;" class="search-result-item">
+                        <div class="search-result-header">
+                            <span class="search-category-badge" data-category="${category}">${label}</span>
+                        </div>
+                        <strong>${highlightedTitle}</strong>
+                        <small>${highlightedContent}${contentPreview.length > 150 ? "…" : ""}</small>
+                        ${tagsHtml}
                     </a>
                 `;
       })

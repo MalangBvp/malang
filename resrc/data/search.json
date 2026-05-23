@@ -1,152 +1,2221 @@
 [
   {
-    "title": "Malang | Unsubscribe",
-    "url": "/src/pages/unsubscribe.html",
-    "content": "Malang | Unsubscribe Unsubscribe from Newsletter Unsubscribe We'll miss you! Read our Privacy Policy for more information."
+    "title": "Malang | 404 Not Found",
+    "url": "/src/pages/404.html",
+    "content": "Malang | 404 Not Found 404 Page Not Found This content doesn't exist, or you don't have permission to view it. Go Back",
+    "category": "page",
+    "tags": []
   },
   {
     "title": "Malang | Account",
     "url": "/src/pages/account.html",
-    "content": "Malang | Account Authenticating... Authentication Required. You can now access the following pages: Claims Open Redirects Open RedirectorAuth QR Code Generator Open Site Docs Open Domain Utilities: Attendance QR ToolGit Certificate ToolGit Contact ToolGit DraftsAuth Mail ToolGit Media KitAuth TreasuryAuth T-Shirt Design ToolGit Log in with Google Log in with GitHub Log out"
-  },
-  {
-    "title": "test",
-    "url": "/src/pages/test.html",
-    "content": "test Section 1 Discover Your Creative Oasis at Malang Our mission is to provide a platform for individuals to express themselves, explore their artistic passions, and collaborate with like-minded individuals. Whether you're a painter, photographer, sculptor, or any form of creative soul, Malang Fine Arts Arts & Photography Club is the place to be. Card 1 Card 2 Card 3 Card 4 Our Partners Subscribe to our newsletter Stay connected with us and never miss an event! Subscribe We don't spam. Organisation Core Members Malang Alumni Collaborate With Us Events Upcoming Events Past Events Galleries Projects Art Gallery Photo Gallery \u00a9 2025 - YEAR Malang. All rights reserved. Sitemap Privacy Policy Media Kit Feature Request"
-  },
-  {
-    "title": "Malang | Events",
-    "url": "/src/pages/events.html",
-    "content": "Malang | Events Calendar | Malang Events Happening Soon!"
-  },
-  {
-    "title": "Malang | Media Kit",
-    "url": "/src/pages/media.html",
-    "content": "Malang | Media Kit Loading... Media Kit You must be signed in to view this page. Malang | Media Kit Logos and branding assets for Malang."
-  },
-  {
-    "title": "Malang | ArUCo",
-    "url": "/src/pages/aruco.html",
-    "content": "Malang | ArUCo Scan. Discover. Experience Art Differently. Point your camera at our ArUCo marker."
-  },
-  {
-    "title": "Malang | Redirector",
-    "url": "/src/pages/redirector.html",
-    "content": "Malang | Redirector Authorizing... You must be signed in to view this page. Customise URL Custom URL will be:slug Create View Redirects"
-  },
-  {
-    "title": "Malang | Gallery",
-    "url": "/src/pages/gallery.html",
-    "content": "Malang | Gallery Category Artworks Photographs Filter Nothing to see here... View More \u00d7"
-  },
-  {
-    "title": "Malang | Timeline",
-    "url": "/src/pages/timeline.html",
-    "content": "Malang | Timeline Featured Events Fashion Euphoria Rangotsav Timeline Explore the history of Malang through our timeline, showcasing significant events and milestones that have shaped our journey. Upcoming Events View Older \u00d7"
-  },
-  {
-    "title": "Malang | Associates",
-    "url": "/src/pages/members.html",
-    "content": "Malang | Associates Malang Associates"
-  },
-  {
-    "title": "Malang | Privacy Policy",
-    "url": "/src/pages/privacy-policy.html",
-    "content": "Malang | Privacy Policy Privacy Policy Effective Date: July 1, 2023 Malang \u2013 Fine Arts & Photography Club (\u201cMalang,\u201d \u201cwe,\u201d \u201cus,\u201d or \u201cour\u201d) is committed to protecting your privacy. This Privacy Policy outlines how we handle any personal information you choose to share with us through our website and services. 1. Data Collection We do not collect any personal information unless you explicitly provide it\u2014such as through forms or by sharing your email address voluntarily. 2. Use of Information If you provide your email address, we may use it to: Send club updates or newsletters. Share information about events, activities, or announcements. We will only use your email for the purpose it was provided. 3. Data Sharing We do not sell, share, or disclose your personal information to third parties. "
-  },
-  {
-    "title": "drafts.html",
-    "url": "/src/pages/drafts.html",
-    "content": ""
-  },
-  {
-    "title": "Malang | Site Documentation",
-    "url": "/src/pages/documentation.html",
-    "content": "Malang | Site Documentation Authenticating... Last updated: Loading... Last update: Loading... Loading... Site Structure You must be signed in to view this content. \u26cf\ufe0e W/\u2665 for"
-  },
-  {
-    "title": "Malang | Brochure",
-    "url": "/src/pages/pdf.html",
-    "content": "Malang | Brochure"
-  },
-  {
-    "title": "Malang | \ud83d\udc55 Form",
-    "url": "/src/pages/tshirt.html",
-    "content": "Malang | \ud83d\udc55 Form Malang T-Shirts 2025-26 This form is no longer accepting responses. \u00d7"
-  },
-  {
-    "title": "Fashion Euphoria | Registration Form",
-    "url": "/src/pages/fe-register.html",
-    "content": "Fashion Euphoria | Registration Form Registrations for Fashion Euphoria 2026 are now closed as the maximum participation capacity has been reached. Thank you for the overwhelming response! \u00d7"
-  },
-  {
-    "title": "Malang | Form",
-    "url": "/src/pages/form.html",
-    "content": "Malang | Form Feature Request Position * Malang Alumni Core Member Member Outside Malang Next Request Type? * Report a Bug Update My Information Add My Artworks Other Previous Next Attach a link (if any): Attach a file (if any): Previous Request"
-  },
-  {
-    "title": "Malang | Core Members: Tejas Gupta, Prasun Ratan, Goutam Sahu, Mohini Walia, Priya Ranjan, Satyam Singh",
-    "url": "/src/pages/core.html",
-    "content": "Malang | Core Members: Tejas Gupta, Prasun Ratan, Goutam Sahu, Mohini Walia, Priya Ranjan, Satyam Singh Core Members Malang Alumni \u00d7 Name: Tejas Gupta, Prasun Ratan, Goutam Sahu, Mohini Walia, Priya Ranjan, Satyam Singh Position: NA Batch: NA Branch: NA"
-  },
-  {
-    "title": "Fashion Euphoria",
-    "url": "/src/pages/fe.html",
-    "content": "Fashion Euphoria Fashion Euphoria Fashion fades, style is eternal. 00 Days 00 Hours 00 Minutes 00 Seconds Register Now! Event Rulebook Scroll to explore more! This Time,It's Different. For the first time ever, Fashion Euphoria brings cosplay to the spotlight. A Legacy on the Ramp An annual showcase of style, confidence, and presence. Our Partners Relive Fashion Euphoria 2025 A glimpse into last year's unforgettable runway moments, bold expressions and pure creative energy. Watch Fullscreen Numbers from Fashion Euphoria 2025 0 Participants 0 Colleges 0 Prize Pool (\u20b9) 0 Footfall Previous Partners Register Now! Event Rulebook Sponsor Fashion Euphoria \u00d7"
-  },
-  {
-    "title": "Malang | Treasury",
-    "url": "/src/pages/treasury.html",
-    "content": "Malang | Treasury Authorizing... You must be signed in to view this page. Malang's Treasury Total Amount: Loading... Select Header Bharatiyam Claims Development Funds Party / Trip Other + \u2212 \u26a0\ufe0f Heads Up! Double-check values. Transactions instantly affect the treasury balance. Log Transaction Amount/Time"
-  },
-  {
-    "title": "Malang | Sitemap",
-    "url": "/src/pages/sitemap.html",
-    "content": "Malang | Sitemap Sitemap"
-  },
-  {
-    "title": "Malang | Home",
-    "url": "/src/pages/home.html",
-    "content": "Malang | Home Fine Arts & Photography Club For the Kalakaar in you! Sponsor Us Contact Us Discover Your Creative Oasis at Malang Our mission is to provide a platform for individuals to express themselves, explore their artistic passions, and collaborate with like-minded individuals. Whether you're a painter, photographer, sculptor, or any form of creative soul, Malang Fine Arts Arts & Photography Club is the place to be. Upcoming EventsCheckout Events Fashion EuphoriaLearn More RangotsavLearn More Art GalleryView Gallery Our Partners \u00d7"
-  },
-  {
-    "title": "Malang | Claims",
-    "url": "/src/pages/claims.html",
-    "content": "Malang | Claims Authorizing... You must be signed in to view this page. Claim your bills Bill Attachment * . Claim"
-  },
-  {
-    "title": "Malang | Authenticator",
-    "url": "/src/pages/authentication.html",
-    "content": "Malang | Authenticator Authorizing... You must be signed in to view this page. Authorization Required. Incorrect password. Try again. Enter"
-  },
-  {
-    "title": "Malang | Terms & Conditions",
-    "url": "/src/pages/terms.html",
-    "content": "Malang | Terms & Conditions Terms & Conditions Effective Date: January 31, 2026 These Terms & Conditions apply to all participants registering for or attending events organized by Malang. By registering for or participating in any Malang event, participants agree to the following terms. 1. Registration & Participation Participants must provide accurate registration details. Registration may be cancelled if incorrect information is provided. Participation may be limited based on event capacity or eligibility. 2. Use of Contact Information By registering, participants agree that contact details may be used to: Send event updates and notifications. Share information about future Malang events. Send certificates or participation-related communication. Contact information will not be sold or sh"
-  },
-  {
-    "title": "Fashion Euphoria | Payment Form",
-    "url": "/src/pages/fe-pay.html",
-    "content": "Fashion Euphoria | Payment Form Fashion Euphoria 2026 Themes are allotted on a first-come, first-serve basis, with a maximum of 6 parties per theme. The deadline to fill the form is 23rd February 2026. NOTE: No refunds will be provided if participants back out after the deadline. Have you filled the Media Form provided by Malang? * Yes Next Competition Fashion Category Solo Name to be used on-stage (optional) Theme: Solo Themes * Solo Cyberpunk Chronicles Wild West Fusion The New Power Moves Cultural Remix: Global Fusion Timeless Trends: Y2K Renaissance Sustainable Style: Upcycled Utopia Previous Next Competition Fashion Category Duet Duet name to be used on-stage: Theme: Duet Themes * Opposites Attract: Yin & Yang Roots & Rhythm: Traditional Duet Celestial Pairs: Cosmic Entities Dynamic D"
-  },
-  {
-    "title": "Malang | 404 Not Found",
-    "url": "/src/pages/404.html",
-    "content": "Malang | 404 Not Found 404 Page Not Found This content doesn't exist, or you don't have permission to view it. Go Back"
+    "content": "Malang | Account Authenticating... Authentication Required. You can now access the following pages: Claims Open Redirects Open RedirectorAuth QR Code Generator Open Site Docs Open Domain Utilities: Attendance QR ToolGit Certificate ToolGit Contact ToolGit DraftsAuth Mail ToolGit Media KitAuth TreasuryAuth T-Shirt Design ToolGit Log in with Google Log in with GitHub Log out",
+    "category": "page",
+    "tags": []
   },
   {
     "title": "Malang | Alumni",
     "url": "/src/pages/alumni.html",
-    "content": "Malang | Alumni Malang Alumni Celebrating the legacy, talent, and stories of those who once walked the halls of Malang. \u00d7 Name: NA Position: NA Batch: NA Branch: NA"
+    "content": "Malang | Alumni Malang Alumni Celebrating the legacy, talent, and stories of those who once walked the halls of Malang. \u00d7 Name: NA Position: NA Batch: NA Branch: NA",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | ArUCo",
+    "url": "/src/pages/aruco.html",
+    "content": "Malang | ArUCo Scan. Discover. Experience Art Differently. Point your camera at our ArUCo marker.",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Authenticator",
+    "url": "/src/pages/authentication.html",
+    "content": "Malang | Authenticator Authorizing... You must be signed in to view this page. Authorization Required. Incorrect password. Try again. Enter",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Claims",
+    "url": "/src/pages/claims.html",
+    "content": "Malang | Claims Authorizing... You must be signed in to view this page. Claim your bills Bill Attachment * . Claim",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Core Members: Tejas Gupta, Prasun Ratan, Goutam Sahu, Mohini Walia, Priya Ranjan, Satyam Singh",
+    "url": "/src/pages/core.html",
+    "content": "Malang | Core Members: Tejas Gupta, Prasun Ratan, Goutam Sahu, Mohini Walia, Priya Ranjan, Satyam Singh Core Members Malang Alumni \u00d7 Name: Tejas Gupta, Prasun Ratan, Goutam Sahu, Mohini Walia, Priya Ranjan, Satyam Singh Position: NA Batch: NA Branch: NA",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Site Documentation",
+    "url": "/src/pages/documentation.html",
+    "content": "Malang | Site Documentation Authenticating... Last updated: Loading... Last update: Loading... Loading... Site Structure You must be signed in to view this content. \u26cf\ufe0e W/\u2665 for",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "drafts.html",
+    "url": "/src/pages/drafts.html",
+    "content": "",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Events",
+    "url": "/src/pages/events.html",
+    "content": "Malang | Events Calendar | Malang Events Happening Soon!",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Fashion Euphoria | Payment Form",
+    "url": "/src/pages/fe-pay.html",
+    "content": "Fashion Euphoria | Payment Form Fashion Euphoria 2026 Themes are allotted on a first-come, first-serve basis, with a maximum of 6 parties per theme. The deadline to fill the form is 23rd February 2026. NOTE: No refunds will be provided if participants back out after the deadline. Have you filled the Media Form provided by Malang? * Yes Next Competition Fashion Category Solo Name to be used on-stage (optional) Theme: Solo Themes * Solo Cyberpunk Chronicles Wild West Fusion The New Power Moves Cultural Remix: Global Fusion Timeless Trends: Y2K Renaissance Sustainable Style: Upcycled Utopia Previous Next Competition Fashion Category Duet Duet name to be used on-stage: Theme: Duet Themes * Opposites Attract: Yin & Yang Roots & Rhythm: Traditional Duet Celestial Pairs: Cosmic Entities Dynamic D",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Fashion Euphoria | Registration Form",
+    "url": "/src/pages/fe-register.html",
+    "content": "Fashion Euphoria | Registration Form Registrations for Fashion Euphoria 2026 are now closed as the maximum participation capacity has been reached. Thank you for the overwhelming response! \u00d7",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Fashion Euphoria",
+    "url": "/src/pages/fe.html",
+    "content": "Fashion Euphoria Fashion Euphoria Fashion fades, style is eternal. 00 Days 00 Hours 00 Minutes 00 Seconds Register Now! Event Rulebook Scroll to explore more! This Time,It's Different. For the first time ever, Fashion Euphoria brings cosplay to the spotlight. A Legacy on the Ramp An annual showcase of style, confidence, and presence. Our Partners Relive Fashion Euphoria 2025 A glimpse into last year's unforgettable runway moments, bold expressions and pure creative energy. Watch Fullscreen Numbers from Fashion Euphoria 2025 0 Participants 0 Colleges 0 Prize Pool (\u20b9) 0 Footfall Previous Partners Register Now! Event Rulebook Sponsor Fashion Euphoria \u00d7",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Form",
+    "url": "/src/pages/form.html",
+    "content": "Malang | Form Feature Request Position * Malang Alumni Core Member Member Outside Malang Next Request Type? * Report a Bug Update My Information Add My Artworks Other Previous Next Attach a link (if any): Attach a file (if any): Previous Request",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Gallery",
+    "url": "/src/pages/gallery.html",
+    "content": "Malang | Gallery Category Artworks Photographs Filter Nothing to see here... View More \u00d7",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Home",
+    "url": "/src/pages/home.html",
+    "content": "Malang | Home Fine Arts & Photography Club For the Kalakaar in you! Sponsor Us Contact Us Discover Your Creative Oasis at Malang Our mission is to provide a platform for individuals to express themselves, explore their artistic passions, and collaborate with like-minded individuals. Whether you're a painter, photographer, sculptor, or any form of creative soul, Malang Fine Arts Arts & Photography Club is the place to be. Upcoming EventsCheckout Events Fashion EuphoriaLearn More RangotsavLearn More Art GalleryView Gallery Our Partners \u00d7",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Media Kit",
+    "url": "/src/pages/media.html",
+    "content": "Malang | Media Kit Loading... Media Kit You must be signed in to view this page. Malang | Media Kit Logos and branding assets for Malang.",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Associates",
+    "url": "/src/pages/members.html",
+    "content": "Malang | Associates Malang Associates",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Brochure",
+    "url": "/src/pages/pdf.html",
+    "content": "Malang | Brochure",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Privacy Policy",
+    "url": "/src/pages/privacy-policy.html",
+    "content": "Malang | Privacy Policy Privacy Policy Effective Date: July 1, 2023 Malang \u2013 Fine Arts & Photography Club (\u201cMalang,\u201d \u201cwe,\u201d \u201cus,\u201d or \u201cour\u201d) is committed to protecting your privacy. This Privacy Policy outlines how we handle any personal information you choose to share with us through our website and services. 1. Data Collection We do not collect any personal information unless you explicitly provide it\u2014such as through forms or by sharing your email address voluntarily. 2. Use of Information If you provide your email address, we may use it to: Send club updates or newsletters. Share information about events, activities, or announcements. We will only use your email for the purpose it was provided. 3. Data Sharing We do not sell, share, or disclose your personal information to third parties. ",
+    "category": "page",
+    "tags": []
   },
   {
     "title": "Malang QR Generator",
     "url": "/src/pages/qr.html",
-    "content": "Malang QR Generator QR Generator Foreground Gradient Foreground Color 1 Color 2 Linear Radial Background Transparent Background QR Style Square Dots Rounded Extra Rounded Classy Add Logo Choose Logo: Logo Size: Create QR Download QR QR Code appears here."
+    "content": "Malang QR Generator QR Generator Foreground Gradient Foreground Color 1 Color 2 Linear Radial Background Transparent Background QR Style Square Dots Rounded Extra Rounded Classy Add Logo Choose Logo: Logo Size: Create QR Download QR QR Code appears here.",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Redirector",
+    "url": "/src/pages/redirector.html",
+    "content": "Malang | Redirector Authorizing... You must be signed in to view this page. Customise URL Custom URL will be:slug Create View Redirects",
+    "category": "page",
+    "tags": []
   },
   {
     "title": "Malang Redirects",
     "url": "/src/pages/redirects.html",
-    "content": "Malang Redirects Malang Redirects Loading..."
+    "content": "Malang Redirects Malang Redirects Loading...",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Sitemap",
+    "url": "/src/pages/sitemap.html",
+    "content": "Malang | Sitemap Sitemap",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Terms & Conditions",
+    "url": "/src/pages/terms.html",
+    "content": "Malang | Terms & Conditions Terms & Conditions Effective Date: January 31, 2026 These Terms & Conditions apply to all participants registering for or attending events organized by Malang. By registering for or participating in any Malang event, participants agree to the following terms. 1. Registration & Participation Participants must provide accurate registration details. Registration may be cancelled if incorrect information is provided. Participation may be limited based on event capacity or eligibility. 2. Use of Contact Information By registering, participants agree that contact details may be used to: Send event updates and notifications. Share information about future Malang events. Send certificates or participation-related communication. Contact information will not be sold or sh",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "test",
+    "url": "/src/pages/test.html",
+    "content": "test Section 1 Discover Your Creative Oasis at Malang Our mission is to provide a platform for individuals to express themselves, explore their artistic passions, and collaborate with like-minded individuals. Whether you're a painter, photographer, sculptor, or any form of creative soul, Malang Fine Arts Arts & Photography Club is the place to be. Card 1 Card 2 Card 3 Card 4 Our Partners Subscribe to our newsletter Stay connected with us and never miss an event! Subscribe We don't spam. Organisation Core Members Malang Alumni Collaborate With Us Events Upcoming Events Past Events Galleries Projects Art Gallery Photo Gallery \u00a9 2025 - YEAR Malang. All rights reserved. Sitemap Privacy Policy Media Kit Feature Request",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Timeline",
+    "url": "/src/pages/timeline.html",
+    "content": "Malang | Timeline Featured Events Fashion Euphoria Rangotsav Timeline Explore the history of Malang through our timeline, showcasing significant events and milestones that have shaped our journey. Upcoming Events View Older \u00d7",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Treasury",
+    "url": "/src/pages/treasury.html",
+    "content": "Malang | Treasury Authorizing... You must be signed in to view this page. Malang's Treasury Total Amount: Loading... Select Header Bharatiyam Claims Development Funds Party / Trip Other + \u2212 \u26a0\ufe0f Heads Up! Double-check values. Transactions instantly affect the treasury balance. Log Transaction Amount/Time",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | \ud83d\udc55 Form",
+    "url": "/src/pages/tshirt.html",
+    "content": "Malang | \ud83d\udc55 Form Malang T-Shirts 2025-26 This form is no longer accepting responses. \u00d7",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Unsubscribe",
+    "url": "/src/pages/unsubscribe.html",
+    "content": "Malang | Unsubscribe Unsubscribe from Newsletter Unsubscribe We'll miss you! Read our Privacy Policy for more information.",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Prasun Ratan",
+    "url": "/src/pages/alumni.html",
+    "content": "Prasun Ratan \u00b7 Head \u00b7 Batch: 2025-2026 \u00b7 Gen VII \u00b7 Branch: EnTC",
+    "category": "alumni",
+    "tags": [
+      "Head",
+      "EnTC",
+      "Gen VII",
+      "2025-2026"
+    ]
+  },
+  {
+    "title": "Goutam Sahu",
+    "url": "/src/pages/alumni.html",
+    "content": "Goutam Sahu \u00b7 Co-Head \u00b7 Batch: 2025-2026 \u00b7 Gen VII \u00b7 Branch: ECE",
+    "category": "alumni",
+    "tags": [
+      "Co-Head",
+      "ECE",
+      "Gen VII",
+      "2025-2026"
+    ]
+  },
+  {
+    "title": "Tejas Gupta",
+    "url": "/src/pages/alumni.html",
+    "content": "Tejas Gupta \u00b7 Treasurer & Tech Head \u00b7 Batch: 2025-2026 \u00b7 Gen VII \u00b7 Branch: CSBS",
+    "category": "alumni",
+    "tags": [
+      "Treasurer & Tech Head",
+      "CSBS",
+      "Gen VII",
+      "2025-2026"
+    ]
+  },
+  {
+    "title": "Priya Ranjan",
+    "url": "/src/pages/alumni.html",
+    "content": "Priya Ranjan \u00b7 PR & Sponsorship Head \u00b7 Batch: 2025-2026 \u00b7 Gen VII \u00b7 Branch: EnTC",
+    "category": "alumni",
+    "tags": [
+      "PR & Sponsorship Head",
+      "EnTC",
+      "Gen VII",
+      "2025-2026"
+    ]
+  },
+  {
+    "title": "Mohini Walia",
+    "url": "/src/pages/alumni.html",
+    "content": "Mohini Walia \u00b7 Media Head \u00b7 Batch: 2025-2026 \u00b7 Gen VII \u00b7 Branch: CE",
+    "category": "alumni",
+    "tags": [
+      "Media Head",
+      "CE",
+      "Gen VII",
+      "2025-2026"
+    ]
+  },
+  {
+    "title": "Satyam Singh",
+    "url": "/src/pages/alumni.html",
+    "content": "Satyam Singh \u00b7 Creativity Head \u00b7 Batch: 2025-2026 \u00b7 Gen VII \u00b7 Branch: EnTC",
+    "category": "alumni",
+    "tags": [
+      "Creativity Head",
+      "EnTC",
+      "Gen VII",
+      "2025-2026"
+    ]
+  },
+  {
+    "title": "Sachin Jha",
+    "url": "/src/pages/alumni.html",
+    "content": "Sachin Jha \u00b7 Head \u00b7 Batch: 2024-2025 \u00b7 Gen VI \u00b7 Branch: ECE",
+    "category": "alumni",
+    "tags": [
+      "Head",
+      "ECE",
+      "Gen VI",
+      "2024-2025"
+    ]
+  },
+  {
+    "title": "Aniket Jadhav",
+    "url": "/src/pages/alumni.html",
+    "content": "Aniket Jadhav \u00b7 Co-Head \u00b7 Batch: 2024-2025 \u00b7 Gen VI \u00b7 Branch: EnTC",
+    "category": "alumni",
+    "tags": [
+      "Co-Head",
+      "EnTC",
+      "Gen VI",
+      "2024-2025"
+    ]
+  },
+  {
+    "title": "Shambhavi Mishra",
+    "url": "/src/pages/alumni.html",
+    "content": "Shambhavi Mishra \u00b7 Treasurer & PR Head \u00b7 Batch: 2024-2025 \u00b7 Gen VI \u00b7 Branch: R&A",
+    "category": "alumni",
+    "tags": [
+      "Treasurer & PR Head",
+      "R&A",
+      "Gen VI",
+      "2024-2025"
+    ]
+  },
+  {
+    "title": "Vaishnavi Tyagi",
+    "url": "/src/pages/alumni.html",
+    "content": "Vaishnavi Tyagi \u00b7 Sponsorship Head \u00b7 Batch: 2024-2025 \u00b7 Gen VI \u00b7 Branch: EnTC",
+    "category": "alumni",
+    "tags": [
+      "Sponsorship Head",
+      "EnTC",
+      "Gen VI",
+      "2024-2025"
+    ]
+  },
+  {
+    "title": "Syed Ansharah Sultan",
+    "url": "/src/pages/alumni.html",
+    "content": "Syed Ansharah Sultan \u00b7 Media Head \u00b7 Batch: 2024-2025 \u00b7 Gen VI \u00b7 Branch: CE",
+    "category": "alumni",
+    "tags": [
+      "Media Head",
+      "CE",
+      "Gen VI",
+      "2024-2025"
+    ]
+  },
+  {
+    "title": "RudraChandan Singh",
+    "url": "/src/pages/alumni.html",
+    "content": "RudraChandan Singh \u00b7 Head \u00b7 Batch: 2023-2024 \u00b7 Gen V \u00b7 Branch: IT",
+    "category": "alumni",
+    "tags": [
+      "Head",
+      "IT",
+      "Gen V",
+      "2023-2024"
+    ]
+  },
+  {
+    "title": "Utkarsh Gupta",
+    "url": "/src/pages/alumni.html",
+    "content": "Utkarsh Gupta \u00b7 Co-Head \u00b7 Batch: 2023-2024 \u00b7 Gen V",
+    "category": "alumni",
+    "tags": [
+      "Co-Head",
+      "Gen V",
+      "2023-2024"
+    ]
+  },
+  {
+    "title": "Tanisha Sinha",
+    "url": "/src/pages/alumni.html",
+    "content": "Tanisha Sinha \u00b7 Treasurer & Creativity Head \u00b7 Batch: 2023-2024 \u00b7 Gen V",
+    "category": "alumni",
+    "tags": [
+      "Treasurer & Creativity Head",
+      "Gen V",
+      "2023-2024"
+    ]
+  },
+  {
+    "title": "Aditya Kashyap",
+    "url": "/src/pages/alumni.html",
+    "content": "Aditya Kashyap \u00b7 Tech & Media Head \u00b7 Batch: 2023-2024 \u00b7 Gen V \u00b7 Branch: IT",
+    "category": "alumni",
+    "tags": [
+      "Tech & Media Head",
+      "IT",
+      "Gen V",
+      "2023-2024"
+    ]
+  },
+  {
+    "title": "Simran Singh",
+    "url": "/src/pages/alumni.html",
+    "content": "Simran Singh \u00b7 Media Head \u00b7 Batch: 2023-2024 \u00b7 Gen V",
+    "category": "alumni",
+    "tags": [
+      "Media Head",
+      "Gen V",
+      "2023-2024"
+    ]
+  },
+  {
+    "title": "Aman Kumar",
+    "url": "/src/pages/alumni.html",
+    "content": "Aman Kumar \u00b7 PR & Photography Head \u00b7 Batch: 2023-2024 \u00b7 Gen V",
+    "category": "alumni",
+    "tags": [
+      "PR & Photography Head",
+      "Gen V",
+      "2023-2024"
+    ]
+  },
+  {
+    "title": "Mahek Gurjar",
+    "url": "/src/pages/alumni.html",
+    "content": "Mahek Gurjar \u00b7 Photography Head \u00b7 Batch: 2023-2024 \u00b7 Gen V",
+    "category": "alumni",
+    "tags": [
+      "Photography Head",
+      "Gen V",
+      "2023-2024"
+    ]
+  },
+  {
+    "title": "Swatantra Raj",
+    "url": "/src/pages/alumni.html",
+    "content": "Swatantra Raj \u00b7 Core Member \u00b7 Batch: 2023-2024 \u00b7 Gen V",
+    "category": "alumni",
+    "tags": [
+      "Core Member",
+      "Gen V",
+      "2023-2024"
+    ]
+  },
+  {
+    "title": "Mahesh Suthar",
+    "url": "/src/pages/alumni.html",
+    "content": "Mahesh Suthar \u00b7 Core Member \u00b7 Batch: 2023-2024 \u00b7 Gen V",
+    "category": "alumni",
+    "tags": [
+      "Core Member",
+      "Gen V",
+      "2023-2024"
+    ]
+  },
+  {
+    "title": "Ritik Gaur",
+    "url": "/src/pages/alumni.html",
+    "content": "Ritik Gaur \u00b7 Core Member \u00b7 Batch: 2023-2024 \u00b7 Gen V",
+    "category": "alumni",
+    "tags": [
+      "Core Member",
+      "Gen V",
+      "2023-2024"
+    ]
+  },
+  {
+    "title": "Sakshi Ranjan",
+    "url": "/src/pages/alumni.html",
+    "content": "Sakshi Ranjan \u00b7 Core Member \u00b7 Batch: 2023-2024 \u00b7 Gen V",
+    "category": "alumni",
+    "tags": [
+      "Core Member",
+      "Gen V",
+      "2023-2024"
+    ]
+  },
+  {
+    "title": "Aneema Sinha",
+    "url": "/src/pages/alumni.html",
+    "content": "Aneema Sinha \u00b7 Core Member \u00b7 Batch: 2023-2024 \u00b7 Gen V",
+    "category": "alumni",
+    "tags": [
+      "Core Member",
+      "Gen V",
+      "2023-2024"
+    ]
+  },
+  {
+    "title": "Shubh Singh",
+    "url": "/src/pages/alumni.html",
+    "content": "Shubh Singh \u00b7 Head \u00b7 Batch: 2021-2023 \u00b7 Gen IV",
+    "category": "alumni",
+    "tags": [
+      "Head",
+      "Gen IV",
+      "2021-2023"
+    ]
+  },
+  {
+    "title": "Akshita Sugandhi",
+    "url": "/src/pages/alumni.html",
+    "content": "Akshita Sugandhi \u00b7 Co-Head \u00b7 Batch: 2021-2023 \u00b7 Gen IV",
+    "category": "alumni",
+    "tags": [
+      "Co-Head",
+      "Gen IV",
+      "2021-2023"
+    ]
+  },
+  {
+    "title": "Kartikey Singh",
+    "url": "/src/pages/alumni.html",
+    "content": "Kartikey Singh \u00b7 Treasurer \u00b7 Batch: 2021-2023 \u00b7 Gen IV",
+    "category": "alumni",
+    "tags": [
+      "Treasurer",
+      "Gen IV",
+      "2021-2023"
+    ]
+  },
+  {
+    "title": "Sonali Panda",
+    "url": "/src/pages/alumni.html",
+    "content": "Sonali Panda \u00b7 Media Head \u00b7 Batch: 2021-2023 \u00b7 Gen IV",
+    "category": "alumni",
+    "tags": [
+      "Media Head",
+      "Gen IV",
+      "2021-2023"
+    ]
+  },
+  {
+    "title": "Nandini",
+    "url": "/src/pages/alumni.html",
+    "content": "Nandini \u00b7 Creativity Head \u00b7 Batch: 2021-2023 \u00b7 Gen IV",
+    "category": "alumni",
+    "tags": [
+      "Creativity Head",
+      "Gen IV",
+      "2021-2023"
+    ]
+  },
+  {
+    "title": "Pranav",
+    "url": "/src/pages/alumni.html",
+    "content": "Pranav \u00b7 Head \u00b7 Batch: 2020-2021 \u00b7 Gen III",
+    "category": "alumni",
+    "tags": [
+      "Head",
+      "Gen III",
+      "2020-2021"
+    ]
+  },
+  {
+    "title": "Abhay",
+    "url": "/src/pages/alumni.html",
+    "content": "Abhay \u00b7 Co-Head \u00b7 Batch: 2020-2021 \u00b7 Gen III",
+    "category": "alumni",
+    "tags": [
+      "Co-Head",
+      "Gen III",
+      "2020-2021"
+    ]
+  },
+  {
+    "title": "Wasim",
+    "url": "/src/pages/alumni.html",
+    "content": "Wasim \u00b7 Head \u00b7 Batch: 2018-2020 \u00b7 Gen II",
+    "category": "alumni",
+    "tags": [
+      "Head",
+      "Gen II",
+      "2018-2020"
+    ]
+  },
+  {
+    "title": "Divyansh",
+    "url": "/src/pages/alumni.html",
+    "content": "Divyansh \u00b7 Co-Head \u00b7 Batch: 2018-2020 \u00b7 Gen II",
+    "category": "alumni",
+    "tags": [
+      "Co-Head",
+      "Gen II",
+      "2018-2020"
+    ]
+  },
+  {
+    "title": "Pratyush Das",
+    "url": "/src/pages/alumni.html",
+    "content": "Pratyush Das \u00b7 Founder & Head \u00b7 Batch: 2017-2018 \u00b7 Gen I",
+    "category": "alumni",
+    "tags": [
+      "Founder & Head",
+      "Gen I",
+      "2017-2018"
+    ]
+  },
+  {
+    "title": "Where Stars Kiss The Ocean",
+    "url": "/src/pages/gallery.html",
+    "content": "Where Stars Kiss The Ocean \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "World Map",
+    "url": "/src/pages/gallery.html",
+    "content": "World Map \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "Moradabad Junction",
+    "url": "/src/pages/gallery.html",
+    "content": "Moradabad Junction \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "Rashtrapati Bhavan, New Delhi",
+    "url": "/src/pages/gallery.html",
+    "content": "Rashtrapati Bhavan, New Delhi \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "Bharati Vidyapeeth University, College of Engineering, Pune",
+    "url": "/src/pages/gallery.html",
+    "content": "Bharati Vidyapeeth University, College of Engineering, Pune \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "Buckingham Palace, London",
+    "url": "/src/pages/gallery.html",
+    "content": "Buckingham Palace, London \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "The Port",
+    "url": "/src/pages/gallery.html",
+    "content": "The Port \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "Westminster Church, London",
+    "url": "/src/pages/gallery.html",
+    "content": "Westminster Church, London \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "K.C.M. School, Moradabad",
+    "url": "/src/pages/gallery.html",
+    "content": "K.C.M. School, Moradabad \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "Aanchal, Moradabad",
+    "url": "/src/pages/gallery.html",
+    "content": "Aanchal, Moradabad \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "Artwork by Adwait",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Adwait \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Adwait"
+    ]
+  },
+  {
+    "title": "Artwork by Adwait",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Adwait \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Adwait"
+    ]
+  },
+  {
+    "title": "Artwork by Adwait",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Adwait \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Adwait"
+    ]
+  },
+  {
+    "title": "Jasmine",
+    "url": "/src/pages/gallery.html",
+    "content": "Jasmine \u00b7 Artist: Mohini \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Mohini"
+    ]
+  },
+  {
+    "title": "Avatar",
+    "url": "/src/pages/gallery.html",
+    "content": "Avatar \u00b7 Artist: Mohini \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Mohini"
+    ]
+  },
+  {
+    "title": "Artwork by Adwait",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Adwait \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Adwait"
+    ]
+  },
+  {
+    "title": "Artwork by Adwait",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Adwait \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Adwait"
+    ]
+  },
+  {
+    "title": "Artwork by Adwait",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Adwait \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Adwait"
+    ]
+  },
+  {
+    "title": "Artwork by Gaurav Kumar",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Gaurav Kumar \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Gaurav Kumar"
+    ]
+  },
+  {
+    "title": "Artwork by Adwait",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Adwait \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Adwait"
+    ]
+  },
+  {
+    "title": "Artwork by Adwait",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Adwait \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Adwait"
+    ]
+  },
+  {
+    "title": "Artwork by Adwait",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Adwait \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Adwait"
+    ]
+  },
+  {
+    "title": "Artwork by Adwait",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Adwait \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Adwait"
+    ]
+  },
+  {
+    "title": "Artwork by Adwait",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Adwait \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Adwait"
+    ]
+  },
+  {
+    "title": "Artwork by Gaurav Kumar",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Gaurav Kumar \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Gaurav Kumar"
+    ]
+  },
+  {
+    "title": "Artwork by Adwait",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Adwait \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Adwait"
+    ]
+  },
+  {
+    "title": "Artwork by Gaurav Kumar",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Gaurav Kumar \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Gaurav Kumar"
+    ]
+  },
+  {
+    "title": "Artwork by Misty",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Misty \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Misty"
+    ]
+  },
+  {
+    "title": "Artwork by Misty",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Misty \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Misty"
+    ]
+  },
+  {
+    "title": "Artwork by Misty",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Misty \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Misty"
+    ]
+  },
+  {
+    "title": "Touches Never Made",
+    "url": "/src/pages/gallery.html",
+    "content": "Touches Never Made \u00b7 Artist: Mohini \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Mohini"
+    ]
+  },
+  {
+    "title": "Demand",
+    "url": "/src/pages/gallery.html",
+    "content": "Demand \u00b7 Artist: Mohini \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Mohini"
+    ]
+  },
+  {
+    "title": "Artwork by Gaurav Kumar",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Gaurav Kumar \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Gaurav Kumar"
+    ]
+  },
+  {
+    "title": "Through The Tinted Glass",
+    "url": "/src/pages/gallery.html",
+    "content": "Through The Tinted Glass \u00b7 Artist: Mohini \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Mohini"
+    ]
+  },
+  {
+    "title": "Once Upon A December",
+    "url": "/src/pages/gallery.html",
+    "content": "Once Upon A December \u00b7 Artist: Mohini \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Mohini"
+    ]
+  },
+  {
+    "title": "Miss Witch",
+    "url": "/src/pages/gallery.html",
+    "content": "Miss Witch \u00b7 Artist: Mohini \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Mohini"
+    ]
+  },
+  {
+    "title": "Gold",
+    "url": "/src/pages/gallery.html",
+    "content": "Gold \u00b7 Artist: Mohini \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Mohini"
+    ]
+  },
+  {
+    "title": "Tum Ho?",
+    "url": "/src/pages/gallery.html",
+    "content": "Tum Ho? \u00b7 Artist: Mohini \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Mohini"
+    ]
+  },
+  {
+    "title": "Ocean",
+    "url": "/src/pages/gallery.html",
+    "content": "Ocean \u00b7 Artist: Mohini \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mohini"
+    ]
+  },
+  {
+    "title": "Artwork by Gaurav Kumar",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Gaurav Kumar \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Gaurav Kumar"
+    ]
+  },
+  {
+    "title": "La plus belle des mal\u00e9dictions...",
+    "url": "/src/pages/gallery.html",
+    "content": "La plus belle des mal\u00e9dictions... \u00b7 Artist: Mohini \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Mohini"
+    ]
+  },
+  {
+    "title": "Emerald",
+    "url": "/src/pages/gallery.html",
+    "content": "Emerald \u00b7 Artist: Mohini \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Mohini"
+    ]
+  },
+  {
+    "title": "Artwork by Ankit",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Ankit \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ankit"
+    ]
+  },
+  {
+    "title": "Artwork by Ankit",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Ankit \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ankit"
+    ]
+  },
+  {
+    "title": "Artwork by Ankit",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Ankit \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ankit"
+    ]
+  },
+  {
+    "title": "Artwork by Ankit",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Ankit \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ankit"
+    ]
+  },
+  {
+    "title": "Artwork by Ankit",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Ankit \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ankit"
+    ]
+  },
+  {
+    "title": "Artwork by Ankit",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Ankit \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ankit"
+    ]
+  },
+  {
+    "title": "Artwork by Hersheyy",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Hersheyy \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Hersheyy"
+    ]
+  },
+  {
+    "title": "Artwork by Hersheyy",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Hersheyy \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Hersheyy"
+    ]
+  },
+  {
+    "title": "Artwork by Satyam",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Satyam \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Satyam"
+    ]
+  },
+  {
+    "title": "Artwork by Satyam",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Satyam \u00b7 Type: Model",
+    "category": "artwork",
+    "tags": [
+      "Model",
+      "Satyam"
+    ]
+  },
+  {
+    "title": "Artwork by Satyam",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Satyam \u00b7 Type: Origami",
+    "category": "artwork",
+    "tags": [
+      "Origami",
+      "Satyam"
+    ]
+  },
+  {
+    "title": "Artwork by Satyam",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Satyam \u00b7 Type: Origami",
+    "category": "artwork",
+    "tags": [
+      "Origami",
+      "Satyam"
+    ]
+  },
+  {
+    "title": "Artwork by Satyam",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Satyam \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Satyam"
+    ]
+  },
+  {
+    "title": "Artwork by Satyam",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Satyam \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Satyam"
+    ]
+  },
+  {
+    "title": "Artwork by Satyam",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Satyam \u00b7 Type: Origami",
+    "category": "artwork",
+    "tags": [
+      "Origami",
+      "Satyam"
+    ]
+  },
+  {
+    "title": "Artwork by Satyam",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Satyam \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Satyam"
+    ]
+  },
+  {
+    "title": "Artwork by Satyam",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Satyam \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Satyam"
+    ]
+  },
+  {
+    "title": "Artwork by Anushka Shivhare",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Anushka Shivhare \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Anushka Shivhare"
+    ]
+  },
+  {
+    "title": "Artwork by Anushka Shivhare",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Anushka Shivhare \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Anushka Shivhare"
+    ]
+  },
+  {
+    "title": "Artwork by Anushka Shivhare",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Anushka Shivhare \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Anushka Shivhare"
+    ]
+  },
+  {
+    "title": "Artwork by Anushka Shivhare",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Anushka Shivhare \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Anushka Shivhare"
+    ]
+  },
+  {
+    "title": "Artwork by Anushka Shivhare",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Anushka Shivhare \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Anushka Shivhare"
+    ]
+  },
+  {
+    "title": "The Third Level",
+    "url": "/src/pages/gallery.html",
+    "content": "The Third Level \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "Where Stars Meet Lanterns",
+    "url": "/src/pages/gallery.html",
+    "content": "Where Stars Meet Lanterns \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "Escape",
+    "url": "/src/pages/gallery.html",
+    "content": "Escape \u00b7 Artist: Tejas \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "Artwork by Ashay",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Ashay \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ashay"
+    ]
+  },
+  {
+    "title": "Artwork by Rashi",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Rashi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Rashi"
+    ]
+  },
+  {
+    "title": "Echoes of Madhya",
+    "url": "/src/pages/gallery.html",
+    "content": "Echoes of Madhya \u00b7 Artist: Ayushi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ayushi"
+    ]
+  },
+  {
+    "title": "Artwork by Ashay",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Ashay \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ashay"
+    ]
+  },
+  {
+    "title": "Artwork by Rashi",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Rashi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Rashi"
+    ]
+  },
+  {
+    "title": "Divine Duality",
+    "url": "/src/pages/gallery.html",
+    "content": "Divine Duality \u00b7 Artist: Ayushi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ayushi"
+    ]
+  },
+  {
+    "title": "Artwork by Ashay",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Ashay \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ashay"
+    ]
+  },
+  {
+    "title": "Artwork by Rashi",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Rashi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Rashi"
+    ]
+  },
+  {
+    "title": "Whisper in Colors",
+    "url": "/src/pages/gallery.html",
+    "content": "Whisper in Colors \u00b7 Artist: Ayushi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ayushi"
+    ]
+  },
+  {
+    "title": "Artwork by Ashay",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Ashay \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ashay"
+    ]
+  },
+  {
+    "title": "Artwork by Rashi",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Rashi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Rashi"
+    ]
+  },
+  {
+    "title": "Modern Art",
+    "url": "/src/pages/gallery.html",
+    "content": "Modern Art \u00b7 Artist: Ayushi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ayushi"
+    ]
+  },
+  {
+    "title": "Artwork by Rashi",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Rashi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Rashi"
+    ]
+  },
+  {
+    "title": "Grace in Motion",
+    "url": "/src/pages/gallery.html",
+    "content": "Grace in Motion \u00b7 Artist: Ayushi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ayushi"
+    ]
+  },
+  {
+    "title": "Artwork by Rashi",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Rashi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Rashi"
+    ]
+  },
+  {
+    "title": "Beauty and the Blade",
+    "url": "/src/pages/gallery.html",
+    "content": "Beauty and the Blade \u00b7 Artist: Ayushi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Ayushi"
+    ]
+  },
+  {
+    "title": "Ariana Grande",
+    "url": "/src/pages/gallery.html",
+    "content": "Ariana Grande \u00b7 Artist: Samruddhi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Samruddhi"
+    ]
+  },
+  {
+    "title": "Bappa",
+    "url": "/src/pages/gallery.html",
+    "content": "Bappa \u00b7 Artist: Samruddhi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Samruddhi"
+    ]
+  },
+  {
+    "title": "Death's Muse",
+    "url": "/src/pages/gallery.html",
+    "content": "Death's Muse \u00b7 Artist: Saanvi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Saanvi"
+    ]
+  },
+  {
+    "title": "Emma Watson",
+    "url": "/src/pages/gallery.html",
+    "content": "Emma Watson \u00b7 Artist: Samruddhi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Samruddhi"
+    ]
+  },
+  {
+    "title": "Artwork by Prapti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Prapti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Prapti"
+    ]
+  },
+  {
+    "title": "Artwork by Prapti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Prapti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Prapti"
+    ]
+  },
+  {
+    "title": "Artwork by Prapti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Prapti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Prapti"
+    ]
+  },
+  {
+    "title": "Artwork by Prapti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Prapti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Prapti"
+    ]
+  },
+  {
+    "title": "Artwork by Prapti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Prapti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Prapti"
+    ]
+  },
+  {
+    "title": "Artwork by Prapti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Prapti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Prapti"
+    ]
+  },
+  {
+    "title": "Artwork by Prapti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Prapti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Prapti"
+    ]
+  },
+  {
+    "title": "Artwork by Prapti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Prapti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Prapti"
+    ]
+  },
+  {
+    "title": "Artwork by Prapti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Prapti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Prapti"
+    ]
+  },
+  {
+    "title": "Artwork by Prapti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Prapti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Prapti"
+    ]
+  },
+  {
+    "title": "Artwork by Lokesh",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Lokesh \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Lokesh"
+    ]
+  },
+  {
+    "title": "Artwork by Bhavini",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Bhavini \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Bhavini"
+    ]
+  },
+  {
+    "title": "Artwork by Mihika",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Mihika \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mihika"
+    ]
+  },
+  {
+    "title": "Artwork by Mihika",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Mihika \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mihika"
+    ]
+  },
+  {
+    "title": "Artwork by Mihika",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Mihika \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mihika"
+    ]
+  },
+  {
+    "title": "Artwork by Mihika",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Mihika \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mihika"
+    ]
+  },
+  {
+    "title": "Artwork by Mihika",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Mihika \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mihika"
+    ]
+  },
+  {
+    "title": "Artwork by Mihika",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Mihika \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mihika"
+    ]
+  },
+  {
+    "title": "Artwork by Mihika",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Mihika \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mihika"
+    ]
+  },
+  {
+    "title": "Artwork by Mihika",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Mihika \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mihika"
+    ]
+  },
+  {
+    "title": "Artwork by Mihika",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Mihika \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mihika"
+    ]
+  },
+  {
+    "title": "Artwork by Mihika",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Mihika \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mihika"
+    ]
+  },
+  {
+    "title": "Artwork by Mihika",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Mihika \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mihika"
+    ]
+  },
+  {
+    "title": "Artwork by Mihika",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Mihika \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Mihika"
+    ]
+  },
+  {
+    "title": "Artwork by Lokesh",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Lokesh \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Lokesh"
+    ]
+  },
+  {
+    "title": "Just Another Scenery",
+    "url": "/src/pages/gallery.html",
+    "content": "Just Another Scenery \u00b7 Artist: Saanvi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Saanvi"
+    ]
+  },
+  {
+    "title": "Naruto",
+    "url": "/src/pages/gallery.html",
+    "content": "Naruto \u00b7 Artist: Samruddhi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Samruddhi"
+    ]
+  },
+  {
+    "title": "Artwork by Shabassh Sehzade",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Shabassh Sehzade \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Shabassh Sehzade"
+    ]
+  },
+  {
+    "title": "Artwork by Shabassh Sehzade",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Shabassh Sehzade \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Shabassh Sehzade"
+    ]
+  },
+  {
+    "title": "Artwork by Shabassh Sehzade",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Shabassh Sehzade \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Shabassh Sehzade"
+    ]
+  },
+  {
+    "title": "Artwork by Shabassh Sehzade",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Shabassh Sehzade \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Shabassh Sehzade"
+    ]
+  },
+  {
+    "title": "Artwork by Shabassh Sehzade",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Shabassh Sehzade \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Shabassh Sehzade"
+    ]
+  },
+  {
+    "title": "Artwork by Shabassh Sehzade",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Shabassh Sehzade \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Shabassh Sehzade"
+    ]
+  },
+  {
+    "title": "Artwork by Shabassh Sehzade",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Shabassh Sehzade \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Shabassh Sehzade"
+    ]
+  },
+  {
+    "title": "Artwork by Shabassh Sehzade",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Shabassh Sehzade \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Shabassh Sehzade"
+    ]
+  },
+  {
+    "title": "Artwork by Shabassh Sehzade",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Shabassh Sehzade \u00b7 Type: Illustration",
+    "category": "artwork",
+    "tags": [
+      "Illustration",
+      "Shabassh Sehzade"
+    ]
+  },
+  {
+    "title": "Artwork by Stuti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Stuti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Stuti"
+    ]
+  },
+  {
+    "title": "Artwork by Stuti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Stuti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Stuti"
+    ]
+  },
+  {
+    "title": "Artwork by Stuti",
+    "url": "/src/pages/gallery.html",
+    "content": "Artist: Stuti \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Stuti"
+    ]
+  },
+  {
+    "title": "Sukuna",
+    "url": "/src/pages/gallery.html",
+    "content": "Sukuna \u00b7 Artist: Samruddhi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Samruddhi"
+    ]
+  },
+  {
+    "title": "The Hollow Crown",
+    "url": "/src/pages/gallery.html",
+    "content": "The Hollow Crown \u00b7 Artist: Saanvi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Saanvi"
+    ]
+  },
+  {
+    "title": "Tomi",
+    "url": "/src/pages/gallery.html",
+    "content": "Tomi \u00b7 Artist: Samruddhi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Samruddhi"
+    ]
+  },
+  {
+    "title": "Watcher of the Void",
+    "url": "/src/pages/gallery.html",
+    "content": "Watcher of the Void \u00b7 Artist: Saanvi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Saanvi"
+    ]
+  },
+  {
+    "title": "Wednesday",
+    "url": "/src/pages/gallery.html",
+    "content": "Wednesday \u00b7 Artist: Samruddhi \u00b7 Type: Fine Art",
+    "category": "artwork",
+    "tags": [
+      "Fine Art",
+      "Samruddhi"
+    ]
+  },
+  {
+    "title": "Photos by Manamrit",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Manamrit \u00b7 3 photographs \u00b7 Categories: Architectural, Space",
+    "category": "photograph",
+    "tags": [
+      "Architectural",
+      "Space",
+      "Manamrit"
+    ]
+  },
+  {
+    "title": "Photos by Ayush",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Ayush \u00b7 3 photographs \u00b7 Categories: Animal, Nature",
+    "category": "photograph",
+    "tags": [
+      "Animal",
+      "Nature",
+      "Ayush"
+    ]
+  },
+  {
+    "title": "Photos by Sourabh",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Sourabh \u00b7 4 photographs \u00b7 Categories: Architectural, Landscape, Nature",
+    "category": "photograph",
+    "tags": [
+      "Architectural",
+      "Landscape",
+      "Nature",
+      "Sourabh"
+    ]
+  },
+  {
+    "title": "Photos by Manoviraj",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Manoviraj \u00b7 11 photographs \u00b7 Categories: Animal, Cityscape, Landscape, Nature, Street, Urban",
+    "category": "photograph",
+    "tags": [
+      "Animal",
+      "Cityscape",
+      "Landscape",
+      "Nature",
+      "Street",
+      "Urban",
+      "Manoviraj"
+    ]
+  },
+  {
+    "title": "Photos by Gaurav Kumar",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Gaurav Kumar \u00b7 14 photographs \u00b7 Categories: Animal, Architectural, Cityscape, Landscape, Nature, Urban",
+    "category": "photograph",
+    "tags": [
+      "Animal",
+      "Architectural",
+      "Cityscape",
+      "Landscape",
+      "Nature",
+      "Urban",
+      "Gaurav Kumar"
+    ]
+  },
+  {
+    "title": "Photos by Hersheyy",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Hersheyy \u00b7 7 photographs \u00b7 Categories: Architectural, Landscape, Nature, Street",
+    "category": "photograph",
+    "tags": [
+      "Architectural",
+      "Landscape",
+      "Nature",
+      "Street",
+      "Hersheyy"
+    ]
+  },
+  {
+    "title": "Photos by Tejas",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Tejas \u00b7 7 photographs \u00b7 Categories: Cityscape, Space, Urban",
+    "category": "photograph",
+    "tags": [
+      "Cityscape",
+      "Space",
+      "Urban",
+      "Tejas"
+    ]
+  },
+  {
+    "title": "Photos by Prasun",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Prasun \u00b7 17 photographs \u00b7 Categories: Architectural, Nature, Street, Urban",
+    "category": "photograph",
+    "tags": [
+      "Architectural",
+      "Nature",
+      "Street",
+      "Urban",
+      "Prasun"
+    ]
+  },
+  {
+    "title": "Photos by Shourya Gupta",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Shourya Gupta \u00b7 25 photographs \u00b7 Categories: Animal, Cityscape, Nature, Space, Street, Urban",
+    "category": "photograph",
+    "tags": [
+      "Animal",
+      "Cityscape",
+      "Nature",
+      "Space",
+      "Street",
+      "Urban",
+      "Shourya Gupta"
+    ]
+  },
+  {
+    "title": "Photos by Ayushi Sonwane",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Ayushi Sonwane \u00b7 4 photographs \u00b7 Categories: Landscape",
+    "category": "photograph",
+    "tags": [
+      "Landscape",
+      "Ayushi Sonwane"
+    ]
+  },
+  {
+    "title": "Photos by Arav",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Arav \u00b7 1 photograph \u00b7 Categories: Street",
+    "category": "photograph",
+    "tags": [
+      "Street",
+      "Arav"
+    ]
+  },
+  {
+    "title": "Photos by Shivam",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Shivam \u00b7 9 photographs \u00b7 Categories: Architectural, Nature, Urban, Vintage",
+    "category": "photograph",
+    "tags": [
+      "Architectural",
+      "Nature",
+      "Urban",
+      "Vintage",
+      "Shivam"
+    ]
+  },
+  {
+    "title": "Photos by Lokesh",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Lokesh \u00b7 7 photographs \u00b7 Categories: Landscape, Macro, Street",
+    "category": "photograph",
+    "tags": [
+      "Landscape",
+      "Macro",
+      "Street",
+      "Lokesh"
+    ]
+  },
+  {
+    "title": "Photos by Tanushryy",
+    "url": "/src/pages/gallery.html",
+    "content": "Photographer: Tanushryy \u00b7 6 photographs \u00b7 Categories: Animal, Architectural, Cityscape, Macro, Nature, Street",
+    "category": "photograph",
+    "tags": [
+      "Animal",
+      "Architectural",
+      "Cityscape",
+      "Macro",
+      "Nature",
+      "Street",
+      "Tanushryy"
+    ]
+  },
+  {
+    "title": "Fashion Euphoria | Cosplay",
+    "url": "/src/pages/timeline.html",
+    "content": "Fashion Euphoria | Cosplay \u00b7 February 2026 \u00b7 Play Ground, BVUCOEP \u00b7 The flagship inter-college fashion show and cosplay of Bharatiyam, the annual cultural festival of BVUCOEP, featuring high-energy runway performances and creative showcases.",
+    "category": "event",
+    "tags": [
+      "February 2026",
+      "Play Ground, BVUCOEP"
+    ]
+  },
+  {
+    "title": "Fashion Euphoria",
+    "url": "/src/pages/timeline.html",
+    "content": "Fashion Euphoria \u00b7 February 2026 \u00b7 Play Ground, BVUCOEP \u00b7 The flagship inter-college fashion show and cosplay of Bharatiyam, the annual cultural festival of BVUCOEP, featuring high-energy runway performances and creative showcases.",
+    "category": "event",
+    "tags": [
+      "February 2026",
+      "Play Ground, BVUCOEP"
+    ]
+  },
+  {
+    "title": "Workshop: Graphic Design and Digital Illustration",
+    "url": "/src/pages/timeline.html",
+    "content": "Workshop: Graphic Design and Digital Illustration \u00b7 December 2025 \u00b7 An exclusive in-person workshop on graphic designing and digital illustration for Malang members. Learn essential design principles, digital art techniques, and hands-on tools to enhance your creative skills. Perfect for members looking to level up their visual design and illustration abilities.",
+    "category": "event",
+    "tags": [
+      "December 2025"
+    ]
+  },
+  {
+    "title": "Recruitments",
+    "url": "/src/pages/timeline.html",
+    "content": "Recruitments \u00b7 September 2025 \u00b7 We successfully launched our annual recruitment drive, inviting students interested in fine arts, design, and photography to join Malang. The drive featured an application process for various sub-clubs and teams within the organization.",
+    "category": "event",
+    "tags": [
+      "September 2025"
+    ]
+  },
+  {
+    "title": "Exhibition: Orientation Program",
+    "url": "/src/pages/timeline.html",
+    "content": "Exhibition: Orientation Program \u00b7 August 2025 \u00b7 Introduced Malang to freshers through a vibrant display of student artworks, photography portfolios, and interactive fine arts activities.",
+    "category": "event",
+    "tags": [
+      "August 2025"
+    ]
+  },
+  {
+    "title": "Workshop: Video Editing with Team Clixzy",
+    "url": "/src/pages/timeline.html",
+    "content": "Workshop: Video Editing with Team Clixzy \u00b7 July 2025 \u00b7 A hands-on workshop for photographers and visual artists on video editing techniques, covering software tools and creative processes for motion content.",
+    "category": "event",
+    "tags": [
+      "July 2025"
+    ]
+  },
+  {
+    "title": "Farewell",
+    "url": "/src/pages/timeline.html",
+    "content": "Farewell \u00b7 April 2025 \u00b7 A farewell event to celebrate the achievements of the graduating batch of 2025, featuring speeches, performances, and a nostalgic look back at their creative projects and journey with Malang.",
+    "category": "event",
+    "tags": [
+      "April 2025"
+    ]
+  },
+  {
+    "title": "Fashion Euphoria: Bharatiyam",
+    "url": "/src/pages/timeline.html",
+    "content": "Fashion Euphoria: Bharatiyam \u00b7 February 2025 \u00b7 We successfully hosted a large-scale Fashion Show and Competition that drew participants from multiple universities. The event showcased student creativity across three dynamic categories: Solo, Duet, and Group. Malang's photography and design teams were instrumental in organizing and capturing this",
+    "category": "event",
+    "tags": [
+      "February 2025"
+    ]
+  },
+  {
+    "title": "Rangotsav: Bharatiyam",
+    "url": "/src/pages/timeline.html",
+    "content": "Rangotsav: Bharatiyam \u00b7 February 2025 \u00b7 A vibrant cultural festival where students and faculty members express their creativity through photography and traditional and contemporary art forms like rangoli and painting.",
+    "category": "event",
+    "tags": [
+      "February 2025"
+    ]
+  },
+  {
+    "title": "Orientation Program",
+    "url": "/src/pages/timeline.html",
+    "content": "Orientation Program \u00b7 August 2024 \u00b7 An introductory session for freshers to learn about Malang, its various art and photography sub-clubs, and how to get involved in our creative community.",
+    "category": "event",
+    "tags": [
+      "August 2024"
+    ]
+  },
+  {
+    "title": "Fashion Euphoria: Bharatiyam",
+    "url": "/src/pages/timeline.html",
+    "content": "Fashion Euphoria: Bharatiyam \u00b7 February 2024 \u00b7 A major event where Malang's photography and design teams collaborate to showcase the latest trends and student-designed outfits, celebrating creativity and style.",
+    "category": "event",
+    "tags": [
+      "February 2024"
+    ]
+  },
+  {
+    "title": "Rangotsav: Bharatiyam",
+    "url": "/src/pages/timeline.html",
+    "content": "Rangotsav: Bharatiyam \u00b7 February 2024 \u00b7 A vibrant cultural festival where students and faculty members express their creativity through photography and traditional and contemporary art forms like rangoli and painting.",
+    "category": "event",
+    "tags": [
+      "February 2024"
+    ]
+  },
+  {
+    "title": "Workshop: Mandala Art",
+    "url": "/src/pages/timeline.html",
+    "content": "Workshop: Mandala Art \u00b7 January 2024 \u00b7 A practical workshop focused on the techniques and meditative practice of creating intricate Mandala designs, a key fine art form.",
+    "category": "event",
+    "tags": [
+      "January 2024"
+    ]
+  },
+  {
+    "title": "Workshop: Photography with GStudios India",
+    "url": "/src/pages/timeline.html",
+    "content": "Workshop: Photography with GStudios India \u00b7 November 2023 \u00b7 A specialized workshop led by GStudios India covering advanced photography techniques, lighting, and post-processing, essential skills for aspiring club members.",
+    "category": "event",
+    "tags": [
+      "November 2023"
+    ]
+  },
+  {
+    "title": "Orientation Program",
+    "url": "/src/pages/timeline.html",
+    "content": "Orientation Program \u00b7 August 2023 \u00b7 An introductory session for new members to learn about Malang, its various art and photography domains and how to get involved in our creative community.",
+    "category": "event",
+    "tags": [
+      "August 2023"
+    ]
+  },
+  {
+    "title": "Bharatiyam 2019",
+    "url": "/src/pages/timeline.html",
+    "content": "Bharatiyam 2019 \u00b7 February 2019",
+    "category": "event",
+    "tags": [
+      "February 2019"
+    ]
   }
 ]
