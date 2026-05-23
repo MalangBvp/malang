@@ -11,7 +11,7 @@ Promise.all([
       document.getElementById("structure").textContent = structure;
     }),
 
-  fetch("/README.md")
+  fetch("https://raw.githubusercontent.com/MalangBvp/malang/main/README.md")
     .then((res) => res.text())
     .then((data) => {
       marked.setOptions({
