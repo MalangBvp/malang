@@ -152,6 +152,17 @@ async function forwardParamsToIframe() {
   else url = `/src/pages/${page}.html`;
 
   params.delete("page");
+  
+  const q = params.get("q");
+  if (q) {
+    if (window.openSearch) {
+      window.openSearch(q);
+    } else {
+      window.initialSearchQuery = q;
+    }
+    params.delete("q");
+  }
+
   const otherParams = params.toString();
   if (otherParams) url += "?" + otherParams;
 

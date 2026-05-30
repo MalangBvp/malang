@@ -133,4 +133,36 @@ document.addEventListener("DOMContentLoaded", async () => {
       searchOverlay.style.display = "none";
     }
   });
+
+  const copyQueryBtn = document.getElementById("copyQueryBtn");
+  if (copyQueryBtn) {
+    copyQueryBtn.addEventListener("click", () => {
+      const query = input.value.trim();
+      if (!query) return;
+      const url = new URL(window.location.origin);
+      url.searchParams.set("q", query);
+      navigator.clipboard.writeText(url.toString()).then(() => {
+        const img = copyQueryBtn.querySelector("img");
+        if (img) {
+          img.src = "/resrc/images/icons/tick.webp";
+          setTimeout(() => {
+            img.src = "/resrc/images/icons/link.webp";
+          }, 1000);
+        }
+      });
+    });
+  }
+
+  window.openSearch = (q) => {
+    searchOverlay.style.display = "flex";
+    input.value = q;
+    const results = fuse.search(q);
+    renderResults(results);
+    input.focus();
+  };
+
+  if (window.initialSearchQuery) {
+    window.openSearch(window.initialSearchQuery);
+    delete window.initialSearchQuery;
+  }
 });
