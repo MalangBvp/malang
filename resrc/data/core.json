@@ -1,1 +1,80 @@
-[]
+[
+    {
+        "year": "2026-2027",
+        "generation": "Gen VIII",
+        "members": [
+            {
+                "name": "Adwait Padmawar",
+                "role": "Head",
+                "image": "27-1.webp",
+                "branch": "ECE",
+                "linkedin": "https://www.linkedin.com/in/adwait-padmawar-125288339/"
+            },
+            {
+                "name": "Sahil Jaiswal",
+                "role": "Treasurer & Design Head",
+                "image": "27-3.webp",
+                "branch": "ECE",
+                "linkedin": "https://www.linkedin.com/in/sahil-jaiswal-a72786332/"
+            },
+            {
+                "name": "Manamrit Singh",
+                "role": "Sponsorship Head",
+                "image": "27-4.webp",
+                "branch": "CE",
+                "linkedin": "https://www.linkedin.com/in/manamrit-singh-4709242ab/",
+                "github": "https://github.com/manamritsingh18"
+            },
+            {
+                "name": "Prathamesh Dahe",
+                "role": "Technical Head",
+                "image": "27-5.webp",
+                "branch": "CE",
+                "linkedin": "https://www.linkedin.com/in/prathamesh-dahe-bab448313/",
+                "github": "https://github.com/Prathameshdahe"
+            },
+            {
+                "name": "Muskan Kumari",
+                "role": "Creativity Head",
+                "image": "27-6.webp",
+                "branch": "ECE",
+                "linkedin": "https://www.linkedin.com/in/muskan-kumari-7914792a8/"
+            },
+            {
+                "name": "Khushi Gupta",
+                "role": "Media Head",
+                "image": "27-7.webp",
+                "branch": "CSBS",
+                "linkedin": "https://www.linkedin.com/in/khushi-gupta-6564a1387/"
+            },
+            {
+                "name": "Nandini Iyer",
+                "role": "PR/Outreach Head",
+                "image": "27-8.webp",
+                "branch": "ECE",
+                "linkedin": "https://www.linkedin.com/in/nandini-iyer-52056829a/"
+            },
+            {
+                "name": "Kaushal Kadam",
+                "role": "PR/Outreach Head",
+                "image": "27-9.webp",
+                "branch": "E&TC",
+                "linkedin": "https://www.linkedin.com/in/kaushal-kadam-8b2778280/"
+            },
+            {
+                "name": "Naziam Nazir Najar",
+                "role": "Photography Head",
+                "image": "27-10.webp",
+                "branch": "IT",
+                "linkedin": "https://www.linkedin.com/in/naziam-nazir-56a40328b/"
+            },
+            {
+                "name": "Dhruv Tripathi",
+                "role": "Co-Head",
+                "image": "27-2.webp",
+                "branch": "ECE",
+                "linkedin": "https://www.linkedin.com/in/dhruvtripathi07/"
+            }
+        ]
+    }
+]
