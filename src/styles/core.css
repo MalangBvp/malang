@@ -26,7 +26,7 @@
 
 .carousel-item {
     position: absolute;
-    width: 220px;
+    width: 170px;
     height: max-content;
     background: rgba(0, 0, 0, 0.168);
     border-radius: 20px;
@@ -43,7 +43,7 @@
 
 .carousel-item img {
     width: 100%;
-    height: 200px;
+    height: 160px;
     object-fit: cover;
     border-radius: 12px;
     pointer-events: none;
