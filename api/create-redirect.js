@@ -39,7 +39,12 @@ export default async function handler(req, res) {
             return res.status(500).json({ success: false, error: 'Failed to parse current redirects' });
         }
 
-        // 2. Add the new redirect at the top
+        // 2. Check if postfix already exists
+        if (redirects.hasOwnProperty(postfix)) {
+            return res.status(409).json({ success: false, error: `The slug '${postfix}' already exists. Please choose a different one.` });
+        }
+
+        // 3. Add the new redirect at the top
         redirects = {
             [postfix]: longURL,
             ...redirects

@@ -69,15 +69,23 @@
                 if (r.ok) {
                     showAlert(
                         "Success!",
-                        "The new redirect was successfully added to the repository.",
+                        "The new redirect was created successfully.",
                         [
                             { text: "OK" },
                             { text: "View Redirects", onClick: () => parent.loadPage('/src/pages/redirects.html') }
                         ]
                     );
                 } else {
-                    const errorText = await r.text();
-                    showAlert("Error", `Failed: ${r.status} ${r.statusText}\n${errorText}`, [
+                    let errorMessage = `Failed: ${r.status} ${r.statusText}`;
+                    try {
+                        const errorJson = await r.json();
+                        if (errorJson.error) {
+                            errorMessage = errorJson.error;
+                        }
+                    } catch (e) {
+                        errorMessage += `\n${await r.text()}`;
+                    }
+                    showAlert("Warning", errorMessage, [
                         { text: "OK" }
                     ]);
                 }
