@@ -7,7 +7,6 @@
 
   const authMap = {
     treasury: ["dHJlYXN1cnk=", "treasury.html"],
-    redirector: ["bWVtYmVy", "redirector.html"],
     media: ["bWVkaWE=", "media.html"],
     drafts: ["ZHJhZnRz", "drafts.html"],
   };
@@ -17,7 +16,7 @@
 
   if (!authMap[page]) {
     showAlert("Error", "Invalid or missing page parameter.", [
-      { text: "OK", onClick: () => {} },
+      { text: "OK", onClick: () => { } },
     ]);
     return;
   }

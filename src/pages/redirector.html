@@ -10,8 +10,7 @@
         <l-ring-2 size="18" stroke="2" stroke-length="0.25" bg-opacity="0.1" speed="0.8"
             color="white"></l-ring-2>&nbsp;&nbsp;Authorizing...
     </div>
-    <h3 class="protected">You must be signed in to view this page.</h3>
-    <section id="authentication" class="restricted">
+    <section id="authentication">
         <canvas id="gradientCanvas"></canvas>
         <form id="redirectorForm">
             <h3>Customise URL</h3>
@@ -58,19 +57,19 @@
 
             try {
 
-                const r = await fetch("/submit", {
+                const r = await fetch("/api/create-redirect", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        longUrl: longValue,
-                        slug: slugValue
+                        longURL: longValue,
+                        postfix: slugValue
                     })
                 });
 
                 if (r.ok) {
                     showAlert(
-                        "Requested!",
-                        "GitHub Action triggered! A pull request will be created to update the redirector.",
+                        "Success!",
+                        "The new redirect was successfully added to the repository.",
                         [
                             { text: "OK" },
                             { text: "View Redirects", onClick: () => parent.loadPage('/src/pages/redirects.html') }
