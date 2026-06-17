@@ -1,3 +1,5 @@
+<p>This documentation contains everything required to manage the Malang website and its supporting tools. It includes guides for updating website content, using internal utilities, managing broadcasts, and maintaining workflows used by the Malang core team.</p>
+
 <ul id="docList">
   <h1>Malang | Docs</h1>
     <li>
