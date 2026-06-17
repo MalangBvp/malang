@@ -32,9 +32,9 @@
                   <details>
                     <summary>Members</summary>
                     <ul>
-                      <li><a href="#">Core Members</a></li>
-                      <li><a href="#">Malang Alumni</a></li>
-                      <li><a href="#">Associates</a></li>
+                      <li><a href="#Core-Members">Core Members</a></li>
+                      <li><a href="#Malang-Alumni">Malang Alumni</a></li>
+                      <li><a href="#Associates">Associates</a></li>
                     </ul>
                   </details>
                 </li>
@@ -45,24 +45,24 @@
           <details>
               <summary>Management</summary>
               <ul>
-                <li><a href="#">Accounts</a></li>
-                <li><a href="#">Claims</a></li>
-                <li><a href="#">Redirector</a></li>
-                <li><a href="#">Treasury</a></li>
-                <li><a href="#">QR Code Generator</a></li>
-                <li><a href="#">M-ArUCo</a></li>
-                <li><a href="#">Media Kit</a></li>
+                <li><a href="#Accounts">Accounts</a></li>
+                <li><a href="#Claims">Claims</a></li>
+                <li><a href="#Redirector">Redirector</a></li>
+                <li><a href="#Treasury">Treasury</a></li>
+                <li><a href="#QR-Code-Generator">QR Code Generator</a></li>
+                <li><a href="#M-ArUCo">M-ArUCo</a></li>
+                <li><a href="#Media-Kit">Media Kit</a></li>
               </ul>
             </details>
           </li>
-          <li><a href="#site-structure">Site Structure</a></li>
-          <li><a href="#">Variables</a></li>
+          <li><a href="#Site-Structure">Site Structure</a></li>
+          <li><a href="#Variables">Variables</a></li>
           <li>
           <details>
               <summary>Workflows</summary>
               <ul>
-                <li><a href="#">Update Search Data</a></li>
-                <li><a href="#">Update Structure</a></li>
+                <li><a href="#Update-Search-Data">Update Search Data</a></li>
+                <li><a href="#Update-Structure">Update Structure</a></li>
               </ul>
             </details>
           </li>
@@ -84,8 +84,8 @@
         <summary>Broadcasts</summary>
         <ul>
           <li><a href="#newsletter-emails">Newsletter Emails</a></li>
-          <li><a href="#">Whatsapp Channel</a></li>
-          <li><a href="#">Instagram Channel</a></li>
+          <li><a href="https://whatsapp.com/channel/0029Val4ZfE2P59c7yG0zF3j" target="_blank">Whatsapp Channel</a></li>
+          <li><a href="https://www.instagram.com/malangbvp" target="_blank">Instagram Channel</a></li>
         </ul>
       </details>
     </li>
@@ -199,6 +199,135 @@
         const total = mode === 'artworks' ? 68 : 42;
                                                   ^
 ```
+
+## Members
+
+<h3 id="Core-Members">Core Members</h3>
+
+Active core team members are managed in `resrc/data/core.json`.
+The structure groups members by their generation and academic year.
+
+- Go to [`/resrc/data/core.json`](file:///resrc/data/core.json) and add/update members in the current generation:
+
+```json
+[
+    {
+        "year": "2026-2027",
+        "generation": "Gen VIII",
+        "members": [
+            {
+                "name": "Member Name",
+                "role": "Role Title",
+                "image": "image_name.webp",
+                "branch": "Branch Name",
+                "linkedin": "https://linkedin.com/in/...",
+                "github": "https://github.com/..."
+            }
+        ]
+    }
+]
+```
+
+> [!CAUTION]
+> Member images must be placed in the `resrc/images/members/` directory.
+
+<h3 id="Malang-Alumni">Malang Alumni</h3>
+
+Past core members who have graduated or completed their tenure are recorded in `resrc/data/alumni.json`.
+
+- Go to [`/resrc/data/alumni.json`](file:///resrc/data/alumni.json) and append a new generation block exactly like the core members format above when a batch passes out.
+
+<h3 id="Associates">Associates</h3>
+
+Associates are active club contributors whose data is loaded dynamically via a CSV file hosted in the `media` repository.
+
+- To update the Associates list, edit the `members.csv` file in the **[MalangBvp/media](https://github.com/MalangBvp/media/blob/main/members.csv)** repository.
+- **Required Columns:** `Name`, `Position`, `Year`, `Branch`, `Division`.
+- Changes made to the CSV will automatically reflect on the [Associates page](file:///src/pages/members.html).
+
+# Site > Management
+
+This section covers the internal tools restricted to authorized members. Access is strictly managed.
+
+<h3 id="Accounts">Accounts</h3>
+
+The [Account portal](file:///src/pages/account.html) serves as the gateway to restricted utilities. Authentication is managed in two ways:
+1. **Firebase Authentication:** Members must sign in with Google. To grant a new member access, add their email address to the array in [`/resrc/data/member-emails.json`](file:///resrc/data/member-emails.json).
+2. **Passcodes:** Some pages (like Treasury, Media Kit, and Drafts) require a specific passcode. Passcodes are base64-encoded and verified inside [`src/scripts/authentication.js`](file:///src/scripts/authentication.js).
+
+<h3 id="Claims">Claims</h3>
+
+The [Claims page](file:///src/pages/claims.html) allows members to submit bills for reimbursement.
+- **Process:** Members submit their name, the bill amount, and attach an image/PDF of the bill.
+- **Backend:** The form encodes the file to Base64 and sends a POST request to a configured Google Apps Script endpoint which logs the claim into a Google Sheet with a "Pending" status.
+
+<h3 id="Redirector">Redirector</h3>
+
+The [Redirector](file:///src/pages/redirector.html) allows the core team to create shortened, custom links (`malangbvp.in/[slug]`).
+- **Process:** Entering a long URL and a custom slug (`postfix`) directly modifies the redirects JSON file.
+- **Backend:** It uses the Vercel serverless function [`api/create-redirect.js`](file:///api/create-redirect.js), which fetches the existing `r/redirects.json` via the GitHub API, checks for duplicates, appends the new redirect, and commits it directly to the repository using a securely stored `PERSONAL_PAT`.
+
+<h3 id="Treasury">Treasury</h3>
+
+The [Treasury dashboard](file:///src/pages/treasury.html) tracks all Malang expenses and funds.
+- **Process:** Members log transactions by selecting a category header (e.g., Bharatiyam, Funds) and inputting a positive or negative amount.
+- **Backend:** It communicates with a Google Apps Script to log transactions to a master Google Sheet. The page dynamically fetches the data from the sheet to render real-time balance and expense charts using `Chart.js`.
+
+<h3 id="QR-Code-Generator">QR Code Generator</h3>
+
+A built-in [QR Code Generator](file:///src/pages/qr.html) helps create scan-able QR codes for any link (e.g., for event registration posters).
+- Note: This is an independent utility and is *not* related to the separate Attendance QR Tool.
+
+<h3 id="M-ArUCo">M-ArUCo</h3>
+
+[M-ArUCo](file:///src/pages/aruco.html) is an augmented reality scanner built into the site.
+- **Process:** It scans physical ArUCo markers and maps their specific IDs to designated redirect links.
+- **Update Mapping:** To change where a marker leads, update the ID mapping in [`/resrc/data/aruco.json`](file:///resrc/data/aruco.json):
+
+```json
+{
+  "1": "https://tejasgupta.work",
+  "2": "https://malangbvp.in/events"
+}
+```
+
+<h3 id="Media-Kit">Media Kit</h3>
+
+The [Media Kit](file:///src/pages/media.html) provides access to official logos and branding assets for Malang.
+- It is a passcode-protected page accessible via the Account portal.
+
+# Site Structure
+
+<h3 id="Site-Structure">Directory Overview</h3>
+
+The project is organized into several key directories:
+- **`src/`**: Contains the source code for the site.
+  - `components/`: Reusable HTML components (Navbar, Footer, etc.).
+  - `pages/`: Individual HTML pages.
+  - `scripts/`: Client-side JavaScript logic.
+  - `styles/`: CSS stylesheets.
+- **`resrc/`**: Contains resources like images, icons, and JSON data files (`resrc/data/`) that power the site content.
+- **`api/`**: Contains Vercel serverless backend functions (e.g., `create-redirect.js`).
+- **`variables/`**: Configuration files and parameters.
+
+<h3 id="Variables">Variables</h3>
+
+The [`variables/`](file:///variables/) directory contains configuration parameters used across different tools.
+- Currently, it holds [`utils.json`](file:///variables/utils.json), which defines paths to structural text files (e.g., `structure_path_txt`).
+
+# Workflows
+
+<h3 id="Update-Search-Data">Update Search Data</h3>
+
+A GitHub Action (`.github/workflows/update-search-data.yml`) runs automatically every Sunday at midnight (or can be triggered manually) to parse the site's HTML files.
+- It executes a Python script (`generate_search_data.py`) to build an up-to-date `search.json` (for the site-wide search bar) and `sitemap.xml` (for SEO).
+- It then commits and pushes these changes directly to the `main` branch.
+
+<h3 id="Update-Structure">Update Structure</h3>
+
+A GitHub Action (`.github/workflows/update-structure.yml`) maintains an up-to-date representation of the project's directory tree.
+- It runs a Python script to generate a text-based tree structure of the repository.
+- The output is saved to `/documentation/structure/structure.txt`, ensuring developers always have a clear map of the codebase.
 
 <h1 id="Tools">Malang Tools</h1>
 
