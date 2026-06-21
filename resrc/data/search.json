@@ -30,7 +30,7 @@
   {
     "title": "Malang | Account",
     "url": "/src/pages/account.html",
-    "content": "Malang | Account Authenticating... Authentication Required. You can now access the following pages: Claims Open Redirects Open RedirectorAuth QR Code Generator Open Site Docs Open Domain Utilities: Attendance QR ToolGit Certificate ToolGit Contact ToolGit DraftsAuth Mail ToolGit Media KitAuth TreasuryAuth T-Shirt Design ToolGit Log in with Google Log in with GitHub Log out",
+    "content": "Malang | Account Authenticating... Authentication Required. You can now access the following pages: Claims Open Redirects Open RedirectorOpen QR Code Generator Open Site Docs Open Domain Utilities: Attendance QR ToolGit Certificate ToolGit Contact ToolGit DraftsAuth Mail ToolGit Media KitAuth TreasuryAuth T-Shirt Design ToolGit Log in with Google Log in with GitHub Log out",
     "category": "page",
     "tags": []
   },
@@ -149,7 +149,7 @@
   {
     "title": "Malang | Redirector",
     "url": "/src/pages/redirector.html",
-    "content": "Malang | Redirector Authorizing... You must be signed in to view this page. Customise URL Custom URL will be:slug Create View Redirects",
+    "content": "Malang | Redirector Authorizing... Customise URL Custom URL will be:slug Create View Redirects",
     "category": "page",
     "tags": []
   },
