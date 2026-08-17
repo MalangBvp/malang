@@ -1,8 +1,9 @@
 name: Generate Search JSON & Sitemap
 
 on:
-  schedule:
-    - cron: "0 0 * * 0"
+  push:
+    branches:
+      - main  # Runs whenever code is pushed to main
 
 permissions:
   contents: write
