@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malang — Recruitment 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Bricolage+Grotesque:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="starfield"></canvas>
+<div class="nebula neb1"></div>
+<div class="nebula neb2"></div>
+<div class="nebula neb3"></div>
+<div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+<div id="loader" aria-hidden="true">
+<div class="splash-layer" id="splashLayer"></div>
+<div class="brush-layer"><img class="brush-asset" src="assets/brush.png" alt="" onerror="this.remove()"></div>
+<div class="emblem-layer"><img class="emblem-asset" src="assets/logo-emblem.png" alt="" onerror="this.remove()"></div>
+<div class="camera-layer">
+<svg class="camera svg-camera" viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="3">
+<rect x="45" y="8" width="26" height="14" rx="3"/>
+<rect x="10" y="24" width="100" height="55" rx="10"/>
+<circle class="lens-outer" cx="60" cy="52" r="21"/>
+<circle class="lens-inner" cx="60" cy="52" r="12"/>
+<rect x="86" y="32" width="13" height="9" rx="2"/>
+</svg>
+<img class="camera camera-asset" src="assets/camera.png" alt="" onerror="this.remove()">
+</div>
+<div class="flash"></div>
+</div>
+<div class="curtain" id="curtain">
+<div class="curtain-panel left"></div>
+<div class="curtain-panel right"></div>
+</div>
+<div class="corner-logo" id="cornerLogo"><img src="assets/logo-transparent.png" alt="Malang" onerror="this.src='assets/logo.png';this.parentElement.classList.add('fallback')"></div>
+<header class="site-sprockets"></header>
+<main id="hero">
+<div class="hang-gallery" id="heroHang" aria-hidden="true"></div>
+<section class="hero-top">
+<div class="hero-logo-wrap">
+<img src="assets/logo-emblem.png" alt="Malang" class="hero-logo" id="heroLogoImg" onerror="this.src='assets/logo.png'">
+</div>
+<p class="hero-tagline">For the <span class="gradient-text">kalakaar</span> in you.</p>
+<p class="hero-sub">Where imagination finds its canvas, and every idea finds its form.</p>
+</section>
+<div class="marquee" aria-label="What we do">
+<div class="marquee-track">
+<span>FINE ART</span><span class="dot">•</span>
+<span>DIGITAL ART</span><span class="dot">•</span>
+<span>GRAPHIC DESIGN</span><span class="dot">•</span>
+<span>PHOTOGRAPHY</span><span class="dot">•</span>
+<span>VIDEO EDITING</span><span class="dot">•</span>
+<span>FINE ART</span><span class="dot">•</span>
+<span>DIGITAL ART</span><span class="dot">•</span>
+<span>GRAPHIC DESIGN</span><span class="dot">•</span>
+<span>PHOTOGRAPHY</span><span class="dot">•</span>
+<span>VIDEO EDITING</span><span class="dot">•</span>
+</div>
+</div>
+<p class="scroll-cue"><span>Taking you to the application...</span></p>
+</main>
+<section id="apply">
+<div class="form-wrap">
+<div class="form-hang" id="formHang" aria-hidden="true"></div>
+<div class="progress-rail">
+<div class="rail-track"><div class="rail-fill" id="railFill"></div></div>
+<div class="rail-stops">
+<span class="stop" data-step="1">Personal Info</span>
+<span class="stop" data-step="2">Contact</span>
+<span class="stop" data-step="3">Skills</span>
+</div>
+<div class="avatar-token" id="avatarToken"></div>
+</div>
+<div id="malangForm">
+<fieldset class="step active" data-step="1">
+<p class="eyebrow">STEP 1 — WHO YOU ARE</p>
+<label class="field">
+<span>Full name</span>
+<input type="text" name="Name" id="fName" required>
+</label>
+<span class="field-label">Gender</span>
+<div class="chip-row" id="genderChips">
+<button type="button" class="chip" data-value="Male">Male</button>
+<button type="button" class="chip" data-value="Female">Female</button>
+<button type="button" class="chip" data-value="Prefer not to say">Prefer not to say</button>
+</div>
+<span class="field-label">What brings you to Malang? (pick the skills which suit you the best)</span>
+<div class="chip-row wrap" id="domainChips">
+<button type="button" class="chip domain-chip" data-value="Art" style="--dc:var(--c-art)">Art</button>
+<button type="button" class="chip domain-chip" data-value="Photography" style="--dc:var(--c-photo)">Photography</button>
+<button type="button" class="chip domain-chip" data-value="Video_Editing" style="--dc:var(--c-video)">Video Editing</button>
+<button type="button" class="chip domain-chip" data-value="Digital_Art" style="--dc:var(--c-digital)">Digital Art</button>
+<button type="button" class="chip domain-chip" data-value="Other" style="--dc:var(--c-other)">Other</button>
+</div>
+<div class="step-nav">
+<button type="button" class="btn-next" data-next disabled>Continue →</button>
+</div>
+</fieldset>
+<fieldset class="step" data-step="2">
+<p class="eyebrow">STEP 2 — CONTACT INFO</p>
+<label class="field"><span>Email</span><input type="email" id="fEmail" required></label>
+<label class="field"><span>Phone number</span><input type="tel" id="fPhone" required></label>
+<label class="field"><span>Instagram handle</span><input type="text" id="fInsta" placeholder="@yourhandle"></label>
+<div class="field-row">
+<label class="field">
+<span>Year</span>
+<select id="fYear" required>
+<option value="">Select</option>
+<option>1st Year</option><option>2nd Year</option>
+</select>
+</label>
+<label class="field">
+<span>Branch</span>
+<select id="fBranch" required>
+<option value="">Select</option>
+<option>Computer Science and Engineering</option><option>Computer Engineering</option><option>Computer Science and Business Systems</option><option>Artificial Intelligence and Machine Learning</option><option>Electronics and Communication Engineering</option>
+<option>Electronics and Telecommunication Engineering</option><option>Electrical and Computer Engineering</option><option>Robotics and Automation</option><option>Mechanical Engineering</option><option>Civil Engineering</option>
+<option>Electrical Engineering</option><option>Chemical Engineering</option>
+</select>
+</label>
+</div>
+<label class="field"><span>Division</span><input type="text" id="fdivision"></label>
+<div class="step-nav">
+<button type="button" class="btn-back" data-back>← Back</button>
+<button type="button" class="btn-next" data-next disabled>Continue →</button>
+</div>
+</fieldset>
+<fieldset class="step" data-step="3">
+<p class="eyebrow">STEP 3 — YOUR SKILLS</p>
+<span class="field-label">Your selected skills</span>
+<div class="chip-row wrap" id="skillsSummary"></div>
+<label class="field" id="otherTextField"><span>Please specify your "Other" skill</span><input type="text" id="otherText"><span class="field-error">Please specify your other skill.</span></label>
+<label class="field"><span>Why do you want to join Malang?</span><textarea id="fMotivation" rows="4"></textarea><span class="field-error" id="motivationError">Please tell us why you'd like to join.</span></label>
+<label class="field"><span>Portfolio link (optional)</span><input type="url" id="fPortfolio" placeholder="Drive Link or Instagram Handle..."></label>
+<div class="step-nav">
+<button type="button" class="btn-back" data-back>← Back</button>
+<button type="button" class="btn-submit" id="submitBtn">Submit application</button>
+</div>
+</fieldset>
+</div>
+</div>
+</section>
+<section id="outro">
+<h2 class="outro-thanks">Thank you for applying!</h2>
+<div class="outro-media" id="outroMedia">
+<a href="https://malangbvp.in" target="_blank" class="outro-link">To view more of our events, artworks & photographs visit our website→</a>
+<div class="outro-video-wrap">
+<video id="outroVideo" autoplay loop muted playsinline>
+<source src="assets/club-video.mp4">
+</video>
+<button type="button" id="muteToggle" class="mute-toggle">🔇</button>
+</div>
+<a href="https://chat.whatsapp.com/LHrXpj4zmD7DdUcVuYuA1w?s=sw&p=a&ilr=0" target="_blank" class="outro-link whatsapp">Join our WhatsApp group →</a>
+</div>
+</section>
+<script src="script.js"></script>
+</body>
+</html>
