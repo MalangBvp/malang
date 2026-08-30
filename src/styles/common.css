@@ -968,3 +968,4 @@ footer #malang p {
     display: none;
   }
 }
+body.fullscreen-page header, body.fullscreen-page #nav { display: none !important; }
