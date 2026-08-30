@@ -2,44 +2,47 @@
 
 Use this when you want to work on Malang from your own machine instead of a Cursor Cloud Agent.
 
-The Cloud Agent workspace is **five GitHub repos as siblings**, not one repo. Clone all of them next to each other.
+The Cloud Agent workspace is **five GitHub repos as siblings**. On your PC they live here:
 
 ```text
-MalangBvp/
+Documents/project-adi/
 ├── malang          ← website (this repo)
 ├── malang-tools    ← certificate / mail / contact / attendance QR
 ├── media           ← public assets + associates CSV
 ├── redirector      ← short-link JSON
-└── .github         ← GitHub org profile README
+├── .github         ← GitHub org profile README
+└── project-adi.code-workspace
 ```
 
-## 1. Clone
+`Documents` means your user Documents folder (`~/Documents` on macOS/Linux, `[My Documents]\project-adi` on Windows, including OneDrive-redirected Documents). Override with `PROJECT_ADI` if you want a different path.
+
+## 1. Create the workspace (one command)
+
+**macOS / Linux / Git Bash**
 
 ```bash
-mkdir -p ~/MalangBvp && cd ~/MalangBvp
-
+mkdir -p ~/Documents/project-adi && cd ~/Documents/project-adi
 git clone https://github.com/malangbvp/malang.git
-git clone https://github.com/malangbvp/malang-tools.git
-git clone https://github.com/malangbvp/media.git
-git clone https://github.com/malangbvp/redirector.git
-git clone https://github.com/malangbvp/.github.git
+bash malang/scripts/clone-workspace.sh
+cursor ~/Documents/project-adi/project-adi.code-workspace
 ```
 
-Or from this repo after you already cloned `malang`:
+`clone-workspace.sh` clones any missing sibling repos into `Documents/project-adi` and copies the workspace file next to them.
 
-```bash
-bash scripts/clone-workspace.sh
+**Windows PowerShell**
+
+```powershell
+$dest = Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'project-adi'
+New-Item -ItemType Directory -Force -Path $dest | Out-Null
+Set-Location $dest
+git clone https://github.com/malangbvp/malang.git
+powershell -ExecutionPolicy Bypass -File .\malang\scripts\clone-workspace.ps1
+cursor (Join-Path $dest 'project-adi.code-workspace')
 ```
 
-That script clones the sibling repos next to `malang` if they are missing.
+Open **File → Open Workspace from File…** and pick `Documents/project-adi/project-adi.code-workspace` if the `cursor` CLI is not on your PATH.
 
-Open the multi-root workspace in Cursor / VS Code:
-
-```bash
-cursor malang/malang.code-workspace
-# or
-code malang/malang.code-workspace
-```
+After that you should see all five folders in one Cursor window.
 
 ## 2. Run the website
 
@@ -48,7 +51,7 @@ The site is static HTML/CSS/JS plus one Vercel function (`api/create-redirect.js
 **Static pages only** (home, galleries, events, etc.):
 
 ```bash
-cd malang
+cd ~/Documents/project-adi/malang
 python3 -m http.server 8000
 # open http://localhost:8000
 ```
@@ -57,7 +60,7 @@ python3 -m http.server 8000
 
 ```bash
 npm i -g vercel
-cd malang
+cd ~/Documents/project-adi/malang
 vercel link          # attach to the existing malangbvp.in project
 vercel env pull      # writes .env.local with PERSONAL_PAT
 vercel dev           # typically http://localhost:3000
@@ -78,7 +81,7 @@ You do **not** need this token to edit pages, JSON, CSS, or most JS.
 
 ## 3. What you do not need to copy from Cloud
 
-Cloud did not generate unique build artifacts. Latest `main` on GitHub is the source of truth.
+Cloud did not generate unique build artifacts. Latest `main` is the source of truth.
 
 This Cloud run (`https://cursor.com/agents/bc-bffb6362-960c-4922-81b1-eda29676b8da`) only produced analysis. The architecture write-up is in [`ARCHITECTURE.md`](./ARCHITECTURE.md).
 
@@ -101,7 +104,7 @@ Keep these in password managers / dashboards. Do not paste them into git.
 ## 5. Tools repo (Python)
 
 ```bash
-cd malang-tools
+cd ~/Documents/project-adi/malang-tools
 python3 -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install reportlab google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
@@ -130,7 +133,7 @@ Push to `malang` `main` regenerates `search.json` and `sitemap.xml` via GitHub A
 
 ## 7. Suggested first local check
 
-1. `python3 -m http.server 8000` in `malang` and open `/`.
+1. `python3 -m http.server 8000` in `Documents/project-adi/malang` and open `/`.
 2. Confirm the iframe loads `src/pages/home.html`.
 3. Hit `malangbvp.in/instagram`-style paths only on the deployed domain (or `vercel dev`) — local `http.server` will not run the short-link handler the same way unless you open `/` and rely on `load.js`.
 4. Do not test treasury/claims writes against production sheets unless you intend to.
