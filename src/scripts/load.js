@@ -133,6 +133,7 @@ async function loadPage(url) {
       const errorHtml = await fetch("/404.html").then((r) => r.text());
       content.srcdoc = errorHtml;
     }
+    document.body.classList.toggle('fullscreen-page', url.includes('recruitment'));
   } catch {
     const errorHtml = await fetch("/404.html").then((r) => r.text());
     content.srcdoc = errorHtml;
