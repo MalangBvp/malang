@@ -842,7 +842,8 @@ footer #malang p {
   }
 
   #headerButtons button#searchToggle {
-    width: fit-content;
+    width: calc(100vw - 1033px);
+    max-width: 300px;
     display: flex;
     justify-content: space-between;
     padding: 4px 10px;
