@@ -38,6 +38,7 @@ const MalangUpload = (() => {
     let items = [];
     let statusFilter = "PENDING";
     let categoryFilter = "all";
+    let authResolved = false;
 
     // Gmail is case-insensitive; a capitalised address must not lock a member out.
     const norm = (email) => String(email || "").trim().toLowerCase();
@@ -213,7 +214,6 @@ const MalangUpload = (() => {
     // (blocked CDN, offline), the sign-in gate still appears instead of the
     // loader spinning forever.
     let ready = null;
-    let authResolved = false;
     function start() {
         if (!ready) {
             ready = boot().then(() => {
@@ -453,7 +453,7 @@ function renderQueue() {
     }
 
     list.innerHTML = shown.map((item) => {
-        const src = item.imageUrl || item.image || "";
+        const src = item.imageUrl || item.image || (item.dataBase64 ? `data:${item.mimeType || "image/webp"};base64,${item.dataBase64}` : "") || "";
         const title = escapeHtml(item.title) || "<em>Untitled</em>";
         const artist = escapeHtml(item.artist || item.submitterName || "Unknown");
         const when = item.submittedAt ? new Date(item.submittedAt).toLocaleDateString() : "";
