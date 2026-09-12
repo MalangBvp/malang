@@ -148,7 +148,10 @@
             }
         }(o),
             function (t) {
-                const e = "artworks" === t ? 132 : 118;
+                // Derive the image count from the metadata file so newly
+                // published work appears without editing this script.
+                const k = Object.keys(c).map(Number).filter(n => !isNaN(n));
+                const e = k.length ? Math.max(...k) + 1 : 0;
                 d = Array.from({
                     length: e
                 }, ((e, n) => {

@@ -47,10 +47,14 @@
         // ---------------------------
         // Allowed Email List
         // ---------------------------
+        // Gmail ignores case, so normalise both sides or a capitalised
+        // address locks a real member out.
+        const normEmail = (e) => String(e || "").trim().toLowerCase();
+
         let allowedEmails = [];
         fetch("/resrc/data/member-emails.json")
             .then(res => res.json())
-            .then(data => allowedEmails = data);
+            .then(data => allowedEmails = (data || []).map(normEmail));
 
         // --------------------------------
         // Multi-provider linking support
@@ -62,24 +66,28 @@
         // UI Update
         // ---------------------------
 
-        const REVIEWERS = [
-            "adwaitp2005@gmail.com",
-            "dhruvkalakaar7@gmail.com",
-            "prathameshdahe1@gmail.com",
-            "malangbvp@gmail.com"
-        ];
+        // Reviewer list is data, not code: edit /resrc/data/reviewers.json
+        // and both this page and the upload page follow.
+        let REVIEWERS = [];
+        fetch("/resrc/data/reviewers.json")
+            .then(res => res.json())
+            .then(data => {
+                REVIEWERS = (data || []).map(normEmail);
+                updateUI(auth.currentUser);
+            })
+            .catch(() => REVIEWERS = []);
 
         function updateUI(user) {
             const status = document.getElementById("status");
             const profilePic = window.parent.document.getElementById("profilePic");
             const reviewLink = document.getElementById("reviewArtworkLink");
 
-            if (user && allowedEmails.includes(user.email)) {
+            if (user && allowedEmails.includes(normEmail(user.email))) {
                 status.innerText = `Hey ${user.displayName}! 👋`;
                 profilePic.src = user.photoURL || "/resrc/images/icons/user.png";
                 profilePic.classList.add("profile-pic");
                 localStorage.setItem("loggedIn", "true");
-                if (reviewLink) reviewLink.style.display = REVIEWERS.includes(user.email) ? "" : "none";
+                if (reviewLink) reviewLink.style.display = REVIEWERS.includes(normEmail(user.email)) ? "" : "none";
             } else {
                 status.innerText = user ? "Unauthorised Access Attempt." : "Authentication Required.";
                 profilePic.src = "/resrc/images/icons/user.png";
@@ -111,7 +119,7 @@
                     return;
                 }
 
-                if (!allowedEmails.includes(user.email)) {
+                if (!allowedEmails.includes(normEmail(user.email))) {
                     vibrate(200);
                     showAlert("Unauthorised Access Attempt.", "Login restricted: Membership with Malang is required.", [{ text: "OK" }]);
                     await signOut(auth);

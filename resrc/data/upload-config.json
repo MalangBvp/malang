@@ -1,0 +1,11 @@
+{
+  "endpoint": "",
+  "maxFileMb": 15,
+  "maxEdgePx": 2400,
+  "webpQuality": 0.9,
+  "categories": [
+    { "value": "artworks", "label": "Artwork (Fine Art / Sketch / Painting)" },
+    { "value": "photographs", "label": "Photograph" },
+    { "value": "digital", "label": "Digital Art & Design" }
+  ]
+}
