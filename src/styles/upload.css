@@ -1,455 +1,512 @@
-/* ──────────────────────────────────────────
-   Upload Page Layout
-────────────────────────────────────────── */
+/* =========================================================
+   Malang | Upload Your Work
+   Glass UI — matches the Feature Request form treatment
+   (backdrop blur + hairline border, see common.css `form`)
+   ========================================================= */
 
-.upload-page {
+#uploadSection {
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 80px 16px 40px;
+    padding: 30px 10px 80px;
     box-sizing: border-box;
 }
 
-/* The central card/box */
-.upload-box {
-    width: 100%;
-    max-width: 500px;
-    background: rgba(16, 16, 16, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 14px;
-    padding: 28px 28px 24px;
+/* ---------- The glass card ---------- */
+
+.glass-card {
+    position: relative;
+    z-index: 100;
+    width: calc(100% - 40px);
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 20px;
     box-sizing: border-box;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    background-color: rgba(20, 20, 20, 0.35);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    box-shadow: 0 0 10px black;
+    transition: max-width 0.35s ease;
 }
 
-/* ──────────────────────────────────────────
-   Auth Box
-────────────────────────────────────────── */
+/* the review tab needs more room for the grid */
+.glass-card.wide {
+    max-width: 900px;
+}
 
-.auth-box {
+.glass-card h3 {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0 0 14px;
+    padding-bottom: 12px;
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* ---------- Sign-in state ---------- */
+
+.auth-gate {
     text-align: center;
 }
 
-.auth-box-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-}
-
 .auth-logo {
-    width: 48px;
-    height: 48px;
-    opacity: 0.85;
-    margin-bottom: 14px;
-    filter: brightness(0) invert(0.85);
+    width: 46px;
+    height: 46px;
+    opacity: 0.9;
+    margin-bottom: 12px;
 }
 
-.auth-box h2 {
+.auth-gate h2 {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     margin: 0 0 8px;
-    color: #fff;
 }
 
 .auth-sub {
-    font-size: 12.5px;
-    color: #888;
-    margin: 0 0 24px;
+    font-size: 13px;
     line-height: 1.6;
-    max-width: 360px;
+    color: #9e9e9e;
+    margin: 0 auto 20px;
+    max-width: 340px;
 }
 
-.auth-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.auth-buttons .long-btn {
     width: 100%;
+    max-width: none;
+    text-align: center;
 }
 
-/* ──────────────────────────────────────────
-   User Header
-────────────────────────────────────────── */
+.provider-btn {
+    position: relative;
+}
+
+.provider-btn img {
+    height: 18px;
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ---------- Signed-in header ---------- */
 
 .user-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
+    gap: 10px;
+    margin-bottom: 14px;
 }
 
 .user-avatar {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     object-fit: cover;
-    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
 }
 
 .user-info {
     display: flex;
-    flex-direction: column;
-    gap: 1px;
+    align-items: center;
+    gap: 8px;
     flex: 1;
     min-width: 0;
+    text-align: left;
 }
 
 .user-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
+    font-size: 14px;
+    color: #f4f4f4;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.user-email {
+.role-badge {
     font-size: 11px;
-    color: #777;
+    padding: 2px 7px;
+    border-radius: 20px;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    flex-shrink: 0;
+    color: rgb(255, 217, 0);
+    border: 1px solid rgba(198, 171, 0, 0.456);
+    background-color: rgba(120, 88, 0, 0.159);
+}
+
+.role-badge.member {
+    color: rgb(85, 255, 0);
+    border-color: rgba(0, 198, 13, 0.456);
+    background-color: rgba(38, 120, 0, 0.159);
 }
 
 .signout-btn {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #888;
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 6px;
+    width: auto;
+    flex-shrink: 0;
+    font-size: 12px;
+    padding: 5px 11px;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    background-color: transparent;
+    color: #9e9e9e;
     cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
 }
 
 .signout-btn:hover {
-    border-color: rgba(255, 255, 255, 0.3);
-    color: #ccc;
+    background-color: var(--hover-color);
+    color: white;
 }
 
-/* ──────────────────────────────────────────
-   Divider
-────────────────────────────────────────── */
-
-.divider {
-    height: 1px;
-    background: rgba(255, 255, 255, 0.07);
-    margin: 0 0 16px;
-}
-
-/* ──────────────────────────────────────────
-   Tabs
-────────────────────────────────────────── */
+/* ---------- Tabs ---------- */
 
 .tabs-nav {
     display: flex;
-    gap: 4px;
-    margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.04);
-    border-radius: 8px;
+    gap: 5px;
     padding: 4px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+    background-color: rgba(26, 26, 26, 0.5);
 }
 
 .tab-btn {
     flex: 1;
-    background: transparent;
+    padding: 8px 10px;
+    font-size: 13px;
     border: none;
-    color: #777;
-    padding: 7px 10px;
-    font-size: 12.5px;
-    font-weight: 500;
+    border-radius: 7px;
+    background-color: transparent;
+    color: #9e9e9e;
     cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.2s ease;
     font-family: inherit;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .tab-btn.active {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    color: rgb(255, 217, 0);
+    background-color: rgba(255, 217, 0, 0.096);
+    box-shadow: inset 0 0 0 1px rgba(255, 217, 0, 0.4);
 }
 
-.tab-btn:hover:not(.active) {
-    color: #ccc;
-}
-
-/* ──────────────────────────────────────────
-   Dropzone
-────────────────────────────────────────── */
+/* ---------- Dropzone ---------- */
 
 .dropzone {
-    border: 1.5px dashed rgba(255, 255, 255, 0.14);
-    border-radius: 10px;
-    padding: 28px 16px;
-    text-align: center;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.02);
-    transition: border-color 0.2s ease, background 0.2s ease;
-    margin-bottom: 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
+    padding: 30px 16px;
+    margin-bottom: 12px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px dashed #4a4a4a;
+    border-radius: 10px;
+    background-color: rgba(26, 26, 26, 0.35);
+    transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
 .dropzone:hover,
 .dropzone.dragover {
-    border-color: rgba(250, 204, 21, 0.5);
-    background: rgba(250, 204, 21, 0.03);
+    border-color: rgba(255, 217, 0, 0.575);
+    background-color: rgba(255, 217, 0, 0.04);
 }
 
 .upload-icon {
-    width: 36px;
-    height: 36px;
-    opacity: 0.45;
+    width: 34px;
+    height: 34px;
+    opacity: 0.5;
     margin-bottom: 6px;
-    filter: brightness(0) invert(1);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .dropzone:hover .upload-icon,
 .dropzone.dragover .upload-icon {
-    opacity: 0.75;
+    opacity: 0.9;
     transform: translateY(-2px);
 }
 
 .drop-label {
-    font-size: 13px;
-    color: #ccc;
+    font-size: 14px;
+    color: #d8d8d8;
     margin: 0;
 }
 
 .drop-sub {
-    font-size: 11px;
-    color: #555;
+    font-size: 12px;
+    color: #6f6f6f;
     margin: 0;
 }
 
-/* ──────────────────────────────────────────
-   Image Preview
-────────────────────────────────────────── */
+/* ---------- Preview ---------- */
 
 .preview-box {
     position: relative;
-    border-radius: 8px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: #0a0a0a;
+    background-color: #0a0a0a;
 }
 
 .preview-box img {
+    display: block;
     width: 100%;
     max-height: 260px;
     object-fit: contain;
-    display: block;
+}
+
+.preview-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 7px 10px;
+    font-size: 11.5px;
+    color: #8a8a8a;
+    border-top: 1px solid var(--border-color);
+    background-color: rgba(0, 0, 0, 0.45);
 }
 
 .remove-btn {
     position: absolute;
     top: 8px;
     right: 8px;
-    background: rgba(0, 0, 0, 0.7);
-    color: #ff5555;
-    border: 1px solid rgba(255, 85, 85, 0.4);
-    border-radius: 50%;
     width: 26px;
     height: 26px;
-    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    font-size: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
-    transition: all 0.2s ease;
-    line-height: 1;
-    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    color: rgb(255, 71, 71);
+    border: 1px solid rgba(210, 21, 21, 0.905);
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
 .remove-btn:hover {
-    background: #ff5555;
-    color: #fff;
+    background-color: rgb(255, 71, 71);
+    color: white;
 }
 
-/* ──────────────────────────────────────────
-   Form Fields
-────────────────────────────────────────── */
+/* ---------- Form fields ---------- */
 
-.form-group {
-    margin-bottom: 14px;
-}
-
-.form-row {
-    margin-bottom: 14px;
-}
-
-.form-group label {
+.field-label {
     display: block;
-    font-size: 11.5px;
-    color: #888;
-    margin-bottom: 6px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 10px 12px;
-    border-radius: 7px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.04);
-    color: #fff;
+    text-align: left;
     font-size: 13px;
-    font-family: inherit;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease;
-    appearance: none;
-    -webkit-appearance: none;
+    color: #9e9e9e;
+    margin-bottom: 6px;
 }
 
-.form-group select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 32px;
+.optional-tag {
+    font-size: 11px;
+    color: #6f6f6f;
 }
 
-.form-group select option {
-    background: #1a1a1a;
-    color: #fff;
+#uploadForm select option {
+    color: grey;
+    background-color: black;
+    font-size: 15px;
 }
 
-.form-group input:focus,
-.form-group select:focus {
-    border-color: rgba(250, 204, 21, 0.5);
-    outline: none;
+#uploadForm select {
+    color: #d8d8d8;
 }
-
-/* ──────────────────────────────────────────
-   Submit Button
-────────────────────────────────────────── */
 
 .submit-btn {
     width: 100%;
-    padding: 11px 20px;
-    border-radius: 8px;
-    border: 1px solid rgba(250, 204, 21, 0.35);
-    background: rgba(250, 204, 21, 0.07);
-    color: #facc15;
-    font-size: 13.5px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    margin-top: 6px;
+    max-width: none;
+    margin-top: 4px;
+    color: rgb(255, 217, 0);
+    border-color: rgba(255, 217, 0, 0.575);
+    background-color: rgba(255, 217, 0, 0.096);
 }
 
 .submit-btn:hover {
-    background: rgba(250, 204, 21, 0.14);
-    border-color: rgba(250, 204, 21, 0.6);
+    background-color: rgba(255, 217, 0, 0.18);
 }
 
-/* ──────────────────────────────────────────
-   Review Section
-────────────────────────────────────────── */
+.submit-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
 
-.review-header {
+/* ---------- Notices ---------- */
+
+.notice {
     display: flex;
-    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    text-align: left;
+    border-radius: 7px;
+    border: 1px solid var(--border-color);
+    background-color: rgba(26, 26, 26, 0.63);
+    color: #9e9e9e;
+}
+
+.notice.warn {
+    color: rgb(255, 217, 0);
+    border-color: rgba(198, 171, 0, 0.456);
+    background-color: rgba(120, 88, 0, 0.159);
+}
+
+/* ---------- Review tab ---------- */
+
+.review-toolbar {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    gap: 6px;
     margin-bottom: 14px;
 }
 
-.review-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: #ccc;
+.chip {
+    padding: 5px 11px;
+    font-size: 12.5px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    color: #9e9e9e;
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    transition: all 0.25s ease;
 }
 
-.badge-pending {
+.chip:hover {
+    color: white;
+    background-color: var(--hover-color);
+}
+
+.chip.active {
+    color: rgb(255, 217, 0);
+    border-color: rgba(255, 217, 0, 0.575);
+    background-color: rgba(255, 217, 0, 0.096);
+}
+
+.chip .count {
+    opacity: 0.7;
+    margin-left: 4px;
     font-size: 11px;
-    font-weight: 600;
-    padding: 3px 9px;
-    border-radius: 4px;
-    background: rgba(250, 204, 21, 0.12);
-    color: #facc15;
-    border: 1px solid rgba(250, 204, 21, 0.25);
 }
 
-.empty-msg {
-    text-align: center;
-    color: #555;
-    font-size: 13px;
-    padding: 24px 0;
-    margin: 0;
+.toolbar-spacer {
+    flex: 1;
 }
 
-/* Review Card */
+.refresh-btn {
+    width: auto;
+    padding: 5px 11px;
+    font-size: 12.5px;
+    color: #9e9e9e;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.refresh-btn:hover {
+    color: white;
+    background-color: var(--hover-color);
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+}
+
 .review-card {
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
-    padding: 14px;
-    margin-bottom: 12px;
+    overflow: hidden;
+    background-color: rgba(26, 26, 26, 0.45);
 }
 
 .review-thumb {
-    width: 100%;
-    max-height: 220px;
-    object-fit: contain;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    cursor: zoom-in;
-    background: #0a0a0a;
-    border: 1px solid rgba(255, 255, 255, 0.07);
     display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    cursor: zoom-in;
+    background-color: #0a0a0a;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.review-meta {
-    margin-bottom: 10px;
+.review-body {
+    padding: 10px 12px 12px;
+    text-align: left;
+}
+
+.review-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
 }
 
 .review-meta-title {
     font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 3px;
+    color: #f4f4f4;
+    margin: 0 0 2px;
+    word-break: break-word;
 }
 
 .review-meta-artist {
-    font-size: 12px;
-    color: #facc15;
-    margin-bottom: 2px;
+    font-size: 12.5px;
+    color: rgb(255, 217, 0);
+    margin: 0 0 2px;
 }
 
 .review-meta-info {
     font-size: 11.5px;
-    color: #666;
+    color: #6f6f6f;
+    margin: 0;
 }
 
-.review-comment-row {
-    margin-bottom: 10px;
+.status-pill {
+    flex-shrink: 0;
+    font-size: 10.5px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.status-pill.pending {
+    color: rgb(255, 217, 0);
+    border: 1px solid rgba(198, 171, 0, 0.456);
+    background-color: rgba(120, 88, 0, 0.159);
+}
+
+.status-pill.approved {
+    color: rgb(85, 255, 0);
+    border: 1px solid rgba(0, 198, 13, 0.456);
+    background-color: rgba(38, 120, 0, 0.159);
+}
+
+.status-pill.rejected {
+    color: rgb(255, 71, 71);
+    border: 1px solid rgba(210, 21, 21, 0.905);
+    background-color: rgba(209, 0, 0, 0.159);
 }
 
 .review-comment-input {
     width: 100%;
-    padding: 9px 11px;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.3);
-    color: #ccc;
+    margin: 10px 0 8px;
+    padding: 8px 10px;
     font-size: 12.5px;
-    font-family: inherit;
     box-sizing: border-box;
-}
-
-.review-comment-input:focus {
-    border-color: rgba(250, 204, 21, 0.4);
-    outline: none;
 }
 
 .review-actions {
@@ -457,40 +514,135 @@
     gap: 8px;
 }
 
-.btn-approve {
+.btn-approve,
+.btn-reject {
     flex: 1;
-    background: rgba(34, 197, 94, 0.1);
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    color: #22c55e;
-    padding: 7px 12px;
-    border-radius: 6px;
-    cursor: pointer;
+    padding: 7px 10px;
     font-size: 12.5px;
+    border-radius: 7px;
+    cursor: pointer;
     font-family: inherit;
-    font-weight: 500;
-    transition: all 0.2s ease;
+}
+
+.btn-approve {
+    color: rgb(85, 255, 0);
+    border: 1px solid rgba(0, 198, 13, 0.456);
+    background-color: rgba(38, 120, 0, 0.159);
 }
 
 .btn-approve:hover {
-    background: #22c55e;
-    color: #000;
+    background-color: rgba(38, 120, 0, 0.4);
 }
 
 .btn-reject {
-    flex: 1;
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    color: #ef4444;
-    padding: 7px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 12.5px;
-    font-family: inherit;
-    font-weight: 500;
-    transition: all 0.2s ease;
+    color: rgb(255, 71, 71);
+    border: 1px solid rgba(210, 21, 21, 0.905);
+    background-color: rgba(209, 0, 0, 0.159);
 }
 
 .btn-reject:hover {
-    background: #ef4444;
-    color: #fff;
+    background-color: rgba(209, 0, 0, 0.4);
+}
+
+.reviewed-note {
+    margin: 8px 0 0;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: #6f6f6f;
+}
+
+.empty-msg {
+    grid-column: 1 / -1;
+    padding: 30px 0;
+    margin: 0;
+    text-align: center;
+    font-size: 13px;
+    color: #6f6f6f;
+}
+
+/* ---------- Full image viewer ---------- */
+
+#fullViewModal {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: zoom-out;
+    background-color: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+#fullViewModal img {
+    max-width: 94%;
+    max-height: 94%;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 600px) {
+    #uploadSection {
+        padding: 20px 0 70px;
+    }
+
+    .glass-card {
+        width: calc(100% - 20px);
+        padding: 16px;
+    }
+
+    .glass-card h3 {
+        width: calc(100% + 32px);
+        margin-left: -16px;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------------------------------------------------------
+   common.css and authentication.css both style every <form>
+   as its own glass panel. Inside the card that would stack a
+   second panel on the first, so flatten the inner form and
+   let .glass-card be the only card on screen.
+   --------------------------------------------------------- */
+
+#uploadForm {
+    position: static;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    left: auto;
+    top: auto;
+    transform: none;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    text-align: left;
+}
+
+#uploadForm h3 {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    width: calc(100% + 40px);
+    margin: 0 0 16px -20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Keep the two tabs compact even when the card widens for the review grid. */
+.tabs-nav {
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
 }

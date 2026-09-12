@@ -80,13 +80,14 @@
 
         // Load allowed emails once
         let allowedEmails = [];
+        const normEmail = (e) => String(e || "").trim().toLowerCase();
         fetch("/resrc/data/member-emails.json")
             .then(res => res.json())
-            .then(data => allowedEmails = data);
+            .then(data => allowedEmails = (data || []).map(normEmail));
 
         // Update navbar profile picture
         function updateNavbar(user) {
-            if (user && allowedEmails.includes(user.email)) {
+            if (user && allowedEmails.includes(normEmail(user.email))) {
                 profilePic.src = user.photoURL || "/resrc/images/icons/user.png";
                 profilePic.classList.add("profile-pic");
                 localStorage.setItem("loggedIn", "true");
