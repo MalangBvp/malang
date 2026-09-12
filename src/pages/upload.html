@@ -1,14 +1,141 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../resrc/images/icons/favicon.png" type="image/x-icon">
     <title>Malang | Upload Your Work</title>
     <link rel="stylesheet" href="../styles/common.css">
     <link rel="stylesheet" href="../styles/authentication.css">
     <link rel="stylesheet" href="../styles/upload.css">
     <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring2.js"></script>
+</head>
+
+<body>
+    <div id="loader">
+        <l-ring-2 size="25" stroke="2" stroke-length="0.25" bg-opacity="0.1" speed="0.8" color="white"></l-ring-2>
+    </div>
+
+    <section id="uploadSection">
+        <canvas id="gradientCanvas"></canvas>
+
+        <!-- ============ SIGNED OUT ============ -->
+        <div id="authGate" class="glass-card auth-gate" style="display:none;">
+            <img src="/resrc/images/icons/art.webp" class="auth-logo" alt="Malang">
+            <h2>Upload Your Work</h2>
+            <p class="auth-sub">Sign in with your Malang member account to submit artwork, photographs or digital art
+                for the gallery.</p>
+            <div class="auth-buttons">
+                <button class="long-btn provider-btn" onclick="loginWith('google')">
+                    <img src="/resrc/images/icons/google.png" alt="">Continue with Google
+                </button>
+                <button class="long-btn provider-btn" onclick="loginWith('github')">
+                    <img src="https://raw.githubusercontent.com/MalangBvp/media/refs/heads/main/images/github.png"
+                        style="filter: invert(1);" alt="">Continue with GitHub
+                </button>
+            </div>
+        </div>
+
+        <!-- ============ SIGNED IN ============ -->
+        <div id="uploadApp" class="glass-card" style="display:none;">
+
+            <div class="user-header">
+                <img id="userAvatar" src="/resrc/images/icons/user.png" alt="" class="user-avatar">
+                <div class="user-info">
+                    <span id="userName" class="user-name">Malang Member</span>
+                    <span id="roleBadge" class="role-badge member">Member</span>
+                </div>
+                <button class="signout-btn" onclick="logout()">Sign Out</button>
+            </div>
+
+            <div class="tabs-nav">
+                <button class="tab-btn active" id="uploadTabBtn" onclick="switchTab('upload')">Submit Work</button>
+                <button class="tab-btn" id="reviewTabBtn" style="display:none;"
+                    onclick="switchTab('review')">Review</button>
+            </div>
+
+            <!-- ---- Submit ---- -->
+            <div id="tabUpload">
+                <div id="offlineNotice" class="notice warn" style="display:none;">
+                    <span>Submissions are not being delivered yet. The upload service has not been connected, so your
+                        work is held on this device only. Ask the tech team to finish the setup in
+                        <code>upload-config.json</code>.</span>
+                </div>
+
+                <form id="uploadForm" onsubmit="handleFormSubmit(event)">
+                    <h3>Submit Your Work</h3>
+
+                    <div id="dropzone" class="dropzone" onclick="document.getElementById('fileInput').click()">
+                        <img src="/resrc/images/icons/art.webp" class="upload-icon" alt="">
+                        <p class="drop-label">Click to browse or drag &amp; drop</p>
+                        <p class="drop-sub" id="dropSub">JPG, PNG or WEBP &nbsp;·&nbsp; Max 15 MB</p>
+                        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp"
+                            style="display:none;" onchange="handleFileSelect(event)">
+                    </div>
+
+                    <div id="previewBox" class="preview-box" style="display:none;">
+                        <img id="imagePreview" src="" alt="Preview">
+                        <button type="button" class="remove-btn" onclick="clearSelectedFile()"
+                            title="Remove">&times;</button>
+                        <div class="preview-meta">
+                            <span id="previewName"></span>
+                            <span id="previewSize"></span>
+                        </div>
+                    </div>
+
+                    <label class="field-label" for="workCategory">Category</label>
+                    <select id="workCategory" required></select>
+
+                    <label class="field-label" for="workTitle">Title of Work <span class="optional-tag">(optional)</span></label>
+                    <input type="text" id="workTitle" placeholder="e.g. Celestial Dreamscape">
+
+                    <label class="field-label" for="artistName">Credit this work to</label>
+                    <input type="text" id="artistName" placeholder="Your name as it should appear" required>
+
+                    <button type="submit" class="long-btn submit-btn" id="submitBtn">Submit for Review</button>
+                </form>
+            </div>
+
+            <!-- ---- Review ---- -->
+            <div id="tabReview" style="display:none;">
+                <h3>Review Submissions</h3>
+
+                <div class="review-toolbar" id="statusChips">
+                    <button class="chip active" data-status="PENDING" onclick="setStatusFilter('PENDING')">Pending <span
+                            class="count" id="cPending">0</span></button>
+                    <button class="chip" data-status="APPROVED" onclick="setStatusFilter('APPROVED')">Approved <span
+                            class="count" id="cApproved">0</span></button>
+                    <button class="chip" data-status="REJECTED" onclick="setStatusFilter('REJECTED')">Changes <span
+                            class="count" id="cRejected">0</span></button>
+                    <button class="chip" data-status="ALL" onclick="setStatusFilter('ALL')">All <span class="count"
+                            id="cAll">0</span></button>
+                    <span class="toolbar-spacer"></span>
+                    <button class="refresh-btn" onclick="refreshQueue()">Refresh</button>
+                </div>
+
+                <div class="review-toolbar" id="categoryChips">
+                    <button class="chip active" data-category="all" onclick="setCategoryFilter('all')">All work</button>
+                    <button class="chip" data-category="artworks" onclick="setCategoryFilter('artworks')">Artwork</button>
+                    <button class="chip" data-category="photographs"
+                        onclick="setCategoryFilter('photographs')">Photograph</button>
+                    <button class="chip" data-category="digital" onclick="setCategoryFilter('digital')">Digital
+                        Art</button>
+                </div>
+
+                <div class="review-grid" id="reviewQueueList">
+                    <p class="empty-msg">Loading submissions...</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="fullViewModal" onclick="this.style.display='none'">
+        <img id="fullViewImage" src="" alt="Full preview">
+    </div>
+
+    <script src="../scripts/common.js"></script>
+    <script src="../scripts/authentication.js"></script>
+    <script src="../scripts/upload.js"></script>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
         import {
@@ -30,8 +157,7 @@
             measurementId: "G-GHFQ1YG8WZ"
         };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+        const auth = getAuth(initializeApp(firebaseConfig));
 
         const providers = {
             google: new GoogleAuthProvider(),
@@ -42,350 +168,53 @@
             })()
         };
 
-        const REVIEWERS = [
-            "adwaitp2005@gmail.com",
-            "dhruvkalakaar7@gmail.com",
-            "prathameshdahe1@gmail.com",
-            "malangbvp@gmail.com"
-        ];
-
-        let allowedEmails = [];
-        let currentUser = null;
-
-        fetch("/resrc/data/member-emails.json")
-            .then(res => res.json())
-            .then(data => {
-                allowedEmails = data;
-                checkCurrentAuth();
-            })
-            .catch(() => {
-                allowedEmails = [];
-                checkCurrentAuth();
-            });
-
-        function checkCurrentAuth() {
+        // Wait for the config + rosters to land, then watch auth state.
+        MalangUpload.ready.then(() => {
             onAuthStateChanged(auth, (user) => {
-                currentUser = user;
-                window.currentUser = user;
-                const loader = document.getElementById("loader");
-                if (loader) loader.style.display = "none";
-                updateAuthState(user);
+                MalangUpload.setUser(user, () => signOut(auth));
             });
-        }
-
-        function updateAuthState(user) {
-            const authRequired = document.getElementById("authRequired");
-            const uploadApp = document.getElementById("uploadApp");
-            const userAvatar = document.getElementById("userAvatar");
-            const userName = document.getElementById("userName");
-            const userEmail = document.getElementById("userEmail");
-            const reviewTabBtn = document.getElementById("reviewTabBtn");
-
-            if (user && allowedEmails.includes(user.email)) {
-                if (authRequired) authRequired.style.display = "none";
-                if (uploadApp) uploadApp.style.display = "block";
-
-                if (userAvatar) userAvatar.src = user.photoURL || "/resrc/images/icons/user.png";
-                if (userName) userName.textContent = user.displayName || "Malang Member";
-                if (userEmail) userEmail.textContent = user.email;
-
-                if (REVIEWERS.includes(user.email)) {
-                    if (reviewTabBtn) reviewTabBtn.style.display = "inline-block";
-                } else {
-                    if (reviewTabBtn) reviewTabBtn.style.display = "none";
-                }
-
-                renderReviewQueue();
-            } else {
-                if (authRequired) authRequired.style.display = "flex";
-                if (uploadApp) uploadApp.style.display = "none";
-            }
-        }
+        });
 
         window.loginWith = async function (providerName) {
             const provider = providers[providerName];
             if (!provider) return;
             try {
                 const { user } = await signInWithPopup(auth, provider);
-                if (!allowedEmails.includes(user.email)) {
-                    if (window.vibrate) vibrate(200);
-                    if (window.showAlert) {
-                        showAlert("Unauthorised Access", "Only registered Malang members can upload work.", [{ text: "OK" }]);
-                    } else {
-                        alert("Only registered Malang members can upload work.");
-                    }
+
+                // GitHub accounts with a private email give us no address to match on.
+                if (!user.email) {
+                    showAlert("Email Hidden",
+                        "Your GitHub email is private. Make it public or sign in with Google.",
+                        [{ text: "OK" }]);
                     await signOut(auth);
-                } else {
-                    if (window.vibrate) vibrate(50);
+                    return;
                 }
-                updateAuthState(auth.currentUser);
-            } catch (err) {
-                console.error(err);
-                if (window.showAlert) {
-                    showAlert("Sign In Failed", err.message || "Failed to authenticate.", [{ text: "OK" }]);
-                } else {
-                    alert("Sign In Failed: " + (err.message || "Unknown error"));
+
+                if (!MalangUpload.isMember(user.email)) {
+                    vibrate(200);
+                    showAlert("Unauthorised Access",
+                        "Only registered Malang members can upload work.", [{ text: "OK" }]);
+                    await signOut(auth);
+                    return;
                 }
+
+                vibrate(50);
+            } catch (error) {
+                if (error.code === "auth/account-exists-with-different-credential") {
+                    showAlert("Account Already Exists",
+                        "This email is already registered with another sign-in method. Please use the provider you signed in with earlier.",
+                        [{ text: "OK" }]);
+                    return;
+                }
+                if (error.code === "auth/popup-closed-by-user" || error.code === "auth/cancelled-popup-request") {
+                    return;
+                }
+                showAlert("Sign In Failed", error.message || "Failed to authenticate.", [{ text: "OK" }]);
             }
         };
 
         window.logout = async function () {
             await signOut(auth);
-            updateAuthState(null);
         };
-    </script>
-</head>
-
-<body>
-    <div id="loader">
-        <l-ring-2 size="25" stroke="2" stroke-length="0.25" bg-opacity="0.1" speed="0.8" color="white"></l-ring-2>
-    </div>
-
-    <canvas id="gradientCanvas"></canvas>
-
-    <section class="upload-page">
-
-        <!-- AUTH REQUIRED -->
-        <div id="authRequired" class="upload-box auth-box" style="display: none;">
-            <div class="auth-box-inner">
-                <img src="/resrc/images/icons/art.webp" class="auth-logo" alt="Malang">
-                <h2>Upload Your Work</h2>
-                <p class="auth-sub">Sign in with your Malang member account to submit artwork or photographs for gallery consideration.</p>
-                <div class="auth-buttons">
-                    <button class="long-btn loginBtn" onclick="loginWith('google')" style="position: relative;">
-                        <img src="/resrc/images/icons/google.png" style="height:20px; position:absolute; left:14px; top:50%; transform:translateY(-50%);">
-                        <span style="padding-left:20px;">Continue with Google</span>
-                    </button>
-                    <button class="long-btn loginBtn" onclick="loginWith('github')" style="position: relative;">
-                        <img src="https://raw.githubusercontent.com/MalangBvp/media/refs/heads/main/images/github.png"
-                            style="height:20px; position:absolute; left:14px; top:50%; transform:translateY(-50%); filter: invert(1);">
-                        <span style="padding-left:20px;">Continue with GitHub</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- AUTHENTICATED APP -->
-        <div id="uploadApp" class="upload-box" style="display: none;">
-
-            <!-- User header -->
-            <div class="user-header">
-                <img id="userAvatar" src="/resrc/images/icons/user.png" alt="Profile" class="user-avatar">
-                <div class="user-info">
-                    <span id="userName" class="user-name">Malang Member</span>
-                    <span id="userEmail" class="user-email">member@malangbvp.in</span>
-                </div>
-                <button class="signout-btn" onclick="logout()">Sign Out</button>
-            </div>
-
-            <div class="divider"></div>
-
-            <!-- Tabs -->
-            <div class="tabs-nav">
-                <button class="tab-btn active" id="uploadTabBtn" onclick="switchTab('upload')">Submit Work</button>
-                <button class="tab-btn" id="reviewTabBtn" style="display: none;" onclick="switchTab('review')">Review Artwork</button>
-            </div>
-
-            <!-- Tab: Upload -->
-            <div id="tabUpload">
-                <form id="submissionForm" onsubmit="handleFormSubmit(event)">
-
-                    <div id="dropzone" class="dropzone" onclick="document.getElementById('fileInput').click()">
-                        <img src="/resrc/images/icons/art.webp" class="upload-icon" alt="Upload">
-                        <p class="drop-label">Click to browse or drag & drop</p>
-                        <p class="drop-sub">JPG, PNG or WEBP &nbsp;·&nbsp; Max 15 MB</p>
-                        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" style="display:none;" onchange="handleFileSelect(event)">
-                    </div>
-
-                    <div id="previewBox" class="preview-box" style="display:none;">
-                        <img id="imagePreview" src="" alt="Preview">
-                        <button type="button" class="remove-btn" onclick="clearSelectedFile()" title="Remove">&times;</button>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="workCategory">Category</label>
-                            <select id="workCategory" required>
-                                <option value="artworks">Artwork (Fine Arts / Sketch / Painting)</option>
-                                <option value="photographs">Photograph</option>
-                                <option value="digital">Digital Art & Design</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="workTitle">Title of Work</label>
-                        <input type="text" id="workTitle" placeholder="e.g. Celestial Dreamscape" required>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Submit for Review</button>
-                </form>
-            </div>
-
-            <!-- Tab: Review Artwork (Adwait / Dhruv / Prathamesh only) -->
-            <div id="tabReview" style="display: none;">
-                <div class="review-header">
-                    <span class="review-title">Pending Submissions</span>
-                    <span id="pendingBadge" class="badge-pending">0 Pending</span>
-                </div>
-                <div id="reviewQueueList">
-                    <p class="empty-msg">All caught up. No pending artworks to review.</p>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Full Image Modal -->
-    <div id="fullViewModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:500; justify-content:center; align-items:center; cursor:zoom-out;" onclick="this.style.display='none'">
-        <img id="fullViewImage" style="max-width:92%; max-height:92%; border-radius:8px;" src="" alt="Full Preview">
-    </div>
-
-    <script src="../scripts/common.js"></script>
-    <script src="../scripts/authentication.js"></script>
-    <script>
-        let selectedFileBase64 = null;
-        let selectedFileName = "";
-
-        const dropzoneEl = document.getElementById("dropzone");
-        if (dropzoneEl) {
-            ["dragenter", "dragover"].forEach(ev => dropzoneEl.addEventListener(ev, e => { e.preventDefault(); dropzoneEl.classList.add("dragover"); }));
-            ["dragleave", "drop"].forEach(ev => dropzoneEl.addEventListener(ev, e => { e.preventDefault(); dropzoneEl.classList.remove("dragover"); }));
-            dropzoneEl.addEventListener("drop", e => { if (e.dataTransfer.files.length) processFile(e.dataTransfer.files[0]); });
-        }
-
-        function handleFileSelect(e) {
-            if (e.target.files && e.target.files.length) processFile(e.target.files[0]);
-        }
-
-        function processFile(file) {
-            if (!file.type.startsWith("image/")) { alert("Please select a JPG, PNG, or WEBP image."); return; }
-            if (file.size > 15 * 1024 * 1024) { alert("File exceeds 15 MB limit."); return; }
-            selectedFileName = file.name;
-            const reader = new FileReader();
-            reader.onload = ev => {
-                selectedFileBase64 = ev.target.result;
-                document.getElementById("imagePreview").src = selectedFileBase64;
-                document.getElementById("previewBox").style.display = "block";
-                document.getElementById("dropzone").style.display = "none";
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function clearSelectedFile() {
-            selectedFileBase64 = null;
-            selectedFileName = "";
-            document.getElementById("fileInput").value = "";
-            document.getElementById("previewBox").style.display = "none";
-            document.getElementById("dropzone").style.display = "flex";
-        }
-
-        function switchTab(tabName) {
-            document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-            document.getElementById("tabUpload").style.display = tabName === "upload" ? "block" : "none";
-            document.getElementById("tabReview").style.display = tabName === "review" ? "block" : "none";
-            if (tabName === "upload") document.getElementById("uploadTabBtn").classList.add("active");
-            if (tabName === "review") { document.getElementById("reviewTabBtn").classList.add("active"); renderReviewQueue(); }
-        }
-
-        const STORAGE_KEY = "malang_artwork_submissions";
-        function getStoredSubmissions() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; } }
-        function saveStoredSubmissions(items) { localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); }
-
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            if (!selectedFileBase64) { alert("Please select an image to upload."); return; }
-            const title = document.getElementById("workTitle").value.trim();
-            const category = document.getElementById("workCategory").value;
-            const user = window.currentUser || {};
-            const newSub = {
-                id: "sub_" + Date.now(),
-                title, category,
-                image: selectedFileBase64,
-                fileName: selectedFileName,
-                submitterName: user.displayName || "Malang Member",
-                submitterEmail: user.email || "",
-                submittedAt: new Date().toISOString(),
-                status: "PENDING",
-                reviewerComment: "",
-                reviewedBy: "",
-                reviewedAt: null
-            };
-            const subs = getStoredSubmissions();
-            subs.unshift(newSub);
-            saveStoredSubmissions(subs);
-            document.getElementById("submissionForm").reset();
-            clearSelectedFile();
-            if (window.vibrate) vibrate(50);
-            if (window.showAlert) {
-                showAlert("Submitted for Review", "Your work has been submitted. The core team will review and publish it shortly.", [{ text: "OK" }]);
-            } else {
-                alert("Submitted for review!");
-            }
-        }
-
-        function renderReviewQueue() {
-            const list = document.getElementById("reviewQueueList");
-            if (!list) return;
-            const all = getStoredSubmissions();
-            const pending = all.filter(s => s.status === "PENDING");
-            const badge = document.getElementById("pendingBadge");
-            if (badge) badge.textContent = `${pending.length} Pending`;
-
-            if (pending.length === 0) {
-                list.innerHTML = `<p class="empty-msg">All caught up. No pending artworks to review.</p>`;
-                return;
-            }
-
-            list.innerHTML = pending.map(item => `
-                <div class="review-card">
-                    <img src="${item.image}" alt="${item.title}" class="review-thumb" onclick="viewFullImage('${item.image}')" title="Click to enlarge">
-                    <div class="review-meta">
-                        <div class="review-meta-title">${item.title}</div>
-                        <div class="review-meta-artist">${item.submitterName}</div>
-                        <div class="review-meta-info">${item.category} &nbsp;·&nbsp; ${new Date(item.submittedAt).toLocaleDateString()}</div>
-                    </div>
-                    <div class="review-comment-row">
-                        <input type="text" id="comment_${item.id}" class="review-comment-input" placeholder="Add feedback or note (optional)">
-                    </div>
-                    <div class="review-actions">
-                        <button class="btn-approve" onclick="handleReviewDecision('${item.id}', 'APPROVED')">Accept & Publish</button>
-                        <button class="btn-reject" onclick="handleReviewDecision('${item.id}', 'REJECTED')">Request Changes</button>
-                    </div>
-                </div>
-            `).join("");
-        }
-
-        window.handleReviewDecision = function (id, decision) {
-            const input = document.getElementById("comment_" + id);
-            const comment = input ? input.value.trim() : "";
-            const reviewer = (window.currentUser && window.currentUser.displayName) || "Core Reviewer";
-            const subs = getStoredSubmissions();
-            const idx = subs.findIndex(s => s.id === id);
-            if (idx !== -1) {
-                subs[idx].status = decision;
-                subs[idx].reviewerComment = comment;
-                subs[idx].reviewedBy = reviewer;
-                subs[idx].reviewedAt = new Date().toISOString();
-                saveStoredSubmissions(subs);
-                if (window.vibrate) vibrate(50);
-                renderReviewQueue();
-                if (window.showAlert) showAlert(decision === "APPROVED" ? "Artwork Accepted" : "Changes Requested", `Decision recorded for "${subs[idx].title}".`, [{ text: "OK" }]);
-            }
-        };
-
-        window.viewFullImage = function (src) {
-            const modal = document.getElementById("fullViewModal");
-            document.getElementById("fullViewImage").src = src;
-            modal.style.display = "flex";
-        };
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const params = new URLSearchParams(window.location.search);
-            if (params.get("view") === "review") setTimeout(() => switchTab("review"), 400);
-        });
     </script>
 </body>
-
-</html>
