@@ -58,44 +58,49 @@
         </div>
         <h2>Malang Associates</h2>
         <div class="table-wrapper">
-            <table id="csv-table" class="styled-table" style="margin: 70px 10x;"></table>
+            <table id="csv-table" class="styled-table" style="margin: 30px auto;"></table>
         </div>
     </section>
 </body>
 
 <script>
-    const url = "https://raw.githubusercontent.com/MalangBvp/media/main/members.csv"
+    const columnsToShow = [
+        { key: "name", label: "Name" },
+        { key: "position", label: "Position" },
+        { key: "year", label: "Year" },
+        { key: "branch", label: "Branch" },
+        { key: "division", label: "Division" }
+    ];
 
-    const columnsToShow = ["Name", "Position", "Year", "Branch", "Division"]
+    fetch("../../resrc/data/members.json")
+        .then(res => {
+            if (!res.ok) throw new Error("Failed to load members data");
+            return res.json();
+        })
+        .then(data => {
+            const table = document.getElementById("csv-table");
 
-    fetch(url)
-        .then(res => res.text())
-        .then(csv => {
-            const rows = csv.trim().split("\n").map(r => r.split(","))
-
-            const header = rows[0]
-            const data = rows.slice(7)
-
-            const colIndexes = columnsToShow.map(c => header.indexOf(c))
-
-            const table = document.getElementById("csv-table")
-
-            // Add Sr. No. column
             let thead =
-                "<tr><th>Sr. No.</th>" +
-                columnsToShow.map(c => `<th>${c}</th>`).join("") +
-                "</tr>"
+                "<thead><tr><th>Sr. No.</th>" +
+                columnsToShow.map(c => `<th>${c.label}</th>`).join("") +
+                "</tr></thead>";
 
-            let tbody = data
+            let tbody = "<tbody>" + data
                 .map((row, index) =>
                     "<tr>" +
                     `<td>${index + 1}</td>` +
-                    colIndexes.map(i => `<td>${row[i] || ""}</td>`).join("") +
+                    columnsToShow.map(c => `<td>${row[c.key] !== undefined && row[c.key] !== null ? row[c.key] : ""}</td>`).join("") +
                     "</tr>"
                 )
-                .join("")
+                .join("") + "</tbody>";
 
-            table.innerHTML = thead + tbody
-            document.getElementById("loader").style.display = "none"
+            table.innerHTML = thead + tbody;
+            const loader = document.getElementById("loader");
+            if (loader) loader.style.display = "none";
         })
+        .catch(err => {
+            console.error("Error loading members:", err);
+            const loader = document.getElementById("loader");
+            if (loader) loader.style.display = "none";
+        });
 </script>
