@@ -65,7 +65,7 @@
   {
     "title": "Malang | Account",
     "url": "/src/pages/account.html",
-    "content": "Malang | Account Authenticating... Authentication Required. You can now access the following pages: Upload Your Work Open Claims Open Redirects Open RedirectorOpen QR Code Generator Open Site Docs Open Domain Utilities: Attendance QR ToolGit Certificate ToolGit Contact ToolGit DraftsAuth Mail ToolGit Media KitAuth TreasuryAuth T-Shirt Design ToolGit Log in with Google Log in with GitHub Log out",
+    "content": "Malang | Account Authenticating... Authentication Required. You can now access the following pages: Claims Open Redirects Open RedirectorOpen QR Code Generator Open Site Docs Open Domain Utilities: Attendance QR ToolGit Certificate ToolGit Contact ToolGit DraftsAuth Mail ToolGit Media KitAuth TreasuryAuth T-Shirt Design ToolGit Log in with Google Log in with GitHub Log out",
     "category": "page",
     "tags": []
   },
@@ -101,13 +101,6 @@
     "title": "drafts.html",
     "url": "/src/pages/drafts.html",
     "content": "",
-    "category": "page",
-    "tags": []
-  },
-  {
-    "title": "Malang | Upload Your Work",
-    "url": "/src/pages/upload.html",
-    "content": "Malang | Upload Your Work Loading... Authentication Required Please sign in with your Malang member account to submit your artwork or photographs. Sign in with Google Sign in with GitHub Malang Member member@malangbvp.in Sign Out Submit Work My Submissions Review Queue \ud83d\udc51 Click to browse or drag & drop High resolution JPG, PNG, or WEBP (Max 15MB) \u00d7 Category / Medium Artwork (Fine Arts / Sketch / Painting) Photograph Digital Art & Design Title of Work Medium / Camera Details (Optional) Story / Description (Optional) Submit for Review No submissions yet. Submit your first piece! Pending Submissions 0 Pending All caught up! No pending artworks to review.",
     "category": "page",
     "tags": []
   },
