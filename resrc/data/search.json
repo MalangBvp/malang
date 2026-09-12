@@ -65,7 +65,7 @@
   {
     "title": "Malang | Account",
     "url": "/src/pages/account.html",
-    "content": "Malang | Account Authenticating... Authentication Required. You can now access the following pages: Claims Open Redirects Open RedirectorOpen QR Code Generator Open Site Docs Open Domain Utilities: Attendance QR ToolGit Certificate ToolGit Contact ToolGit DraftsAuth Mail ToolGit Media KitAuth TreasuryAuth T-Shirt Design ToolGit Log in with Google Log in with GitHub Log out",
+    "content": "Malang | Account Authenticating... Authentication Required. You can now access the following pages: Upload Your Work Review Artwork Reviewer Claims Open Redirects Open RedirectorOpen QR Code Generator Open Site Docs Open Domain Utilities: Attendance QR ToolGit Certificate ToolGit Contact ToolGit DraftsAuth Mail ToolGit Media KitAuth TreasuryAuth T-Shirt Design ToolGit Log in with Google Log in with GitHub Log out",
     "category": "page",
     "tags": []
   },
@@ -101,6 +101,13 @@
     "title": "drafts.html",
     "url": "/src/pages/drafts.html",
     "content": "",
+    "category": "page",
+    "tags": []
+  },
+  {
+    "title": "Malang | Upload Your Work",
+    "url": "/src/pages/upload.html",
+    "content": "Malang | Upload Your Work Upload Your Work Sign in with your Malang member account to submit artwork or photographs for gallery consideration. Continue with Google Continue with GitHub Malang Member member@malangbvp.in Sign Out Submit Work Review Artwork Click to browse or drag & drop JPG, PNG or WEBP \u00b7 Max 15 MB \u00d7 Category Artwork (Fine Arts / Sketch / Painting) Photograph Digital Art & Design Title of Work Submit for Review Pending Submissions 0 Pending All caught up. No pending artworks to review.",
     "category": "page",
     "tags": []
   },
