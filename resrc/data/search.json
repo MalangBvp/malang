@@ -107,7 +107,7 @@
   {
     "title": "Malang | Upload Your Work",
     "url": "/src/pages/upload.html",
-    "content": "Malang | Upload Your Work Upload Your Work Sign in with your Malang member account to submit artwork or photographs for gallery consideration. Continue with Google Continue with GitHub Malang Member member@malangbvp.in Sign Out Submit Work Review Artwork Click to browse or drag & drop JPG, PNG or WEBP \u00b7 Max 15 MB \u00d7 Category Artwork (Fine Arts / Sketch / Painting) Photograph Digital Art & Design Title of Work Submit for Review Pending Submissions 0 Pending All caught up. No pending artworks to review.",
+    "content": "Malang | Upload Your Work Upload Your Work Sign in with your Malang member account to submit artwork, photographs or digital art for the gallery. Continue with Google Continue with GitHub Malang Member Member Sign Out Submit Work Review Submissions are not being delivered yet. The upload service has not been connected, so your work is held on this device only. Ask the tech team to finish the setup in upload-config.json. Submit Your Work Click to browse or drag & drop JPG, PNG or WEBP \u00b7 Max 15 MB \u00d7 Category Title of Work (optional) Credit this work to Submit for Review Review Submissions Pending 0 Approved 0 Changes 0 All 0 Refresh All work Artwork Photograph Digital Art Loading submissions...",
     "category": "page",
     "tags": []
   },
