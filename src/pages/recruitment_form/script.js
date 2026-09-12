@@ -360,7 +360,7 @@ muteBtn.textContent = v.muted ? '🔇' : '🔊';
 });
 function val(id){ const el = document.getElementById(id); return el ? el.value : ''; }
 function submitToSheet(){
-if (!SHEET_URL || SHEET_URL.indexOf('PASTE_') === 0) return;
+if (!SHEET_URL || SHEET_URL.indexOf('PASTE_') === 0) return Promise.resolve({status:'ok'});
 const payload = {
 Name: val('fName'), Gender: state.gender || '', Domains: state.domains.join(', '),
 Email: val('fEmail'), Phone: val('fPhone'), Instagram: val('fInsta'),
@@ -369,7 +369,9 @@ Skills: state.domains.join(', '), Other_text: val('otherText'),
 Motivation: val('fMotivation'), Portfolio: val('fPortfolio')
 };
 console.log('Submitting to sheet:', payload);
-fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) }).catch(() => {});
+return fetch(SHEET_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) })
+.then(r => r.json())
+.catch(() => ({ status: 'ok' }));
 }
 const submitBtn = document.getElementById('submitBtn');
 if (submitBtn) submitBtn.addEventListener('click', () => {
@@ -387,7 +389,31 @@ if (otherField) otherField.classList.add('error');
 firstBad = firstBad || otherEl;
 } else if (otherField) otherField.classList.remove('error');
 if (firstBad){ firstBad.focus(); return; }
-submitToSheet();
+submitBtn.disabled = true;
+submitBtn.textContent = 'Submitting...';
+submitToSheet().then(result => {
+submitBtn.disabled = false;
+submitBtn.textContent = 'Submit application';
+if (result && result.status === 'duplicate'){
+const fieldId = result.field === 'phone' ? 'fPhone' : 'fEmail';
+const el = document.getElementById(fieldId);
+const field = el ? el.closest('.field') : null;
+document.querySelectorAll('.field.error').forEach(f => f.classList.remove('error'));
+if (field){
+field.classList.add('error');
+let err = field.querySelector('.field-error');
+if (!err){
+err = document.createElement('span');
+err.className = 'field-error';
+field.appendChild(err);
+}
+err.textContent = result.field === 'phone' ? 'This phone number has already registered.' : 'This email has already registered.';
+err.style.display = 'block';
+}
+goToStep(2);
+if (el) el.focus();
+return;
+}
 const applyEl = document.getElementById('apply');
 if (applyEl) applyEl.style.display = 'none';
 const heroEl = document.getElementById('hero');
@@ -398,5 +424,6 @@ outroEl.classList.add('active');
 outroEl.scrollIntoView({ behavior: 'smooth' });
 launchConfetti();
 }
+});
 });
 goToStep(1);
