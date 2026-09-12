@@ -52,7 +52,6 @@
         let allowedEmails = [];
         let currentUser = null;
 
-        // Fetch allowed emails list
         fetch("/resrc/data/member-emails.json")
             .then(res => res.json())
             .then(data => {
@@ -61,11 +60,13 @@
             })
             .catch(() => {
                 allowedEmails = [];
+                checkCurrentAuth();
             });
 
         function checkCurrentAuth() {
             onAuthStateChanged(auth, (user) => {
                 currentUser = user;
+                window.currentUser = user;
                 const loader = document.getElementById("loader");
                 if (loader) loader.style.display = "none";
                 updateAuthState(user);
@@ -88,16 +89,15 @@
                 if (userName) userName.textContent = user.displayName || "Malang Member";
                 if (userEmail) userEmail.textContent = user.email;
 
-                // Check reviewer access
-                if (REVIEWERS.includes(user.email.toLowerCase())) {
+                if (REVIEWERS.includes(user.email)) {
                     if (reviewTabBtn) reviewTabBtn.style.display = "inline-block";
                 } else {
                     if (reviewTabBtn) reviewTabBtn.style.display = "none";
                 }
 
-                loadSubmissions();
+                renderReviewQueue();
             } else {
-                if (authRequired) authRequired.style.display = "block";
+                if (authRequired) authRequired.style.display = "flex";
                 if (uploadApp) uploadApp.style.display = "none";
             }
         }
@@ -138,121 +138,108 @@
 
 <body>
     <div id="loader">
-        <l-ring-2 size="25" stroke="2" stroke-length="0.25" bg-opacity="0.1" speed="0.8" color="white"></l-ring-2>&nbsp;&nbsp;Loading...
+        <l-ring-2 size="25" stroke="2" stroke-length="0.25" bg-opacity="0.1" speed="0.8" color="white"></l-ring-2>
     </div>
 
-    <!-- Mouse hover trail canvas -->
     <canvas id="gradientCanvas"></canvas>
 
-    <div class="upload-container">
-        <!-- Auth Required Section -->
-        <div id="authRequired" class="upload-card" style="display: none; text-align: center;">
-            <h3 style="margin-top: 0; margin-bottom: 8px;">Authentication Required</h3>
-            <p style="color: #aaa; font-size: 13px; margin-bottom: 24px;">Please sign in with your Malang member account to submit your artwork or photographs.</p>
+    <section class="upload-page">
 
-            <button class="long-btn loginBtn" onclick="loginWith('google')" style="position: relative; margin-bottom: 12px;">
-                <img src="/resrc/images/icons/google.png" style="height:22px; position:absolute; left:14px; top:8px;">
-                <span style="padding-left:25px;">Sign in with Google</span>
-            </button>
-
-            <button class="long-btn loginBtn" onclick="loginWith('github')" style="position: relative;">
-                <img src="https://raw.githubusercontent.com/MalangBvp/media/refs/heads/main/images/github.png"
-                    style="height:22px; position:absolute; left:14px; top:8px; filter: invert(1);">
-                <span style="padding-left:25px;">Sign in with GitHub</span>
-            </button>
+        <!-- AUTH REQUIRED -->
+        <div id="authRequired" class="upload-box auth-box" style="display: none;">
+            <div class="auth-box-inner">
+                <img src="/resrc/images/icons/art.webp" class="auth-logo" alt="Malang">
+                <h2>Upload Your Work</h2>
+                <p class="auth-sub">Sign in with your Malang member account to submit artwork or photographs for gallery consideration.</p>
+                <div class="auth-buttons">
+                    <button class="long-btn loginBtn" onclick="loginWith('google')" style="position: relative;">
+                        <img src="/resrc/images/icons/google.png" style="height:20px; position:absolute; left:14px; top:50%; transform:translateY(-50%);">
+                        <span style="padding-left:20px;">Continue with Google</span>
+                    </button>
+                    <button class="long-btn loginBtn" onclick="loginWith('github')" style="position: relative;">
+                        <img src="https://raw.githubusercontent.com/MalangBvp/media/refs/heads/main/images/github.png"
+                            style="height:20px; position:absolute; left:14px; top:50%; transform:translateY(-50%); filter: invert(1);">
+                        <span style="padding-left:20px;">Continue with GitHub</span>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <!-- Authenticated Upload Section -->
-        <div id="uploadApp" style="display: none;">
-            <div class="upload-card">
-                <!-- User Profile Header -->
-                <div class="user-badge">
-                    <img id="userAvatar" src="/resrc/images/icons/user.png" alt="Profile">
-                    <div class="info">
-                        <h4 id="userName">Malang Member</h4>
-                        <p id="userEmail">member@malangbvp.in</p>
+        <!-- AUTHENTICATED APP -->
+        <div id="uploadApp" class="upload-box" style="display: none;">
+
+            <!-- User header -->
+            <div class="user-header">
+                <img id="userAvatar" src="/resrc/images/icons/user.png" alt="Profile" class="user-avatar">
+                <div class="user-info">
+                    <span id="userName" class="user-name">Malang Member</span>
+                    <span id="userEmail" class="user-email">member@malangbvp.in</span>
+                </div>
+                <button class="signout-btn" onclick="logout()">Sign Out</button>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Tabs -->
+            <div class="tabs-nav">
+                <button class="tab-btn active" id="uploadTabBtn" onclick="switchTab('upload')">Submit Work</button>
+                <button class="tab-btn" id="reviewTabBtn" style="display: none;" onclick="switchTab('review')">Review Artwork</button>
+            </div>
+
+            <!-- Tab: Upload -->
+            <div id="tabUpload">
+                <form id="submissionForm" onsubmit="handleFormSubmit(event)">
+
+                    <div id="dropzone" class="dropzone" onclick="document.getElementById('fileInput').click()">
+                        <img src="/resrc/images/icons/art.webp" class="upload-icon" alt="Upload">
+                        <p class="drop-label">Click to browse or drag & drop</p>
+                        <p class="drop-sub">JPG, PNG or WEBP &nbsp;·&nbsp; Max 15 MB</p>
+                        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" style="display:none;" onchange="handleFileSelect(event)">
                     </div>
-                    <button onclick="logout()" style="margin-left: auto; background: transparent; border: 1px solid var(--border-color); color: #999; border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer;">Sign Out</button>
-                </div>
 
-                <!-- Navigation Tabs -->
-                <div class="tabs-nav">
-                    <button class="tab-btn active" id="uploadTabBtn" onclick="switchTab('upload')">Submit Work</button>
-                    <button class="tab-btn" id="mySubmissionsTabBtn" onclick="switchTab('mySubmissions')">My Submissions <span id="myCount" style="font-size: 10px; opacity: 0.7;"></span></button>
-                    <button class="tab-btn" id="reviewTabBtn" style="display: none; color: #facc15;" onclick="switchTab('review')">Review Queue 👑</button>
-                </div>
+                    <div id="previewBox" class="preview-box" style="display:none;">
+                        <img id="imagePreview" src="" alt="Preview">
+                        <button type="button" class="remove-btn" onclick="clearSelectedFile()" title="Remove">&times;</button>
+                    </div>
 
-                <!-- Tab 1: Upload Form -->
-                <div id="tabUpload">
-                    <form id="submissionForm" onsubmit="handleFormSubmit(event)">
-                        <!-- Dropzone Area -->
-                        <div id="dropzone" class="dropzone" onclick="document.getElementById('fileInput').click()">
-                            <img src="/resrc/images/icons/art.webp" class="upload-icon" alt="Upload">
-                            <p><strong>Click to browse</strong> or drag & drop</p>
-                            <p class="sub">High resolution JPG, PNG, or WEBP (Max 15MB)</p>
-                            <input type="file" id="fileInput" accept="image/png, image/jpeg, image/webp" style="display: none;" onchange="handleFileSelect(event)">
-                        </div>
-
-                        <!-- Image Preview Box -->
-                        <div id="previewBox" class="preview-box" style="display: none;">
-                            <img id="imagePreview" src="" alt="Preview">
-                            <button type="button" class="remove-btn" onclick="clearSelectedFile()" title="Remove file">&times;</button>
-                        </div>
-
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="workCategory">Category / Medium</label>
+                            <label for="workCategory">Category</label>
                             <select id="workCategory" required>
                                 <option value="artworks">Artwork (Fine Arts / Sketch / Painting)</option>
                                 <option value="photographs">Photograph</option>
                                 <option value="digital">Digital Art & Design</option>
                             </select>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="workTitle">Title of Work</label>
-                            <input type="text" id="workTitle" placeholder="e.g. Celestial Dreamscape" required>
-                        </div>
+                    <div class="form-group">
+                        <label for="workTitle">Title of Work</label>
+                        <input type="text" id="workTitle" placeholder="e.g. Celestial Dreamscape" required>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="workMedium">Medium / Camera Details (Optional)</label>
-                            <input type="text" id="workMedium" placeholder="e.g. Oil on Canvas, Sony A7III 50mm f/1.8">
-                        </div>
+                    <button type="submit" class="submit-btn">Submit for Review</button>
+                </form>
+            </div>
 
-                        <div class="form-group">
-                            <label for="workDescription">Story / Description (Optional)</label>
-                            <textarea id="workDescription" rows="2" placeholder="Brief story or inspiration behind this piece..."></textarea>
-                        </div>
-
-                        <button type="submit" id="submitBtn" class="long-btn" style="width: 100%; margin: 16px 0 0; background: #1a1a1a; border-color: rgba(250, 204, 21, 0.4); color: #facc15; font-weight: 600;">
-                            Submit for Review
-                        </button>
-                    </form>
+            <!-- Tab: Review Artwork (Adwait / Dhruv / Prathamesh only) -->
+            <div id="tabReview" style="display: none;">
+                <div class="review-header">
+                    <span class="review-title">Pending Submissions</span>
+                    <span id="pendingBadge" class="badge-pending">0 Pending</span>
                 </div>
-
-                <!-- Tab 2: My Submissions -->
-                <div id="tabMySubmissions" style="display: none;">
-                    <div id="mySubmissionsList">
-                        <p style="text-align: center; color: #666; font-size: 13px; padding: 20px 0;">No submissions yet. Submit your first piece!</p>
-                    </div>
-                </div>
-
-                <!-- Tab 3: Core Review Queue (Adwait, Dhruv, Prathamesh) -->
-                <div id="tabReview" style="display: none;">
-                    <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                        <h4 style="margin: 0; font-size: 13px; color: #facc15;">Pending Submissions</h4>
-                        <span id="pendingBadge" class="status-tag status-pending">0 Pending</span>
-                    </div>
-                    <div id="reviewQueueList">
-                        <p style="text-align: center; color: #666; font-size: 13px; padding: 20px 0;">All caught up! No pending artworks to review.</p>
-                    </div>
+                <div id="reviewQueueList">
+                    <p class="empty-msg">All caught up. No pending artworks to review.</p>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Image Modal for Full View -->
-    <div id="fullViewModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 500; justify-content: center; align-items: center;" onclick="this.style.display='none'">
-        <img id="fullViewImage" style="max-width: 90%; max-height: 90%; border-radius: 8px; border: 1px solid #333;" src="" alt="Full Preview">
+        </div>
+
+    </section>
+
+    <!-- Full Image Modal -->
+    <div id="fullViewModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:500; justify-content:center; align-items:center; cursor:zoom-out;" onclick="this.style.display='none'">
+        <img id="fullViewImage" style="max-width:92%; max-height:92%; border-radius:8px;" src="" alt="Full Preview">
     </div>
 
     <script src="../scripts/common.js"></script>
@@ -261,51 +248,24 @@
         let selectedFileBase64 = null;
         let selectedFileName = "";
 
-        // Drag and drop handlers
-        const dropzone = document.getElementById("dropzone");
-        if (dropzone) {
-            ["dragenter", "dragover"].forEach(event => {
-                dropzone.addEventListener(event, (e) => {
-                    e.preventDefault();
-                    dropzone.classList.add("dragover");
-                });
-            });
-
-            ["dragleave", "drop"].forEach(event => {
-                dropzone.addEventListener(event, (e) => {
-                    e.preventDefault();
-                    dropzone.classList.remove("dragover");
-                });
-            });
-
-            dropzone.addEventListener("drop", (e) => {
-                const files = e.dataTransfer.files;
-                if (files.length > 0) {
-                    processFile(files[0]);
-                }
-            });
+        const dropzoneEl = document.getElementById("dropzone");
+        if (dropzoneEl) {
+            ["dragenter", "dragover"].forEach(ev => dropzoneEl.addEventListener(ev, e => { e.preventDefault(); dropzoneEl.classList.add("dragover"); }));
+            ["dragleave", "drop"].forEach(ev => dropzoneEl.addEventListener(ev, e => { e.preventDefault(); dropzoneEl.classList.remove("dragover"); }));
+            dropzoneEl.addEventListener("drop", e => { if (e.dataTransfer.files.length) processFile(e.dataTransfer.files[0]); });
         }
 
         function handleFileSelect(e) {
-            if (e.target.files && e.target.files.length > 0) {
-                processFile(e.target.files[0]);
-            }
+            if (e.target.files && e.target.files.length) processFile(e.target.files[0]);
         }
 
         function processFile(file) {
-            if (!file.type.startsWith("image/")) {
-                alert("Please select an image file (PNG, JPG, WEBP).");
-                return;
-            }
-            if (file.size > 15 * 1024 * 1024) {
-                alert("File size exceeds 15MB limit.");
-                return;
-            }
-
+            if (!file.type.startsWith("image/")) { alert("Please select a JPG, PNG, or WEBP image."); return; }
+            if (file.size > 15 * 1024 * 1024) { alert("File exceeds 15 MB limit."); return; }
             selectedFileName = file.name;
             const reader = new FileReader();
-            reader.onload = (event) => {
-                selectedFileBase64 = event.target.result;
+            reader.onload = ev => {
+                selectedFileBase64 = ev.target.result;
                 document.getElementById("imagePreview").src = selectedFileBase64;
                 document.getElementById("previewBox").style.display = "block";
                 document.getElementById("dropzone").style.display = "none";
@@ -318,201 +278,112 @@
             selectedFileName = "";
             document.getElementById("fileInput").value = "";
             document.getElementById("previewBox").style.display = "none";
-            document.getElementById("dropzone").style.display = "block";
+            document.getElementById("dropzone").style.display = "flex";
         }
 
         function switchTab(tabName) {
-            document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+            document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
             document.getElementById("tabUpload").style.display = tabName === "upload" ? "block" : "none";
-            document.getElementById("tabMySubmissions").style.display = tabName === "mySubmissions" ? "block" : "none";
             document.getElementById("tabReview").style.display = tabName === "review" ? "block" : "none";
-
             if (tabName === "upload") document.getElementById("uploadTabBtn").classList.add("active");
-            if (tabName === "mySubmissions") {
-                document.getElementById("mySubmissionsTabBtn").classList.add("active");
-                renderMySubmissions();
-            }
-            if (tabName === "review") {
-                document.getElementById("reviewTabBtn").classList.add("active");
-                renderReviewQueue();
-            }
+            if (tabName === "review") { document.getElementById("reviewTabBtn").classList.add("active"); renderReviewQueue(); }
         }
 
-        // Submissions Local Storage Management
         const STORAGE_KEY = "malang_artwork_submissions";
-
-        function getStoredSubmissions() {
-            try {
-                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-            } catch {
-                return [];
-            }
-        }
-
-        function saveStoredSubmissions(items) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-        }
+        function getStoredSubmissions() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; } }
+        function saveStoredSubmissions(items) { localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); }
 
         function handleFormSubmit(e) {
             e.preventDefault();
-            if (!selectedFileBase64) {
-                alert("Please upload an image for your artwork.");
-                return;
-            }
-
+            if (!selectedFileBase64) { alert("Please select an image to upload."); return; }
             const title = document.getElementById("workTitle").value.trim();
             const category = document.getElementById("workCategory").value;
-            const medium = document.getElementById("workMedium").value.trim();
-            const description = document.getElementById("workDescription").value.trim();
-
             const user = window.currentUser || {};
-            const email = user.email || "member@malangbvp.in";
-            const artistName = user.displayName || "Malang Member";
-
-            const newSubmission = {
+            const newSub = {
                 id: "sub_" + Date.now(),
-                title: title,
-                category: category,
-                medium: medium,
-                description: description,
+                title, category,
                 image: selectedFileBase64,
                 fileName: selectedFileName,
-                submitterName: artistName,
-                submitterEmail: email,
+                submitterName: user.displayName || "Malang Member",
+                submitterEmail: user.email || "",
                 submittedAt: new Date().toISOString(),
-                status: "PENDING", // PENDING | APPROVED | REJECTED
+                status: "PENDING",
                 reviewerComment: "",
                 reviewedBy: "",
                 reviewedAt: null
             };
-
-            const submissions = getStoredSubmissions();
-            submissions.unshift(newSubmission);
-            saveStoredSubmissions(submissions);
-
-            // Reset form
+            const subs = getStoredSubmissions();
+            subs.unshift(newSub);
+            saveStoredSubmissions(subs);
             document.getElementById("submissionForm").reset();
             clearSelectedFile();
-
             if (window.vibrate) vibrate(50);
             if (window.showAlert) {
-                showAlert("Submitted for Review!", "Your work has been submitted. Adwait, Dhruv, and Prathamesh will review and publish it soon.", [{ text: "View Status", onClick: () => switchTab("mySubmissions") }]);
+                showAlert("Submitted for Review", "Your work has been submitted. The core team will review and publish it shortly.", [{ text: "OK" }]);
             } else {
-                alert("Submitted for review! Adwait, Dhruv, and Prathamesh will review it soon.");
-                switchTab("mySubmissions");
+                alert("Submitted for review!");
             }
-        }
-
-        function renderMySubmissions() {
-            const list = document.getElementById("mySubmissionsList");
-            const user = window.currentUser || {};
-            const email = (user.email || "").toLowerCase();
-            const allSubmissions = getStoredSubmissions();
-            const myItems = allSubmissions.filter(s => s.submitterEmail.toLowerCase() === email);
-
-            document.getElementById("myCount").textContent = myItems.length ? `(${myItems.length})` : "";
-
-            if (myItems.length === 0) {
-                list.innerHTML = `<p style="text-align: center; color: #666; font-size: 13px; padding: 20px 0;">No submissions yet. Submit your first piece!</p>`;
-                return;
-            }
-
-            list.innerHTML = myItems.map(item => `
-                <div class="submission-item">
-                    <img src="${item.image}" alt="${item.title}" onclick="viewFullImage('${item.image}')" style="cursor: pointer;">
-                    <div class="submission-meta">
-                        <h5>${item.title}</h5>
-                        <p><strong>Category:</strong> ${item.category} ${item.medium ? `| ${item.medium}` : ''}</p>
-                        <p><strong>Submitted:</strong> ${new Date(item.submittedAt).toLocaleDateString()}</p>
-                        <div style="margin-top: 6px;">
-                            <span class="status-tag ${item.status === 'APPROVED' ? 'status-approved' : item.status === 'REJECTED' ? 'status-rejected' : 'status-pending'}">
-                                ${item.status === 'APPROVED' ? '✓ Approved & Published' : item.status === 'REJECTED' ? '✗ Revision Requested' : '⏳ Pending Review'}
-                            </span>
-                        </div>
-                        ${item.reviewerComment ? `
-                            <div class="reviewer-comment">
-                                <strong>Curator Note (${item.reviewedBy || 'Core Reviewer'}):</strong> ${item.reviewerComment}
-                            </div>
-                        ` : ''}
-                    </div>
-                </div>
-            `).join("");
         }
 
         function renderReviewQueue() {
             const list = document.getElementById("reviewQueueList");
-            const allSubmissions = getStoredSubmissions();
-            const pendingItems = allSubmissions.filter(s => s.status === "PENDING");
+            if (!list) return;
+            const all = getStoredSubmissions();
+            const pending = all.filter(s => s.status === "PENDING");
+            const badge = document.getElementById("pendingBadge");
+            if (badge) badge.textContent = `${pending.length} Pending`;
 
-            document.getElementById("pendingBadge").textContent = `${pendingItems.length} Pending`;
-
-            if (pendingItems.length === 0) {
-                list.innerHTML = `<p style="text-align: center; color: #666; font-size: 13px; padding: 20px 0;">All caught up! No pending artworks to review.</p>`;
+            if (pending.length === 0) {
+                list.innerHTML = `<p class="empty-msg">All caught up. No pending artworks to review.</p>`;
                 return;
             }
 
-            list.innerHTML = pendingItems.map(item => `
-                <div class="submission-item" style="flex-direction: column; align-items: stretch;">
-                    <div style="display: flex; gap: 12px; align-items: flex-start;">
-                        <img src="${item.image}" alt="${item.title}" onclick="viewFullImage('${item.image}')" style="width: 80px; height: 80px; cursor: pointer;" title="Click to enlarge">
-                        <div class="submission-meta">
-                            <h5 style="font-size: 14px; margin-bottom: 2px;">${item.title}</h5>
-                            <p style="color: #facc15;"><strong>Artist:</strong> ${item.submitterName} (${item.submitterEmail})</p>
-                            <p><strong>Category:</strong> ${item.category} ${item.medium ? `| ${item.medium}` : ''}</p>
-                            ${item.description ? `<p style="color: #aaa; font-style: italic; margin-top: 4px;">"${item.description}"</p>` : ''}
-                        </div>
+            list.innerHTML = pending.map(item => `
+                <div class="review-card">
+                    <img src="${item.image}" alt="${item.title}" class="review-thumb" onclick="viewFullImage('${item.image}')" title="Click to enlarge">
+                    <div class="review-meta">
+                        <div class="review-meta-title">${item.title}</div>
+                        <div class="review-meta-artist">${item.submitterName}</div>
+                        <div class="review-meta-info">${item.category} &nbsp;·&nbsp; ${new Date(item.submittedAt).toLocaleDateString()}</div>
                     </div>
-                    <div style="margin-top: 8px;">
-                        <input type="text" id="comment_${item.id}" placeholder="Add reviewer feedback or comment..." style="width: 100%; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.3); color: #fff; font-size: 12px; box-sizing: border-box;">
+                    <div class="review-comment-row">
+                        <input type="text" id="comment_${item.id}" class="review-comment-input" placeholder="Add feedback or note (optional)">
                     </div>
                     <div class="review-actions">
-                        <button class="btn-approve" onclick="handleReviewDecision('${item.id}', 'APPROVED')">✓ Accept & Publish</button>
-                        <button class="btn-reject" onclick="handleReviewDecision('${item.id}', 'REJECTED')">✗ Request Changes</button>
+                        <button class="btn-approve" onclick="handleReviewDecision('${item.id}', 'APPROVED')">Accept & Publish</button>
+                        <button class="btn-reject" onclick="handleReviewDecision('${item.id}', 'REJECTED')">Request Changes</button>
                     </div>
                 </div>
             `).join("");
         }
 
         window.handleReviewDecision = function (id, decision) {
-            const commentInput = document.getElementById("comment_" + id);
-            const comment = commentInput ? commentInput.value.trim() : "";
+            const input = document.getElementById("comment_" + id);
+            const comment = input ? input.value.trim() : "";
             const reviewer = (window.currentUser && window.currentUser.displayName) || "Core Reviewer";
-
-            const submissions = getStoredSubmissions();
-            const index = submissions.findIndex(s => s.id === id);
-            if (index !== -1) {
-                submissions[index].status = decision;
-                submissions[index].reviewerComment = comment;
-                submissions[index].reviewedBy = reviewer;
-                submissions[index].reviewedAt = new Date().toISOString();
-                saveStoredSubmissions(submissions);
-
+            const subs = getStoredSubmissions();
+            const idx = subs.findIndex(s => s.id === id);
+            if (idx !== -1) {
+                subs[idx].status = decision;
+                subs[idx].reviewerComment = comment;
+                subs[idx].reviewedBy = reviewer;
+                subs[idx].reviewedAt = new Date().toISOString();
+                saveStoredSubmissions(subs);
                 if (window.vibrate) vibrate(50);
                 renderReviewQueue();
-                if (window.showAlert) {
-                    showAlert(decision === "APPROVED" ? "Artwork Approved!" : "Revision Requested", `Decision recorded for "${submissions[index].title}".`, [{ text: "OK" }]);
-                }
+                if (window.showAlert) showAlert(decision === "APPROVED" ? "Artwork Accepted" : "Changes Requested", `Decision recorded for "${subs[idx].title}".`, [{ text: "OK" }]);
             }
         };
 
         window.viewFullImage = function (src) {
             const modal = document.getElementById("fullViewModal");
-            const img = document.getElementById("fullViewImage");
-            img.src = src;
+            document.getElementById("fullViewImage").src = src;
             modal.style.display = "flex";
         };
 
-        function loadSubmissions() {
-            renderMySubmissions();
-            renderReviewQueue();
-        }
-
-        // Check if query param specifies view
         document.addEventListener("DOMContentLoaded", () => {
             const params = new URLSearchParams(window.location.search);
-            if (params.get("view") === "review") {
-                setTimeout(() => switchTab("review"), 300);
-            }
+            if (params.get("view") === "review") setTimeout(() => switchTab("review"), 400);
         });
     </script>
 </body>

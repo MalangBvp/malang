@@ -62,20 +62,30 @@
         // UI Update
         // ---------------------------
 
+        const REVIEWERS = [
+            "adwaitp2005@gmail.com",
+            "dhruvkalakaar7@gmail.com",
+            "prathameshdahe1@gmail.com",
+            "malangbvp@gmail.com"
+        ];
+
         function updateUI(user) {
             const status = document.getElementById("status");
             const profilePic = window.parent.document.getElementById("profilePic");
+            const reviewLink = document.getElementById("reviewArtworkLink");
 
             if (user && allowedEmails.includes(user.email)) {
                 status.innerText = `Hey ${user.displayName}! 👋`;
                 profilePic.src = user.photoURL || "/resrc/images/icons/user.png";
                 profilePic.classList.add("profile-pic");
                 localStorage.setItem("loggedIn", "true");
+                if (reviewLink) reviewLink.style.display = REVIEWERS.includes(user.email) ? "" : "none";
             } else {
                 status.innerText = user ? "Unauthorised Access Attempt." : "Authentication Required.";
                 profilePic.src = "/resrc/images/icons/user.png";
                 profilePic.classList.remove("profile-pic");
                 localStorage.setItem("loggedIn", "false");
+                if (reviewLink) reviewLink.style.display = "none";
             }
 
             toggleRestricted();
@@ -183,7 +193,8 @@
             <h3 id="status" style="margin-bottom: 10px;">Authentication Required.</h3>
             <div class="restricted">
                 <p>You can now access the following pages:</p>
-                <a class="long-btn" href="/src/pages/upload.html">Upload Your Work <span id="info" class="g">Open</span></a>
+                <a class="long-btn" href="/src/pages/upload.html">Upload Your Work</a>
+                <a id="reviewArtworkLink" class="long-btn" href="/src/pages/upload.html?view=review" style="display:none;">Review Artwork <span id="info" class="y">Reviewer</span></a>
                 <a class="long-btn" href="/src/pages/claims.html">Claims <span id="info" class="g">Open</span></a>
                 <a class="long-btn" href="/src/pages/redirects.html">Redirects <span id="info" class="g">Open</span></a>
                 <a class="long-btn" href="/src/pages/redirector.html">Redirector<span id="info"
