@@ -1,0 +1,14 @@
+{
+  "folders": [
+    { "name": "malang", "path": "malang" },
+    { "name": "malang-tools", "path": "malang-tools" },
+    { "name": "media", "path": "media" },
+    { "name": "redirector", "path": "redirector" },
+    { "name": ".github", "path": ".github" }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": true
+    }
+  }
+}
