@@ -1,17 +1,34 @@
 /* =========================================================
    Malang | Upload Your Work
    ---------------------------------------------------------
-   Members pick Artwork or Photograph, drop one or more images,
-   give each a type (and an optional title) and submit. Each
-   image goes to the Malang upload service (a Google Apps Script
-   web app, see documentation/upload-backend.gs) which files it
-   in Drive and logs it for review. Reviewers approve from the
-   Review tab; approving publishes it to the gallery.
+   Upload tab:  pick Artwork or Photograph, drop or paste one or
+                more images, tap a type, submit. Each image shows
+                its own progress and any problem right next to it.
+   My uploads:  every work you sent, its review status, the
+                reviewer's note, and a link once it is live.
+   Review tab:  reviewers approve (publishes to the gallery) or
+                ask for changes.
 
-   The service URL lives in /resrc/data/upload-config.json. If
-   it is empty the page keeps submissions on this device only
-   and says so plainly, rather than pretending they were sent.
+   The upload service is a Google Apps Script web app (see
+   documentation/upload-backend.gs). Its URL lives in
+   /resrc/data/upload-config.json. If it is empty the page keeps
+   submissions on this device only and says so plainly.
    ========================================================= */
+
+const KIND_KEY = "malang_upload_kind";
+
+const uploadState = {
+    kind: "artworks",
+    files: [],      // { id, file, url, title, type, status, progress, error, problem }
+    busy: false,
+    lastType: ""
+};
+let fileSeq = 0;
+
+try {
+    const saved = localStorage.getItem(KIND_KEY);
+    if (saved) uploadState.kind = saved;
+} catch { /* storage blocked: default is fine */ }
 
 const MalangUpload = (() => {
     const CONFIG_URL = "/resrc/data/upload-config.json";
@@ -77,7 +94,7 @@ const MalangUpload = (() => {
         renderKindSwitch();
         const sub = document.getElementById("dropSub");
         if (sub) {
-            sub.textContent = `JPG, PNG or WEBP · Max ${config.maxFileMb} MB · Up to ${config.maxFilesPerBatch} at once`;
+            sub.textContent = `JPG, PNG or WEBP · Max ${config.maxFileMb} MB · Up to ${config.maxFilesPerBatch} at once · or paste with Ctrl+V`;
         }
 
         const notice = document.getElementById("offlineNotice");
@@ -124,11 +141,10 @@ const MalangUpload = (() => {
         }
         if (reviewTab) reviewTab.style.display = reviewer ? "block" : "none";
 
-        if (reviewer) refreshQueue();
-
-        // Deep link from the account page: /upload.html?view=review
-        const params = new URLSearchParams(window.location.search);
-        if (reviewer && params.get("view") === "review") switchTab("review");
+        // Deep links: /upload.html?view=review or ?view=mine
+        const view = new URLSearchParams(window.location.search).get("view");
+        if (view === "review" && reviewer) switchTab("review");
+        else if (view === "mine") switchTab("mine");
     }
 
     // ---------------------------------------------------------------
@@ -176,7 +192,7 @@ const MalangUpload = (() => {
     }
 
     // ---------------------------------------------------------------
-    // Submissions
+    // Calls
     // ---------------------------------------------------------------
     async function submit(record) {
         if (!config.endpoint) {
@@ -192,9 +208,22 @@ const MalangUpload = (() => {
             writeLocal(list);
             return { local: true };
         }
-
         const data = await post({ action: "submit", idToken: await token(), ...record });
         return { local: false, id: data.id };
+    }
+
+    async function fetchMine() {
+        if (!config.endpoint) return readLocal();
+        const data = await post({ action: "mine", idToken: await token() });
+        return data.items || [];
+    }
+
+    async function withdraw(id) {
+        if (!config.endpoint) {
+            writeLocal(readLocal().filter((s) => s.id !== id));
+            return { local: true };
+        }
+        return post({ action: "withdraw", idToken: await token(), id });
     }
 
     async function fetchQueue() {
@@ -241,7 +270,7 @@ const MalangUpload = (() => {
     }
 
     return {
-        boot: start, setUser, isMember, isReviewer, submit, fetchQueue, decide,
+        boot: start, setUser, isMember, isReviewer, submit, fetchMine, withdraw, fetchQueue, decide,
         get ready() { return start(); },
         get config() { return config; },
         get user() { return user; },
@@ -261,6 +290,8 @@ window.MalangUpload = MalangUpload;
    Helpers
    ========================================================= */
 
+const $ = (id) => document.getElementById(id);
+
 function escapeHtml(text) {
     return String(text == null ? "" : text).replace(/[&<>"']/g, (c) => (
         { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
@@ -278,20 +309,37 @@ function categoryLabel(value) {
 
 const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
 
+function formatSize(bytes) {
+    return bytes >= 1024 * 1024
+        ? (bytes / (1024 * 1024)).toFixed(1) + " MB"
+        : Math.max(1, Math.round(bytes / 1024)) + " KB";
+}
+
+function formatDate(value) {
+    const d = new Date(value);
+    return isNaN(d) ? "" : d.toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+}
+
+function setMessage(text, tone) {
+    const el = $("formMessage");
+    if (!el) return;
+    el.hidden = !text;
+    el.textContent = text || "";
+    el.className = "form-message" + (tone ? " " + tone : "");
+}
+
 /* =========================================================
-   Submit form state
+   Artwork / Photograph and type
    ========================================================= */
 
-const uploadState = {
-    kind: "artworks",
-    files: [],      // { id, file, url, title, type, status: ready|uploading|done|failed, error }
-    busy: false,
-    lastType: ""
-};
-let fileSeq = 0;
+function currentTypes() {
+    return (categoryOf(uploadState.kind) || {}).types || [];
+}
+
+const pendingFiles = () => uploadState.files.filter((f) => f.status !== "done");
 
 function renderKindSwitch() {
-    const box = document.getElementById("kindSwitch");
+    const box = $("kindSwitch");
     if (!box) return;
     const cats = MalangUpload.config.categories;
     if (!cats.some((c) => c.value === uploadState.kind)) uploadState.kind = cats[0].value;
@@ -306,25 +354,55 @@ function renderKindSwitch() {
     box.querySelectorAll("input[name=kind]").forEach((input) => {
         input.addEventListener("change", () => setKind(input.value));
     });
+    renderTypePicker();
 }
 
 function setKind(kind) {
     uploadState.kind = kind;
-    const types = (categoryOf(kind) || {}).types || [];
+    try { localStorage.setItem(KIND_KEY, kind); } catch { /* fine */ }
+    const types = currentTypes();
     // A type from the other category makes no sense here; ask again.
-    uploadState.files.forEach((f) => {
-        if (f.status !== "done" && !types.includes(f.type)) f.type = "";
-    });
+    pendingFiles().forEach((f) => { if (!types.includes(f.type)) f.type = ""; });
     if (!types.includes(uploadState.lastType)) uploadState.lastType = "";
     renderFileList();
 }
 
-function currentTypes() {
-    return (categoryOf(uploadState.kind) || {}).types || [];
+function renderTypePicker() {
+    const picker = $("typePicker");
+    const chips = $("typeChips");
+    if (!picker || !chips) return;
+
+    const waiting = pendingFiles();
+    picker.hidden = waiting.length === 0;
+    if (!waiting.length) return;
+
+    const types = currentTypes();
+    const first = waiting[0].type;
+    const shared = waiting.every((f) => f.type === first) ? first : "";
+    const mixed = !shared && waiting.some((f) => f.type);
+
+    chips.innerHTML = types.map((t) => `
+        <label class="type-chip">
+            <input type="radio" name="batchType" value="${escapeHtml(t)}"
+                ${t === shared ? "checked" : ""} ${uploadState.busy ? "disabled" : ""}>
+            <span>${escapeHtml(t)}</span>
+        </label>`).join("");
+
+    const hint = $("typeHint");
+    if (hint) {
+        hint.textContent = waiting.length < 2 ? "" : mixed ? "mixed · change single images below" : "applies to all images";
+    }
+}
+
+function clearTypeError() {
+    const err = $("typeError");
+    if (err) err.hidden = true;
+    const picker = $("typePicker");
+    if (picker) picker.classList.remove("has-error");
 }
 
 /* =========================================================
-   File picking
+   Picking files
    ========================================================= */
 
 function handleFileSelect(e) {
@@ -334,22 +412,28 @@ function handleFileSelect(e) {
 
 function addFiles(fileList) {
     if (uploadState.busy) return;
+    if (!$("doneState").hidden) startNewBatch();
+
     const cfg = MalangUpload.config;
     const skipped = [];
 
-    // Starting a new batch after a finished one clears the old ticks.
+    // A new pick after a finished batch clears the old ticks.
     uploadState.files = uploadState.files.filter((f) => {
         if (f.status === "done") { URL.revokeObjectURL(f.url); return false; }
         return true;
     });
 
+    const waiting = pendingFiles();
+    const sharedType = waiting.length && waiting.every((f) => f.type === waiting[0].type) ? waiting[0].type : "";
+    const defaultType = sharedType || (currentTypes().includes(uploadState.lastType) ? uploadState.lastType : "");
+
     Array.from(fileList).forEach((file) => {
         if (!/^image\/(png|jpeg|webp)$/.test(file.type)) {
-            skipped.push(`${file.name} is not a JPG, PNG or WEBP`);
+            skipped.push(`${file.name} (not a JPG, PNG or WEBP)`);
             return;
         }
         if (file.size > cfg.maxFileMb * 1024 * 1024) {
-            skipped.push(`${file.name} is over ${cfg.maxFileMb} MB`);
+            skipped.push(`${file.name} (over ${cfg.maxFileMb} MB)`);
             return;
         }
         if (uploadState.files.length >= cfg.maxFilesPerBatch) {
@@ -361,16 +445,16 @@ function addFiles(fileList) {
             file,
             url: URL.createObjectURL(file),
             title: "",
-            type: currentTypes().includes(uploadState.lastType) ? uploadState.lastType : "",
+            type: defaultType,
             status: "ready",
-            error: ""
+            progress: 0,
+            error: "",
+            problem: ""
         });
     });
 
     renderFileList();
-    if (skipped.length) {
-        showAlert("Some files were skipped", skipped.join(" · "), [{ text: "OK" }]);
-    }
+    setMessage(skipped.length ? "Skipped: " + skipped.join(", ") + "." : "", "warn");
 }
 
 function removeFile(id) {
@@ -379,55 +463,78 @@ function removeFile(id) {
     if (i === -1) return;
     URL.revokeObjectURL(uploadState.files[i].url);
     uploadState.files.splice(i, 1);
+    if (!uploadState.files.length) setMessage("");
     renderFileList();
 }
 
+/* =========================================================
+   File list
+   ========================================================= */
+
 function statusText(f) {
-    const size = f.file.size >= 1024 * 1024
-        ? (f.file.size / (1024 * 1024)).toFixed(1) + " MB"
-        : Math.max(1, Math.round(f.file.size / 1024)) + " KB";
     switch (f.status) {
+        case "preparing": return "Preparing…";
         case "uploading": return "Uploading…";
-        case "done": return "Sent for review ✓";
-        case "failed": return "Failed: " + f.error;
-        default: return `${f.file.name} · ${size}`;
+        case "done": return "Sent for review";
+        case "failed": return "Didn't upload: " + f.error;
+        default: return `${f.file.name} · ${formatSize(f.file.size)}`;
     }
 }
 
 function renderFileList() {
-    const list = document.getElementById("fileList");
+    const list = $("fileList");
     if (!list) return;
     const types = currentTypes();
+    const many = uploadState.files.length > 1;
 
     list.innerHTML = uploadState.files.map((f) => {
         const name = escapeHtml(f.file.name);
         const locked = uploadState.busy || f.status === "done";
-        const options = [`<option value="" ${f.type ? "" : "selected"} disabled>Choose type…</option>`]
-            .concat(types.map((t) =>
-                `<option value="${escapeHtml(t)}" ${t === f.type ? "selected" : ""}>${escapeHtml(t)}</option>`))
-            .join("");
+        const select = many ? `
+            <select class="file-type" aria-label="Type for ${name}" aria-describedby="problem-${f.id}"
+                ${locked ? "disabled" : ""}>
+                <option value="" ${f.type ? "" : "selected"} disabled>Choose type…</option>
+                ${types.map((t) => `<option value="${escapeHtml(t)}" ${t === f.type ? "selected" : ""}>${escapeHtml(t)}</option>`).join("")}
+            </select>` : "";
 
         return `
-            <li class="file-item is-${f.status}" data-id="${f.id}">
+            <li class="file-item is-${f.status}${f.problem ? " has-problem" : ""}" data-id="${f.id}">
                 <img class="file-thumb" src="${f.url}" alt="">
                 <div class="file-fields">
                     <input type="text" class="file-title" maxlength="120" placeholder="Title (optional)"
                         aria-label="Title for ${name}" value="${escapeHtml(f.title)}" ${locked ? "disabled" : ""}>
-                    <select class="file-type" aria-label="Type for ${name}" ${locked ? "disabled" : ""}>${options}</select>
+                    ${select}
+                    <p class="field-error" id="problem-${f.id}" ${f.problem ? "" : "hidden"}>${escapeHtml(f.problem)}</p>
                     <p class="file-status">${escapeHtml(statusText(f))}</p>
+                    <div class="file-progress" aria-hidden="true"><span style="width:${f.progress}%"></span></div>
                 </div>
                 <button type="button" class="file-remove" aria-label="Remove ${name}"
                     ${locked ? "disabled" : ""}>&times;</button>
             </li>`;
     }).join("");
 
+    const zone = $("dropzone");
+    if (zone) zone.classList.toggle("compact", uploadState.files.length > 0);
+    const label = $("dropLabel");
+    if (label) label.textContent = uploadState.files.length ? "+ Add more images" : "Drop images here or click to browse";
+
+    renderTypePicker();
     updateSubmitButton();
 }
 
+/** Updates one row in place while uploading, so thumbnails don't flicker. */
+function updateRow(f) {
+    const li = document.querySelector(`.file-item[data-id="${f.id}"]`);
+    if (!li) return;
+    li.className = `file-item is-${f.status}`;
+    li.querySelector(".file-status").textContent = statusText(f);
+    li.querySelector(".file-progress span").style.width = f.progress + "%";
+}
+
 function updateSubmitButton(progress) {
-    const btn = document.getElementById("submitBtn");
+    const btn = $("submitBtn");
     if (!btn) return;
-    const waiting = uploadState.files.filter((f) => f.status !== "done").length;
+    const waiting = pendingFiles().length;
 
     if (uploadState.busy && progress) {
         btn.textContent = `Uploading ${progress.at} of ${progress.of}…`;
@@ -442,8 +549,8 @@ function updateSubmitButton(progress) {
 }
 
 function setFormLocked(locked) {
-    document.querySelectorAll("#kindSwitch input").forEach((i) => { i.disabled = locked; });
-    const zone = document.getElementById("dropzone");
+    document.querySelectorAll("#kindSwitch input, #typeChips input").forEach((i) => { i.disabled = locked; });
+    const zone = $("dropzone");
     if (zone) zone.classList.toggle("is-locked", locked);
 }
 
@@ -464,7 +571,7 @@ function compressToWebp(src) {
             // Browsers that cannot encode webp: send a high quality jpeg instead.
             resolve(canvas.toDataURL("image/jpeg", 0.92));
         };
-        img.onerror = () => reject(new Error("Could not read that image."));
+        img.onerror = () => reject(new Error("could not read this image."));
         img.src = src;
     });
 }
@@ -473,34 +580,45 @@ function compressToWebp(src) {
    Submit
    ========================================================= */
 
+/** Every image needs a type. Returns true when the form can go. */
+function checkTypes(queue) {
+    clearTypeError();
+    queue.forEach((f) => { f.problem = ""; });
+    const missing = queue.filter((f) => !f.type);
+    if (!missing.length) return true;
+
+    if (missing.length === queue.length) {
+        // Nothing chosen at all: the chips are the place to fix it.
+        renderFileList();
+        $("typePicker").classList.add("has-error");
+        $("typeError").hidden = false;
+        const chip = document.querySelector("#typeChips input");
+        if (chip) chip.focus();
+    } else {
+        missing.forEach((f) => { f.problem = "Choose a type for this image."; });
+        renderFileList();
+        const select = document.querySelector(".file-item.has-problem .file-type");
+        if (select) select.focus();
+    }
+    setMessage("");
+    return false;
+}
+
 async function handleFormSubmit(e) {
     e.preventDefault();
     if (uploadState.busy) return;
 
-    const queue = uploadState.files.filter((f) => f.status !== "done");
+    const queue = pendingFiles();
     if (!queue.length) {
-        showAlert("No Images", "Choose at least one image to upload.", [{ text: "OK" }]);
+        setMessage("Choose at least one image first.", "error");
         return;
     }
-
-    const missing = queue.filter((f) => !f.type);
-    if (missing.length) {
-        document.querySelectorAll(".file-item").forEach((li) => {
-            const f = uploadState.files.find((x) => x.id === Number(li.dataset.id));
-            li.classList.toggle("needs-type", Boolean(f && !f.type && f.status !== "done"));
-        });
-        const first = document.querySelector(".file-item.needs-type .file-type");
-        if (first) first.focus();
-        showAlert("Pick a Type",
-            missing.length === 1
-                ? "Choose a type for the image so it shows up under the right gallery filter."
-                : `Choose a type for each of the ${missing.length} images so they show up under the right gallery filter.`,
-            [{ text: "OK" }]);
-        return;
-    }
+    if (!checkTypes(queue)) return;
 
     uploadState.busy = true;
     setFormLocked(true);
+    setMessage("");
+    queue.forEach((f) => { f.error = ""; f.progress = 0; });
     renderFileList();
 
     let sent = 0;
@@ -509,13 +627,26 @@ async function handleFormSubmit(e) {
 
     for (let i = 0; i < queue.length; i++) {
         const item = queue[i];
-        item.status = "uploading";
-        item.error = "";
-        renderFileList();
         updateSubmitButton({ at: i + 1, of: queue.length });
 
+        item.status = "preparing";
+        item.progress = 8;
+        updateRow(item);
+
+        let ticker = null;
         try {
             const dataUrl = await compressToWebp(item.url);
+            item.status = "uploading";
+            item.progress = 30;
+            updateRow(item);
+
+            // The upload service gives no byte progress, so ease toward the
+            // end while waiting; it jumps to full when the server answers.
+            ticker = setInterval(() => {
+                item.progress += (92 - item.progress) * 0.07;
+                updateRow(item);
+            }, 200);
+
             const result = await MalangUpload.submit({
                 category: uploadState.kind,
                 type: item.type,
@@ -526,11 +657,16 @@ async function handleFormSubmit(e) {
             });
             local = local || result.local;
             item.status = "done";
+            item.progress = 100;
             sent++;
         } catch (err) {
             item.status = "failed";
-            item.error = (err && err.message) || "Something went wrong.";
+            item.progress = 0;
+            item.error = (err && err.message) || "something went wrong.";
             failed++;
+        } finally {
+            clearInterval(ticker);
+            updateRow(item);
         }
     }
 
@@ -540,33 +676,48 @@ async function handleFormSubmit(e) {
 
     if (!failed) {
         vibrate(50);
-        if (local) {
-            showAlert("Saved On This Device",
-                "The upload service is not connected yet, so your work is saved here only and has not reached the review team.",
-                [{ text: "OK" }]);
-        } else {
-            showAlert("Sent for Review",
-                sent === 1
-                    ? "Your work was sent to the review team. It appears in the gallery once a reviewer approves it."
-                    : `${sent} works were sent to the review team. They appear in the gallery once a reviewer approves them.`,
-                [{ text: "OK" }]);
-        }
+        showDone(sent, local);
     } else {
         vibrate(200);
-        showAlert("Some Uploads Failed",
-            `${sent} sent, ${failed} failed. The failed ones are still in the list with the reason; press Retry to try them again.`,
-            [{ text: "OK" }]);
+        setMessage(
+            `${failed} of ${queue.length} didn't upload. The reason is under each image; press Retry to try again.`,
+            "error");
     }
 }
 
+function showDone(sent, local) {
+    $("uploadForm").hidden = true;
+    const done = $("doneState");
+    done.hidden = false;
+    $("doneTitle").textContent = local ? "Saved on this device" : "Sent for review";
+    $("doneText").textContent = local
+        ? "The upload service is not connected yet, so your work is saved here only and has not reached the review team."
+        : sent === 1
+            ? "Your work is with the review team. It appears in the gallery once a reviewer approves it."
+            : `${sent} works are with the review team. They appear in the gallery once a reviewer approves them.`;
+    done.focus();
+}
+
+function startNewBatch() {
+    uploadState.files = uploadState.files.filter((f) => {
+        if (f.status === "done") { URL.revokeObjectURL(f.url); return false; }
+        return true;
+    });
+    $("doneState").hidden = true;
+    $("uploadForm").hidden = false;
+    setMessage("");
+    renderFileList();
+}
+
 /* =========================================================
-   Form events (delegated, so re-rendering keeps them working)
+   Form events
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-    const zone = document.getElementById("dropzone");
-    const input = document.getElementById("fileInput");
-    const list = document.getElementById("fileList");
+    const zone = $("dropzone");
+    const input = $("fileInput");
+    const list = $("fileList");
+    const chips = $("typeChips");
 
     if (zone && input) {
         const open = () => { if (!uploadState.busy) input.click(); };
@@ -583,6 +734,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    if (chips) {
+        chips.addEventListener("change", (e) => {
+            if (e.target.name !== "batchType") return;
+            uploadState.lastType = e.target.value;
+            pendingFiles().forEach((f) => { f.type = e.target.value; f.problem = ""; });
+            clearTypeError();
+            renderFileList();
+        });
+    }
+
     if (list) {
         const itemFor = (el) => {
             const li = el.closest(".file-item");
@@ -596,11 +757,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const f = itemFor(e.target);
             if (!f || !e.target.classList.contains("file-type")) return;
             f.type = e.target.value;
+            f.problem = "";
             uploadState.lastType = f.type;
-            // Fill the same type into any image still waiting for one.
-            uploadState.files.forEach((other) => {
-                if (!other.type && other.status !== "done") other.type = f.type;
-            });
             renderFileList();
         });
         list.addEventListener("click", (e) => {
@@ -609,20 +767,167 @@ document.addEventListener("DOMContentLoaded", () => {
             if (f) removeFile(f.id);
         });
     }
+
+    // Paste an image straight from the clipboard.
+    document.addEventListener("paste", (e) => {
+        if (!MalangUpload.user || $("tabUpload").style.display === "none" || uploadState.busy) return;
+        const files = Array.from((e.clipboardData && e.clipboardData.files) || [])
+            .filter((f) => f.type.startsWith("image/"));
+        if (!files.length) return;
+        e.preventDefault();
+        addFiles(files);
+    });
+
+    // Leaving mid-upload would drop the rest of the batch.
+    window.addEventListener("beforeunload", (e) => {
+        if (!uploadState.busy) return;
+        e.preventDefault();
+        e.returnValue = "";
+    });
 });
 
 /* =========================================================
-   Tabs and filters
+   Tabs
    ========================================================= */
 
+const TABS = { upload: ["tabUpload", "uploadTabBtn"], mine: ["tabMine", "mineTabBtn"], review: ["tabReview", "reviewTabBtn"] };
+
 function switchTab(tabName) {
-    document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
-    document.getElementById("tabUpload").style.display = tabName === "upload" ? "block" : "none";
-    document.getElementById("tabReview").style.display = tabName === "review" ? "block" : "none";
-    document.getElementById(tabName === "review" ? "reviewTabBtn" : "uploadTabBtn").classList.add("active");
-    document.getElementById("uploadApp").classList.toggle("wide", tabName === "review");
+    Object.entries(TABS).forEach(([name, [panel, btn]]) => {
+        $(panel).style.display = name === tabName ? "block" : "none";
+        $(btn).classList.toggle("active", name === tabName);
+        $(btn).setAttribute("aria-selected", String(name === tabName));
+    });
+    $("uploadApp").classList.toggle("wide", tabName === "review");
     if (tabName === "review") refreshQueue();
+    if (tabName === "mine") refreshMine();
 }
+
+/* =========================================================
+   My uploads
+   ========================================================= */
+
+const MEMBER_STATUS = {
+    PENDING: { label: "In review", tone: "pending" },
+    PUBLISHING: { label: "In review", tone: "pending" },
+    APPROVED: { label: "Live", tone: "approved" },
+    REJECTED: { label: "Changes requested", tone: "rejected" }
+};
+
+function galleryLink(item) {
+    const p = new URLSearchParams({ page: "gallery" });
+    if (item.category === "photographs") p.set("mode", "photographs");
+    if (item.artist) p.set("artist", String(item.artist).replace(/\s+/g, "-"));
+    return "/index.html?" + p.toString();
+}
+
+async function refreshMine() {
+    const list = $("mineList");
+    const summary = $("mineSummary");
+    if (!list) return;
+    list.innerHTML = `<li class="empty-msg">Loading your uploads…</li>`;
+    if (summary) summary.textContent = "";
+
+    let mine;
+    try {
+        mine = await MalangUpload.fetchMine();
+    } catch (err) {
+        const msg = /Unknown action/.test(err.message || "")
+            ? "Your uploads will show here once the tech team updates the upload service."
+            : "Could not load your uploads. " + (err.message || "");
+        list.innerHTML = `<li class="empty-msg">${escapeHtml(msg)}</li>`;
+        return;
+    }
+    renderMine(mine);
+}
+
+function renderMine(mine) {
+    const list = $("mineList");
+    const summary = $("mineSummary");
+
+    const count = (s) => mine.filter((i) => (MEMBER_STATUS[i.status] || {}).tone === s).length;
+    if (summary) {
+        summary.textContent = mine.length
+            ? [
+                count("pending") && `${count("pending")} in review`,
+                count("approved") && `${count("approved")} live`,
+                count("rejected") && `${count("rejected")} ${count("rejected") === 1 ? "needs" : "need"} changes`
+            ].filter(Boolean).join(" · ")
+            : "";
+    }
+
+    if (!mine.length) {
+        list.innerHTML = `
+            <li class="empty-msg">
+                Nothing yet. Works you upload show up here with their review status.
+                <button type="button" class="link-btn" onclick="switchTab('upload')">Upload your first work</button>
+            </li>`;
+        return;
+    }
+
+    list.innerHTML = mine.map((item) => {
+        const st = MEMBER_STATUS[item.status] || { label: item.status, tone: "pending" };
+        const src = item.imageUrl ||
+            (item.dataBase64 ? `data:${item.mimeType || "image/webp"};base64,${item.dataBase64}` : "");
+        const meta = [categoryLabel(item.category), item.type, formatDate(item.submittedAt)]
+            .filter(Boolean).map(escapeHtml).join(" &middot; ");
+
+        let extra = "";
+        if (item.status === "REJECTED") {
+            extra = item.comment
+                ? `<p class="mine-note"><span>Reviewer note</span>${escapeHtml(item.comment)}</p>`
+                : `<p class="mine-note">A reviewer asked for changes.</p>`;
+            extra += `<p class="mine-hint">You can upload an improved version anytime.</p>`;
+        } else if (item.status === "APPROVED") {
+            const num = item.galleryIndex !== "" && item.galleryIndex != null ? ` #${escapeHtml(item.galleryIndex)}` : "";
+            extra = `<a class="mine-link" href="${escapeHtml(galleryLink(item))}" target="_top">View in gallery${num}</a>`;
+        } else if (item.status === "PENDING") {
+            extra = `<button type="button" class="withdraw-btn" data-id="${escapeHtml(item.id)}">Withdraw</button>`;
+        }
+
+        return `
+            <li class="mine-item">
+                <img class="mine-thumb" src="${escapeHtml(src)}" alt="" loading="lazy">
+                <div class="mine-body">
+                    <div class="mine-title-row">
+                        <p class="mine-title">${item.title ? escapeHtml(item.title) : "<em>Untitled</em>"}</p>
+                        <span class="status-pill ${st.tone}">${escapeHtml(st.label)}</span>
+                    </div>
+                    <p class="mine-meta">${meta}</p>
+                    ${extra}
+                </div>
+            </li>`;
+    }).join("");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const list = $("mineList");
+    if (!list) return;
+    list.addEventListener("click", (e) => {
+        const btn = e.target.closest(".withdraw-btn");
+        if (!btn || btn.disabled) return;
+        showAlert("Withdraw this upload?",
+            "It leaves the review queue and the file is removed. You can upload it again later.",
+            [{ text: "Keep it" }, { text: "Withdraw", focus: true, onClick: () => withdrawUpload(btn) }]);
+    });
+});
+
+async function withdrawUpload(btn) {
+    btn.disabled = true;
+    btn.textContent = "Withdrawing…";
+    try {
+        await MalangUpload.withdraw(btn.dataset.id);
+        vibrate(50);
+    } catch (err) {
+        vibrate(200);
+        showAlert("Could Not Withdraw", err.message || "Please try again.", [{ text: "OK" }]);
+    }
+    refreshMine();
+}
+
+/* =========================================================
+   Review queue
+   ========================================================= */
 
 function setStatusFilter(status) {
     MalangUpload.statusFilter = status;
@@ -640,12 +945,8 @@ function setCategoryFilter(category) {
     renderQueue();
 }
 
-/* =========================================================
-   Review queue
-   ========================================================= */
-
 async function refreshQueue() {
-    const list = document.getElementById("reviewQueueList");
+    const list = $("reviewQueueList");
     if (!list) return;
     list.innerHTML = `<p class="empty-msg">Loading submissions...</p>`;
     try {
@@ -659,16 +960,16 @@ async function refreshQueue() {
 }
 
 function renderQueue() {
-    const list = document.getElementById("reviewQueueList");
+    const list = $("reviewQueueList");
     if (!list) return;
 
     const all = MalangUpload.items || [];
     const counts = { PENDING: 0, APPROVED: 0, REJECTED: 0 };
     all.forEach((i) => { if (counts[i.status] !== undefined) counts[i.status]++; });
-    document.getElementById("cPending").textContent = counts.PENDING;
-    document.getElementById("cApproved").textContent = counts.APPROVED;
-    document.getElementById("cRejected").textContent = counts.REJECTED;
-    document.getElementById("cAll").textContent = all.length;
+    $("cPending").textContent = counts.PENDING;
+    $("cApproved").textContent = counts.APPROVED;
+    $("cRejected").textContent = counts.REJECTED;
+    $("cAll").textContent = all.length;
 
     const status = MalangUpload.statusFilter;
     const category = MalangUpload.categoryFilter;
@@ -689,9 +990,9 @@ function renderQueue() {
         const id = escapeHtml(item.id);
         const title = item.title ? escapeHtml(item.title) : "<em>Untitled</em>";
         const artist = escapeHtml(item.artist || item.submitterName || "Unknown");
-        const when = item.submittedAt ? new Date(item.submittedAt).toLocaleDateString() : "";
         const state = item.status || "PENDING";
-        const meta = [categoryLabel(item.category), item.type, when].filter(Boolean).map(escapeHtml).join(" &middot; ");
+        const meta = [categoryLabel(item.category), item.type, formatDate(item.submittedAt)]
+            .filter(Boolean).map(escapeHtml).join(" &middot; ");
 
         let footer;
         if (state === "PENDING") {
@@ -763,12 +1064,12 @@ async function handleReviewDecision(card, decision) {
 
 function viewFullImage(src) {
     if (!src) return;
-    document.getElementById("fullViewImage").src = src;
-    document.getElementById("fullViewModal").style.display = "flex";
+    $("fullViewImage").src = src;
+    $("fullViewModal").style.display = "flex";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const grid = document.getElementById("reviewQueueList");
+    const grid = $("reviewQueueList");
     if (!grid) return;
     grid.addEventListener("click", (e) => {
         const thumb = e.target.closest(".review-thumb");

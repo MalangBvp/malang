@@ -47,12 +47,13 @@
             </div>
 
             <div class="tabs-nav">
-                <button class="tab-btn active" id="uploadTabBtn" onclick="switchTab('upload')">Submit Work</button>
+                <button class="tab-btn active" id="uploadTabBtn" onclick="switchTab('upload')">Upload</button>
+                <button class="tab-btn" id="mineTabBtn" onclick="switchTab('mine')">My uploads</button>
                 <button class="tab-btn" id="reviewTabBtn" style="display:none;"
                     onclick="switchTab('review')">Review</button>
             </div>
 
-            <!-- ---- Submit ---- -->
+            <!-- ---- Upload ---- -->
             <div id="tabUpload">
                 <div id="offlineNotice" class="notice warn" style="display:none;">
                     <span>Submissions are not being delivered yet. The upload service has not been connected, so your
@@ -61,33 +62,65 @@
                 </div>
 
                 <form id="uploadForm" onsubmit="handleFormSubmit(event)" novalidate>
-                    <h3>Submit Your Work</h3>
-
                     <!-- Artwork / Photograph, filled from upload-config.json -->
                     <div id="kindSwitch" class="kind-switch" role="radiogroup" aria-label="What are you uploading?"></div>
 
                     <div id="dropzone" class="dropzone" role="button" tabindex="0"
                         aria-label="Choose images to upload">
                         <img src="/resrc/images/icons/art.webp" class="upload-icon" alt="">
-                        <p class="drop-label">Click to browse or drag &amp; drop</p>
+                        <p class="drop-label" id="dropLabel">Drop images here or click to browse</p>
                         <p class="drop-sub" id="dropSub">JPG, PNG or WEBP &nbsp;·&nbsp; Max 15 MB</p>
                         <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" multiple hidden
                             onchange="handleFileSelect(event)">
                     </div>
 
-                    <ul id="fileList" class="file-list" aria-live="polite"></ul>
+                    <div id="typePicker" class="type-picker" hidden>
+                        <div class="type-head">
+                            <span class="field-label" id="typeLabel">Type</span>
+                            <span class="type-hint" id="typeHint"></span>
+                        </div>
+                        <div id="typeChips" class="type-chips" role="radiogroup" aria-labelledby="typeLabel"
+                            aria-describedby="typeError"></div>
+                        <p id="typeError" class="field-error" hidden>Choose a type so your work shows up under the right
+                            gallery filter.</p>
+                    </div>
+
+                    <ul id="fileList" class="file-list" aria-label="Images to upload"></ul>
+
+                    <p id="formMessage" class="form-message" role="status" hidden></p>
 
                     <p class="credit-line">Credited to <strong id="creditName">you</strong></p>
 
                     <button type="submit" class="long-btn submit-btn" id="submitBtn" disabled>Choose images to
                         submit</button>
                 </form>
+
+                <div id="doneState" class="done-state" tabindex="-1" hidden>
+                    <svg class="done-icon" viewBox="0 0 52 52" aria-hidden="true">
+                        <circle cx="26" cy="26" r="24" fill="none" />
+                        <path d="M15 27l7 7 15-16" fill="none" />
+                    </svg>
+                    <h4 id="doneTitle">Sent for review</h4>
+                    <p id="doneText"></p>
+                    <div class="done-actions">
+                        <button type="button" class="long-btn" onclick="startNewBatch()">Upload more</button>
+                        <button type="button" class="long-btn ghost-btn" onclick="switchTab('mine')">See my
+                            uploads</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ---- My uploads ---- -->
+            <div id="tabMine" style="display:none;">
+                <div class="mine-toolbar">
+                    <span id="mineSummary" class="mine-summary"></span>
+                    <button class="refresh-btn" onclick="refreshMine()">Refresh</button>
+                </div>
+                <ul id="mineList" class="mine-list" aria-live="polite"></ul>
             </div>
 
             <!-- ---- Review ---- -->
             <div id="tabReview" style="display:none;">
-                <h3>Review Submissions</h3>
-
                 <div class="review-toolbar" id="statusChips">
                     <button class="chip active" data-status="PENDING" onclick="setStatusFilter('PENDING')">Pending <span
                             class="count" id="cPending">0</span></button>

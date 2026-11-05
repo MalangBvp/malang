@@ -4,6 +4,11 @@
    (backdrop blur + hairline border, see common.css `form`)
    ========================================================= */
 
+/* common.css gives forms their own display; hidden must still mean hidden. */
+#uploadSection [hidden] {
+    display: none !important;
+}
+
 #uploadSection {
     min-height: 100vh;
     display: flex;
@@ -417,7 +422,7 @@
     white-space: normal;
 }
 
-.file-item.needs-type .file-type {
+.file-item.has-problem .file-type {
     border-color: rgba(255, 110, 110, 0.8);
 }
 
@@ -792,4 +797,387 @@
     max-width: 420px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* ---------- Compact dropzone once images are picked ---------- */
+
+.dropzone.compact {
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 14px;
+}
+
+.dropzone.compact .upload-icon,
+.dropzone.compact .drop-sub {
+    display: none;
+}
+
+.dropzone.compact .drop-label {
+    font-size: 13.5px;
+    color: #bdbdbd;
+}
+
+/* ---------- Type chips ---------- */
+
+.type-picker {
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.type-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 7px;
+}
+
+.type-head .field-label {
+    margin: 0;
+    font-size: 13px;
+    color: #bdbdbd;
+}
+
+.type-hint {
+    font-size: 11.5px;
+    color: #6f6f6f;
+}
+
+.type-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.type-chip {
+    position: relative;
+    cursor: pointer;
+}
+
+.type-chip input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.type-chip span {
+    display: inline-block;
+    padding: 7px 12px;
+    min-height: 18px;
+    font-size: 12.5px;
+    line-height: 18px;
+    color: #a8a8a8;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.type-chip:hover span {
+    color: #f0f0f0;
+    background-color: var(--hover-color);
+}
+
+.type-chip input:checked + span {
+    color: #0b0b0b;
+    font-weight: 500;
+    border-color: #e8e8e8;
+    background-color: #e8e8e8;
+}
+
+.type-chip input:focus-visible + span {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 2px;
+}
+
+.type-chip input:disabled + span {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.type-picker.has-error .type-chip span {
+    border-color: rgba(255, 110, 110, 0.55);
+}
+
+/* ---------- Inline errors and messages ---------- */
+
+.field-error {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.45;
+    color: rgb(255, 120, 120);
+}
+
+.type-picker .field-error {
+    margin-top: 7px;
+}
+
+.form-message {
+    margin: 0 0 12px;
+    padding: 9px 11px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    text-align: left;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    color: #bdbdbd;
+    background-color: rgba(26, 26, 26, 0.6);
+}
+
+.form-message.warn {
+    color: #e6d3a3;
+    border-color: rgba(230, 211, 163, 0.3);
+}
+
+.form-message.error {
+    color: rgb(255, 140, 140);
+    border-color: rgba(255, 110, 110, 0.4);
+}
+
+/* ---------- Per-image progress ---------- */
+
+.file-progress {
+    height: 3px;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.06);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.file-progress span {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 3px;
+    background-color: #e8e8e8;
+    transition: width 0.25s ease;
+}
+
+.file-item.is-preparing .file-progress,
+.file-item.is-uploading .file-progress,
+.file-item.is-done .file-progress {
+    opacity: 1;
+}
+
+.file-item.is-done .file-progress span {
+    background-color: rgb(120, 220, 120);
+}
+
+.file-item.is-preparing {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ---------- Done state ---------- */
+
+.done-state {
+    padding: 22px 6px 6px;
+    text-align: center;
+    outline: none;
+}
+
+.done-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 10px;
+}
+
+.done-icon circle {
+    stroke: rgba(120, 220, 120, 0.45);
+    stroke-width: 2;
+}
+
+.done-icon path {
+    stroke: rgb(120, 220, 120);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.done-state h4 {
+    margin: 0 0 6px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #f4f4f4;
+}
+
+.done-state p {
+    margin: 0 auto 18px;
+    max-width: 360px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #9e9e9e;
+}
+
+.done-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.done-actions .long-btn {
+    flex: 1;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    text-align: center;
+}
+
+.ghost-btn {
+    color: #bdbdbd;
+    background-color: transparent;
+}
+
+/* ---------- My uploads ---------- */
+
+.mine-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.mine-summary {
+    font-size: 12.5px;
+    color: #8a8a8a;
+}
+
+.mine-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mine-list .empty-msg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.6;
+}
+
+.mine-item {
+    display: flex;
+    gap: 12px;
+    padding: 9px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: rgba(26, 26, 26, 0.45);
+    text-align: left;
+}
+
+.mine-thumb {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 7px;
+    background-color: #0a0a0a;
+}
+
+.mine-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.mine-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.mine-title {
+    margin: 0 0 3px;
+    font-size: 14px;
+    color: #f4f4f4;
+    word-break: break-word;
+}
+
+.mine-meta {
+    margin: 0;
+    font-size: 11.5px;
+    color: #7a7a7a;
+}
+
+.mine-note {
+    margin: 8px 0 0;
+    padding: 7px 9px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: #e6e6e6;
+    border-left: 2px solid rgba(255, 110, 110, 0.6);
+    border-radius: 0 6px 6px 0;
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.mine-note span {
+    display: block;
+    font-size: 11px;
+    color: #8a8a8a;
+    margin-bottom: 2px;
+}
+
+.mine-hint {
+    margin: 6px 0 0;
+    font-size: 11.5px;
+    color: #7a7a7a;
+}
+
+.mine-link,
+.link-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 0;
+    font-size: 12.5px;
+    font-family: inherit;
+    color: #e6e6e6;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.mine-link:hover,
+.link-btn:hover {
+    color: white;
+}
+
+.withdraw-btn {
+    margin-top: 8px;
+    padding: 5px 11px;
+    font-size: 12px;
+    font-family: inherit;
+    color: #9e9e9e;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.withdraw-btn:hover:not(:disabled) {
+    color: white;
+    background-color: var(--hover-color);
+}
+
+.withdraw-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+@media (max-width: 600px) {
+    .done-actions {
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .file-progress span,
+    .type-chip span,
+    .kind-option span {
+        transition: none;
+    }
 }

@@ -58,6 +58,8 @@ function doPost(e) {
     const body = JSON.parse((e && e.postData && e.postData.contents) || '{}');
     switch (body.action) {
       case 'submit': return json(handleSubmit(body));
+      case 'mine': return json(handleMine(body));
+      case 'withdraw': return json(handleWithdraw(body));
       case 'queue': return json(handleQueue(body));
       case 'decide': return json(handleDecide(body));
       default: return json({ ok: false, error: 'Unknown action.' });
@@ -69,7 +71,7 @@ function doPost(e) {
 
 /** Opening the /exec URL in a browser shows this, which is a quick deploy check. */
 function doGet() {
-  return json({ ok: true, service: 'malang-upload', version: 2 });
+  return json({ ok: true, service: 'malang-upload', version: 3 });
 }
 
 // ---------------------------------------------------------
@@ -122,20 +124,79 @@ function handleSubmit(body) {
   return { ok: true, id: id };
 }
 
+/** A member's own submissions, newest first, so they can follow review status and notes. */
+function handleMine(body) {
+  const account = requireMember(body.idToken);
+
+  const items = readRows(sheet())
+    .filter(function (r) { return String(r.item.submitterEmail).toLowerCase() === account.email; })
+    .map(function (r) { return publicItem(r.item); })
+    .filter(function (item) { return item.status !== 'WITHDRAWN'; });
+
+  items.reverse();
+  return { ok: true, items: items };
+}
+
+/** Lets a member take back a work that is still waiting for review. */
+function handleWithdraw(body) {
+  const account = requireMember(body.idToken);
+
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(30000)) throw new Error('Busy right now. Try again in a moment.');
+
+  try {
+    const sh = sheet();
+    const found = readRows(sh).filter(function (r) {
+      return r.item.id === body.id && String(r.item.submitterEmail).toLowerCase() === account.email;
+    })[0];
+    if (!found) throw new Error('Submission not found.');
+
+    const status = effectiveStatus(found.item);
+    if (status === 'APPROVED') throw new Error('This work is already live. Ask a reviewer to take it down.');
+    if (status !== 'PENDING') throw new Error('Only works still in review can be withdrawn.');
+
+    writeFields(sh, found.rowNumber, { status: 'WITHDRAWN', reviewedAt: new Date().toISOString() });
+    try {
+      DriveApp.getFileById(found.item.fileId).setTrashed(true); // stays in Drive trash for 30 days
+    } catch (err) { /* the row is what matters */ }
+
+    return { ok: true };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
 function handleQueue(body) {
   requireReviewer(body.idToken);
 
-  const items = readRows(sheet()).map(function (r) {
-    const item = r.item;
-    item.status = effectiveStatus(item);
-    item.imageUrl = item.fileId ? thumb(item.fileId, 800) : '';
-    item.fullUrl = item.fileId ? thumb(item.fileId, 2000) : '';
-    delete item.submitterEmail; // reviewers see names, not addresses
-    return item;
-  });
+  const items = readRows(sheet())
+    .map(function (r) {
+      const item = publicItem(r.item);
+      item.reviewedBy = r.item.reviewedBy;
+      item.reviewedAt = r.item.reviewedAt;
+      return item;
+    })
+    .filter(function (item) { return item.status !== 'WITHDRAWN'; });
 
   items.reverse(); // newest first
   return { ok: true, items: items };
+}
+
+/** The fields a page may see. Never includes the submitter's email. */
+function publicItem(row) {
+  return {
+    id: row.id,
+    submittedAt: row.submittedAt,
+    artist: row.artist,
+    title: row.title,
+    category: row.category,
+    type: row.type,
+    status: effectiveStatus(row),
+    comment: row.comment,
+    galleryIndex: row.galleryIndex,
+    imageUrl: row.fileId ? thumb(row.fileId, 800) : '',
+    fullUrl: row.fileId ? thumb(row.fileId, 2000) : ''
+  };
 }
 
 function handleDecide(body) {
@@ -155,6 +216,7 @@ function handleDecide(body) {
 
     const item = found.item;
     const status = effectiveStatus(item);
+    if (status === 'WITHDRAWN') throw new Error('The artist withdrew this work.');
     if (status !== 'PENDING') {
       throw new Error('Already ' + status.toLowerCase() + ' by ' + (item.reviewedBy || 'another reviewer') + '.');
     }
