@@ -252,7 +252,7 @@ This section covers the internal tools restricted to authorized members. Access 
 <h3 id="Accounts">Accounts</h3>
 
 The [Account portal](file:///src/pages/account.html) serves as the gateway to restricted utilities. Authentication is managed in two ways:
-1. **Firebase Authentication:** Members must sign in with Google. To grant a new member access, add their email address to the array in [`/resrc/data/member-emails.json`](file:///resrc/data/member-emails.json).
+1. **Firebase Authentication:** Members must sign in with Google. The member and reviewer lists are private: they live in the **Members** and **Reviewers** tabs of the *Malang Upload Submissions* Google Sheet (Drive > Website), not in this repo. To grant a new member access, add their Gmail to column A of the **Members** tab; it works within a minute. Pages ask the upload service "who am I?" ([`src/scripts/access.js`](file:///src/scripts/access.js)) and only learn about the person signed in. See [`documentation/upload-setup.md`](file:///documentation/upload-setup.md).
 2. **Passcodes:** Some pages (like Treasury, Media Kit, and Drafts) require a specific passcode. Passcodes are base64-encoded and verified inside [`src/scripts/authentication.js`](file:///src/scripts/authentication.js).
 
 <h3 id="Claims">Claims</h3>

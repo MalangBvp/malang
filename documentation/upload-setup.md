@@ -85,6 +85,8 @@ Chrome profile or an Incognito window so you don't mix it up with your own accou
 4. Look at the **Execution log** at the bottom. You should see:
    ```
    Folders and sheet are ready inside "Website".
+   EMPTY  Members tab has 0 emails.
+   EMPTY  Reviewers tab has 0 emails.
    OK  FIREBASE_API_KEY is set.
    OK  GitHub token can see MalangBvp/malang.
    ```
@@ -93,6 +95,19 @@ Chrome profile or an Incognito window so you don't mix it up with your own accou
    folders are reused, nothing is deleted.
 
    If a line says `MISSING` or `PROBLEM`, fix that property in B2 and run `setup` again.
+   `EMPTY` is expected the first time: you fill those tabs in B3b.
+
+### B3b. Add members and reviewers
+The list of who is a member, and who is a reviewer, lives **only in the sheet**,
+not on the website. Nobody visiting the site can see it.
+
+1. Open Drive > Website > **Malang Upload Submissions**.
+2. **Members** tab: put each member's Gmail in **column A**, one per row, starting
+   on row 2. Column B (`name`) is just a note for you; the script ignores it.
+3. **Reviewers** tab: same, for the people who approve uploads.
+   A reviewer should also be in **Members**, or they can't open the upload page.
+
+Capital letters and spaces around the email don't matter.
 
 ### B4. Deploy it
 1. Top right: **Deploy** > **New deployment**.
@@ -105,11 +120,12 @@ Chrome profile or an Incognito window so you don't mix it up with your own accou
 5. Copy the **Web app URL**. It looks like
    `https://script.google.com/macros/s/AKfy.../exec`
 6. Check it works: open that URL in a new tab. You should see
-   `{"ok":true,"service":"malang-upload","version":2}`
+   `{"ok":true,"service":"malang-upload","version":5}`
 
 "Anyone" is needed so the website can talk to it. Nobody can do anything with
 it without signing in on the website as a listed member or reviewer: every
-request is checked.
+request is checked. When the website asks "who am I?" it only gets a yes or no
+for the person signed in, never the list.
 
 ---
 
@@ -137,12 +153,41 @@ it is fine for it to be in the website code.)
 
 ---
 
+## One time: moving the member lists off the website (November 2026)
+
+The member and reviewer emails used to be public files on the website
+(`member-emails.json`, `reviewers.json`). They now live only in the sheet.
+If your postman shows a version lower than 5, do these steps **in this order**,
+as malangbvp@gmail.com. The website update must go live **last**, because
+step 3 copies the emails from those old files before they disappear.
+
+1. Open the **Malang Upload Service** script. Replace everything in `Code.gs`
+   with the new `documentation/upload-backend.gs` and press **Ctrl+S**.
+   (Saving does not change the live postman yet.)
+2. Run **`setup`** (B3). It adds empty **Members** and **Reviewers** tabs to the sheet.
+3. In the function menu choose **`importOldListsFromSite`** > **Run**. The log should say
+   ```
+   OK  Members: added 53, 53 in total.
+   OK  Reviewers: added 4, 4 in total.
+   ```
+4. Open the sheet and check the two tabs look right.
+5. **Deploy** > **Manage deployments** > pencil icon > **Version: New version** > **Deploy**.
+   Open the Web app URL: it should now say `"version":5`.
+6. Now push the website update that deletes the two files.
+7. Sign in on the website: the Account page and Upload page should work as before.
+
+You can delete this section once it is done.
+
+---
+
 ## Everyday changes
 
 | I want to... | Do this |
 |---|---|
-| Let a new member upload | Add their Gmail to `resrc/data/member-emails.json` and push. Works within 5 minutes. |
-| Add or remove a reviewer | Edit `resrc/data/reviewers.json` and push. |
+| Add a new member | Open Drive > Website > **Malang Upload Submissions** > **Members** tab. Type their Gmail in **column A** on the first empty row (their name in column B if you like). Works within a minute. No push, no redeploy. |
+| Remove a member | Delete their row in the **Members** tab (right-click the row number > **Delete row**). Works within a minute. |
+| Add or remove a reviewer | Same, in the **Reviewers** tab. Reviewers must also be in **Members**. |
+| Let another core member manage the lists | Share the *Malang Upload Submissions* sheet with their Gmail as **Editor**. Only share it with core: it holds everyone's email. |
 | Add a new type (e.g. "Charcoal") | Add it to the `types` list in `resrc/data/upload-config.json` and push. |
 | Update the postman code | Paste the new code > **Deploy** > **Manage deployments** > pencil icon > **Version: New version** > **Deploy**. The URL stays the same. |
 | Replace an expired or leaked GitHub key | Make a new key (Part A), delete the old one on GitHub, then change `GITHUB_TOKEN` in B2. No redeploy needed. |
@@ -168,7 +213,9 @@ after a reviewer asks for changes).
 
 | Message | Meaning / fix |
 |---|---|
-| "Only Malang members can upload work." | That Gmail is not in `member-emails.json`. |
+| "Only Malang members can upload work." / "Unauthorised Access" / "This account is not on the Malang member list." | That Gmail is not in the **Members** tab, or has a typo. Fix it there; it works within a minute. |
+| "Could not check your membership…" | The website could not reach the postman, or the postman has old code. Open the Web app URL (B4): it should show `"version":5` or higher. If the number is lower, paste the new code and deploy a **New version**. |
+| "The "Members" tab is missing from the sheet." | Run `setup` once (B3). |
 | "Session expired. Please sign in again." | Sign out and sign in again on the website. |
 | "Could not publish to the website. GitHub 401" | The GitHub key expired or was deleted. Make a new one (Part A) and update `GITHUB_TOKEN`. |
 | "Could not publish to the website. GitHub 403 / 404" | The key does not have **Contents: Read and write** on **malang**, or the organisation has not approved it. |

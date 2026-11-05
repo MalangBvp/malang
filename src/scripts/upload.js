@@ -58,8 +58,6 @@ try {
 
 const MalangUpload = (() => {
     const CONFIG_URL = "/resrc/data/upload-config.json";
-    const MEMBERS_URL = "/resrc/data/member-emails.json";
-    const REVIEWERS_URL = "/resrc/data/reviewers.json";
     const LOCAL_KEY = "malang_artwork_submissions";
 
     const DEFAULTS = {
@@ -85,17 +83,14 @@ const MalangUpload = (() => {
     };
 
     let config = { ...DEFAULTS };
-    let members = [];
-    let reviewers = [];
-    let user = null;
+    let user = null;        // set only once the upload service confirms a member
+    let reviewer = false;
     let signOutFn = null;
     let items = [];
     let statusFilter = "PENDING";
     let categoryFilter = "all";
     let authResolved = false;
-
-    // Gmail is case-insensitive; a capitalised address must not lock a member out.
-    const norm = (email) => String(email || "").trim().toLowerCase();
+    let authSeq = 0;
 
     async function loadJson(url, fallback) {
         try {
@@ -108,15 +103,8 @@ const MalangUpload = (() => {
     }
 
     async function boot() {
-        const [cfg, mem, rev] = await Promise.all([
-            loadJson(CONFIG_URL, DEFAULTS),
-            loadJson(MEMBERS_URL, []),
-            loadJson(REVIEWERS_URL, [])
-        ]);
-
+        const cfg = await loadJson(CONFIG_URL, DEFAULTS);
         config = { ...DEFAULTS, ...(cfg || {}) };
-        members = (mem || []).map(norm).filter(Boolean);
-        reviewers = (rev || []).map(norm).filter(Boolean);
 
         renderKindSwitch();
         const sub = document.getElementById("dropSub");
@@ -128,21 +116,55 @@ const MalangUpload = (() => {
         if (notice) notice.style.display = config.endpoint ? "none" : "flex";
     }
 
-    const isMember = (email) => members.includes(norm(email));
-    const isReviewer = (email) => reviewers.includes(norm(email));
+    /**
+     * What this account may do: { member, reviewer }. The member and reviewer
+     * lists are private to the upload service; it only answers about the
+     * person signed in (see src/scripts/access.js). Throws if it can't be asked.
+     */
+    function checkAccess(account, options) {
+        if (!account) return Promise.resolve({ member: false, reviewer: false });
+        // Not connected yet: nothing leaves this device, so anyone signed in may try it.
+        if (!config.endpoint) return Promise.resolve({ member: true, reviewer: false });
+        return window.malangAccess(account, options);
+    }
 
-    function setUser(nextUser, onSignOut) {
+    function showGateNote(text) {
+        const note = document.getElementById("authNote");
+        if (!note) return;
+        note.hidden = !text;
+        note.textContent = text || "";
+    }
+
+    async function setUser(nextUser, onSignOut) {
         authResolved = true;
-        user = nextUser && isMember(nextUser.email) ? nextUser : null;
         if (onSignOut) signOutFn = onSignOut;
-
+        const seq = ++authSeq;
         const loader = document.getElementById("loader");
+
+        let access = { member: false, reviewer: false };
+        let note = "";
+        if (!nextUser && window.malangAccess) window.malangAccess.forget();
+        if (nextUser) {
+            if (loader) loader.style.display = "";
+            try {
+                access = await checkAccess(nextUser);
+                if (!access.member) note = "This account is not on the Malang member list.";
+            } catch (err) {
+                console.warn("Membership check failed:", err && err.message);
+                note = "Could not check your membership. Please reload the page to try again.";
+            }
+            if (seq !== authSeq) return; // a newer sign-in state arrived meanwhile
+        }
+
+        user = access.member ? nextUser : null;
+        reviewer = !!(user && access.reviewer);
         if (loader) loader.style.display = "none";
 
         const gate = document.getElementById("authGate");
         const app = document.getElementById("uploadApp");
 
         if (!user) {
+            showGateNote(note);
             if (gate) gate.style.display = "block";
             if (app) app.style.display = "none";
             items = [];
@@ -151,6 +173,7 @@ const MalangUpload = (() => {
             return;
         }
 
+        showGateNote("");
         if (gate) gate.style.display = "none";
         if (app) app.style.display = "block";
 
@@ -159,7 +182,6 @@ const MalangUpload = (() => {
         const badge = document.getElementById("roleBadge");
         const reviewTab = document.getElementById("reviewTabBtn");
         const credit = document.getElementById("creditName");
-        const reviewer = isReviewer(user.email);
 
         if (avatar) avatar.src = user.photoURL || "/resrc/images/icons/user.png";
         if (name) name.textContent = user.displayName || "Malang Member";
@@ -314,7 +336,7 @@ const MalangUpload = (() => {
     }
 
     return {
-        boot: start, setUser, isMember, isReviewer, submit, fetchMine, withdraw, fetchQueue, decide,
+        boot: start, setUser, checkAccess, submit, fetchMine, withdraw, fetchQueue, decide,
         get ready() { return start(); },
         get config() { return config; },
         get user() { return user; },

@@ -61,6 +61,7 @@
         id="content"></iframe>
     <script src="src/scripts/common.js"></script>
     <script src="src/scripts/load.js"></script>
+    <script src="src/scripts/access.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
@@ -78,28 +79,45 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Load allowed emails once
-        let allowedEmails = [];
-        const normEmail = (e) => String(e || "").trim().toLowerCase();
-        fetch("/resrc/data/member-emails.json")
-            .then(res => res.json())
-            .then(data => allowedEmails = (data || []).map(normEmail));
+        // Membership is checked by the upload service (src/scripts/access.js),
+        // which only answers about the person signed in.
+        let authSeq = 0;
 
-        // Update navbar profile picture
-        function updateNavbar(user) {
-            if (user && allowedEmails.includes(normEmail(user.email))) {
-                profilePic.src = user.photoURL || "/resrc/images/icons/user.png";
-                profilePic.classList.add("profile-pic");
+        // Update navbar profile picture. The navbar is loaded after this
+        // script runs, so wait a little for it if needed.
+        function paintNavbar(photoURL, tries = 25) {
+            const profilePic = document.getElementById("profilePic");
+            if (!profilePic) {
+                if (tries > 0) setTimeout(() => paintNavbar(photoURL, tries - 1), 200);
+                return;
+            }
+            profilePic.src = photoURL || "/resrc/images/icons/user.png";
+            profilePic.classList.toggle("profile-pic", !!photoURL);
+        }
+
+        async function updateNavbar(user) {
+            const seq = ++authSeq;
+            let access;
+            try {
+                access = await malangAccess(user);
+            } catch {
+                toggleRestricted(); // could not check right now: keep what is shown
+                return;
+            }
+            if (seq !== authSeq) return; // a newer sign-in state arrived meanwhile
+
+            if (user && access.member) {
+                paintNavbar(user.photoURL || "/resrc/images/icons/user.png");
                 localStorage.setItem("loggedIn", "true");
             } else {
-                profilePic.src = "/resrc/images/icons/user.png";
-                profilePic.classList.remove("profile-pic");
+                paintNavbar("");
                 localStorage.setItem("loggedIn", "false");
             }
+            toggleRestricted();
         }
 
         // Keep navbar always synced
-        onAuthStateChanged(auth, toggleRestricted);
+        onAuthStateChanged(auth, updateNavbar);
 
         // Expose auth to iframes
         window.firebaseAuth = auth;
@@ -108,11 +126,6 @@
         iframe.addEventListener("wheel", (e) => {
             iframe.contentWindow.dispatchEvent(new WheelEvent("wheel", e));
         });
-        const profilePic = document.getElementById("profilePic");
-        if (profilePic) {
-            updateNavbar();
-        }
-
     </script>
     <script src="/src/scripts/search.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>

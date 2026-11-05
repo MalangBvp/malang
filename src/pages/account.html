@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="../styles/common.css">
     <link rel="stylesheet" href="../styles/authentication.css">
     <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring2.js"></script>
+    <script src="../scripts/access.js"></script>
     <script type="module">import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
         import {
@@ -45,16 +46,12 @@
         };
 
         // ---------------------------
-        // Allowed Email List
+        // Membership
         // ---------------------------
-        // Gmail ignores case, so normalise both sides or a capitalised
-        // address locks a real member out.
-        const normEmail = (e) => String(e || "").trim().toLowerCase();
-
-        let allowedEmails = [];
-        fetch("/resrc/data/member-emails.json")
-            .then(res => res.json())
-            .then(data => allowedEmails = (data || []).map(normEmail));
+        // The member and reviewer lists are private. malangAccess()
+        // (src/scripts/access.js) asks the upload service about the
+        // signed-in person only. Core edits the lists in the
+        // "Malang Upload Submissions" sheet (Members / Reviewers tabs).
 
         // --------------------------------
         // Multi-provider linking support
@@ -66,32 +63,41 @@
         // UI Update
         // ---------------------------
 
-        // Reviewer list is data, not code: edit /resrc/data/reviewers.json
-        // and both this page and the upload page follow.
-        let REVIEWERS = [];
-        fetch("/resrc/data/reviewers.json")
-            .then(res => res.json())
-            .then(data => {
-                REVIEWERS = (data || []).map(normEmail);
-                updateUI(auth.currentUser);
-            })
-            .catch(() => REVIEWERS = []);
+        let uiSeq = 0;
 
-        function updateUI(user) {
+        async function updateUI(user, options) {
+            const seq = ++uiSeq;
             const status = document.getElementById("status");
             const profilePic = window.parent.document.getElementById("profilePic");
             const reviewLink = document.getElementById("reviewArtworkLink");
 
-            if (user && allowedEmails.includes(normEmail(user.email))) {
+            let access;
+            try {
+                if (user) status.innerText = "Checking membership…";
+                access = await malangAccess(user, options);
+            } catch (err) {
+                if (seq !== uiSeq) return;
+                // Keep whatever access was shown before; just say what happened.
+                console.warn("Membership check failed:", err && err.message);
+                status.innerText = "Could not check your membership. Please reload the page to try again.";
+                return;
+            }
+            if (seq !== uiSeq) return; // a newer sign-in state arrived meanwhile
+
+            if (user && access.member) {
                 status.innerText = `Hey ${user.displayName}! 👋`;
-                profilePic.src = user.photoURL || "/resrc/images/icons/user.png";
-                profilePic.classList.add("profile-pic");
+                if (profilePic) {
+                    profilePic.src = user.photoURL || "/resrc/images/icons/user.png";
+                    profilePic.classList.add("profile-pic");
+                }
                 localStorage.setItem("loggedIn", "true");
-                if (reviewLink) reviewLink.style.display = REVIEWERS.includes(normEmail(user.email)) ? "" : "none";
+                if (reviewLink) reviewLink.style.display = access.reviewer ? "" : "none";
             } else {
                 status.innerText = user ? "Unauthorised Access Attempt." : "Authentication Required.";
-                profilePic.src = "/resrc/images/icons/user.png";
-                profilePic.classList.remove("profile-pic");
+                if (profilePic) {
+                    profilePic.src = "/resrc/images/icons/user.png";
+                    profilePic.classList.remove("profile-pic");
+                }
                 localStorage.setItem("loggedIn", "false");
                 if (reviewLink) reviewLink.style.display = "none";
             }
@@ -119,7 +125,17 @@
                     return;
                 }
 
-                if (!allowedEmails.includes(normEmail(user.email))) {
+                let access;
+                try {
+                    access = await malangAccess(user, { fresh: true });
+                } catch (err) {
+                    // Not a "no": the check itself failed. Stay signed in so a retry works.
+                    vibrate(200);
+                    showAlert("Could not check membership", err.message || "Please try again.", [{ text: "OK" }]);
+                    return;
+                }
+
+                if (!access.member) {
                     vibrate(200);
                     showAlert("Unauthorised Access Attempt.", "Login restricted: Membership with Malang is required.", [{ text: "OK" }]);
                     await signOut(auth);
@@ -128,7 +144,7 @@
                     showAlert("Login successful", "", [{ text: "Proceed" }]);
                 }
 
-                updateUI(user);
+                updateUI(auth.currentUser);
 
             } catch (error) {
 

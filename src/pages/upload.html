@@ -57,6 +57,7 @@
             <h2>Upload Your Work</h2>
             <p class="auth-sub">Sign in with your Malang member account to submit artworks and photographs for the
                 gallery.</p>
+            <p id="authNote" class="form-message warn" role="status" hidden></p>
             <div class="auth-buttons">
                 <button class="long-btn provider-btn" onclick="loginWith('google')">
                     <img src="/resrc/images/icons/google.png" alt="">Continue with Google
@@ -189,6 +190,7 @@
 
     <script src="../scripts/common.js"></script>
     <script src="../scripts/authentication.js"></script>
+    <script src="../scripts/access.js"></script>
     <script src="../scripts/upload.js"></script>
 
     <script type="module">
@@ -223,7 +225,7 @@
             })()
         };
 
-        // Wait for the config + rosters to land, then watch auth state.
+        // Wait for the config to land, then watch auth state.
         MalangUpload.ready.then(() => {
             onAuthStateChanged(auth, (user) => {
                 MalangUpload.setUser(user, () => signOut(auth));
@@ -245,7 +247,17 @@
                     return;
                 }
 
-                if (!MalangUpload.isMember(user.email)) {
+                let access;
+                try {
+                    access = await MalangUpload.checkAccess(user, { fresh: true });
+                } catch (err) {
+                    // The check itself failed, which is not a "no": stay signed in so a retry works.
+                    vibrate(200);
+                    showAlert("Could Not Check Membership", err.message || "Please try again.", [{ text: "OK" }]);
+                    return;
+                }
+
+                if (!access.member) {
                     vibrate(200);
                     showAlert("Unauthorised Access",
                         "Only registered Malang members can upload work.", [{ text: "OK" }]);
@@ -254,6 +266,8 @@
                 }
 
                 vibrate(50);
+                // Signing in again as the same account does not fire onAuthStateChanged.
+                MalangUpload.setUser(user);
             } catch (error) {
                 if (error.code === "auth/account-exists-with-different-credential") {
                     showAlert("Account Already Exists",
