@@ -175,7 +175,7 @@ function handleDecide(body) {
     let published;
     try {
       file = DriveApp.getFileById(item.fileId);
-      published = publishToGallery(item, file.getBlob().getBytes(), reviewer);
+      published = publishToGallery(item, file.getBlob().getBytes());
     } catch (err) {
       set({ status: 'PENDING', reviewedBy: '', reviewedAt: '' });
       throw new Error('Could not publish to the website. ' + ((err && err.message) || err));
@@ -223,7 +223,7 @@ function effectiveStatus(item) {
  * pushes in between (the sitemap bot does this after every push), the
  * ref update is rejected and the whole thing is rebuilt on the new head.
  */
-function publishToGallery(item, imageBytes, reviewer) {
+function publishToGallery(item, imageBytes) {
   const repo = prop('GITHUB_REPO') || CONFIG.GITHUB_REPO;
   const branch = prop('GITHUB_BRANCH') || CONFIG.GITHUB_BRANCH;
   const jsonPath = 'resrc/data/' + item.category + '.json';
@@ -260,8 +260,7 @@ function publishToGallery(item, imageBytes, reviewer) {
     }).sha;
 
     const label = CATEGORIES[item.category].label;
-    const message = '🎨 Publish ' + label + ' #' + index + ': "' + (item.title || 'Untitled') + '" by ' +
-      item.artist + '\n\nApproved by ' + reviewer + ' on the upload page.\nSubmission ' + item.id;
+    const message = 'Add ' + label + ' #' + index + (item.title ? ' ' + item.title : '') + ' by ' + item.artist;
 
     const commit = gh('post', '/repos/' + repo + '/git/commits', {
       message: message, tree: tree, parents: [head]
