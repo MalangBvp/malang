@@ -1910,56 +1910,6 @@
     ]
   },
   {
-    "title": "Artwork by Anushka Shivhare",
-    "url": "/src/pages/gallery.html",
-    "content": "Artist: Anushka Shivhare \u00b7 Type: Painting",
-    "category": "artwork",
-    "tags": [
-      "Painting",
-      "Anushka Shivhare"
-    ]
-  },
-  {
-    "title": "Artwork by Anushka Shivhare",
-    "url": "/src/pages/gallery.html",
-    "content": "Artist: Anushka Shivhare \u00b7 Type: Fine Art",
-    "category": "artwork",
-    "tags": [
-      "Fine Art",
-      "Anushka Shivhare"
-    ]
-  },
-  {
-    "title": "Warrior",
-    "url": "/src/pages/gallery.html",
-    "content": "Warrior \u00b7 Artist: saanvi mohabey \u00b7 Type: Sketch",
-    "category": "artwork",
-    "tags": [
-      "Sketch",
-      "saanvi mohabey"
-    ]
-  },
-  {
-    "title": "Deaths muse",
-    "url": "/src/pages/gallery.html",
-    "content": "Deaths muse \u00b7 Artist: saanvi mohabey \u00b7 Type: Sketch",
-    "category": "artwork",
-    "tags": [
-      "Sketch",
-      "saanvi mohabey"
-    ]
-  },
-  {
-    "title": "Artwork by Bhavini Shree",
-    "url": "/src/pages/gallery.html",
-    "content": "Artist: Bhavini Shree \u00b7 Type: Fine Art",
-    "category": "artwork",
-    "tags": [
-      "Fine Art",
-      "Bhavini Shree"
-    ]
-  },
-  {
     "title": "Photos by Manamrit",
     "url": "/src/pages/gallery.html",
     "content": "Photographer: Manamrit \u00b7 3 photographs \u00b7 Categories: Architectural, Space",
@@ -2134,16 +2084,6 @@
       "Nature",
       "Street",
       "Tanushryy"
-    ]
-  },
-  {
-    "title": "Photos by Manamrit Singh",
-    "url": "/src/pages/gallery.html",
-    "content": "Photographer: Manamrit Singh \u00b7 1 photograph \u00b7 Categories: Street",
-    "category": "photograph",
-    "tags": [
-      "Street",
-      "Manamrit Singh"
     ]
   },
   {
