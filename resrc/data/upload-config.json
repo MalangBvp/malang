@@ -3,9 +3,17 @@
   "maxFileMb": 15,
   "maxEdgePx": 2400,
   "webpQuality": 0.9,
+  "maxFilesPerBatch": 10,
   "categories": [
-    { "value": "artworks", "label": "Artwork (Fine Art / Sketch / Painting)" },
-    { "value": "photographs", "label": "Photograph" },
-    { "value": "digital", "label": "Digital Art & Design" }
+    {
+      "value": "artworks",
+      "label": "Artwork",
+      "types": ["Fine Art", "Illustration", "Sketch", "Painting", "Digital Art", "Origami", "Model"]
+    },
+    {
+      "value": "photographs",
+      "label": "Photograph",
+      "types": ["Nature", "Street", "Urban", "Architectural", "Cityscape", "Landscape", "Animal", "Space", "Macro", "Portrait", "Vintage"]
+    }
   ]
 }

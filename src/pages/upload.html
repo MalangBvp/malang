@@ -21,8 +21,8 @@
         <div id="authGate" class="glass-card auth-gate" style="display:none;">
             <img src="/resrc/images/icons/art.webp" class="auth-logo" alt="Malang">
             <h2>Upload Your Work</h2>
-            <p class="auth-sub">Sign in with your Malang member account to submit artwork, photographs or digital art
-                for the gallery.</p>
+            <p class="auth-sub">Sign in with your Malang member account to submit artworks and photographs for the
+                gallery.</p>
             <div class="auth-buttons">
                 <button class="long-btn provider-btn" onclick="loginWith('google')">
                     <img src="/resrc/images/icons/google.png" alt="">Continue with Google
@@ -60,37 +60,27 @@
                         <code>upload-config.json</code>.</span>
                 </div>
 
-                <form id="uploadForm" onsubmit="handleFormSubmit(event)">
+                <form id="uploadForm" onsubmit="handleFormSubmit(event)" novalidate>
                     <h3>Submit Your Work</h3>
 
-                    <div id="dropzone" class="dropzone" onclick="document.getElementById('fileInput').click()">
+                    <!-- Artwork / Photograph, filled from upload-config.json -->
+                    <div id="kindSwitch" class="kind-switch" role="radiogroup" aria-label="What are you uploading?"></div>
+
+                    <div id="dropzone" class="dropzone" role="button" tabindex="0"
+                        aria-label="Choose images to upload">
                         <img src="/resrc/images/icons/art.webp" class="upload-icon" alt="">
                         <p class="drop-label">Click to browse or drag &amp; drop</p>
                         <p class="drop-sub" id="dropSub">JPG, PNG or WEBP &nbsp;·&nbsp; Max 15 MB</p>
-                        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp"
-                            style="display:none;" onchange="handleFileSelect(event)">
+                        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" multiple hidden
+                            onchange="handleFileSelect(event)">
                     </div>
 
-                    <div id="previewBox" class="preview-box" style="display:none;">
-                        <img id="imagePreview" src="" alt="Preview">
-                        <button type="button" class="remove-btn" onclick="clearSelectedFile()"
-                            title="Remove">&times;</button>
-                        <div class="preview-meta">
-                            <span id="previewName"></span>
-                            <span id="previewSize"></span>
-                        </div>
-                    </div>
+                    <ul id="fileList" class="file-list" aria-live="polite"></ul>
 
-                    <label class="field-label" for="workCategory">Category</label>
-                    <select id="workCategory" required></select>
+                    <p class="credit-line">Credited to <strong id="creditName">you</strong></p>
 
-                    <label class="field-label" for="workTitle">Title of Work <span class="optional-tag">(optional)</span></label>
-                    <input type="text" id="workTitle" placeholder="e.g. Celestial Dreamscape">
-
-                    <label class="field-label" for="artistName">Credit this work to</label>
-                    <input type="text" id="artistName" placeholder="Your name as it should appear" required>
-
-                    <button type="submit" class="long-btn submit-btn" id="submitBtn">Submit for Review</button>
+                    <button type="submit" class="long-btn submit-btn" id="submitBtn" disabled>Choose images to
+                        submit</button>
                 </form>
             </div>
 
@@ -116,8 +106,6 @@
                     <button class="chip" data-category="artworks" onclick="setCategoryFilter('artworks')">Artwork</button>
                     <button class="chip" data-category="photographs"
                         onclick="setCategoryFilter('photographs')">Photograph</button>
-                    <button class="chip" data-category="digital" onclick="setCategoryFilter('digital')">Digital
-                        Art</button>
                 </div>
 
                 <div class="review-grid" id="reviewQueueList">
