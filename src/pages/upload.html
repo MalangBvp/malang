@@ -6,20 +6,54 @@
     <link rel="stylesheet" href="../styles/common.css">
     <link rel="stylesheet" href="../styles/authentication.css">
     <link rel="stylesheet" href="../styles/upload.css">
-    <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring2.js"></script>
 </head>
 
 <body>
+    <!-- Shared SVG paint for the aperture and the ink line -->
+    <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+        <defs>
+            <linearGradient id="apBlade" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#4b4e57" />
+                <stop offset="1" stop-color="#141519" />
+            </linearGradient>
+            <radialGradient id="apLight" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.32" />
+                <stop offset="1" stop-color="#ffffff" stop-opacity="0.04" />
+            </radialGradient>
+            <clipPath id="apClip">
+                <circle cx="26" cy="26" r="22" />
+            </clipPath>
+            <linearGradient id="inkGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffffff" />
+                <stop offset="0.5" stop-color="#9ea3ad" />
+                <stop offset="1" stop-color="#ffffff" />
+            </linearGradient>
+            <filter id="inkRough" x="-2%" y="-10%" width="104%" height="120%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="1" seed="7" />
+                <feDisplacementMap in="SourceGraphic" scale="3" />
+            </filter>
+        </defs>
+    </svg>
+
     <div id="loader">
-        <l-ring-2 size="25" stroke="2" stroke-length="0.25" bg-opacity="0.1" speed="0.8" color="white"></l-ring-2>
+        <span data-aperture="is-spinning loader-aperture"></span>
     </div>
 
     <section id="uploadSection">
+        <!-- Soft drifting light behind the glass, plus film grain -->
+        <div class="ambient" aria-hidden="true">
+            <span class="orb orb-a"></span>
+            <span class="orb orb-b"></span>
+            <span class="orb orb-c"></span>
+            <span class="grain"></span>
+        </div>
+
+        <!-- Colourful cursor trail (drawn by authentication.js) -->
         <canvas id="gradientCanvas"></canvas>
 
         <!-- ============ SIGNED OUT ============ -->
         <div id="authGate" class="glass-card auth-gate" style="display:none;">
-            <img src="/resrc/images/icons/art.webp" class="auth-logo" alt="Malang">
+            <span data-aperture="auth-aperture"></span>
             <h2>Upload Your Work</h2>
             <p class="auth-sub">Sign in with your Malang member account to submit artworks and photographs for the
                 gallery.</p>
@@ -67,7 +101,10 @@
 
                     <div id="dropzone" class="dropzone" role="button" tabindex="0"
                         aria-label="Choose images to upload">
-                        <img src="/resrc/images/icons/art.webp" class="upload-icon" alt="">
+                        <svg class="ink" aria-hidden="true">
+                            <rect class="ink-path" pathLength="1" rx="14" ry="14" />
+                        </svg>
+                        <span data-aperture="upload-icon"></span>
                         <p class="drop-label" id="dropLabel">Drop images here or click to browse</p>
                         <p class="drop-sub" id="dropSub">JPG, PNG or WEBP &nbsp;·&nbsp; Max 15 MB</p>
                         <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" multiple hidden
@@ -96,10 +133,7 @@
                 </form>
 
                 <div id="doneState" class="done-state" tabindex="-1" hidden>
-                    <svg class="done-icon" viewBox="0 0 52 52" aria-hidden="true">
-                        <circle cx="26" cy="26" r="24" fill="none" />
-                        <path d="M15 27l7 7 15-16" fill="none" />
-                    </svg>
+                    <span data-aperture="done-icon"></span>
                     <h4 id="doneTitle">Sent for review</h4>
                     <p id="doneText"></p>
                     <div class="done-actions">

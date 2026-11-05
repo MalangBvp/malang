@@ -15,6 +15,32 @@
    submissions on this device only and says so plainly.
    ========================================================= */
 
+/* =========================================================
+   Aperture: one SVG camera iris (Malang's logo motif) used as
+   the page loader, the drop zone icon, the upload spinner and
+   the success mark. Six blades pivot on the rim; CSS rotates
+   them to open and close (see .ap-blade in upload.css).
+   ========================================================= */
+
+function apertureMarkup(extraClass) {
+    const blades = [0, 60, 120, 180, 240, 300].map((deg) =>
+        `<g transform="rotate(${deg} 26 26)"><polygon class="ap-blade" points="26,-20 26,72 -32,72 -32,-20" /></g>`
+    ).join("");
+    return `
+        <svg class="aperture ${extraClass || ""}" viewBox="0 0 52 52" aria-hidden="true" focusable="false">
+            <circle class="ap-ring" cx="26" cy="26" r="24.5" />
+            <g class="ap-iris" clip-path="url(#apClip)">
+                <circle class="ap-hole" cx="26" cy="26" r="22" />
+                ${blades}
+            </g>
+            <path class="ap-check" d="M16.5 27.5 23 34 36 19.5" pathLength="1" />
+        </svg>`;
+}
+
+document.querySelectorAll("[data-aperture]").forEach((slot) => {
+    slot.outerHTML = apertureMarkup(slot.dataset.aperture);
+});
+
 const KIND_KEY = "malang_upload_kind";
 
 const uploadState = {
@@ -442,6 +468,7 @@ function addFiles(fileList) {
         }
         uploadState.files.push({
             id: ++fileSeq,
+            addedAt: Date.now(),
             file,
             url: URL.createObjectURL(file),
             title: "",
@@ -481,6 +508,8 @@ function statusText(f) {
     }
 }
 
+const DEVELOP_MS = 2600; // keep in step with the develop animation in upload.css
+
 function renderFileList() {
     const list = $("fileList");
     if (!list) return;
@@ -497,9 +526,16 @@ function renderFileList() {
                 ${types.map((t) => `<option value="${escapeHtml(t)}" ${t === f.type ? "selected" : ""}>${escapeHtml(t)}</option>`).join("")}
             </select>` : "";
 
+        // A new image "develops" like an instant photo. Re-renders during that
+        // time resume the animation where it was instead of restarting it.
+        const age = Date.now() - f.addedAt;
+        const fresh = age < DEVELOP_MS;
+        const resume = fresh ? ` style="animation-delay:-${age}ms"` : "";
+
         return `
             <li class="file-item is-${f.status}${f.problem ? " has-problem" : ""}" data-id="${f.id}">
-                <img class="file-thumb" src="${f.url}" alt="">
+                <span class="polaroid${fresh ? " developing" : ""}"${resume}><img class="file-thumb"
+                    src="${f.url}" alt=""${resume}></span>
                 <div class="file-fields">
                     <input type="text" class="file-title" maxlength="120" placeholder="Title (optional)"
                         aria-label="Title for ${name}" value="${escapeHtml(f.title)}" ${locked ? "disabled" : ""}>
@@ -537,10 +573,19 @@ function updateSubmitButton(progress) {
     const waiting = pendingFiles().length;
 
     if (uploadState.busy && progress) {
-        btn.textContent = `Uploading ${progress.at} of ${progress.of}…`;
+        const text = `Uploading ${progress.at} of ${progress.of}…`;
+        const label = btn.querySelector(".btn-label");
+        // Keep the same spinner between images so its motion doesn't restart.
+        if (btn.classList.contains("is-busy") && label) {
+            label.textContent = text;
+        } else {
+            btn.innerHTML = apertureMarkup("is-spinning btn-aperture") + `<span class="btn-label">${text}</span>`;
+        }
         btn.disabled = true;
+        btn.classList.add("is-busy");
         return;
     }
+    btn.classList.remove("is-busy");
     btn.disabled = uploadState.busy || waiting === 0;
     const failed = uploadState.files.some((f) => f.status === "failed");
     btn.textContent = waiting === 0
@@ -695,6 +740,17 @@ function showDone(sent, local) {
         : sent === 1
             ? "Your work is with the review team. It appears in the gallery once a reviewer approves it."
             : `${sent} works are with the review team. They appear in the gallery once a reviewer approves them.`;
+
+    // Replay the shutter: close, open, draw the tick.
+    const ap = done.querySelector(".aperture");
+    if (ap) {
+        ap.classList.remove("is-done");
+        void ap.getBoundingClientRect();
+        ap.classList.add("is-done");
+    }
+    done.classList.remove("is-shown");
+    void done.offsetWidth;
+    done.classList.add("is-shown");
     done.focus();
 }
 
@@ -887,7 +943,7 @@ function renderMine(mine) {
 
         return `
             <li class="mine-item">
-                <img class="mine-thumb" src="${escapeHtml(src)}" alt="" loading="lazy">
+                <span class="polaroid"><img class="mine-thumb" src="${escapeHtml(src)}" alt="" loading="lazy"></span>
                 <div class="mine-body">
                     <div class="mine-title-row">
                         <p class="mine-title">${item.title ? escapeHtml(item.title) : "<em>Untitled</em>"}</p>
@@ -1061,6 +1117,29 @@ async function handleReviewDecision(card, decision) {
         refreshQueue();
     }
 }
+
+/* =========================================================
+   Living background: the light drifts on its own (CSS) and
+   leans gently toward the pointer.
+   ========================================================= */
+
+(() => {
+    const ambient = document.querySelector(".ambient");
+    if (!ambient || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let frame = 0;
+    let x = 0;
+    let y = 0;
+    window.addEventListener("pointermove", (e) => {
+        x = (e.clientX / window.innerWidth - 0.5) * 2;
+        y = (e.clientY / window.innerHeight - 0.5) * 2;
+        if (frame) return;
+        frame = requestAnimationFrame(() => {
+            ambient.style.setProperty("--px", x.toFixed(3));
+            ambient.style.setProperty("--py", y.toFixed(3));
+            frame = 0;
+        });
+    }, { passive: true });
+})();
 
 function viewFullImage(src) {
     if (!src) return;
