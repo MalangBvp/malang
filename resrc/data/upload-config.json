@@ -2,6 +2,7 @@
   "endpoint": "https://script.google.com/macros/s/AKfycbw1KYYkKyHwOwFz8PB4W6IWoAVNbngPRFi-0ZLdPeT2-D-OnVhy6wEk9HOm7jnwbrRT/exec",
   "maxFileMb": 15,
   "maxEdgePx": 2400,
+  "minEdgePx": 200,
   "webpQuality": 0.9,
   "maxFilesPerBatch": 10,
   "categories": [

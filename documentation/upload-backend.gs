@@ -30,7 +30,26 @@ const CONFIG = {
   PENDING_FOLDER_NAME: 'Pending Uploads',
   MAX_IMAGE_BYTES: 15 * 1024 * 1024,
   MAX_TITLE: 120,
-  STALE_PUBLISH_MS: 10 * 60 * 1000
+  STALE_PUBLISH_MS: 10 * 60 * 1000,
+
+  // Images: the page shrinks to 2400px, so anything far outside this range
+  // did not come from the page (tiny icons, or huge "decompression bombs").
+  MIN_EDGE_PX: 200,
+  MAX_EDGE_PX: 4000,
+
+  // Limits, per member unless noted. Tune here; no other change needed.
+  LIMIT_UPLOADS_PER_HOUR: 15,
+  LIMIT_UPLOADS_PER_DAY: 40,
+  LIMIT_PENDING: 25,
+  LIMIT_ALL_UPLOADS_PER_DAY: 400, // whole club, protects Drive space
+  LIMIT_REQUESTS_PER_10_MIN: 150,
+  LIMIT_FAILED_SIGNINS_PER_MIN: 40, // everyone together
+
+  // A reviewer approving their own work skips review, so it is off.
+  ALLOW_SELF_APPROVAL: false,
+
+  LOG_TAB: 'Log',
+  LOG_MAX_ROWS: 5000
 };
 
 const CATEGORIES = {
@@ -45,18 +64,28 @@ const DEFAULT_TYPES = {
     'Animal', 'Space', 'Macro', 'Portrait', 'Vintage']
 };
 
+// New columns go at the end; sheet() adds any that an older sheet is missing.
 const HEADERS = ['id', 'submittedAt', 'submitterEmail', 'submitterName', 'artist', 'title',
   'category', 'type', 'fileId', 'status', 'comment', 'reviewedBy', 'reviewedAt',
-  'galleryIndex', 'commitUrl'];
+  'galleryIndex', 'commitUrl', 'hash'];
+
+const LOG_HEADERS = ['time', 'email', 'action', 'id', 'result'];
+
+// Who is making this request, once their token is verified (for the log).
+let currentEmail = '';
 
 // ---------------------------------------------------------
 // Entry points
 // ---------------------------------------------------------
 
 function doPost(e) {
+  let action = '';
+  let id = '';
   try {
     const body = JSON.parse((e && e.postData && e.postData.contents) || '{}');
-    switch (body.action) {
+    action = String(body.action || '');
+    id = String(body.id || '');
+    switch (action) {
       case 'submit': return json(handleSubmit(body));
       case 'mine': return json(handleMine(body));
       case 'withdraw': return json(handleWithdraw(body));
@@ -65,13 +94,26 @@ function doPost(e) {
       default: return json({ ok: false, error: 'Unknown action.' });
     }
   } catch (err) {
-    return json({ ok: false, error: String((err && err.message) || err) });
+    const message = String((err && err.message) || err);
+    logEvent(action || 'request', id, (err && err.code ? err.code + ': ' : 'error: ') + message);
+    const out = { ok: false, error: message };
+    if (err && err.code) out.code = err.code;
+    if (err && err.retryAfter) out.retryAfter = err.retryAfter;
+    return json(out);
   }
 }
 
 /** Opening the /exec URL in a browser shows this, which is a quick deploy check. */
 function doGet() {
-  return json({ ok: true, service: 'malang-upload', version: 3 });
+  return json({ ok: true, service: 'malang-upload', version: 4 });
+}
+
+/** An error meant for the person using the page, optionally with a code the page acts on. */
+function userError(message, code, retryAfter) {
+  const err = new Error(message);
+  if (code) err.code = code;
+  if (retryAfter) err.retryAfter = retryAfter;
+  return err;
 }
 
 // ---------------------------------------------------------
@@ -90,12 +132,39 @@ function handleSubmit(body) {
   const title = cleanText(body.title, CONFIG.MAX_TITLE);
   if (!body.dataBase64) throw new Error('No image received.');
 
-  const bytes = Utilities.base64Decode(String(body.dataBase64));
+  // Refuse oversize data before spending time decoding it.
+  const encoded = String(body.dataBase64);
+  if (encoded.length > Math.ceil(CONFIG.MAX_IMAGE_BYTES / 3) * 4 + 4) throw new Error('That image is too large.');
+  const bytes = Utilities.base64Decode(encoded);
   if (bytes.length > CONFIG.MAX_IMAGE_BYTES) throw new Error('That image is too large.');
 
   // Trust the file's own bytes, not the name or the type the browser claimed.
   const mime = sniffImage(bytes);
   if (!mime) throw new Error('That file is not a JPG, PNG or WEBP image.');
+
+  const size = imageSize(bytes, mime);
+  if (!size) throw new Error('Could not read the size of that image. Try saving it again as JPG.');
+  const shortEdge = Math.min(size.width, size.height);
+  const longEdge = Math.max(size.width, size.height);
+  if (shortEdge < CONFIG.MIN_EDGE_PX) {
+    throw new Error('That image is too small (' + size.width + '×' + size.height + '). Upload one at least ' +
+      CONFIG.MIN_EDGE_PX + 'px on each side.');
+  }
+  if (longEdge > CONFIG.MAX_EDGE_PX) throw new Error('That image is too large (' + size.width + '×' + size.height + ').');
+
+  const sh = sheet();
+  const rows = readRows(sh).map(function (r) { return r.item; });
+  checkUploadLimits(account.email, rows);
+
+  const hash = sha256Hex(bytes);
+  const twin = rows.filter(function (r) {
+    return r.hash === hash && ['PENDING', 'PUBLISHING', 'APPROVED'].indexOf(effectiveStatus(r)) !== -1;
+  })[0];
+  if (twin) {
+    const mine = String(twin.submitterEmail).toLowerCase() === account.email;
+    const where = effectiveStatus(twin) === 'APPROVED' ? 'already in the gallery' : 'already waiting for review';
+    throw userError(mine ? 'You uploaded this image before; it is ' + where + '.' : 'This image is ' + where + '.', 'DUPLICATE');
+  }
 
   const artist = account.displayName || account.email.split('@')[0];
   const id = 'sub_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
@@ -107,7 +176,7 @@ function handleSubmit(body) {
   // Link-visible so reviewers' thumbnails load. The id is unguessable.
   file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
 
-  const row = {
+  appendObject(sh, {
     id: id,
     submittedAt: new Date().toISOString(),
     submitterEmail: account.email,
@@ -117,11 +186,32 @@ function handleSubmit(body) {
     category: category,
     type: type,
     fileId: file.getId(),
-    status: 'PENDING'
-  };
-  sheet().appendRow(HEADERS.map(function (h) { return row[h] === undefined ? '' : row[h]; }));
+    status: 'PENDING',
+    hash: hash
+  });
 
   return { ok: true, id: id };
+}
+
+/** Hourly burst limit (cache), plus daily, pending and club-wide limits counted from the sheet. */
+function checkUploadLimits(email, rows) {
+  const dayAgo = Date.now() - 24 * 60 * 60 * 1000;
+  const recent = function (r) { return new Date(r.submittedAt).getTime() > dayAgo; };
+  const own = rows.filter(function (r) { return String(r.submitterEmail).toLowerCase() === email; });
+
+  if (rows.filter(recent).length >= CONFIG.LIMIT_ALL_UPLOADS_PER_DAY) {
+    throw userError('The club has reached today\'s upload limit. Please try again tomorrow.', 'RATE_LIMIT', 3600);
+  }
+  if (own.filter(recent).length >= CONFIG.LIMIT_UPLOADS_PER_DAY) {
+    throw userError('You have reached today\'s limit of ' + CONFIG.LIMIT_UPLOADS_PER_DAY +
+      ' uploads. Please try again tomorrow.', 'RATE_LIMIT', 3600);
+  }
+  const pending = own.filter(function (r) { return effectiveStatus(r) === 'PENDING'; }).length;
+  if (pending >= CONFIG.LIMIT_PENDING) {
+    throw userError('You already have ' + pending + ' works waiting for review. Please wait for some to be reviewed.',
+      'RATE_LIMIT', 3600);
+  }
+  rateLimit('up:' + email, CONFIG.LIMIT_UPLOADS_PER_HOUR, 3600, 'You have uploaded a lot in the last hour.');
 }
 
 /** A member's own submissions, newest first, so they can follow review status and notes. */
@@ -160,6 +250,7 @@ function handleWithdraw(body) {
       DriveApp.getFileById(found.item.fileId).setTrashed(true); // stays in Drive trash for 30 days
     } catch (err) { /* the row is what matters */ }
 
+    logEvent('withdraw', body.id, 'withdrawn');
     return { ok: true };
   } finally {
     lock.releaseLock();
@@ -221,12 +312,18 @@ function handleDecide(body) {
       throw new Error('Already ' + status.toLowerCase() + ' by ' + (item.reviewedBy || 'another reviewer') + '.');
     }
 
+    if (decision === 'APPROVED' && !CONFIG.ALLOW_SELF_APPROVAL &&
+      String(item.submitterEmail).toLowerCase() === account.email) {
+      throw userError('You can\'t approve your own work. Ask another reviewer.', 'SELF_APPROVAL');
+    }
+
     const reviewer = account.displayName || account.email;
     const comment = cleanText(body.comment, 300);
     const set = function (fields) { writeFields(sh, found.rowNumber, fields); };
 
     if (decision === 'REJECTED') {
       set({ status: 'REJECTED', comment: comment, reviewedBy: reviewer, reviewedAt: new Date().toISOString() });
+      logEvent('decide', body.id, 'REJECTED');
       return { ok: true };
     }
 
@@ -261,6 +358,7 @@ function handleDecide(body) {
       commitUrl: published.commitUrl
     });
 
+    logEvent('decide', body.id, 'APPROVED as #' + published.index + (warning ? ' · ' + warning : ''));
     return { ok: true, galleryIndex: published.index, commitUrl: published.commitUrl, warning: warning };
   } finally {
     lock.releaseLock();
@@ -424,41 +522,88 @@ function ghRaw(path) {
 // Auth
 // ---------------------------------------------------------
 
-/** Verifies the Firebase ID token and returns the real account behind it. */
+/**
+ * Verifies the Firebase ID token and returns the real account behind it.
+ * A verified token is remembered for 5 minutes (by its hash), so a batch
+ * of uploads costs one lookup, not ten. Lots of bad tokens in a short time
+ * means someone is hammering the service, so lookups pause for a minute.
+ */
 function verifyToken(idToken) {
-  if (!idToken) throw new Error('Not signed in.');
+  if (!idToken) throw userError('Not signed in.', 'AUTH');
 
-  const res = UrlFetchApp.fetch(
-    'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' + prop('FIREBASE_API_KEY'),
-    {
-      method: 'post',
-      contentType: 'application/json',
-      payload: JSON.stringify({ idToken: String(idToken) }),
-      muteHttpExceptions: true
+  const cache = CacheService.getScriptCache();
+  const key = 'tok:' + sha256Hex(String(idToken));
+  const hit = cache.get(key);
+  let account = hit ? JSON.parse(hit) : null;
+
+  if (!account) {
+    const failKey = 'authfail:' + Math.floor(Date.now() / 60000);
+    if (Number(cache.get(failKey) || 0) >= CONFIG.LIMIT_FAILED_SIGNINS_PER_MIN) {
+      throw userError('Too many sign-in attempts right now. Try again in a minute.', 'RATE_LIMIT', 60);
     }
-  );
-  if (res.getResponseCode() !== 200) throw new Error('Session expired. Please sign in again.');
 
-  const users = JSON.parse(res.getContentText()).users || [];
-  const account = users[0];
-  if (!account || !account.email) throw new Error('No email on this account.');
+    const res = UrlFetchApp.fetch(
+      'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' + prop('FIREBASE_API_KEY'),
+      {
+        method: 'post',
+        contentType: 'application/json',
+        payload: JSON.stringify({ idToken: String(idToken) }),
+        muteHttpExceptions: true
+      }
+    );
+    if (res.getResponseCode() !== 200) {
+      cache.put(failKey, String(Number(cache.get(failKey) || 0) + 1), 120);
+      throw userError('Session expired. Please sign in again.', 'AUTH');
+    }
 
-  const fromProvider = (account.providerUserInfo || [])
-    .map(function (p) { return p.displayName; })
-    .filter(Boolean)[0];
+    const user = (JSON.parse(res.getContentText()).users || [])[0];
+    if (!user || !user.email) throw userError('No email on this account.', 'AUTH');
 
-  // The gallery builds its artist filter buttons as HTML, so a name must
-  // not be able to carry quotes or markup into the page.
-  return {
-    email: String(account.email).trim().toLowerCase(),
-    displayName: cleanText(account.displayName || fromProvider || '', 60).replace(/["'`&\\]/g, '').trim()
-  };
+    const fromProvider = (user.providerUserInfo || [])
+      .map(function (p) { return p.displayName; })
+      .filter(Boolean)[0];
+
+    // The gallery builds its artist filter buttons as HTML, so a name must
+    // not be able to carry quotes or markup into the page.
+    account = {
+      email: String(user.email).trim().toLowerCase(),
+      displayName: cleanText(user.displayName || fromProvider || '', 60).replace(/["'`&\\]/g, '').trim()
+    };
+    cache.put(key, JSON.stringify(account), 300);
+  }
+
+  currentEmail = account.email;
+  rateLimit('req:' + account.email, CONFIG.LIMIT_REQUESTS_PER_10_MIN, 600, 'Too many requests.');
+  return account;
+}
+
+/**
+ * Fixed-window counter in the script cache. Approximate under heavy
+ * parallel use, which is fine for keeping one person from flooding it.
+ */
+function rateLimit(name, limit, windowSec, message) {
+  const cache = CacheService.getScriptCache();
+  const now = Math.floor(Date.now() / 1000);
+  const bucket = Math.floor(now / windowSec);
+  const key = 'rl:' + sha256Hex(name).slice(0, 24) + ':' + windowSec + ':' + bucket;
+  const count = Number(cache.get(key) || 0) + 1;
+  cache.put(key, String(count), Math.min(windowSec + 60, 21600));
+  if (count > limit) {
+    const wait = (bucket + 1) * windowSec - now;
+    throw userError(message + ' Try again in ' + humanWait(wait) + '.', 'RATE_LIMIT', wait);
+  }
+}
+
+function humanWait(seconds) {
+  if (seconds < 90) return 'a minute';
+  const minutes = Math.ceil(seconds / 60);
+  return minutes < 60 ? minutes + ' minutes' : 'about ' + Math.ceil(minutes / 60) + ' hour' + (minutes > 60 ? 's' : '');
 }
 
 function requireMember(idToken) {
   const account = verifyToken(idToken);
   if (emailList(CONFIG.SITE + '/resrc/data/member-emails.json').indexOf(account.email) === -1) {
-    throw new Error('Only Malang members can upload work.');
+    throw userError('Only Malang members can upload work.', 'FORBIDDEN');
   }
   return account;
 }
@@ -466,7 +611,7 @@ function requireMember(idToken) {
 function requireReviewer(idToken) {
   const account = verifyToken(idToken);
   if (emailList(CONFIG.SITE + '/resrc/data/reviewers.json').indexOf(account.email) === -1) {
-    throw new Error('Reviewer access required.');
+    throw userError('Reviewer access required.', 'FORBIDDEN');
   }
   return account;
 }
@@ -550,15 +695,54 @@ function findOrCreateFolder(parent, name) {
 // Sheet + Drive helpers
 // ---------------------------------------------------------
 
+let openSpreadsheet = null;
+
+function spreadsheet() {
+  if (!openSpreadsheet) openSpreadsheet = SpreadsheetApp.openById(prop('SHEET_ID'));
+  return openSpreadsheet;
+}
+
 function sheet() {
-  const ss = SpreadsheetApp.openById(prop('SHEET_ID'));
+  const ss = spreadsheet();
   let sh = ss.getSheetByName(CONFIG.SHEET_TAB);
   if (!sh) sh = ss.insertSheet(CONFIG.SHEET_TAB);
-  if (sh.getLastRow() === 0) {
-    sh.appendRow(HEADERS);
-    sh.setFrozenRows(1);
-  }
+  ensureHeaders(sh, HEADERS);
   return sh;
+}
+
+/** Writes the header row on a new tab, and adds any newer columns an older sheet lacks. */
+function ensureHeaders(sh, headers) {
+  if (sh.getLastRow() === 0) {
+    sh.appendRow(headers);
+    sh.setFrozenRows(1);
+    return;
+  }
+  const have = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+  let col = have.length;
+  headers.forEach(function (h) {
+    if (have.indexOf(h) === -1) sh.getRange(1, ++col).setValue(h);
+  });
+}
+
+/** Appends a row by column name, so it lands right whatever order the sheet's columns are in. */
+function appendObject(sh, obj) {
+  const header = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+  sh.appendRow(header.map(function (h) { return obj[h] === undefined ? '' : obj[h]; }));
+}
+
+/** Errors, decisions and withdrawals go to a Log tab for debugging. Never breaks a request. */
+function logEvent(action, id, result) {
+  try {
+    if (!prop('SHEET_ID')) return;
+    const ss = spreadsheet();
+    let sh = ss.getSheetByName(CONFIG.LOG_TAB);
+    if (!sh) sh = ss.insertSheet(CONFIG.LOG_TAB);
+    ensureHeaders(sh, LOG_HEADERS);
+    sh.appendRow([new Date().toISOString(), currentEmail, cleanText(action, 30), cleanText(id, 60),
+      cleanText(result, 300)]);
+    const extra = sh.getLastRow() - 1 - CONFIG.LOG_MAX_ROWS;
+    if (extra > 0) sh.deleteRows(2, extra);
+  } catch (err) { /* logging is best effort */ }
 }
 
 function readRows(sh) {
@@ -600,11 +784,71 @@ function sniffImage(bytes) {
   return '';
 }
 
+/**
+ * Width and height from the file header, without decoding the image.
+ * Covers what browsers produce: PNG, baseline/progressive JPEG, and
+ * WEBP in its three forms (lossy VP8, lossless VP8L, extended VP8X).
+ */
+function imageSize(bytes, mime) {
+  const b = function (i) { return bytes[i] & 0xff; };
+  const u16be = function (i) { return (b(i) << 8) | b(i + 1); };
+  const u32be = function (i) { return b(i) * 16777216 + ((b(i + 1) << 16) | (b(i + 2) << 8) | b(i + 3)); };
+  const u16le = function (i) { return b(i) | (b(i + 1) << 8); };
+  const u24le = function (i) { return b(i) | (b(i + 1) << 8) | (b(i + 2) << 16); };
+  const tag = function (i) { return String.fromCharCode(b(i), b(i + 1), b(i + 2), b(i + 3)); };
+
+  if (mime === 'image/png') {
+    if (bytes.length < 24 || tag(12) !== 'IHDR') return null;
+    return { width: u32be(16), height: u32be(20) };
+  }
+
+  if (mime === 'image/webp') {
+    if (bytes.length < 30) return null;
+    const chunk = tag(12);
+    if (chunk === 'VP8 ') {
+      if (b(23) !== 0x9d || b(24) !== 0x01 || b(25) !== 0x2a) return null;
+      return { width: u16le(26) & 0x3fff, height: u16le(28) & 0x3fff };
+    }
+    if (chunk === 'VP8L') {
+      if (b(20) !== 0x2f) return null;
+      const bits = b(21) | (b(22) << 8) | (b(23) << 16) | ((b(24) & 0x0f) << 24);
+      return { width: (bits & 0x3fff) + 1, height: ((bits >>> 14) & 0x3fff) + 1 };
+    }
+    if (chunk === 'VP8X') return { width: u24le(24) + 1, height: u24le(27) + 1 };
+    return null;
+  }
+
+  if (mime === 'image/jpeg') {
+    let i = 2;
+    while (i + 9 < bytes.length) {
+      if (b(i) !== 0xff) { i++; continue; }
+      const marker = b(i + 1);
+      if (marker === 0xff) { i++; continue; }
+      if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd8)) { i += 2; continue; }
+      if (marker === 0xd9 || marker === 0xda) return null; // reached the image data without a size
+      // Start-of-frame markers carry the size (C4, C8 and CC are not frames).
+      if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+        return { width: u16be(i + 7), height: u16be(i + 5) };
+      }
+      i += 2 + u16be(i + 2);
+    }
+    return null;
+  }
+  return null;
+}
+
+function sha256Hex(data) {
+  return Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, data)
+    .map(function (x) { return ('0' + (x & 0xff).toString(16)).slice(-2); })
+    .join('');
+}
+
 function cleanText(value, max) {
   return String(value || '')
     .replace(/[\u0000-\u001f\u007f<>]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
+    .replace(/^[=+\-@]+\s*/, '') // a leading = + - @ would run as a formula in the sheet
     .slice(0, max);
 }
 

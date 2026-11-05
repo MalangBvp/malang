@@ -66,6 +66,7 @@ const MalangUpload = (() => {
         endpoint: "",
         maxFileMb: 15,
         maxEdgePx: 2400,
+        minEdgePx: 200,
         webpQuality: 0.9,
         maxFilesPerBatch: 10,
         categories: [
@@ -145,6 +146,8 @@ const MalangUpload = (() => {
             if (gate) gate.style.display = "block";
             if (app) app.style.display = "none";
             items = [];
+            // On a shared computer the next person must not see these.
+            forgetSignedInView();
             return;
         }
 
@@ -197,11 +200,26 @@ const MalangUpload = (() => {
         } catch {
             throw new Error("The upload service sent back something unexpected. Please try again.");
         }
-        if (!data.ok) throw new Error(data.error || "Request failed.");
+        if (!data.ok) {
+            const err = new Error(data.error || "Request failed.");
+            err.code = data.code || "";
+            err.retryAfter = data.retryAfter || 0;
+            throw err;
+        }
         return data;
     }
 
     const token = () => (user ? user.getIdToken() : Promise.resolve(""));
+
+    /** Sends a signed-in request. If the sign-in went stale, refreshes it once and retries. */
+    async function call(payload) {
+        try {
+            return await post({ ...payload, idToken: await token() });
+        } catch (err) {
+            if (err.code !== "AUTH" || !user || !/expired/i.test(err.message)) throw err;
+            return post({ ...payload, idToken: await user.getIdToken(true) });
+        }
+    }
 
     // ---------------------------------------------------------------
     // Local fallback (device-only, used until the endpoint is set)
@@ -234,13 +252,13 @@ const MalangUpload = (() => {
             writeLocal(list);
             return { local: true };
         }
-        const data = await post({ action: "submit", idToken: await token(), ...record });
+        const data = await call({ action: "submit", ...record });
         return { local: false, id: data.id };
     }
 
     async function fetchMine() {
         if (!config.endpoint) return readLocal();
-        const data = await post({ action: "mine", idToken: await token() });
+        const data = await call({ action: "mine" });
         return data.items || [];
     }
 
@@ -249,12 +267,12 @@ const MalangUpload = (() => {
             writeLocal(readLocal().filter((s) => s.id !== id));
             return { local: true };
         }
-        return post({ action: "withdraw", idToken: await token(), id });
+        return call({ action: "withdraw", id });
     }
 
     async function fetchQueue() {
         if (!config.endpoint) return readLocal();
-        const data = await post({ action: "queue", idToken: await token() });
+        const data = await call({ action: "queue" });
         return data.items || [];
     }
 
@@ -271,7 +289,7 @@ const MalangUpload = (() => {
             }
             return { local: true };
         }
-        return post({ action: "decide", idToken: await token(), id, decision, comment });
+        return call({ action: "decide", id, decision, comment });
     }
 
     // Boot as soon as the DOM is up. If the Firebase module fails to load
@@ -453,7 +471,13 @@ function addFiles(fileList) {
     const sharedType = waiting.length && waiting.every((f) => f.type === waiting[0].type) ? waiting[0].type : "";
     const defaultType = sharedType || (currentTypes().includes(uploadState.lastType) ? uploadState.lastType : "");
 
+    const sameFile = (a, b) => a.name === b.name && a.size === b.size && a.lastModified === b.lastModified;
+
     Array.from(fileList).forEach((file) => {
+        if (uploadState.files.some((f) => sameFile(f.file, file))) {
+            skipped.push(`${file.name} (already in the list)`);
+            return;
+        }
         if (!/^image\/(png|jpeg|webp)$/.test(file.type)) {
             skipped.push(`${file.name} (not a JPG, PNG or WEBP)`);
             return;
@@ -504,6 +528,7 @@ function statusText(f) {
         case "uploading": return "Uploading…";
         case "done": return "Sent for review";
         case "failed": return "Didn't upload: " + f.error;
+        case "held": return "Not sent yet (see the message below)";
         default: return `${f.file.name} · ${formatSize(f.file.size)}`;
     }
 }
@@ -587,7 +612,7 @@ function updateSubmitButton(progress) {
     }
     btn.classList.remove("is-busy");
     btn.disabled = uploadState.busy || waiting === 0;
-    const failed = uploadState.files.some((f) => f.status === "failed");
+    const failed = uploadState.files.some((f) => f.status === "failed" || f.status === "held");
     btn.textContent = waiting === 0
         ? "Choose images to submit"
         : failed ? `Retry ${plural(waiting, "upload")}` : `Submit ${plural(waiting, "work")} for review`;
@@ -606,6 +631,11 @@ function compressToWebp(src) {
     return new Promise((resolve, reject) => {
         const img = new Image();
         img.onload = () => {
+            if (Math.min(img.width, img.height) < cfg.minEdgePx) {
+                reject(new Error(`this image is too small (${img.width}×${img.height}). ` +
+                    `Use one at least ${cfg.minEdgePx}px on each side.`));
+                return;
+            }
             const scale = Math.min(1, cfg.maxEdgePx / Math.max(img.width, img.height));
             const canvas = document.createElement("canvas");
             canvas.width = Math.round(img.width * scale);
@@ -669,9 +699,19 @@ async function handleFormSubmit(e) {
     let sent = 0;
     let failed = 0;
     let local = false;
+    let stopped = "";
 
     for (let i = 0; i < queue.length; i++) {
         const item = queue[i];
+
+        // A limit was hit: don't keep knocking. Leave the rest ready to send later.
+        if (stopped) {
+            item.status = "held";
+            failed++;
+            updateRow(item);
+            continue;
+        }
+
         updateSubmitButton({ at: i + 1, of: queue.length });
 
         item.status = "preparing";
@@ -709,6 +749,7 @@ async function handleFormSubmit(e) {
             item.progress = 0;
             item.error = (err && err.message) || "something went wrong.";
             failed++;
+            if (err && err.code === "RATE_LIMIT") stopped = err.message;
         } finally {
             clearInterval(ticker);
             updateRow(item);
@@ -725,9 +766,31 @@ async function handleFormSubmit(e) {
     } else {
         vibrate(200);
         setMessage(
-            `${failed} of ${queue.length} didn't upload. The reason is under each image; press Retry to try again.`,
+            stopped
+                ? `${sent ? plural(sent, "work") + " sent. " : ""}${stopped} The rest are kept here so you can send them later.`
+                : `${failed} of ${queue.length} didn't upload. The reason is under each image; press Retry to try again.`,
             "error");
     }
+}
+
+/** Sign-out: drop everything the last person had on screen. */
+function forgetSignedInView() {
+    uploadState.files.forEach((f) => URL.revokeObjectURL(f.url));
+    uploadState.files = [];
+    ["mineList", "reviewQueueList"].forEach((id) => { const el = $(id); if (el) el.innerHTML = ""; });
+    const summary = $("mineSummary");
+    if (summary) summary.textContent = "";
+    $("doneState").hidden = true;
+    $("uploadForm").hidden = false;
+    setMessage("");
+    clearTypeError();
+    // Back to the Upload tab without loading anything: the next person may not be a reviewer.
+    Object.entries(TABS).forEach(([name, [panel, btn]]) => {
+        $(panel).style.display = name === "upload" ? "block" : "none";
+        $(btn).classList.toggle("active", name === "upload");
+    });
+    $("uploadApp").classList.remove("wide");
+    renderFileList();
 }
 
 function showDone(sent, local) {

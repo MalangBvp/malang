@@ -146,6 +146,23 @@ it is fine for it to be in the website code.)
 | Add a new type (e.g. "Charcoal") | Add it to the `types` list in `resrc/data/upload-config.json` and push. |
 | Update the postman code | Paste the new code > **Deploy** > **Manage deployments** > pencil icon > **Version: New version** > **Deploy**. The URL stays the same. |
 | Replace an expired or leaked GitHub key | Make a new key (Part A), delete the old one on GitHub, then change `GITHUB_TOKEN` in B2. No redeploy needed. |
+| Change the upload limits | In the script, edit the `LIMIT_...` lines near the top of `CONFIG`, then deploy a **New version**. |
+| Let reviewers approve their own work | Set `ALLOW_SELF_APPROVAL: true` in `CONFIG` and deploy a **New version**. (Off by default, so every work is seen by someone else.) |
+| See what went wrong / who approved what | Open the **Log** tab in the *Malang Upload Submissions* sheet. It keeps the last 5000 errors, decisions and withdrawals. |
+
+### Built-in limits
+
+| Limit | Default |
+|---|---|
+| Uploads per member per hour | 15 |
+| Uploads per member per day | 40 |
+| Works one member can have waiting for review | 25 |
+| Uploads for the whole club per day | 400 |
+| Requests per member per 10 minutes | 150 |
+| Smallest / largest image side | 200px / 4000px |
+
+The same image can't be submitted twice while it is waiting or live (it can
+after a reviewer asks for changes).
 
 ## If something goes wrong
 
@@ -156,4 +173,8 @@ it is fine for it to be in the website code.)
 | "Could not publish to the website. GitHub 401" | The GitHub key expired or was deleted. Make a new one (Part A) and update `GITHUB_TOKEN`. |
 | "Could not publish to the website. GitHub 403 / 404" | The key does not have **Contents: Read and write** on **malang**, or the organisation has not approved it. |
 | "PENDING_FOLDER_ID is missing" | Run `setup` once (B3). |
+| "You have uploaded a lot in the last hour…" / "today's limit" / "works waiting for review" | A limit was reached (see Built-in limits). It clears by itself. |
+| "You uploaded this image before…" | That exact image is already waiting or live. |
+| "You can't approve your own work." | Another reviewer has to approve it. |
+| "Too many sign-in attempts right now." | Someone sent lots of fake sign-ins; it pauses for a minute. Check the Log tab. |
 | Upload page still shows the yellow "not connected" notice | `endpoint` in `upload-config.json` is empty, or the site has not updated yet. |
