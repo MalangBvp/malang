@@ -19,6 +19,10 @@
  * The token is checked against Google's identity API here, so a
  * member cannot be impersonated from the browser and reviewer
  * rights cannot be granted from the console.
+ *
+ * Who is a member or reviewer is kept private, in the Members and
+ * Reviewers tabs of the submissions sheet. Pages ask "whoami" and
+ * only ever learn about the person who is signed in.
  */
 
 const CONFIG = {
@@ -27,6 +31,9 @@ const CONFIG = {
   GITHUB_BRANCH: 'main',
   SHEET_FILE_NAME: 'Malang Upload Submissions',
   SHEET_TAB: 'Submissions',
+  MEMBERS_TAB: 'Members',
+  REVIEWERS_TAB: 'Reviewers',
+  ROSTER_CACHE_SEC: 60, // a change to Members or Reviewers works within this many seconds
   PENDING_FOLDER_NAME: 'Pending Uploads',
   MAX_IMAGE_BYTES: 15 * 1024 * 1024,
   MAX_TITLE: 120,
@@ -71,6 +78,11 @@ const HEADERS = ['id', 'submittedAt', 'submitterEmail', 'submitterName', 'artist
 
 const LOG_HEADERS = ['time', 'email', 'action', 'id', 'result'];
 
+// Members and Reviewers tabs: one Gmail per row in column A. Column B is a
+// note for people (a name, the year); the script never reads it.
+const ROSTER_HEADERS = ['email', 'name'];
+const EMAIL_RE = /^[a-z0-9_][a-z0-9._%+-]*@[a-z0-9-]+(\.[a-z0-9-]+)+$/; // checked after lower-casing
+
 // Who is making this request, once their token is verified (for the log).
 let currentEmail = '';
 
@@ -86,6 +98,7 @@ function doPost(e) {
     action = String(body.action || '');
     id = String(body.id || '');
     switch (action) {
+      case 'whoami': return json(handleWhoami(body));
       case 'submit': return json(handleSubmit(body));
       case 'mine': return json(handleMine(body));
       case 'withdraw': return json(handleWithdraw(body));
@@ -105,7 +118,7 @@ function doPost(e) {
 
 /** Opening the /exec URL in a browser shows this, which is a quick deploy check. */
 function doGet() {
-  return json({ ok: true, service: 'malang-upload', version: 4 });
+  return json({ ok: true, service: 'malang-upload', version: 5 });
 }
 
 /** An error meant for the person using the page, optionally with a code the page acts on. */
@@ -119,6 +132,17 @@ function userError(message, code, retryAfter) {
 // ---------------------------------------------------------
 // Actions
 // ---------------------------------------------------------
+
+/** What the signed-in person may do. Says nothing about anyone else. */
+function handleWhoami(body) {
+  const account = verifyToken(body.idToken);
+  return {
+    ok: true,
+    member: isOnRoster(CONFIG.MEMBERS_TAB, account.email),
+    reviewer: isOnRoster(CONFIG.REVIEWERS_TAB, account.email),
+    displayName: account.displayName
+  };
+}
 
 function handleSubmit(body) {
   const account = requireMember(body.idToken);
@@ -602,7 +626,7 @@ function humanWait(seconds) {
 
 function requireMember(idToken) {
   const account = verifyToken(idToken);
-  if (emailList(CONFIG.SITE + '/resrc/data/member-emails.json').indexOf(account.email) === -1) {
+  if (!isOnRoster(CONFIG.MEMBERS_TAB, account.email)) {
     throw userError('Only Malang members can upload work.', 'FORBIDDEN');
   }
   return account;
@@ -610,15 +634,48 @@ function requireMember(idToken) {
 
 function requireReviewer(idToken) {
   const account = verifyToken(idToken);
-  if (emailList(CONFIG.SITE + '/resrc/data/reviewers.json').indexOf(account.email) === -1) {
+  if (!isOnRoster(CONFIG.REVIEWERS_TAB, account.email)) {
     throw userError('Reviewer access required.', 'FORBIDDEN');
   }
   return account;
 }
 
-/** Roster lists live on the site, so access follows the repo with no redeploy here. */
-function emailList(url) {
-  return cachedJson(url).map(function (e) { return String(e).trim().toLowerCase(); });
+function isOnRoster(tab, email) {
+  return rosterEmails(tab).indexOf(String(email).trim().toLowerCase()) !== -1;
+}
+
+/**
+ * The emails in the Members or Reviewers tab, lower-cased. Kept for a minute
+ * in the script cache so busy pages do not open the sheet on every request.
+ */
+function rosterEmails(tab) {
+  const cache = CacheService.getScriptCache();
+  const key = 'roster:' + tab;
+  const hit = cache.get(key);
+  if (hit) return JSON.parse(hit);
+
+  const sh = spreadsheet().getSheetByName(tab);
+  if (!sh) throw new Error('The "' + tab + '" tab is missing from the sheet. Run setup() once from the script editor.');
+  const last = sh.getLastRow();
+  const emails = last < 2 ? [] : sh.getRange(2, 1, last - 1, 1).getDisplayValues()
+    .map(function (row) { return String(row[0]).trim().toLowerCase(); })
+    .filter(function (e) { return EMAIL_RE.test(e); });
+
+  cache.put(key, JSON.stringify(emails), CONFIG.ROSTER_CACHE_SEC);
+  return emails;
+}
+
+/** The Members or Reviewers tab, created with its header row if missing. */
+function rosterSheet(tab) {
+  const ss = spreadsheet();
+  let sh = ss.getSheetByName(tab);
+  if (!sh) sh = ss.insertSheet(tab);
+  if (sh.getLastRow() === 0) {
+    sh.appendRow(ROSTER_HEADERS);
+    sh.setFrozenRows(1);
+    sh.getRange('A:A').setNumberFormat('@'); // plain text, so an email is never read as a formula
+  }
+  return sh;
 }
 
 function allowedTypes(category) {
@@ -670,6 +727,12 @@ function setup() {
   sheet(); // creates the tab and header row if missing
 
   const report = ['Folders and sheet are ready inside "' + website.getName() + '".'];
+  [CONFIG.MEMBERS_TAB, CONFIG.REVIEWERS_TAB].forEach(function (tab) {
+    rosterSheet(tab);
+    CacheService.getScriptCache().remove('roster:' + tab);
+    const count = rosterEmails(tab).length;
+    report.push((count ? 'OK  ' : 'EMPTY  ') + tab + ' tab has ' + count + ' email' + (count === 1 ? '' : 's') + '.');
+  });
   report.push(props.getProperty('FIREBASE_API_KEY') ? 'OK  FIREBASE_API_KEY is set.' : 'MISSING  FIREBASE_API_KEY');
 
   if (!props.getProperty('GITHUB_TOKEN')) {
@@ -682,6 +745,46 @@ function setup() {
       report.push('PROBLEM  GitHub token: ' + err.message);
     }
   }
+  Logger.log(report.join('\n'));
+  return report.join('\n');
+}
+
+/**
+ * One time only, when moving to the private lists: copies the old public
+ * member-emails.json and reviewers.json from the live site into the
+ * Members and Reviewers tabs. Run it BEFORE the site update that deletes
+ * those files goes live. Emails already in a tab are skipped, so running
+ * it twice is harmless. Once the files are gone it only says so.
+ */
+function importOldListsFromSite() {
+  const jobs = [[CONFIG.MEMBERS_TAB, 'member-emails.json'], [CONFIG.REVIEWERS_TAB, 'reviewers.json']];
+  const cache = CacheService.getScriptCache();
+  const report = jobs.map(function (job) {
+    const tab = job[0];
+    let list = null;
+    try {
+      const res = UrlFetchApp.fetch(CONFIG.SITE + '/resrc/data/' + job[1], { muteHttpExceptions: true });
+      if (res.getResponseCode() === 200) list = JSON.parse(res.getContentText('UTF-8'));
+    } catch (e) { /* handled below */ }
+    if (!Array.isArray(list)) {
+      return 'SKIPPED  ' + job[1] + ' is no longer on the site. Add emails to the ' + tab + ' tab by hand.';
+    }
+
+    const sh = rosterSheet(tab);
+    cache.remove('roster:' + tab);
+    const have = rosterEmails(tab);
+    const add = [];
+    list.forEach(function (e) {
+      const email = String(e).trim().toLowerCase();
+      if (EMAIL_RE.test(email) && have.indexOf(email) === -1 && add.indexOf(email) === -1) add.push(email);
+    });
+    if (add.length) {
+      sh.getRange(sh.getLastRow() + 1, 1, add.length, 1).setNumberFormat('@')
+        .setValues(add.map(function (e) { return [e]; }));
+    }
+    cache.remove('roster:' + tab);
+    return 'OK  ' + tab + ': added ' + add.length + ', ' + rosterEmails(tab).length + ' in total.';
+  });
   Logger.log(report.join('\n'));
   return report.join('\n');
 }
