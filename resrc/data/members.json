@@ -98,6 +98,13 @@
     "division": ""
   },
   {
+    "name": "Khyati Prashar",
+    "position": "Associate",
+    "year": "2nd",
+    "branch": "ECE",
+    "division": ""
+  },
+  {
     "name": "Leeya bhavsar",
     "position": "Associate",
     "year": "2nd",
@@ -126,6 +133,13 @@
     "division": ""
   },
   {
+    "name": "Niharika Charak",
+    "position": "Associate",
+    "year": "2nd",
+    "branch": "CE",
+    "division": ""
+  },
+  {
     "name": "Prapti Padkanthwar",
     "position": "Associate",
     "year": "2nd",
@@ -144,6 +158,13 @@
     "position": "Associate",
     "year": "2nd",
     "branch": "CSE",
+    "division": ""
+  },
+  {
+    "name": "Sayali Dhotre",
+    "position": "Associate",
+    "year": "2nd",
+    "branch": "Biotech",
     "division": ""
   },
   {
@@ -175,10 +196,24 @@
     "division": ""
   },
   {
+    "name": "Surya Parida",
+    "position": "Associate",
+    "year": "2nd",
+    "branch": "CE",
+    "division": ""
+  },
+  {
     "name": "Tanushree Dubey",
     "position": "Associate",
     "year": "2nd",
     "branch": "CE",
+    "division": ""
+  },
+  {
+    "name": "Tanvi Wadekar",
+    "position": "Associate",
+    "year": "2nd",
+    "branch": "Biotech",
     "division": ""
   },
   {
@@ -207,6 +242,69 @@
     "position": "Associate",
     "year": "2nd",
     "branch": "ECE",
+    "division": ""
+  },
+  {
+    "name": "Aakash Mane",
+    "position": "Junior Associate",
+    "year": "1st",
+    "branch": "",
+    "division": ""
+  },
+  {
+    "name": "Divyanka Pal",
+    "position": "Junior Associate",
+    "year": "1st",
+    "branch": "IT",
+    "division": ""
+  },
+  {
+    "name": "Gungun Dwivedi",
+    "position": "Junior Associate",
+    "year": "1st",
+    "branch": "ECE",
+    "division": ""
+  },
+  {
+    "name": "Kaushal Mishra",
+    "position": "Junior Associate",
+    "year": "1st",
+    "branch": "E&TC",
+    "division": ""
+  },
+  {
+    "name": "Nishtha Ingale",
+    "position": "Junior Associate",
+    "year": "1st",
+    "branch": "CE",
+    "division": ""
+  },
+  {
+    "name": "Skand Shukla",
+    "position": "Junior Associate",
+    "year": "1st",
+    "branch": "Civil",
+    "division": ""
+  },
+  {
+    "name": "Smriti Sinha",
+    "position": "Junior Associate",
+    "year": "1st",
+    "branch": "CE",
+    "division": ""
+  },
+  {
+    "name": "Soham Nirgude",
+    "position": "Junior Associate",
+    "year": "1st",
+    "branch": "IT",
+    "division": ""
+  },
+  {
+    "name": "Sumedh Godage",
+    "position": "Junior Associate",
+    "year": "1st",
+    "branch": "Mechanical",
     "division": ""
   }
 ]
