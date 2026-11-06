@@ -20,7 +20,7 @@
     const CONFIG_URL = "/resrc/data/upload-config.json";
     const SAVED_KEY = "malang_access";
     const SAVED_MS = 10 * 60 * 1000;
-    const NONE = Object.freeze({ member: false, reviewer: false });
+    const NONE = Object.freeze({ member: false, reviewer: false, uploader: false });
 
     let endpoint = null;
     const asking = new Map(); // uid -> promise, so two callers share one request
@@ -63,7 +63,10 @@
             err.code = data.code || "";
             throw err;
         }
-        return { member: !!data.member, reviewer: !!data.reviewer };
+        // uploader = may use the upload page (members, plus the upload-only list).
+        // An older service without it answers member only, so fall back to that.
+        const uploader = data.uploader === undefined ? !!data.member : !!data.uploader;
+        return { member: !!data.member, reviewer: !!data.reviewer, uploader };
     }
 
     /** If the sign-in went stale, refresh it once and ask again (same as call() in upload.js). */
@@ -86,7 +89,7 @@
 
     function remember(user, access) {
         try {
-            if (access.member || access.reviewer) {
+            if (access.member || access.reviewer || access.uploader) {
                 sessionStorage.setItem(SAVED_KEY, JSON.stringify({ uid: user.uid, email: user.email, at: Date.now(), access }));
             } else {
                 // Only a yes is kept, so someone added a moment ago is let in on their next try.

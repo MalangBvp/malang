@@ -186,6 +186,8 @@ You can delete this section once it is done.
 |---|---|
 | Add a new member | Open Drive > Website > **Malang Upload Submissions** > **Members** tab. Type their Gmail in **column A** on the first empty row (their name in column B if you like). Works within a minute. No push, no redeploy. |
 | Remove a member | Delete their row in the **Members** tab (right-click the row number > **Delete row**). Works within a minute. |
+| Let someone upload, nothing else (e.g. new recruits) | Put their Gmail in the **Uploaders** tab instead of Members. They can use Upload Work and My uploads, but not the member-only pages (Treasury, Claims, Media, Documentation, Account). Works within a minute. |
+| Move a recruit up to full member | Delete their row in **Uploaders** and add them to **Members**. |
 | Add or remove a reviewer | Same, in the **Reviewers** tab. Reviewers must also be in **Members**. |
 | Let another core member manage the lists | Share the *Malang Upload Submissions* sheet with their Gmail as **Editor**. Only share it with core: it holds everyone's email. |
 | Add a new type (e.g. "Charcoal") | Add it to the `types` list in `resrc/data/upload-config.json` and push. |
@@ -213,7 +215,7 @@ after a reviewer asks for changes).
 
 | Message | Meaning / fix |
 |---|---|
-| "Only Malang members can upload work." / "Unauthorised Access" / "This account is not on the Malang member list." | That Gmail is not in the **Members** tab, or has a typo. Fix it there; it works within a minute. |
+| "Only Malang members can upload work." / "Unauthorised Access" / "This account is not on the Malang member list." | That Gmail is not in the **Members** or **Uploaders** tab, or has a typo. Fix it there; it works within a minute. |
 | "Could not check your membership…" | The website could not reach the postman, or the postman has old code. Open the Web app URL (B4): it should show `"version":5` or higher. If the number is lower, paste the new code and deploy a **New version**. |
 | "The "Members" tab is missing from the sheet." | Run `setup` once (B3). |
 | "Session expired. Please sign in again." | Sign out and sign in again on the website. |

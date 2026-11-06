@@ -122,9 +122,9 @@ const MalangUpload = (() => {
      * person signed in (see src/scripts/access.js). Throws if it can't be asked.
      */
     function checkAccess(account, options) {
-        if (!account) return Promise.resolve({ member: false, reviewer: false });
+        if (!account) return Promise.resolve({ member: false, reviewer: false, uploader: false });
         // Not connected yet: nothing leaves this device, so anyone signed in may try it.
-        if (!config.endpoint) return Promise.resolve({ member: true, reviewer: false });
+        if (!config.endpoint) return Promise.resolve({ member: true, reviewer: false, uploader: true });
         return window.malangAccess(account, options);
     }
 
@@ -141,14 +141,14 @@ const MalangUpload = (() => {
         const seq = ++authSeq;
         const loader = document.getElementById("loader");
 
-        let access = { member: false, reviewer: false };
+        let access = { member: false, reviewer: false, uploader: false };
         let note = "";
         if (!nextUser && window.malangAccess) window.malangAccess.forget();
         if (nextUser) {
             if (loader) loader.style.display = "";
             try {
                 access = await checkAccess(nextUser);
-                if (!access.member) note = "This account is not on the Malang member list.";
+                if (!access.uploader) note = "This account is not on the Malang member list.";
             } catch (err) {
                 console.warn("Membership check failed:", err && err.message);
                 note = "Could not check your membership. Please reload the page to try again.";
@@ -156,7 +156,8 @@ const MalangUpload = (() => {
             if (seq !== authSeq) return; // a newer sign-in state arrived meanwhile
         }
 
-        user = access.member ? nextUser : null;
+        // Members and the upload-only list may use this page.
+        user = access.uploader ? nextUser : null;
         reviewer = !!(user && access.reviewer);
         if (loader) loader.style.display = "none";
 

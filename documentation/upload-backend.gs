@@ -33,6 +33,7 @@ const CONFIG = {
   SHEET_TAB: 'Submissions',
   MEMBERS_TAB: 'Members',
   REVIEWERS_TAB: 'Reviewers',
+  UPLOADERS_TAB: 'Uploaders', // upload-only access (e.g. new recruits); no member-only pages
   ROSTER_CACHE_SEC: 60, // a change to Members or Reviewers works within this many seconds
   PENDING_FOLDER_NAME: 'Pending Uploads',
   MAX_IMAGE_BYTES: 15 * 1024 * 1024,
@@ -118,7 +119,7 @@ function doPost(e) {
 
 /** Opening the /exec URL in a browser shows this, which is a quick deploy check. */
 function doGet() {
-  return json({ ok: true, service: 'malang-upload', version: 5 });
+  return json({ ok: true, service: 'malang-upload', version: 6 });
 }
 
 /** An error meant for the person using the page, optionally with a code the page acts on. */
@@ -140,12 +141,13 @@ function handleWhoami(body) {
     ok: true,
     member: isOnRoster(CONFIG.MEMBERS_TAB, account.email),
     reviewer: isOnRoster(CONFIG.REVIEWERS_TAB, account.email),
+    uploader: canUpload(account.email),
     displayName: account.displayName
   };
 }
 
 function handleSubmit(body) {
-  const account = requireMember(body.idToken);
+  const account = requireUploader(body.idToken);
 
   const category = String(body.category || '');
   if (!CATEGORIES[category]) throw new Error('Choose Artwork or Photograph.');
@@ -240,7 +242,7 @@ function checkUploadLimits(email, rows) {
 
 /** A member's own submissions, newest first, so they can follow review status and notes. */
 function handleMine(body) {
-  const account = requireMember(body.idToken);
+  const account = requireUploader(body.idToken);
 
   const items = readRows(sheet())
     .filter(function (r) { return String(r.item.submitterEmail).toLowerCase() === account.email; })
@@ -253,7 +255,7 @@ function handleMine(body) {
 
 /** Lets a member take back a work that is still waiting for review. */
 function handleWithdraw(body) {
-  const account = requireMember(body.idToken);
+  const account = requireUploader(body.idToken);
 
   const lock = LockService.getScriptLock();
   if (!lock.tryLock(30000)) throw new Error('Busy right now. Try again in a moment.');
@@ -632,6 +634,19 @@ function requireMember(idToken) {
   return account;
 }
 
+/** Members, plus the upload-only Uploaders list. */
+function requireUploader(idToken) {
+  const account = verifyToken(idToken);
+  if (!canUpload(account.email)) {
+    throw userError('Only Malang members can upload work.', 'FORBIDDEN');
+  }
+  return account;
+}
+
+function canUpload(email) {
+  return isOnRoster(CONFIG.MEMBERS_TAB, email) || isOnRoster(CONFIG.UPLOADERS_TAB, email);
+}
+
 function requireReviewer(idToken) {
   const account = verifyToken(idToken);
   if (!isOnRoster(CONFIG.REVIEWERS_TAB, account.email)) {
@@ -655,6 +670,7 @@ function rosterEmails(tab) {
   if (hit) return JSON.parse(hit);
 
   const sh = spreadsheet().getSheetByName(tab);
+  if (!sh && tab === CONFIG.UPLOADERS_TAB) return []; // optional list; setup() creates it
   if (!sh) throw new Error('The "' + tab + '" tab is missing from the sheet. Run setup() once from the script editor.');
   const last = sh.getLastRow();
   const emails = last < 2 ? [] : sh.getRange(2, 1, last - 1, 1).getDisplayValues()
@@ -727,7 +743,7 @@ function setup() {
   sheet(); // creates the tab and header row if missing
 
   const report = ['Folders and sheet are ready inside "' + website.getName() + '".'];
-  [CONFIG.MEMBERS_TAB, CONFIG.REVIEWERS_TAB].forEach(function (tab) {
+  [CONFIG.MEMBERS_TAB, CONFIG.REVIEWERS_TAB, CONFIG.UPLOADERS_TAB].forEach(function (tab) {
     rosterSheet(tab);
     CacheService.getScriptCache().remove('roster:' + tab);
     const count = rosterEmails(tab).length;
